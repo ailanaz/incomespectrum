@@ -3,328 +3,1132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Supportive Services Directory | IncomeSpectrum</title>
-  <meta name="description" content="Browse finance, legal, operations, marketing, broker, diligence, and valuation service destinations for operators and business buyers.">
+  <title>Supportive Services Directory | Income Spectrum</title>
+  <meta name="description" content="Browse finance, legal, operations, advisory, and transaction service destinations.">
+  <meta property="og:title" content="Supportive Services Directory | Income Spectrum">
+  <meta property="og:description" content="Browse finance, legal, operations, advisory, and transaction service destinations.">
+  <meta property="og:url" content="https://incomespectrum.com/supportive-services.html">
+  <link rel="canonical" href="https://incomespectrum.com/supportive-services.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<nav class="site-nav" role="navigation">
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
   <div class="container nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="IncomeSpectrum Home">
+    <a href="index.html" class="nav-logo" aria-label="Income Spectrum Home">
       <svg class="nav-logo__gauge" width="46" height="28" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
-          <linearGradient id="navGradSvc" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
-            <stop offset="0%" stop-color="#8B5CF6"/><stop offset="33%" stop-color="#3B82F6"/><stop offset="66%" stop-color="#10B981"/><stop offset="100%" stop-color="#F59E0B"/>
+          <linearGradient id="navGrad-supportive-services.html" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
+            <stop offset="0%" stop-color="#8B5CF6"/>
+            <stop offset="33%" stop-color="#3B82F6"/>
+            <stop offset="66%" stop-color="#10B981"/>
+            <stop offset="100%" stop-color="#F59E0B"/>
           </linearGradient>
-          <mask id="navMaskSvc"><path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="white" stroke-width="20" stroke-linecap="round"/></mask>
+          <mask id="navMask-supportive-services.html">
+            <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="white" stroke-width="20" stroke-linecap="round"/>
+          </mask>
         </defs>
         <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="#E2E8F0" stroke-width="20" stroke-linecap="round"/>
-        <rect x="10" y="15" width="180" height="95" fill="url(#navGradSvc)" mask="url(#navMaskSvc)"/>
+        <rect x="10" y="15" width="180" height="95" fill="url(#navGrad-supportive-services.html)" mask="url(#navMask-supportive-services.html)"/>
         <line x1="100" y1="100" x2="122" y2="32" stroke="#1E3A5F" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="100" cy="103" r="9" fill="#1E3A5F"/><circle cx="100" cy="103" r="5" fill="white"/>
+        <circle cx="100" cy="103" r="9" fill="#1E3A5F"/>
+        <circle cx="100" cy="103" r="5" fill="white"/>
       </svg>
       <span class="nav-logo__text"><strong>Income</strong>Spectrum</span>
     </a>
     <ul class="nav-links" id="mainNav">
-      <li><a href="income-options.html">Income Options</a></li>
-      <li><a href="education-training.html">Education &amp; Training</a></li>
-      <li><a href="supportive-services.html" class="active">Supportive Services</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="income-options.html">Income Options Index</a></li>
+      <li><a href="education-training.html">Education & Training Resources</a></li>
+      <li><a href="supportive-services.html" class="active">Supportive Services Directory</a></li>
     </ul>
-    <div class="nav-cta">
-      <a href="list-business.html" class="btn btn--outline btn--sm">List Your Business</a>
-      <a href="advertise.html" class="btn btn--primary btn--sm">Advertise</a>
-    </div>
-    <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-
 <div class="page-header page-header--svc">
   <div class="container">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="index.html">Home</a><span class="breadcrumbs__sep">&rsaquo;</span><span>Supportive Services Directory</span>
-    </nav>
     <div class="page-header__inner">
       <div class="page-header__left">
         <p class="page-header__eyebrow">Supportive Services Directory</p>
-        <h1 class="page-header__title">Browse Operators’ Finance, Legal, Tech, and Transaction Services</h1>
-        <p class="page-header__sub">Find direct service providers, software platforms, broker directories, diligence resources, and valuation firms without leaving the directory.</p>
-      </div>
-      <div class="page-header__right page-header__search">
-        <div class="search-bar">
-          <input class="search-bar__input" type="search" placeholder="Search accountants, legal services, brokers..." aria-label="Search supportive services">
-          <button class="search-bar__btn" type="button">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          </button>
-        </div>
+        <h1 class="page-header__title">Browse Business Service Destinations</h1>
+        <p class="page-header__sub">Browse finance, legal, operations, advisory, and transaction service providers and directories.</p>
       </div>
     </div>
   </div>
 </div>
-
 <div class="page-body">
   <div class="container">
-    <div class="filter-bar">
-      <span class="filter-bar__label">Filter by:</span>
-      <div class="filter-chips">
-        <button class="filter-chip active" data-filter="all">All</button>
-        <button class="filter-chip" data-filter="finance">Finance</button>
-        <button class="filter-chip" data-filter="legal">Legal</button>
-        <button class="filter-chip" data-filter="software">Software</button>
-        <button class="filter-chip" data-filter="broker">Broker</button>
-        <button class="filter-chip" data-filter="valuation">Valuation</button>
-        <button class="filter-chip" data-filter="state-specific">State-Specific</button>
+    <div class="cat-block">
+      <div class="cat-block__header">
+        <div>
+          <h2 class="cat-block__title">Finance, Funding &amp; Credit Services</h2>
+          <p class="cat-block__desc">Finance, payroll, formation, and funding resources for operators and business owners.</p>
+        </div>
+      </div>
+      <div class="cat-block__grid">
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Fb</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">FreshBooks</h4>
+        <span class="listing-card__type">Accounting Software</span>
       </div>
     </div>
-
-    <div class="tab-container">
-      <div class="tab-bar" role="tablist">
-        <button class="tab-btn active" data-tab="svc-finance" role="tab">1. Finance, Funding &amp; Credit</button>
-        <button class="tab-btn" data-tab="svc-legal" role="tab">2. Legal, Compliance &amp; Protection</button>
-        <button class="tab-btn" data-tab="svc-ops" role="tab">3. Operations, Marketing &amp; Tech</button>
-        <button class="tab-btn" data-tab="svc-advisory" role="tab">4. Advisory &amp; Transaction</button>
-      </div>
-
-      <div class="tab-panel active" id="svc-finance" role="tabpanel">
-        <div class="dir-section">
-          <div class="cat-block">
-            <div class="cat-block__header">
-              <div>
-                <p class="cat-block__label">Finance, Funding &amp; Credit Services</p>
-                <h2 class="cat-block__title">Accounting, Payroll, Formation, and Funding Support Destinations</h2>
-                <p class="cat-block__desc">These listings support bookkeeping, payroll, tax help, entity setup, and capital-access workflows for operators and founders.</p>
-              </div>
-            </div>
-            <div class="cat-block__grid">
-              <div class="listing-card listing-card--featured" data-tags="freshbooks accounting invoicing software finance">
-                <span class="listing-card__badge">Featured</span>
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Fb</div><div class="listing-card__title-block"><h4 class="listing-card__name">FreshBooks</h4><span class="listing-card__type">Accounting Software</span></div></div><p class="listing-card__desc">Cloud accounting platform for invoicing, expense tracking, proposals, and service-business financial workflows.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">finance</span><span class="tag">software</span><span class="tag">accounting</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.freshbooks.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="quickbooks bookkeeping finance software">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">QB</div><div class="listing-card__title-block"><h4 class="listing-card__name">QuickBooks</h4><span class="listing-card__type">Bookkeeping Software</span></div></div><p class="listing-card__desc">Accounting and bookkeeping platform used by small businesses for invoicing, reconciliations, expenses, and reporting.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">finance</span><span class="tag">bookkeeping</span><span class="tag">software</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://quickbooks.intuit.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="gusto payroll hr finance">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Gu</div><div class="listing-card__title-block"><h4 class="listing-card__name">Gusto</h4><span class="listing-card__type">Payroll Platform</span></div></div><p class="listing-card__desc">Payroll and HR platform for payroll runs, tax filings, benefits, onboarding, and employer compliance basics.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">finance</span><span class="tag">payroll</span><span class="tag">software</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://gusto.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="bench bookkeeping service finance">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Be</div><div class="listing-card__title-block"><h4 class="listing-card__name">Bench</h4><span class="listing-card__type">Bookkeeping Service</span></div></div><p class="listing-card__desc">Bookkeeping service pairing software with human bookkeepers for monthly books and year-end reporting.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">finance</span><span class="tag">bookkeeping</span><span class="tag">service</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.bench.co/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="tax accounting accountant service">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">18</div><div class="listing-card__title-block"><h4 class="listing-card__name">1-800Accountant</h4><span class="listing-card__type">Accounting Service</span></div></div><p class="listing-card__desc">Business tax and accounting service offering bookkeeping, tax support, and entity-focused advisory packages.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">finance</span><span class="tag">tax</span><span class="tag">accounting</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://1800accountant.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="guidant funding retirement financing">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Gd</div><div class="listing-card__title-block"><h4 class="listing-card__name">Guidant Financial</h4><span class="listing-card__type">Funding &amp; Franchise Financing Provider</span></div></div><p class="listing-card__desc">Funding destination focused on business financing and ROBS structures often used for startups and franchise purchases.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">finance</span><span class="tag">funding</span><span class="tag">franchise</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.guidantfinancial.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="legalzoom formation finance business setup">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">LZ</div><div class="listing-card__title-block"><h4 class="listing-card__name">LegalZoom</h4><span class="listing-card__type">Formation &amp; Legal Service</span></div></div><p class="listing-card__desc">Entity-formation and compliance platform used by small businesses setting up legal and administrative basics.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Paths</span><div class="listing-card__tags"><span class="tag tag--green">finance</span><span class="tag">formation</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.legalzoom.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="rocket lawyer legal docs formation">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">RL</div><div class="listing-card__title-block"><h4 class="listing-card__name">Rocket Lawyer</h4><span class="listing-card__type">Legal Document Service</span></div></div><p class="listing-card__desc">Document and legal-support platform for contracts, business filings, and legal task workflows.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Paths</span><div class="listing-card__tags"><span class="tag tag--green">finance</span><span class="tag">legal</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.rocketlawyer.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="northwest registered agent formation compliance">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">NW</div><div class="listing-card__title-block"><h4 class="listing-card__name">Northwest Registered Agent</h4><span class="listing-card__type">Registered Agent &amp; Formation</span></div></div><p class="listing-card__desc">Registered agent and filing platform for LLCs and corporations with state-by-state formation support.</p><div class="listing-card__meta"><span class="listing-card__coverage">All 50 States</span><div class="listing-card__tags"><span class="tag tag--green">finance</span><span class="tag">formation</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.northwestregisteredagent.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="bizee formation filing">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Bi</div><div class="listing-card__title-block"><h4 class="listing-card__name">Bizee</h4><span class="listing-card__type">Business Formation Service</span></div></div><p class="listing-card__desc">Entity-formation and filing service offering state filings, registered agent options, and compliance add-ons.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Paths</span><div class="listing-card__tags"><span class="tag tag--green">finance</span><span class="tag">formation</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://bizee.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="zenbusiness formation compliance">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">ZB</div><div class="listing-card__title-block"><h4 class="listing-card__name">ZenBusiness</h4><span class="listing-card__type">Business Formation Platform</span></div></div><p class="listing-card__desc">Business setup and compliance platform for LLC formation, registered agent services, and operational admin support.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Paths</span><div class="listing-card__tags"><span class="tag tag--green">finance</span><span class="tag">formation</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.zenbusiness.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-panel" id="svc-legal" role="tabpanel">
-        <div class="dir-section">
-          <div class="cat-block">
-            <div class="cat-block__header">
-              <div>
-                <p class="cat-block__label">Legal, Compliance &amp; Protection Services</p>
-                <h2 class="cat-block__title">Directories and Platforms for Formation, Attorneys, Legal Docs, and Compliance Support</h2>
-                <p class="cat-block__desc">Use these resources when the need is legal setup, registered-agent support, attorney discovery, document preparation, or local legal help.</p>
-              </div>
-            </div>
-            <div class="cat-block__grid">
-              <div class="listing-card listing-card--featured" data-tags="legal legalzoom formation compliance">
-                <span class="listing-card__badge">Featured</span>
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">LZ</div><div class="listing-card__title-block"><h4 class="listing-card__name">LegalZoom</h4><span class="listing-card__type">Legal &amp; Formation Platform</span></div></div><p class="listing-card__desc">Legal support and entity-formation platform for small-business setup, basic compliance tasks, and document services.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Paths</span><div class="listing-card__tags"><span class="tag tag--green">legal</span><span class="tag">formation</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.legalzoom.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="rocket lawyer legal docs contracts">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">RL</div><div class="listing-card__title-block"><h4 class="listing-card__name">Rocket Lawyer</h4><span class="listing-card__type">Legal Document Platform</span></div></div><p class="listing-card__desc">Platform for contracts, formation tasks, legal documents, and attorney access through a subscription model.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Paths</span><div class="listing-card__tags"><span class="tag tag--green">legal</span><span class="tag">documents</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.rocketlawyer.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="registered agent formation northwest legal">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">NW</div><div class="listing-card__title-block"><h4 class="listing-card__name">Northwest Registered Agent</h4><span class="listing-card__type">Registered Agent &amp; Compliance Service</span></div></div><p class="listing-card__desc">State-facing service for registered agent support, entity setup, and compliance-related admin requirements.</p><div class="listing-card__meta"><span class="listing-card__coverage">All 50 States</span><div class="listing-card__tags"><span class="tag tag--green">legal</span><span class="tag">registered-agent</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.northwestregisteredagent.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="bizee legal formation">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Bi</div><div class="listing-card__title-block"><h4 class="listing-card__name">Bizee</h4><span class="listing-card__type">Formation Service</span></div></div><p class="listing-card__desc">State-specific filing and compliance support for LLCs, corporations, and annual-maintenance needs.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Paths</span><div class="listing-card__tags"><span class="tag tag--green">legal</span><span class="tag">formation</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://bizee.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="zenbusiness legal compliance">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">ZB</div><div class="listing-card__title-block"><h4 class="listing-card__name">ZenBusiness</h4><span class="listing-card__type">Formation &amp; Compliance Platform</span></div></div><p class="listing-card__desc">Entity-formation and compliance platform with registered agent, filing, and operational support options.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Paths</span><div class="listing-card__tags"><span class="tag tag--green">legal</span><span class="tag">formation</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.zenbusiness.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="upcounsel attorney legal marketplace">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">UC</div><div class="listing-card__title-block"><h4 class="listing-card__name">UpCounsel</h4><span class="listing-card__type">Attorney Marketplace</span></div></div><p class="listing-card__desc">Marketplace connecting businesses with vetted attorneys for contracts, employment, IP, fundraising, and operational legal work.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">legal</span><span class="tag">attorneys</span><span class="tag">marketplace</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.upcounsel.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="findlaw attorney directory legal">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">FL</div><div class="listing-card__title-block"><h4 class="listing-card__name">FindLaw</h4><span class="listing-card__type">Attorney Directory</span></div></div><p class="listing-card__desc">Attorney and legal-information directory with geography and practice-area filters for business users seeking legal help.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + Local Search</span><div class="listing-card__tags"><span class="tag tag--green">legal</span><span class="tag">directory</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.findlaw.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="avvo attorney directory local legal">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Av</div><div class="listing-card__title-block"><h4 class="listing-card__name">Avvo</h4><span class="listing-card__type">Attorney Directory</span></div></div><p class="listing-card__desc">Legal-service directory with review-driven attorney discovery and geography-specific search paths.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + Local Search</span><div class="listing-card__tags"><span class="tag tag--green">legal</span><span class="tag">directory</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.avvo.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-panel" id="svc-ops" role="tabpanel">
-        <div class="dir-section">
-          <div class="cat-block">
-            <div class="cat-block__header">
-              <div>
-                <p class="cat-block__label">Business Operations, Marketing &amp; Technology Services</p>
-                <h2 class="cat-block__title">Directories and Platforms for Software, Agencies, Lead Sources, and Tech Support</h2>
-                <p class="cat-block__desc">This section is for tools and service directories that support websites, operations, lead generation, CRM, and agency hiring.</p>
-              </div>
-            </div>
-            <div class="cat-block__grid">
-              <div class="listing-card listing-card--featured" data-tags="shopify partners experts ecommerce">
-                <span class="listing-card__badge">Featured</span>
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">SP</div><div class="listing-card__title-block"><h4 class="listing-card__name">Shopify Partners</h4><span class="listing-card__type">Partner Directory</span></div></div><p class="listing-card__desc">Partner ecosystem and directory for developers, marketers, designers, and ecommerce implementation specialists.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">software</span><span class="tag">directory</span><span class="tag">ecommerce</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.shopify.com/partners" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="hubspot crm marketing tech">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Hu</div><div class="listing-card__title-block"><h4 class="listing-card__name">HubSpot</h4><span class="listing-card__type">CRM &amp; Marketing Platform</span></div></div><p class="listing-card__desc">Platform for CRM, email marketing, forms, service pipelines, automation, and inbound lead management.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">software</span><span class="tag">crm</span><span class="tag">marketing</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.hubspot.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="bark leads services marketplace">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Ba</div><div class="listing-card__title-block"><h4 class="listing-card__name">Bark</h4><span class="listing-card__type">Lead Marketplace</span></div></div><p class="listing-card__desc">Platform for sourcing service leads across hundreds of categories with quote-request workflows and local matching.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">operations</span><span class="tag">leads</span><span class="tag">marketplace</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.bark.com/en/us/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="thumbtack local services leads">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Th</div><div class="listing-card__title-block"><h4 class="listing-card__name">Thumbtack</h4><span class="listing-card__type">Local Lead Platform</span></div></div><p class="listing-card__desc">Local-services platform for service businesses, contractors, and pros looking for project requests and repeat client flow.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">operations</span><span class="tag">leads</span><span class="tag">marketplace</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.thumbtack.com/pro/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="clutch agency directory tech marketing">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Cl</div><div class="listing-card__title-block"><h4 class="listing-card__name">Clutch</h4><span class="listing-card__type">Agency Directory</span></div></div><p class="listing-card__desc">B2B directory for agencies, developers, IT firms, marketers, consultants, and technology service providers.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + Local Search</span><div class="listing-card__tags"><span class="tag tag--green">directory</span><span class="tag">agencies</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://clutch.co/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="designrush agency directory marketing">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">DR</div><div class="listing-card__title-block"><h4 class="listing-card__name">DesignRush</h4><span class="listing-card__type">Agency Directory</span></div></div><p class="listing-card__desc">Directory of branding, web, development, marketing, software, and growth agencies with category-based filtering.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + Local Search</span><div class="listing-card__tags"><span class="tag tag--green">directory</span><span class="tag">agencies</span><span class="tag">marketing</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.designrush.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="freshbooks operations finance software">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Fb</div><div class="listing-card__title-block"><h4 class="listing-card__name">FreshBooks</h4><span class="listing-card__type">Operations &amp; Billing Software</span></div></div><p class="listing-card__desc">Software used by service businesses to streamline billing, proposals, time tracking, and invoicing operations.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">software</span><span class="tag">billing</span><span class="tag">operations</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.freshbooks.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="quickbooks operations software bookkeeping">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">QB</div><div class="listing-card__title-block"><h4 class="listing-card__name">QuickBooks</h4><span class="listing-card__type">Operations &amp; Accounting Software</span></div></div><p class="listing-card__desc">Core accounting platform for operating businesses managing cash flow, bookkeeping, reporting, and invoicing.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">software</span><span class="tag">bookkeeping</span><span class="tag">operations</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://quickbooks.intuit.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="gusto hr payroll operations">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Gu</div><div class="listing-card__title-block"><h4 class="listing-card__name">Gusto</h4><span class="listing-card__type">Payroll &amp; People Ops Platform</span></div></div><p class="listing-card__desc">Operations platform for payroll, onboarding, team admin, benefits, and recurring employer workflows.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">software</span><span class="tag">payroll</span><span class="tag">operations</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://gusto.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-panel" id="svc-advisory" role="tabpanel">
-        <div class="dir-section">
-          <div class="cat-block">
-            <div class="cat-block__header">
-              <div>
-                <p class="cat-block__label">Professional Support, Advisory &amp; Transaction Services</p>
-                <h2 class="cat-block__title">Brokers, Advisor Directories, Diligence Providers, and Valuation Firms</h2>
-                <p class="cat-block__desc">Use these listings for broker discovery, partner referrals, legal sourcing, diligence support, and business valuation services.</p>
-              </div>
-            </div>
-            <div class="cat-block__grid">
-              <div class="listing-card listing-card--featured" data-tags="upcounsel advisory attorney marketplace">
-                <span class="listing-card__badge">Featured</span>
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">UC</div><div class="listing-card__title-block"><h4 class="listing-card__name">UpCounsel</h4><span class="listing-card__type">Legal Advisory Marketplace</span></div></div><p class="listing-card__desc">Marketplace for sourcing specialized attorneys for contracts, IP, transactions, and business operating issues.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">advisory</span><span class="tag">legal</span><span class="tag">marketplace</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.upcounsel.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="bark advisory service providers">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Ba</div><div class="listing-card__title-block"><h4 class="listing-card__name">Bark</h4><span class="listing-card__type">Service Provider Marketplace</span></div></div><p class="listing-card__desc">Marketplace for sourcing consultants, professional services, and local operators across many business-adjacent categories.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">advisory</span><span class="tag">marketplace</span><span class="tag">local-search</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.bark.com/en/us/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="thumbtack professional services local advisory">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Th</div><div class="listing-card__title-block"><h4 class="listing-card__name">Thumbtack</h4><span class="listing-card__type">Local Provider Marketplace</span></div></div><p class="listing-card__desc">Local marketplace useful for discovering consultants, project-based service providers, and operators in regional markets.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">advisory</span><span class="tag">marketplace</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.thumbtack.com/pro/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="clutch agency advisory directory">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Cl</div><div class="listing-card__title-block"><h4 class="listing-card__name">Clutch</h4><span class="listing-card__type">B2B Directory</span></div></div><p class="listing-card__desc">Directory for agencies, consultants, development firms, and service companies used in tech and growth workflows.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + Local Search</span><div class="listing-card__tags"><span class="tag tag--green">advisory</span><span class="tag">directory</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://clutch.co/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="designrush directory advisors agencies">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">DR</div><div class="listing-card__title-block"><h4 class="listing-card__name">DesignRush</h4><span class="listing-card__type">Agency Directory</span></div></div><p class="listing-card__desc">Directory for finding agencies and consultants across branding, web, marketing, and growth categories.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + Local Search</span><div class="listing-card__tags"><span class="tag tag--green">advisory</span><span class="tag">directory</span><span class="tag">agencies</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.designrush.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="findlaw advisory attorney directory">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">FL</div><div class="listing-card__title-block"><h4 class="listing-card__name">FindLaw</h4><span class="listing-card__type">Attorney Directory</span></div></div><p class="listing-card__desc">Directory for sourcing attorneys by location and practice area, including business and transaction counsel.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + Local Search</span><div class="listing-card__tags"><span class="tag tag--green">advisory</span><span class="tag">legal</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.findlaw.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="avvo advisory attorney directory">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Av</div><div class="listing-card__title-block"><h4 class="listing-card__name">Avvo</h4><span class="listing-card__type">Attorney Directory</span></div></div><p class="listing-card__desc">Attorney-search directory with profile-based discovery and geography-based routing to legal providers.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + Local Search</span><div class="listing-card__tags"><span class="tag tag--green">advisory</span><span class="tag">legal</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.avvo.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="acquire partner program m&a advisory">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">AP</div><div class="listing-card__title-block"><h4 class="listing-card__name">Acquire.com Partner Program</h4><span class="listing-card__type">M&amp;A Partner Program</span></div></div><p class="listing-card__desc">Program for M&amp;A advisors, intermediaries, and partners looking to work with Acquire.com on startup transactions.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">broker</span><span class="tag">m&amp;a</span><span class="tag">partners</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://acquire.com/partner-program/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="ibba business broker directory">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">IB</div><div class="listing-card__title-block"><h4 class="listing-card__name">IBBA Find a Business Broker</h4><span class="listing-card__type">Broker Directory</span></div></div><p class="listing-card__desc">Association directory for locating business brokers by geography, specialty, and member standing.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Search</span><div class="listing-card__tags"><span class="tag tag--green">broker</span><span class="tag">directory</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.ibba.org/find-a-business-broker/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="bizbuysell broker directory">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">BB</div><div class="listing-card__title-block"><h4 class="listing-card__name">BizBuySell Broker Directory</h4><span class="listing-card__type">Broker Directory</span></div></div><p class="listing-card__desc">Broker-search directory tied to the BizBuySell marketplace for finding brokers by location and market.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Search</span><div class="listing-card__tags"><span class="tag tag--green">broker</span><span class="tag">directory</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.bizbuysell.com/business-brokers/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="sunbelt business brokers">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">SB</div><div class="listing-card__title-block"><h4 class="listing-card__name">Sunbelt Business Brokers</h4><span class="listing-card__type">Broker Network</span></div></div><p class="listing-card__desc">Large broker network for business acquisitions, listings, sell-side support, and buyer representation.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + Local Offices</span><div class="listing-card__tags"><span class="tag tag--green">broker</span><span class="tag">network</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.sunbeltnetwork.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="transworld business advisors brokers">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">TW</div><div class="listing-card__title-block"><h4 class="listing-card__name">Transworld Business Advisors</h4><span class="listing-card__type">Broker Network</span></div></div><p class="listing-card__desc">Business-broker and franchise-consulting network with offices in multiple states and metro markets.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + Local Offices</span><div class="listing-card__tags"><span class="tag tag--green">broker</span><span class="tag">network</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.tworld.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="texas association of business brokers state-specific">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">TABB</div><div class="listing-card__title-block"><h4 class="listing-card__name">Texas Association of Business Brokers</h4><span class="listing-card__type">State Broker Association</span></div></div><p class="listing-card__desc">Texas-focused association and resource point for business broker discovery and state-specific broker relationships.</p><div class="listing-card__meta"><span class="listing-card__coverage">Texas</span><div class="listing-card__tags"><span class="tag tag--green">broker</span><span class="tag">state-specific</span><span class="tag">association</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.tabb.org/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="rapid diligence due diligence qoe">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">RD</div><div class="listing-card__title-block"><h4 class="listing-card__name">Rapid Diligence</h4><span class="listing-card__type">Due Diligence Provider</span></div></div><p class="listing-card__desc">Due diligence service focused on operational, financial, and technical review for SMB buyers and acquisition operators.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">due-diligence</span><span class="tag">qoe</span><span class="tag">transactions</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://rapiddiligence.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="bdo due diligence advisory">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">BDO</div><div class="listing-card__title-block"><h4 class="listing-card__name">BDO Due Diligence Advisory</h4><span class="listing-card__type">Transaction Advisory Firm</span></div></div><p class="listing-card__desc">Transaction advisory destination for financial, tax, operational, workforce, and IT due diligence support.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">due-diligence</span><span class="tag">advisory</span><span class="tag">transactions</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.bdo.com/services/advisory/m-a-and-transaction-advisory/due-diligence" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="bizworth valuation business value">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">BW</div><div class="listing-card__title-block"><h4 class="listing-card__name">BizWorth</h4><span class="listing-card__type">Business Valuation Service</span></div></div><p class="listing-card__desc">Valuation-oriented service focused on estimating business value for exits, financing, and transaction preparation.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">valuation</span><span class="tag">business-value</span><span class="tag">advisory</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://bizworth.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="gcf valuation business valuation">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">GCF</div><div class="listing-card__title-block"><h4 class="listing-card__name">GCF Valuation</h4><span class="listing-card__type">Business Valuation Firm</span></div></div><p class="listing-card__desc">Valuation firm focused on transaction-oriented business valuation and appraisal work.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">valuation</span><span class="tag">transactions</span><span class="tag">advisory</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://gcfvaluation.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="peak business valuation">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">PBV</div><div class="listing-card__title-block"><h4 class="listing-card__name">Peak Business Valuation</h4><span class="listing-card__type">Valuation Firm</span></div></div><p class="listing-card__desc">Business valuation service for buy-sell decisions, SBA lending, divorce, and transaction support.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">valuation</span><span class="tag">sba</span><span class="tag">transactions</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://peakbusinessvaluation.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="pro business valuations valuation firm">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">PB</div><div class="listing-card__title-block"><h4 class="listing-card__name">Pro Business Valuations</h4><span class="listing-card__type">Valuation Firm</span></div></div><p class="listing-card__desc">Valuation service providing business appraisal work and transaction-oriented value analysis.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--green">valuation</span><span class="tag">appraisal</span><span class="tag">transactions</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://probusinessvaluations.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <p class="listing-card__desc">Cloud accounting platform for invoicing, expenses, and service-business workflows.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--green">finance</span><span class="tag">software</span><span class="tag">accounting</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.freshbooks.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
     </div>
   </div>
 </div>
-
-<section class="state-section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-header__left">
-        <span class="section-eyebrow">State-Specific Structure</span>
-        <h2 class="section-title">Services That Change by State</h2>
-        <p class="section-sub">State pages are used for brokers, attorneys, chambers, formation resources, grant sources, notary requirements, and licensing-related support.</p>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Qb</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">QuickBooks</h4>
+        <span class="listing-card__type">Bookkeeping Software</span>
       </div>
-      <a href="states/index.html" class="btn btn--outline btn--sm">Browse State Pages</a>
     </div>
-    <div class="need-chips">
-      <span class="need-chip need-chip--svc">Business Brokers</span>
-      <span class="need-chip need-chip--svc">Attorneys</span>
-      <span class="need-chip need-chip--svc">LLC Formation</span>
-      <span class="need-chip need-chip--svc">Grant &amp; Funding Sources</span>
-      <span class="need-chip need-chip--svc">Tax Professionals</span>
-      <span class="need-chip need-chip--svc">Chambers of Commerce</span>
-    </div>
-    <div class="state-grid" style="margin-top:24px;">
-      <a href="states/california.html" class="state-link">California <span class="state-arrow">&rsaquo;</span></a>
-      <a href="states/florida.html" class="state-link">Florida <span class="state-arrow">&rsaquo;</span></a>
-      <a href="states/new-york.html" class="state-link">New York <span class="state-arrow">&rsaquo;</span></a>
-      <a href="states/texas.html" class="state-link">Texas <span class="state-arrow">&rsaquo;</span></a>
-      <a href="states/index.html" class="state-link" style="background:var(--bg-100); font-weight:600;">State Index &rsaquo;</a>
+    <p class="listing-card__desc">Accounting platform for invoicing, bookkeeping, and financial reporting.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">finance</span><span class="tag">bookkeeping</span><span class="tag">software</span></div>
     </div>
   </div>
-</section>
-
-<div class="cta-band">
-  <div class="container">
-    <h2 class="cta-band__title">Offer a Service That Supports Operators or Business Buyers?</h2>
-    <p class="cta-band__sub">Submit your firm, directory, software, valuation service, or broker resource for review.</p>
-    <div class="cta-band__actions">
-      <a href="list-business.html" class="btn btn--white btn--lg">Submit a Listing</a>
-      <a href="advertise.html" class="btn btn--white-outline btn--lg">Advertise</a>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://quickbooks.intuit.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
     </div>
   </div>
 </div>
-
-<footer class="site-footer" role="contentinfo">
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Gu</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Gusto</h4>
+        <span class="listing-card__type">Payroll Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Platform for payroll, benefits, and people operations.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">payroll</span><span class="tag">hr</span><span class="tag">software</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://gusto.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Be</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Bench</h4>
+        <span class="listing-card__type">Bookkeeping Service</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Bookkeeping service with software-supported monthly financials.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">bookkeeping</span><span class="tag">service</span><span class="tag">finance</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.bench.co/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">18</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">1-800Accountant</h4>
+        <span class="listing-card__type">Accounting Service</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Accounting and tax service provider for small businesses.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">tax</span><span class="tag">accounting</span><span class="tag">service</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://1800accountant.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Gf</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Guidant Financial</h4>
+        <span class="listing-card__type">Funding Provider</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Funding and business financing provider focused on franchise and small business setup.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">funding</span><span class="tag">sba</span><span class="tag">rollovers</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.guidantfinancial.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Lz</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">LegalZoom</h4>
+        <span class="listing-card__type">Formation Service</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Business formation and legal document service platform.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">formation</span><span class="tag">legal</span><span class="tag">compliance</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.legalzoom.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Rl</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Rocket Lawyer</h4>
+        <span class="listing-card__type">Legal Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Legal document platform with business formation and legal support tools.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">legal</span><span class="tag">documents</span><span class="tag">formation</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.rocketlawyer.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Nr</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Northwest Registered Agent</h4>
+        <span class="listing-card__type">Registered Agent Service</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Registered agent and business formation provider.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">registered-agent</span><span class="tag">formation</span><span class="tag">compliance</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.northwestregisteredagent.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Bi</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Bizee</h4>
+        <span class="listing-card__type">Formation Service</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Business formation and compliance filing service.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">formation</span><span class="tag">compliance</span><span class="tag">business</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://bizee.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Zb</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">ZenBusiness</h4>
+        <span class="listing-card__type">Formation Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Formation and compliance platform for small businesses.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">formation</span><span class="tag">compliance</span><span class="tag">business</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.zenbusiness.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+    <div class="cat-block">
+      <div class="cat-block__header">
+        <div>
+          <h2 class="cat-block__title">Legal, Compliance &amp; Protection Services</h2>
+          <p class="cat-block__desc">Legal service platforms, directories, and compliance-oriented providers.</p>
+        </div>
+      </div>
+      <div class="cat-block__grid">
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Lz</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">LegalZoom</h4>
+        <span class="listing-card__type">Legal Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Legal services platform for documents, formation, and compliance support.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">legal</span><span class="tag">documents</span><span class="tag">business</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.legalzoom.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Rl</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Rocket Lawyer</h4>
+        <span class="listing-card__type">Legal Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Document and legal support platform for business and contract needs.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">legal</span><span class="tag">documents</span><span class="tag">contracts</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.rocketlawyer.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Nr</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Northwest Registered Agent</h4>
+        <span class="listing-card__type">Registered Agent Service</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Registered agent and compliance service provider.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">registered-agent</span><span class="tag">compliance</span><span class="tag">formation</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.northwestregisteredagent.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Bi</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Bizee</h4>
+        <span class="listing-card__type">Formation Service</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Formation and filing service for entity setup and compliance tasks.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">formation</span><span class="tag">compliance</span><span class="tag">filings</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://bizee.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Zb</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">ZenBusiness</h4>
+        <span class="listing-card__type">Formation Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Business setup and compliance support platform.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">formation</span><span class="tag">compliance</span><span class="tag">business</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.zenbusiness.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Uc</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">UpCounsel</h4>
+        <span class="listing-card__type">Attorney Marketplace</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace for hiring attorneys and legal specialists.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">attorneys</span><span class="tag">legal</span><span class="tag">marketplace</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.upcounsel.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Fl</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">FindLaw</h4>
+        <span class="listing-card__type">Attorney Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Legal directory for attorneys, firms, and legal topic navigation.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National + State Search</span>
+      <div class="listing-card__tags"><span class="tag tag--green">attorneys</span><span class="tag">directory</span><span class="tag">state-search</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.findlaw.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Av</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Avvo</h4>
+        <span class="listing-card__type">Attorney Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Directory for attorney discovery, profiles, and consumer-facing legal search.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National + State Search</span>
+      <div class="listing-card__tags"><span class="tag tag--green">attorneys</span><span class="tag">directory</span><span class="tag">reviews</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.avvo.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+    <div class="cat-block">
+      <div class="cat-block__header">
+        <div>
+          <h2 class="cat-block__title">Business Operations, Marketing &amp; Technology Services</h2>
+          <p class="cat-block__desc">Platforms and provider directories for operations, software, and outsourced support.</p>
+        </div>
+      </div>
+      <div class="cat-block__grid">
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Sp</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Shopify Partners</h4>
+        <span class="listing-card__type">Partner Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Partner network for Shopify experts, developers, and implementation providers.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--green">ecommerce</span><span class="tag">partners</span><span class="tag">development</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.shopify.com/partners" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Hs</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">HubSpot</h4>
+        <span class="listing-card__type">CRM Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">CRM and growth platform for sales, service, and marketing operations.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--green">crm</span><span class="tag">marketing</span><span class="tag">sales</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.hubspot.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Bk</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Bark</h4>
+        <span class="listing-card__type">Lead Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Platform for finding and comparing service providers across categories.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">leads</span><span class="tag">services</span><span class="tag">providers</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.bark.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Th</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Thumbtack</h4>
+        <span class="listing-card__type">Provider Marketplace</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace for hiring local service and project-based providers.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">services</span><span class="tag">local</span><span class="tag">providers</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.thumbtack.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Cl</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Clutch</h4>
+        <span class="listing-card__type">Agency Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Directory of agencies, consultants, and B2B service firms.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--green">agencies</span><span class="tag">directory</span><span class="tag">technology</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://clutch.co/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Dr</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">DesignRush</h4>
+        <span class="listing-card__type">Agency Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Directory of agencies across design, development, and marketing services.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--green">agencies</span><span class="tag">design</span><span class="tag">marketing</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.designrush.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Fb</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">FreshBooks</h4>
+        <span class="listing-card__type">Accounting Software</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Accounting platform used by service operators and independent businesses.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--green">software</span><span class="tag">finance</span><span class="tag">operations</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.freshbooks.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Qb</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">QuickBooks</h4>
+        <span class="listing-card__type">Bookkeeping Software</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Bookkeeping and accounting platform for small business operations.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">software</span><span class="tag">bookkeeping</span><span class="tag">operations</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://quickbooks.intuit.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Gu</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Gusto</h4>
+        <span class="listing-card__type">Payroll Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Payroll and HR platform for business operations support.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">payroll</span><span class="tag">hr</span><span class="tag">operations</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://gusto.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+    <div class="cat-block">
+      <div class="cat-block__header">
+        <div>
+          <h2 class="cat-block__title">Professional Support, Advisory &amp; Transaction Services</h2>
+          <p class="cat-block__desc">Directories and providers for broker search, diligence, valuation, and transaction support.</p>
+        </div>
+      </div>
+      <div class="cat-block__grid">
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Uc</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">UpCounsel</h4>
+        <span class="listing-card__type">Attorney Marketplace</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace for legal specialists and transaction-oriented counsel.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">legal</span><span class="tag">advisory</span><span class="tag">attorneys</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.upcounsel.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Bk</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Bark</h4>
+        <span class="listing-card__type">Provider Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Platform for finding service providers across consulting and advisory categories.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">providers</span><span class="tag">services</span><span class="tag">advisory</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.bark.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Th</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Thumbtack</h4>
+        <span class="listing-card__type">Provider Marketplace</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace for local consultants and project-based providers.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">providers</span><span class="tag">services</span><span class="tag">local</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.thumbtack.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Cl</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Clutch</h4>
+        <span class="listing-card__type">Agency Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Directory of agencies and consultants across functional business categories.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--green">agencies</span><span class="tag">consulting</span><span class="tag">directory</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://clutch.co/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Dr</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">DesignRush</h4>
+        <span class="listing-card__type">Agency Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Directory of professional firms across design, tech, and growth services.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--green">agencies</span><span class="tag">consulting</span><span class="tag">directory</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.designrush.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Fl</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">FindLaw</h4>
+        <span class="listing-card__type">Attorney Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Attorney directory with state and practice-area search behavior.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National + State Search</span>
+      <div class="listing-card__tags"><span class="tag tag--green">attorneys</span><span class="tag">directory</span><span class="tag">state-search</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.findlaw.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Av</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Avvo</h4>
+        <span class="listing-card__type">Attorney Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Attorney directory with review and location-based search behavior.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National + State Search</span>
+      <div class="listing-card__tags"><span class="tag tag--green">attorneys</span><span class="tag">directory</span><span class="tag">state-search</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.avvo.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Ap</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Acquire.com Partner Program</h4>
+        <span class="listing-card__type">Partner Program</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Partner program for advisors and service providers working with acquisition deals.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Online</span>
+      <div class="listing-card__tags"><span class="tag tag--green">acquisition</span><span class="tag">partners</span><span class="tag">transactions</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://acquire.com/partner-program/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Ib</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">IBBA Find a Business Broker</h4>
+        <span class="listing-card__type">Broker Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Broker directory from the International Business Brokers Association.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National + State Search</span>
+      <div class="listing-card__tags"><span class="tag tag--green">broker</span><span class="tag">directory</span><span class="tag">state-search</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.ibba.org/find-a-business-broker/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Bb</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">BizBuySell Broker Directory</h4>
+        <span class="listing-card__type">Broker Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Broker directory for finding business brokers by state and market.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National + State Search</span>
+      <div class="listing-card__tags"><span class="tag tag--green">broker</span><span class="tag">directory</span><span class="tag">state-search</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.bizbuysell.com/business-brokers/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Sb</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Sunbelt Business Brokers</h4>
+        <span class="listing-card__type">Broker Network</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Business broker network with multiple local offices and markets.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National + Local Offices</span>
+      <div class="listing-card__tags"><span class="tag tag--green">broker</span><span class="tag">network</span><span class="tag">state-search</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.sunbeltnetwork.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Tw</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Transworld Business Advisors</h4>
+        <span class="listing-card__type">Broker Network</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Broker and franchise advisory network with state and metro coverage.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National + Local Offices</span>
+      <div class="listing-card__tags"><span class="tag tag--green">broker</span><span class="tag">network</span><span class="tag">state-search</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.tworld.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Tx</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Texas Association of Business Brokers</h4>
+        <span class="listing-card__type">State Broker Association</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Texas-focused broker association and directory resource.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Texas</span>
+      <div class="listing-card__tags"><span class="tag tag--green">broker</span><span class="tag">texas</span><span class="tag">association</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.tabb.org/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Rd</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Rapid Diligence</h4>
+        <span class="listing-card__type">Due Diligence Provider</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Due diligence provider for acquisition and transaction workflows.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">diligence</span><span class="tag">transactions</span><span class="tag">advisory</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://rapiddiligence.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">BDO</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">BDO Due Diligence Advisory</h4>
+        <span class="listing-card__type">Transaction Advisory Firm</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Transaction advisory destination for diligence and deal support.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">diligence</span><span class="tag">advisory</span><span class="tag">transactions</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.bdo.com/services/advisory/m-a-and-transaction-advisory/due-diligence" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Bw</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">BizWorth</h4>
+        <span class="listing-card__type">Valuation Service</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Business valuation service for transaction and planning use cases.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">valuation</span><span class="tag">advisory</span><span class="tag">business</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://bizworth.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Gc</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">GCF Valuation</h4>
+        <span class="listing-card__type">Valuation Firm</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Valuation firm focused on transaction-oriented appraisal work.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">valuation</span><span class="tag">transactions</span><span class="tag">advisory</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://gcfvaluation.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Pv</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Peak Business Valuation</h4>
+        <span class="listing-card__type">Valuation Firm</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Valuation firm for buy-sell, lending, and transaction support.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">valuation</span><span class="tag">sba</span><span class="tag">transactions</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://peakbusinessvaluation.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Pb</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Pro Business Valuations</h4>
+        <span class="listing-card__type">Valuation Firm</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Valuation firm providing appraisal and transaction support services.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--green">valuation</span><span class="tag">appraisal</span><span class="tag">transactions</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://probusinessvaluations.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+</div><footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-brand__logo">
           <svg width="36" height="22" viewBox="0 0 200 120" aria-hidden="true">
             <defs>
-              <linearGradient id="ftGradSvc" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
-                <stop offset="0%" stop-color="#8B5CF6"/><stop offset="50%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#10B981"/>
+              <linearGradient id="ftGradCore" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
+                <stop offset="0%" stop-color="#8B5CF6"/>
+                <stop offset="50%" stop-color="#3B82F6"/>
+                <stop offset="100%" stop-color="#10B981"/>
               </linearGradient>
-              <mask id="ftMaskSvc"><path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="white" stroke-width="22" stroke-linecap="round"/></mask>
+              <mask id="ftMaskCore">
+                <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="white" stroke-width="22" stroke-linecap="round"/>
+              </mask>
             </defs>
             <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="22" stroke-linecap="round"/>
-            <rect x="10" y="15" width="180" height="95" fill="url(#ftGradSvc)" mask="url(#ftMaskSvc)"/>
+            <rect x="10" y="15" width="180" height="95" fill="url(#ftGradCore)" mask="url(#ftMaskCore)"/>
             <circle cx="100" cy="108" r="7" fill="white"/>
           </svg>
           <span class="footer-brand__text">IncomeSpectrum</span>
         </div>
-        <p class="footer-brand__tagline">A curated directory of real income opportunities, training programs, and business support services.</p>
+        <p class="footer-brand__tagline">Directory of real income opportunities, training resources, and supportive services.</p>
       </div>
-      <div class="footer-col"><h5 class="footer-col__title">Directory Hubs</h5><ul class="footer-links"><li><a href="income-options.html">Income Options Index</a></li><li><a href="education-training.html">Education &amp; Training</a></li><li><a href="supportive-services.html">Supportive Services</a></li><li><a href="states/index.html">Browse by State</a></li></ul></div>
-      <div class="footer-col"><h5 class="footer-col__title">Service Sections</h5><ul class="footer-links"><li><a href="#svc-finance">Finance</a></li><li><a href="#svc-legal">Legal</a></li><li><a href="#svc-ops">Operations &amp; Tech</a></li><li><a href="#svc-advisory">Advisory</a></li></ul></div>
-      <div class="footer-col"><h5 class="footer-col__title">Site</h5><ul class="footer-links"><li><a href="about.html">About</a></li><li><a href="advertise.html">Advertise</a></li><li><a href="list-business.html">List Your Business</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="footer-col"><h5 class="footer-col__title">Live States</h5><ul class="footer-links"><li><a href="states/california.html">California</a></li><li><a href="states/florida.html">Florida</a></li><li><a href="states/new-york.html">New York</a></li><li><a href="states/texas.html">Texas</a></li></ul></div>
+      <div class="footer-col">
+        <h5 class="footer-col__title">Pages</h5>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="income-options.html">Income Options Index</a></li>
+          <li><a href="education-training.html">Education &amp; Training Resources</a></li>
+          <li><a href="supportive-services.html">Supportive Services Directory</a></li>
+        </ul>
+      </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-bottom__copy">&copy; 2026 IncomeSpectrum.com &mdash; All rights reserved.</p>
-      <div class="footer-bottom__links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Disclaimer</a></div>
+      <p class="footer-bottom__copy">&copy; 2026 IncomeSpectrum.com</p>
     </div>
   </div>
 </footer>
-
 <script src="js/main.js"></script>
 </body>
 </html>

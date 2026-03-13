@@ -3,298 +3,754 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Income Options Index | IncomeSpectrum</title>
-  <meta name="description" content="Browse direct income destinations including freelance platforms, product marketplaces, business-for-sale directories, franchise directories, and recurring-income opportunity sources.">
+  <title>Income Options Index | Income Spectrum</title>
+  <meta name="description" content="Browse work platforms, product marketplaces, business opportunity sources, and recurring-income destinations.">
+  <meta property="og:title" content="Income Options Index | Income Spectrum">
+  <meta property="og:description" content="Browse work platforms, product marketplaces, business opportunity sources, and recurring-income destinations.">
+  <meta property="og:url" content="https://incomespectrum.com/income-options.html">
+  <link rel="canonical" href="https://incomespectrum.com/income-options.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<nav class="site-nav" role="navigation">
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
   <div class="container nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="IncomeSpectrum Home">
+    <a href="index.html" class="nav-logo" aria-label="Income Spectrum Home">
       <svg class="nav-logo__gauge" width="46" height="28" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
-          <linearGradient id="navGradIO" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
-            <stop offset="0%" stop-color="#8B5CF6"/><stop offset="33%" stop-color="#3B82F6"/><stop offset="66%" stop-color="#10B981"/><stop offset="100%" stop-color="#F59E0B"/>
+          <linearGradient id="navGrad-income-options.html" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
+            <stop offset="0%" stop-color="#8B5CF6"/>
+            <stop offset="33%" stop-color="#3B82F6"/>
+            <stop offset="66%" stop-color="#10B981"/>
+            <stop offset="100%" stop-color="#F59E0B"/>
           </linearGradient>
-          <mask id="navMaskIO"><path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="white" stroke-width="20" stroke-linecap="round"/></mask>
+          <mask id="navMask-income-options.html">
+            <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="white" stroke-width="20" stroke-linecap="round"/>
+          </mask>
         </defs>
         <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="#E2E8F0" stroke-width="20" stroke-linecap="round"/>
-        <rect x="10" y="15" width="180" height="95" fill="url(#navGradIO)" mask="url(#navMaskIO)"/>
+        <rect x="10" y="15" width="180" height="95" fill="url(#navGrad-income-options.html)" mask="url(#navMask-income-options.html)"/>
         <line x1="100" y1="100" x2="122" y2="32" stroke="#1E3A5F" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="100" cy="103" r="9" fill="#1E3A5F"/><circle cx="100" cy="103" r="5" fill="white"/>
+        <circle cx="100" cy="103" r="9" fill="#1E3A5F"/>
+        <circle cx="100" cy="103" r="5" fill="white"/>
       </svg>
       <span class="nav-logo__text"><strong>Income</strong>Spectrum</span>
     </a>
     <ul class="nav-links" id="mainNav">
-      <li><a href="income-options.html" class="active">Income Options</a></li>
-      <li><a href="education-training.html">Education &amp; Training</a></li>
-      <li><a href="supportive-services.html">Supportive Services</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="income-options.html" class="active">Income Options Index</a></li>
+      <li><a href="education-training.html">Education & Training Resources</a></li>
+      <li><a href="supportive-services.html">Supportive Services Directory</a></li>
     </ul>
-    <div class="nav-cta">
-      <a href="list-business.html" class="btn btn--outline btn--sm">List Your Business</a>
-      <a href="advertise.html" class="btn btn--primary btn--sm">Advertise</a>
-    </div>
-    <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-
 <div class="page-header page-header--income">
   <div class="container">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="index.html">Home</a><span class="breadcrumbs__sep">&rsaquo;</span><span>Income Options Index</span>
-    </nav>
     <div class="page-header__inner">
       <div class="page-header__left">
         <p class="page-header__eyebrow">Income Options Index</p>
         <h1 class="page-header__title">Browse Direct Income Destinations</h1>
-        <p class="page-header__sub">Search platforms, marketplaces, broker-driven opportunity sources, and recurring-income directories without leaving directory mode.</p>
-      </div>
-      <div class="page-header__right page-header__search">
-        <div class="search-bar">
-          <input class="search-bar__input" type="search" placeholder="Search platforms, marketplaces, opportunities..." aria-label="Search income options">
-          <button class="search-bar__btn" type="button">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          </button>
-        </div>
+        <p class="page-header__sub">Browse platforms, marketplaces, business opportunity sources, and recurring-income destinations.</p>
       </div>
     </div>
   </div>
 </div>
-
 <div class="page-body">
   <div class="container">
-    <div class="filter-bar">
-      <span class="filter-bar__label">Filter by:</span>
-      <div class="filter-chips">
-        <button class="filter-chip active" data-filter="all">All</button>
-        <button class="filter-chip" data-filter="freelance">Freelance</button>
-        <button class="filter-chip" data-filter="marketplace">Marketplace</button>
-        <button class="filter-chip" data-filter="business-buying">Business Buying</button>
-        <button class="filter-chip" data-filter="franchise">Franchise</button>
-        <button class="filter-chip" data-filter="recurring">Recurring</button>
-        <button class="filter-chip" data-filter="state-specific">State-Specific</button>
+    <div class="cat-block">
+      <div class="cat-block__header">
+        <div>
+          <h2 class="cat-block__title">Work &amp; Service Income Options</h2>
+          <p class="cat-block__desc">Platforms for direct work, client services, care services, and local lead generation.</p>
+        </div>
+      </div>
+      <div class="cat-block__grid">
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">FJ</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">FlexJobs</h4>
+        <span class="listing-card__type">Job Platform</span>
       </div>
     </div>
-
-    <div class="tab-container">
-      <div class="tab-bar" role="tablist">
-        <button class="tab-btn active" data-tab="tab-work" role="tab">1. Work &amp; Service</button>
-        <button class="tab-btn" data-tab="tab-sell" role="tab">2. Sell, Make &amp; Product</button>
-        <button class="tab-btn" data-tab="tab-business" role="tab">3. Business Ownership</button>
-        <button class="tab-btn" data-tab="tab-assets" role="tab">4. Asset, Rental &amp; Recurring</button>
-      </div>
-
-      <div class="tab-panel active" id="tab-work" role="tabpanel">
-        <div class="dir-section">
-          <div class="cat-block">
-            <div class="cat-block__header">
-              <div>
-                <p class="cat-block__label">Work &amp; Service Income Options</p>
-                <h2 class="cat-block__title">Platforms for Client Work, Care Work, Teaching, and Local Service Leads</h2>
-                <p class="cat-block__desc">Use these destinations to find project work, recurring clients, care-based opportunities, and local service demand.</p>
-              </div>
-            </div>
-            <div class="cat-block__grid">
-              <div class="listing-card listing-card--featured" data-tags="freelance remote jobs curated marketplace">
-                <span class="listing-card__badge">Featured</span>
-                <div class="listing-card__body">
-                  <div class="listing-card__header"><div class="listing-card__icon">FJ</div><div class="listing-card__title-block"><h4 class="listing-card__name">FlexJobs</h4><span class="listing-card__type">Remote Job Platform</span></div></div>
-                  <p class="listing-card__desc">Subscription-based job platform focused on remote, flexible, hybrid, and professional work opportunities.</p>
-                  <div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">freelance</span><span class="tag">remote</span><span class="tag">jobs</span></div></div>
-                </div>
-                <div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.flexjobs.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div>
-              </div>
-              <div class="listing-card" data-tags="freelance marketplace gigs services">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Fi</div><div class="listing-card__title-block"><h4 class="listing-card__name">Fiverr</h4><span class="listing-card__type">Service Marketplace</span></div></div><p class="listing-card__desc">Marketplace where independent professionals list fixed-scope services across design, writing, marketing, video, and technical categories.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">freelance</span><span class="tag">marketplace</span><span class="tag">services</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.fiverr.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="leads local services marketplace">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Ba</div><div class="listing-card__title-block"><h4 class="listing-card__name">Bark</h4><span class="listing-card__type">Lead Marketplace</span></div></div><p class="listing-card__desc">Lead-generation platform matching professionals with customers seeking quotes across hundreds of service categories.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">marketplace</span><span class="tag">leads</span><span class="tag">local-services</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.bark.com/en/us/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="thumbtack local services pro leads">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Th</div><div class="listing-card__title-block"><h4 class="listing-card__name">Thumbtack</h4><span class="listing-card__type">Local Pro Platform</span></div></div><p class="listing-card__desc">Platform for service providers to create profiles, receive project requests, and book local customers.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">local-services</span><span class="tag">leads</span><span class="tag">marketplace</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.thumbtack.com/pro/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="taskrabbit gig local work">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">TR</div><div class="listing-card__title-block"><h4 class="listing-card__name">Taskrabbit</h4><span class="listing-card__type">Gig Platform</span></div></div><p class="listing-card__desc">Task-based marketplace for furniture assembly, moving help, mounting, delivery, and other local gigs.</p><div class="listing-card__meta"><span class="listing-card__coverage">Major Metro Areas</span><div class="listing-card__tags"><span class="tag tag--blue">gig</span><span class="tag">local-services</span><span class="tag">marketplace</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.taskrabbit.com/become-a-tasker" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="teaching tutoring online classes">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Os</div><div class="listing-card__title-block"><h4 class="listing-card__name">Outschool</h4><span class="listing-card__type">Teaching Platform</span></div></div><p class="listing-card__desc">Live online class platform where independent instructors create and sell classes to families and students.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">teaching</span><span class="tag">tutoring</span><span class="tag">marketplace</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://outschool.com/teach" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="care work caregiver marketplace">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Ca</div><div class="listing-card__title-block"><h4 class="listing-card__name">Care.com</h4><span class="listing-card__type">Caregiver Marketplace</span></div></div><p class="listing-card__desc">Care marketplace for child care, senior care, pet care, housekeeping, and household support work.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">care-work</span><span class="tag">marketplace</span><span class="tag">services</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.care.com/caregivers" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="home services angi pro local leads">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">AP</div><div class="listing-card__title-block"><h4 class="listing-card__name">Angi Pro</h4><span class="listing-card__type">Home Services Lead Platform</span></div></div><p class="listing-card__desc">Business-facing Angi platform for contractors and service pros looking for local home-service leads and visibility.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">local-services</span><span class="tag">home-services</span><span class="tag">leads</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://pro.angi.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-panel" id="tab-sell" role="tabpanel">
-        <div class="dir-section">
-          <div class="cat-block">
-            <div class="cat-block__header">
-              <div>
-                <p class="cat-block__label">Sell, Make &amp; Product Income Options</p>
-                <h2 class="cat-block__title">Platforms for Products, Print-on-Demand, Digital Sales, and Self-Publishing</h2>
-                <p class="cat-block__desc">These listings are oriented around building inventory-light offers, selling products, or packaging expertise into sellable formats.</p>
-              </div>
-            </div>
-            <div class="cat-block__grid">
-              <div class="listing-card listing-card--featured" data-tags="etsy product marketplace handmade">
-                <span class="listing-card__badge">Featured</span>
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Et</div><div class="listing-card__title-block"><h4 class="listing-card__name">Etsy</h4><span class="listing-card__type">Product Marketplace</span></div></div><p class="listing-card__desc">Marketplace for handmade goods, custom products, art, vintage items, craft supplies, and niche product businesses.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">marketplace</span><span class="tag">products</span><span class="tag">handmade</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.etsy.com/sell" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="shopify ecommerce product store">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Sh</div><div class="listing-card__title-block"><h4 class="listing-card__name">Shopify</h4><span class="listing-card__type">Ecommerce Platform</span></div></div><p class="listing-card__desc">Storefront platform for physical products, subscriptions, digital goods, services, and branded ecommerce operations.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">ecommerce</span><span class="tag">products</span><span class="tag">storefront</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.shopify.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="print-on-demand fulfillment marketplace">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Pf</div><div class="listing-card__title-block"><h4 class="listing-card__name">Printful</h4><span class="listing-card__type">Print-on-Demand Platform</span></div></div><p class="listing-card__desc">Print-on-demand and fulfillment service for creator brands selling apparel, accessories, art, and merch without holding inventory.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">print-on-demand</span><span class="tag">fulfillment</span><span class="tag">products</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.printful.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="digital courses products memberships">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Te</div><div class="listing-card__title-block"><h4 class="listing-card__name">Teachable</h4><span class="listing-card__type">Digital Product Platform</span></div></div><p class="listing-card__desc">Platform for selling online courses, coaching offers, memberships, downloads, and creator-led digital products.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">digital-products</span><span class="tag">courses</span><span class="tag">memberships</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://teachable.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="self-publishing books kindle">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">KDP</div><div class="listing-card__title-block"><h4 class="listing-card__name">Amazon KDP</h4><span class="listing-card__type">Self-Publishing Platform</span></div></div><p class="listing-card__desc">Kindle Direct Publishing platform for ebooks, paperbacks, and hardcovers with Amazon distribution.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">self-publishing</span><span class="tag">digital-products</span><span class="tag">books</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://kdp.amazon.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="rental storage recurring neighbor">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Ne</div><div class="listing-card__title-block"><h4 class="listing-card__name">Neighbor</h4><span class="listing-card__type">Space Rental Marketplace</span></div></div><p class="listing-card__desc">Marketplace for renting out garages, driveways, parking spaces, storage space, and underused property capacity.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">rental</span><span class="tag">recurring</span><span class="tag">marketplace</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.neighbor.com/host" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-panel" id="tab-business" role="tabpanel">
-        <div class="dir-section">
-          <div class="cat-block">
-            <div class="cat-block__header">
-              <div>
-                <p class="cat-block__label">Business Ownership &amp; Opportunity Income Options</p>
-                <h2 class="cat-block__title">Directories for Buying, Franchising, or Operating an Existing Business</h2>
-                <p class="cat-block__desc">These destinations support online-business acquisitions, franchise discovery, and marketplace-based business buying.</p>
-              </div>
-            </div>
-            <div class="cat-block__grid">
-              <div class="listing-card listing-card--featured" data-tags="acquire business-buying online businesses">
-                <span class="listing-card__badge">Featured</span>
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Ac</div><div class="listing-card__title-block"><h4 class="listing-card__name">Acquire.com</h4><span class="listing-card__type">Online Business Marketplace</span></div></div><p class="listing-card__desc">Marketplace for buying and selling SaaS, ecommerce, agencies, content properties, apps, and other online businesses.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">business-buying</span><span class="tag">online-business</span><span class="tag">marketplace</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://acquire.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="shopify ecommerce store business">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Sh</div><div class="listing-card__title-block"><h4 class="listing-card__name">Shopify</h4><span class="listing-card__type">Store Platform</span></div></div><p class="listing-card__desc">Platform commonly used for launching, buying, operating, and scaling direct-to-consumer and niche ecommerce businesses.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">business</span><span class="tag">ecommerce</span><span class="tag">storefront</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.shopify.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="teachable digital business creator platform">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Te</div><div class="listing-card__title-block"><h4 class="listing-card__name">Teachable</h4><span class="listing-card__type">Creator Business Platform</span></div></div><p class="listing-card__desc">Platform used to launch course-based, membership-based, and education-driven businesses with direct checkout and delivery.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">business</span><span class="tag">digital</span><span class="tag">creator</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://teachable.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="bizbuysell business-for-sale brokers">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">BB</div><div class="listing-card__title-block"><h4 class="listing-card__name">BizBuySell</h4><span class="listing-card__type">Business-for-Sale Marketplace</span></div></div><p class="listing-card__desc">Large marketplace for owner-operated businesses, service companies, retail, routes, laundromats, car washes, and broker-listed deals.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Search</span><div class="listing-card__tags"><span class="tag tag--blue">business-buying</span><span class="tag">brokers</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.bizbuysell.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="bizquest business-for-sale marketplace">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">BQ</div><div class="listing-card__title-block"><h4 class="listing-card__name">BizQuest</h4><span class="listing-card__type">Business-for-Sale Marketplace</span></div></div><p class="listing-card__desc">Marketplace for small businesses, franchises, and broker-led business opportunities across categories and regions.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Search</span><div class="listing-card__tags"><span class="tag tag--blue">business-buying</span><span class="tag">marketplace</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.bizquest.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="franchise gator directory franchise">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">FG</div><div class="listing-card__title-block"><h4 class="listing-card__name">Franchise Gator</h4><span class="listing-card__type">Franchise Directory</span></div></div><p class="listing-card__desc">Franchise directory with category, budget, and location filters for franchise and business-opportunity research.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">franchise</span><span class="tag">directory</span><span class="tag">opportunities</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.franchisegator.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="franchise direct directory">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">FD</div><div class="listing-card__title-block"><h4 class="listing-card__name">Franchise Direct</h4><span class="listing-card__type">Franchise Directory</span></div></div><p class="listing-card__desc">Franchise listing directory organized by investment level, industry, and available territories.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">franchise</span><span class="tag">directory</span><span class="tag">opportunities</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.franchisedirect.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-panel" id="tab-assets" role="tabpanel">
-        <div class="dir-section">
-          <div class="cat-block">
-            <div class="cat-block__header">
-              <div>
-                <p class="cat-block__label">Asset, Rental &amp; Recurring Income Options</p>
-                <h2 class="cat-block__title">Directories for Rental, Route, Laundromat, Car Wash, and Vending-Oriented Opportunities</h2>
-                <p class="cat-block__desc">Browse rental marketplaces and recurring-income business sources where the operating model is tied to assets, routes, memberships, or ongoing cash flow.</p>
-              </div>
-            </div>
-            <div class="cat-block__grid">
-              <div class="listing-card listing-card--featured" data-tags="neighbor rental recurring asset-light">
-                <span class="listing-card__badge">Featured</span>
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Ne</div><div class="listing-card__title-block"><h4 class="listing-card__name">Neighbor</h4><span class="listing-card__type">Rental Marketplace</span></div></div><p class="listing-card__desc">Space-rental marketplace for owners monetizing garages, driveways, basements, parking spots, and extra storage capacity.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">recurring</span><span class="tag">rental</span><span class="tag">asset-light</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.neighbor.com/host" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="acquire recurring online assets">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Ac</div><div class="listing-card__title-block"><h4 class="listing-card__name">Acquire.com</h4><span class="listing-card__type">Recurring-Revenue Business Marketplace</span></div></div><p class="listing-card__desc">Marketplace for SaaS, content, and ecommerce assets where recurring revenue and transferrable digital systems matter.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">recurring</span><span class="tag">digital-assets</span><span class="tag">business-buying</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://acquire.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="bizbuysell recurring cash-flow businesses">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">BB</div><div class="listing-card__title-block"><h4 class="listing-card__name">BizBuySell</h4><span class="listing-card__type">Cash-Flow Business Marketplace</span></div></div><p class="listing-card__desc">Marketplace for local and semi-passive business types including service routes, self-service models, and cash-flowing owner-operated businesses.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Search</span><div class="listing-card__tags"><span class="tag tag--blue">cash-flow</span><span class="tag">marketplace</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.bizbuysell.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="bizquest recurring cash-flow businesses">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">BQ</div><div class="listing-card__title-block"><h4 class="listing-card__name">BizQuest</h4><span class="listing-card__type">Business Opportunity Marketplace</span></div></div><p class="listing-card__desc">Marketplace for route businesses, service businesses, franchise resales, and other recurring-income opportunity types.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Search</span><div class="listing-card__tags"><span class="tag tag--blue">cash-flow</span><span class="tag">marketplace</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.bizquest.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="route route-based bizbuysell recurring">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Rt</div><div class="listing-card__title-block"><h4 class="listing-card__name">BizBuySell Routes For Sale</h4><span class="listing-card__type">Route Opportunity Source</span></div></div><p class="listing-card__desc">Listing category for delivery routes, distributorships, bread routes, pool routes, and other route-based operating models.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Search</span><div class="listing-card__tags"><span class="tag tag--blue">route-based</span><span class="tag">recurring</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.bizbuysell.com/routes-for-sale/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="laundromat bizbuysell recurring asset-based">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Ld</div><div class="listing-card__title-block"><h4 class="listing-card__name">BizBuySell Laundromats</h4><span class="listing-card__type">Laundromat Opportunity Source</span></div></div><p class="listing-card__desc">Listing category focused on coin laundry and laundromat businesses with recurring, location-based revenue.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Search</span><div class="listing-card__tags"><span class="tag tag--blue">laundromat</span><span class="tag">asset-based</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.bizbuysell.com/laundromats-and-coin-laundry-established-businesses-for-sale/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="car wash bizbuysell recurring asset-based">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">CW</div><div class="listing-card__title-block"><h4 class="listing-card__name">BizBuySell Car Washes</h4><span class="listing-card__type">Car Wash Opportunity Source</span></div></div><p class="listing-card__desc">Listing category for full-service, self-service, express, and real-estate-linked car wash opportunities.</p><div class="listing-card__meta"><span class="listing-card__coverage">National + State Search</span><div class="listing-card__tags"><span class="tag tag--blue">car-wash</span><span class="tag">asset-based</span><span class="tag">state-specific</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.bizbuysell.com/united-states/car-washes-for-sale/9/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="vending franchise gator opportunities recurring">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Vn</div><div class="listing-card__title-block"><h4 class="listing-card__name">Franchise Gator Vending Opportunities</h4><span class="listing-card__type">Vending Opportunity Source</span></div></div><p class="listing-card__desc">Franchise and business-opportunity source for vending-related concepts and operator-led vending models.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--blue">vending</span><span class="tag">franchise</span><span class="tag">recurring</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.franchisegator.com/opportunities/rocket-vending/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <p class="listing-card__desc">Curated platform for remote, flexible, and professional job listings.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">remote</span><span class="tag">jobs</span><span class="tag">flexible</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.flexjobs.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
     </div>
   </div>
 </div>
-
-<section class="state-section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-header__left">
-        <span class="section-eyebrow">State-Specific Structure</span>
-        <h2 class="section-title">Where State Pages Matter</h2>
-        <p class="section-sub">Business brokers, licensing resources, chambers, grant programs, notary resources, and workforce programs are grouped on state pages where geography changes the destination.</p>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Fi</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Fiverr</h4>
+        <span class="listing-card__type">Service Marketplace</span>
       </div>
-      <a href="states/index.html" class="btn btn--outline btn--sm">Browse State Pages</a>
     </div>
-    <div class="need-chips">
-      <span class="need-chip need-chip--income">Business Brokers by State</span>
-      <span class="need-chip need-chip--income">Grant &amp; Funding Sources</span>
-      <span class="need-chip need-chip--income">Notary Resources</span>
-      <span class="need-chip need-chip--income">Licensing Resources</span>
-      <span class="need-chip need-chip--income">Chambers of Commerce</span>
-      <span class="need-chip need-chip--income">Workforce Training</span>
-    </div>
-    <div class="state-grid" style="margin-top:24px;">
-      <a href="states/california.html" class="state-link">California <span class="state-arrow">&rsaquo;</span></a>
-      <a href="states/florida.html" class="state-link">Florida <span class="state-arrow">&rsaquo;</span></a>
-      <a href="states/new-york.html" class="state-link">New York <span class="state-arrow">&rsaquo;</span></a>
-      <a href="states/texas.html" class="state-link">Texas <span class="state-arrow">&rsaquo;</span></a>
-      <a href="states/index.html" class="state-link" style="background:var(--bg-100); font-weight:600;">State Index &rsaquo;</a>
+    <p class="listing-card__desc">Marketplace for fixed-scope freelance and service-based work.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">freelance</span><span class="tag">services</span><span class="tag">marketplace</span></div>
     </div>
   </div>
-</section>
-
-<div class="cta-band">
-  <div class="container">
-    <h2 class="cta-band__title">List Your Platform or Opportunity</h2>
-    <p class="cta-band__sub">Submit a marketplace, service platform, franchise directory, or state-specific opportunity source for review.</p>
-    <div class="cta-band__actions">
-      <a href="list-business.html" class="btn btn--white btn--lg">Submit a Listing</a>
-      <a href="advertise.html" class="btn btn--white-outline btn--lg">Advertise</a>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.fiverr.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
     </div>
   </div>
 </div>
-
-<footer class="site-footer" role="contentinfo">
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Bk</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Bark</h4>
+        <span class="listing-card__type">Lead Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Lead-generation platform for local and professional service providers.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">leads</span><span class="tag">local</span><span class="tag">services</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.bark.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Th</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Thumbtack</h4>
+        <span class="listing-card__type">Lead Marketplace</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace connecting local service providers with active demand.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">local</span><span class="tag">services</span><span class="tag">leads</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.thumbtack.com/pro" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Tr</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Taskrabbit</h4>
+        <span class="listing-card__type">Gig Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Platform for task-based local work including moving, assembly, and errands.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Select Metro Areas</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">gig</span><span class="tag">local</span><span class="tag">task-based</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.taskrabbit.com/become-a-tasker" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Os</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Outschool</h4>
+        <span class="listing-card__type">Teaching Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace for live online classes and teaching opportunities.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Online</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">teaching</span><span class="tag">tutoring</span><span class="tag">online</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://outschool.com/teach" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Cc</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Care.com</h4>
+        <span class="listing-card__type">Care Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Platform for care-related work including child care, senior care, and household help.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">care</span><span class="tag">household</span><span class="tag">services</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.care.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Ap</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Angi Pro</h4>
+        <span class="listing-card__type">Lead Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Lead platform for home service professionals and contractors.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">home-services</span><span class="tag">leads</span><span class="tag">local</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.angi.com/pro/leads" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+    <div class="cat-block">
+      <div class="cat-block__header">
+        <div>
+          <h2 class="cat-block__title">Sell, Make &amp; Product Income Options</h2>
+          <p class="cat-block__desc">Platforms for selling products, publishing, storefronts, and rentable inventory.</p>
+        </div>
+      </div>
+      <div class="cat-block__grid">
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Et</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Etsy</h4>
+        <span class="listing-card__type">Marketplace</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace for handmade, custom, vintage, and craft-based product sales.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">products</span><span class="tag">handmade</span><span class="tag">marketplace</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.etsy.com/sell" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Sh</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Shopify</h4>
+        <span class="listing-card__type">Commerce Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Storefront platform for direct ecommerce and product sales.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">ecommerce</span><span class="tag">storefront</span><span class="tag">products</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.shopify.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Pf</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Printful</h4>
+        <span class="listing-card__type">Print-on-Demand Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Print-on-demand platform for custom products with fulfillment support.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">print-on-demand</span><span class="tag">products</span><span class="tag">fulfillment</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.printful.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Te</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Teachable</h4>
+        <span class="listing-card__type">Course Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Platform for selling digital education products and hosted courses.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">digital</span><span class="tag">courses</span><span class="tag">platform</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://teachable.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Kd</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Amazon KDP</h4>
+        <span class="listing-card__type">Publishing Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Self-publishing platform for ebooks, paperbacks, and hardcover books.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">publishing</span><span class="tag">digital</span><span class="tag">books</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://kdp.amazon.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Ne</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Neighbor</h4>
+        <span class="listing-card__type">Rental Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace for renting out spare storage space to local renters.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">rental</span><span class="tag">storage</span><span class="tag">asset</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.neighbor.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+    <div class="cat-block">
+      <div class="cat-block__header">
+        <div>
+          <h2 class="cat-block__title">Business Ownership &amp; Opportunity Income Options</h2>
+          <p class="cat-block__desc">Directories and platforms for buying, starting, and evaluating business opportunities.</p>
+        </div>
+      </div>
+      <div class="cat-block__grid">
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Ac</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Acquire.com</h4>
+        <span class="listing-card__type">Business Marketplace</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace for buying and selling online businesses and SaaS companies.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">acquisition</span><span class="tag">online-business</span><span class="tag">marketplace</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://acquire.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Sh</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Shopify</h4>
+        <span class="listing-card__type">Commerce Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Platform for starting and operating a product-based online business.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">business</span><span class="tag">ecommerce</span><span class="tag">platform</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.shopify.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Te</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Teachable</h4>
+        <span class="listing-card__type">Business Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Platform for building a course-based or digital education business.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">digital</span><span class="tag">creator</span><span class="tag">platform</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://teachable.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Bs</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">BizBuySell</h4>
+        <span class="listing-card__type">Business Marketplace</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace for buying existing businesses and broker-listed opportunities.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National + State Search</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">business-buying</span><span class="tag">broker</span><span class="tag">marketplace</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.bizbuysell.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Bq</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">BizQuest</h4>
+        <span class="listing-card__type">Opportunity Marketplace</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace for businesses for sale, franchise listings, and opportunity searches.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National + State Search</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">business-buying</span><span class="tag">opportunities</span><span class="tag">marketplace</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.bizquest.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Fg</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Franchise Gator</h4>
+        <span class="listing-card__type">Franchise Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Directory of franchise and business opportunity listings.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">franchise</span><span class="tag">directory</span><span class="tag">opportunities</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.franchisegator.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Fd</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Franchise Direct</h4>
+        <span class="listing-card__type">Franchise Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Franchise directory for comparing franchise categories and brands.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">franchise</span><span class="tag">directory</span><span class="tag">opportunities</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.franchisedirect.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+    <div class="cat-block">
+      <div class="cat-block__header">
+        <div>
+          <h2 class="cat-block__title">Asset, Rental &amp; Recurring Income Options</h2>
+          <p class="cat-block__desc">Destinations for storage, recurring revenue, route-based listings, and asset-linked opportunities.</p>
+        </div>
+      </div>
+      <div class="cat-block__grid">
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Ne</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Neighbor</h4>
+        <span class="listing-card__type">Rental Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace for renting out storage space on a recurring basis.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">rental</span><span class="tag">storage</span><span class="tag">asset</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.neighbor.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Ac</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Acquire.com</h4>
+        <span class="listing-card__type">Business Marketplace</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace with recurring-revenue digital businesses and SaaS listings.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">acquisition</span><span class="tag">recurring</span><span class="tag">digital</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://acquire.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Bs</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">BizBuySell</h4>
+        <span class="listing-card__type">Business Marketplace</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Business marketplace with many recurring-revenue and operator-owned listings.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National + State Search</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">cash-flow</span><span class="tag">broker</span><span class="tag">marketplace</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.bizbuysell.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Bq</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">BizQuest</h4>
+        <span class="listing-card__type">Opportunity Marketplace</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace for recurring-income business categories and opportunity searches.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National + State Search</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">cash-flow</span><span class="tag">marketplace</span><span class="tag">opportunities</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.bizquest.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Rt</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Route-Based Opportunities via BizBuySell</h4>
+        <span class="listing-card__type">Category Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Route-business listings including delivery, bread, and service routes.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National + State Search</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">routes</span><span class="tag">recurring</span><span class="tag">state-search</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.bizbuysell.com/routes-for-sale/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Ld</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Laundromat Opportunities via BizBuySell</h4>
+        <span class="listing-card__type">Category Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Category page for laundromat and coin laundry businesses.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National + State Search</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">laundromat</span><span class="tag">asset-based</span><span class="tag">state-search</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.bizbuysell.com/laundromats-and-coin-laundry-established-businesses-for-sale/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Cw</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Car Wash Opportunities via BizBuySell</h4>
+        <span class="listing-card__type">Category Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Category page for car wash businesses and related listings.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National + State Search</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">car-wash</span><span class="tag">asset-based</span><span class="tag">state-search</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.bizbuysell.com/united-states/car-washes-for-sale/9/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Vn</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Vending Opportunities via Franchise Direct</h4>
+        <span class="listing-card__type">Opportunity Directory</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Directory category for vending-related franchise and business opportunities.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--blue">vending</span><span class="tag">franchise</span><span class="tag">opportunities</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.franchisedirect.com/business-opportunities/vendingmachinebusinesses/62/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+</div><footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-brand__logo">
           <svg width="36" height="22" viewBox="0 0 200 120" aria-hidden="true">
             <defs>
-              <linearGradient id="ftGradIO" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
-                <stop offset="0%" stop-color="#8B5CF6"/><stop offset="50%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#10B981"/>
+              <linearGradient id="ftGradCore" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
+                <stop offset="0%" stop-color="#8B5CF6"/>
+                <stop offset="50%" stop-color="#3B82F6"/>
+                <stop offset="100%" stop-color="#10B981"/>
               </linearGradient>
-              <mask id="ftMaskIO"><path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="white" stroke-width="22" stroke-linecap="round"/></mask>
+              <mask id="ftMaskCore">
+                <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="white" stroke-width="22" stroke-linecap="round"/>
+              </mask>
             </defs>
             <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="22" stroke-linecap="round"/>
-            <rect x="10" y="15" width="180" height="95" fill="url(#ftGradIO)" mask="url(#ftMaskIO)"/>
+            <rect x="10" y="15" width="180" height="95" fill="url(#ftGradCore)" mask="url(#ftMaskCore)"/>
             <circle cx="100" cy="108" r="7" fill="white"/>
           </svg>
           <span class="footer-brand__text">IncomeSpectrum</span>
         </div>
-        <p class="footer-brand__tagline">A curated directory of real income opportunities, training programs, and business support services.</p>
+        <p class="footer-brand__tagline">Directory of real income opportunities, training resources, and supportive services.</p>
       </div>
-      <div class="footer-col"><h5 class="footer-col__title">Directory Hubs</h5><ul class="footer-links"><li><a href="income-options.html">Income Options Index</a></li><li><a href="education-training.html">Education &amp; Training</a></li><li><a href="supportive-services.html">Supportive Services</a></li><li><a href="states/index.html">Browse by State</a></li></ul></div>
-      <div class="footer-col"><h5 class="footer-col__title">Income Sections</h5><ul class="footer-links"><li><a href="#tab-work">Work &amp; Service</a></li><li><a href="#tab-sell">Sell &amp; Product</a></li><li><a href="#tab-business">Business Ownership</a></li><li><a href="#tab-assets">Asset &amp; Recurring</a></li></ul></div>
-      <div class="footer-col"><h5 class="footer-col__title">Site</h5><ul class="footer-links"><li><a href="about.html">About</a></li><li><a href="advertise.html">Advertise</a></li><li><a href="list-business.html">List Your Business</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="footer-col"><h5 class="footer-col__title">Live States</h5><ul class="footer-links"><li><a href="states/california.html">California</a></li><li><a href="states/florida.html">Florida</a></li><li><a href="states/new-york.html">New York</a></li><li><a href="states/texas.html">Texas</a></li></ul></div>
+      <div class="footer-col">
+        <h5 class="footer-col__title">Pages</h5>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="income-options.html">Income Options Index</a></li>
+          <li><a href="education-training.html">Education &amp; Training Resources</a></li>
+          <li><a href="supportive-services.html">Supportive Services Directory</a></li>
+        </ul>
+      </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-bottom__copy">&copy; 2026 IncomeSpectrum.com &mdash; All rights reserved.</p>
-      <div class="footer-bottom__links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Disclaimer</a></div>
+      <p class="footer-bottom__copy">&copy; 2026 IncomeSpectrum.com</p>
     </div>
   </div>
 </footer>
-
 <script src="js/main.js"></script>
 </body>
 </html>

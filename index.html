@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IncomeSpectrum | Directory of Income, Training &amp; Support Resources</title>
-  <meta name="description" content="Browse real income opportunities, training programs, and business support services. IncomeSpectrum is a curated directory of direct resource destinations.">
-  <meta property="og:title" content="IncomeSpectrum | Directory of Income, Training &amp; Support Resources">
-  <meta property="og:description" content="Search, browse, and connect with real income opportunities, career training, and business services.">
+  <title>Income Spectrum | Directory of Income, Training &amp; Support Resources</title>
+  <meta name="description" content="Income Spectrum is a directory of real income opportunities, education and training resources, and supportive business services.">
+  <meta property="og:title" content="Income Spectrum | Directory of Income, Training &amp; Support Resources">
+  <meta property="og:description" content="Income Spectrum is a directory of real income opportunities, education and training resources, and supportive business services.">
   <meta property="og:url" content="https://incomespectrum.com">
   <link rel="canonical" href="https://incomespectrum.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,249 +15,148 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<!-- ============================================================
-     NAVIGATION
-     ============================================================ -->
 <nav class="site-nav" role="navigation" aria-label="Main navigation">
   <div class="container nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="IncomeSpectrum Home">
+    <a href="index.html" class="nav-logo" aria-label="Income Spectrum Home">
       <svg class="nav-logo__gauge" width="46" height="28" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
-          <linearGradient id="navGrad" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
+          <linearGradient id="navGrad-index.html" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
             <stop offset="0%" stop-color="#8B5CF6"/>
             <stop offset="33%" stop-color="#3B82F6"/>
             <stop offset="66%" stop-color="#10B981"/>
             <stop offset="100%" stop-color="#F59E0B"/>
           </linearGradient>
-          <mask id="navMask">
+          <mask id="navMask-index.html">
             <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="white" stroke-width="20" stroke-linecap="round"/>
           </mask>
         </defs>
         <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="#E2E8F0" stroke-width="20" stroke-linecap="round"/>
-        <rect x="10" y="15" width="180" height="95" fill="url(#navGrad)" mask="url(#navMask)"/>
+        <rect x="10" y="15" width="180" height="95" fill="url(#navGrad-index.html)" mask="url(#navMask-index.html)"/>
         <line x1="100" y1="100" x2="122" y2="32" stroke="#1E3A5F" stroke-width="6" stroke-linecap="round"/>
         <circle cx="100" cy="103" r="9" fill="#1E3A5F"/>
         <circle cx="100" cy="103" r="5" fill="white"/>
       </svg>
       <span class="nav-logo__text"><strong>Income</strong>Spectrum</span>
     </a>
-
     <ul class="nav-links" id="mainNav">
-      <li><a href="income-options.html">Income Options</a></li>
-      <li><a href="education-training.html">Education &amp; Training</a></li>
-      <li><a href="supportive-services.html">Supportive Services</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="income-options.html">Income Options Index</a></li>
+      <li><a href="education-training.html">Education & Training Resources</a></li>
+      <li><a href="supportive-services.html">Supportive Services Directory</a></li>
     </ul>
-
-    <div class="nav-cta">
-      <a href="list-business.html" class="btn btn--outline btn--sm">List Your Business</a>
-      <a href="advertise.html" class="btn btn--primary btn--sm">Advertise</a>
-    </div>
-
     <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
-
-
-<!-- ============================================================
-     HERO
-     ============================================================ -->
 <section class="hero">
   <div class="container hero-inner">
-
-    <!-- Spectrum Gauge Logo (Hero size) -->
     <div class="hero-gauge">
       <svg width="240" height="140" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg" aria-label="Income Spectrum gauge" role="img">
         <defs>
-          <linearGradient id="heroGrad" gradientUnits="userSpaceOnUse" x1="12" y1="0" x2="228" y2="0">
+          <linearGradient id="heroGrad-home" gradientUnits="userSpaceOnUse" x1="12" y1="0" x2="228" y2="0">
             <stop offset="0%" stop-color="#8B5CF6"/>
             <stop offset="30%" stop-color="#3B82F6"/>
             <stop offset="60%" stop-color="#10B981"/>
             <stop offset="100%" stop-color="#F59E0B"/>
           </linearGradient>
-          <mask id="heroMask">
+          <mask id="heroMask-home">
             <path d="M 20,125 A 100,100 0 0,1 220,125" fill="none" stroke="white" stroke-width="22" stroke-linecap="round"/>
           </mask>
-          <!-- Glow filter -->
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="3" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
         </defs>
-        <!-- Track -->
         <path d="M 20,125 A 100,100 0 0,1 220,125" fill="none" stroke="#E2E8F0" stroke-width="22" stroke-linecap="round"/>
-        <!-- Gradient Arc -->
-        <rect x="10" y="18" width="220" height="112" fill="url(#heroGrad)" mask="url(#heroMask)"/>
-        <!-- Tick marks -->
+        <rect x="10" y="18" width="220" height="112" fill="url(#heroGrad-home)" mask="url(#heroMask-home)"/>
         <line x1="20" y1="125" x2="27" y2="116" stroke="#CBD5E1" stroke-width="2"/>
         <line x1="120" y1="25" x2="120" y2="35" stroke="#CBD5E1" stroke-width="2"/>
         <line x1="220" y1="125" x2="213" y2="116" stroke="#CBD5E1" stroke-width="2"/>
-        <!-- Needle pointing to ~60% (teal zone) -->
-        <line x1="120" y1="122" x2="155" y2="38" stroke="#0F172A" stroke-width="4" stroke-linecap="round" filter="url(#glow)"/>
-        <!-- Pivot -->
+        <line x1="120" y1="122" x2="155" y2="38" stroke="#0F172A" stroke-width="4" stroke-linecap="round"/>
         <circle cx="120" cy="125" r="11" fill="#0F172A"/>
         <circle cx="120" cy="125" r="7" fill="white"/>
         <circle cx="120" cy="125" r="3.5" fill="#0F172A"/>
       </svg>
     </div>
-
     <p class="hero-eyebrow">IncomeSpectrum.com</p>
-
-    <h1 class="hero-headline">
-      Browse the Right Resource<br><span>for the Need You Have</span>
-    </h1>
-
-    <p class="hero-sub">
-      Income Spectrum is a curated directory of real income platforms, training destinations, and business support services.
-    </p>
-
-    <p class="hero-sub" style="font-size:15px; max-width:620px;">
-      The spectrum refers to the range of resource needs across direct income options, education resources, and supportive services.
-    </p>
-
+    <h1 class="hero-headline">Directory of Income, Training,<br><span>and Support Resources</span></h1>
+    <p class="hero-sub">Browse real income opportunities, income-related education and training resources, and supportive business services.</p>
+    <p class="hero-sub" style="font-size:15px; max-width:620px;">Income Spectrum refers to the range of directory types and resource needs across the site.</p>
   </div>
 </section>
-
-
-<!-- ============================================================
-     THREE DIRECTORY HUBS
-     ============================================================ -->
 <section class="dir-categories">
   <div class="container">
     <div class="section-header">
       <div class="section-header__left">
-        <span class="section-eyebrow">Directory Hubs</span>
-        <h2 class="section-title">Browse the Core Directories</h2>
-        <p class="section-sub">Choose a directory hub to browse outbound resource destinations by category.</p>
+        <span class="section-eyebrow">Core Directories</span>
+        <h2 class="section-title">Choose a Directory</h2>
+        <p class="section-sub">Go directly to income options, training resources, or supportive services.</p>
       </div>
     </div>
-
     <div class="cat-cards">
-
-      <!-- Hub 1: Income Options -->
       <a href="income-options.html" class="cat-card cat-card--income">
         <div class="cat-card__icon">&#128188;</div>
-        <span class="cat-card__count">4 Category Sections</span>
+        <span class="cat-card__count">Directory Page</span>
         <h3 class="cat-card__title">Income Options Index</h3>
-        <p class="cat-card__desc">Directory of work platforms, product marketplaces, business-buying sources, and recurring-income opportunity directories.</p>
-        <div class="cat-card__subs">
-          <span class="cat-card__sub">Work &amp; Service</span>
-          <span class="cat-card__sub">Sell &amp; Make</span>
-          <span class="cat-card__sub">Business Ownership</span>
-          <span class="cat-card__sub">Assets &amp; Recurring</span>
-        </div>
-        <span class="cat-card__cta">Browse Income Options &rarr;</span>
+        <p class="cat-card__desc">Browse platforms, marketplaces, business opportunity sources, and recurring-income destinations.</p>
+        <div class="cat-card__subs"><span class="cat-card__sub">Work &amp; Service</span><span class="cat-card__sub">Sell &amp; Product</span><span class="cat-card__sub">Business Ownership</span><span class="cat-card__sub">Recurring Income</span></div>
+        <span class="cat-card__cta">Open Directory &rarr;</span>
       </a>
-
-      <!-- Hub 2: Education & Training -->
       <a href="education-training.html" class="cat-card cat-card--edu">
         <div class="cat-card__icon">&#127891;</div>
-        <span class="cat-card__count">4 Category Sections</span>
+        <span class="cat-card__count">Directory Page</span>
         <h3 class="cat-card__title">Education &amp; Training Resources</h3>
-        <p class="cat-card__desc">Directory of training platforms, schools, certification resources, and ownership-oriented education destinations.</p>
-        <div class="cat-card__subs">
-          <span class="cat-card__sub">Career &amp; Trade Training</span>
-          <span class="cat-card__sub">Business Education</span>
-          <span class="cat-card__sub">Digital Skills</span>
-          <span class="cat-card__sub">Certifications</span>
-        </div>
-        <span class="cat-card__cta">Browse Education Resources &rarr;</span>
+        <p class="cat-card__desc">Browse job-skill training, business education, digital-skill platforms, and certification resources.</p>
+        <div class="cat-card__subs"><span class="cat-card__sub">Career Skills</span><span class="cat-card__sub">Business Education</span><span class="cat-card__sub">Digital Training</span><span class="cat-card__sub">Certifications</span></div>
+        <span class="cat-card__cta">Open Directory &rarr;</span>
       </a>
-
-      <!-- Hub 3: Supportive Services -->
       <a href="supportive-services.html" class="cat-card cat-card--svc">
         <div class="cat-card__icon">&#9878;&#65039;</div>
-        <span class="cat-card__count">4 Category Sections</span>
+        <span class="cat-card__count">Directory Page</span>
         <h3 class="cat-card__title">Supportive Services Directory</h3>
-        <p class="cat-card__desc">Directory of finance, legal, operations, broker, diligence, and valuation service destinations.</p>
-        <div class="cat-card__subs">
-          <span class="cat-card__sub">Finance &amp; Funding</span>
-          <span class="cat-card__sub">Legal &amp; Compliance</span>
-          <span class="cat-card__sub">Operations &amp; Marketing</span>
-          <span class="cat-card__sub">Advisory &amp; Transactions</span>
-        </div>
-        <span class="cat-card__cta">Browse Support Services &rarr;</span>
+        <p class="cat-card__desc">Browse finance, legal, operations, advisory, and transaction service destinations.</p>
+        <div class="cat-card__subs"><span class="cat-card__sub">Finance</span><span class="cat-card__sub">Legal</span><span class="cat-card__sub">Operations</span><span class="cat-card__sub">Advisory</span></div>
+        <span class="cat-card__cta">Open Directory &rarr;</span>
       </a>
-
     </div>
   </div>
 </section>
-
-
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
 <footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
-
       <div class="footer-brand">
         <div class="footer-brand__logo">
           <svg width="36" height="22" viewBox="0 0 200 120" aria-hidden="true">
             <defs>
-              <linearGradient id="ftGrad" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
+              <linearGradient id="ftGradCore" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
                 <stop offset="0%" stop-color="#8B5CF6"/>
                 <stop offset="50%" stop-color="#3B82F6"/>
                 <stop offset="100%" stop-color="#10B981"/>
               </linearGradient>
-              <mask id="ftMask">
+              <mask id="ftMaskCore">
                 <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="white" stroke-width="22" stroke-linecap="round"/>
               </mask>
             </defs>
             <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="22" stroke-linecap="round"/>
-            <rect x="10" y="15" width="180" height="95" fill="url(#ftGrad)" mask="url(#ftMask)"/>
+            <rect x="10" y="15" width="180" height="95" fill="url(#ftGradCore)" mask="url(#ftMaskCore)"/>
             <circle cx="100" cy="108" r="7" fill="white"/>
           </svg>
           <span class="footer-brand__text">IncomeSpectrum</span>
         </div>
-        <p class="footer-brand__tagline">A curated directory of real income opportunities, training programs, and business support services.</p>
+        <p class="footer-brand__tagline">Directory of real income opportunities, training resources, and supportive services.</p>
       </div>
-
       <div class="footer-col">
-        <h5 class="footer-col__title">Directories</h5>
+        <h5 class="footer-col__title">Pages</h5>
         <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
           <li><a href="income-options.html">Income Options Index</a></li>
           <li><a href="education-training.html">Education &amp; Training Resources</a></li>
           <li><a href="supportive-services.html">Supportive Services Directory</a></li>
-          <li><a href="states/index.html">State Pages</a></li>
         </ul>
       </div>
-
-      <div class="footer-col">
-        <h5 class="footer-col__title">Site</h5>
-        <ul class="footer-links">
-          <li><a href="about.html">About IncomeSpectrum</a></li>
-          <li><a href="advertise.html">Advertise</a></li>
-          <li><a href="list-business.html">List Your Business</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h5 class="footer-col__title">Business</h5>
-        <ul class="footer-links">
-          <li><a href="advertise.html">Advertise / Partner</a></li>
-          <li><a href="list-business.html">List Your Business</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-
     </div>
-
     <div class="footer-bottom">
-      <p class="footer-bottom__copy">&copy; 2026 IncomeSpectrum.com &mdash; All rights reserved.</p>
-      <div class="footer-bottom__links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-        <a href="#">Disclaimer</a>
-      </div>
+      <p class="footer-bottom__copy">&copy; 2026 IncomeSpectrum.com</p>
     </div>
   </div>
 </footer>
-
 <script src="js/main.js"></script>
 </body>
 </html>

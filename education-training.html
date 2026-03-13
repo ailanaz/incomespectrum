@@ -3,285 +3,691 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Education &amp; Training Resources | IncomeSpectrum</title>
-  <meta name="description" content="Browse schools, certification providers, acquisition education programs, digital-skill platforms, and exam-prep destinations.">
+  <title>Education &amp; Training Resources | Income Spectrum</title>
+  <meta name="description" content="Browse job-skill training, business education, digital training platforms, and certification resources.">
+  <meta property="og:title" content="Education &amp; Training Resources | Income Spectrum">
+  <meta property="og:description" content="Browse job-skill training, business education, digital training platforms, and certification resources.">
+  <meta property="og:url" content="https://incomespectrum.com/education-training.html">
+  <link rel="canonical" href="https://incomespectrum.com/education-training.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<nav class="site-nav" role="navigation">
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
   <div class="container nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="IncomeSpectrum Home">
+    <a href="index.html" class="nav-logo" aria-label="Income Spectrum Home">
       <svg class="nav-logo__gauge" width="46" height="28" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
-          <linearGradient id="navGradEdu" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
-            <stop offset="0%" stop-color="#8B5CF6"/><stop offset="33%" stop-color="#3B82F6"/><stop offset="66%" stop-color="#10B981"/><stop offset="100%" stop-color="#F59E0B"/>
+          <linearGradient id="navGrad-education-training.html" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
+            <stop offset="0%" stop-color="#8B5CF6"/>
+            <stop offset="33%" stop-color="#3B82F6"/>
+            <stop offset="66%" stop-color="#10B981"/>
+            <stop offset="100%" stop-color="#F59E0B"/>
           </linearGradient>
-          <mask id="navMaskEdu"><path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="white" stroke-width="20" stroke-linecap="round"/></mask>
+          <mask id="navMask-education-training.html">
+            <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="white" stroke-width="20" stroke-linecap="round"/>
+          </mask>
         </defs>
         <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="#E2E8F0" stroke-width="20" stroke-linecap="round"/>
-        <rect x="10" y="15" width="180" height="95" fill="url(#navGradEdu)" mask="url(#navMaskEdu)"/>
+        <rect x="10" y="15" width="180" height="95" fill="url(#navGrad-education-training.html)" mask="url(#navMask-education-training.html)"/>
         <line x1="100" y1="100" x2="122" y2="32" stroke="#1E3A5F" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="100" cy="103" r="9" fill="#1E3A5F"/><circle cx="100" cy="103" r="5" fill="white"/>
+        <circle cx="100" cy="103" r="9" fill="#1E3A5F"/>
+        <circle cx="100" cy="103" r="5" fill="white"/>
       </svg>
       <span class="nav-logo__text"><strong>Income</strong>Spectrum</span>
     </a>
     <ul class="nav-links" id="mainNav">
-      <li><a href="income-options.html">Income Options</a></li>
-      <li><a href="education-training.html" class="active">Education &amp; Training</a></li>
-      <li><a href="supportive-services.html">Supportive Services</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="income-options.html">Income Options Index</a></li>
+      <li><a href="education-training.html" class="active">Education & Training Resources</a></li>
+      <li><a href="supportive-services.html">Supportive Services Directory</a></li>
     </ul>
-    <div class="nav-cta">
-      <a href="list-business.html" class="btn btn--outline btn--sm">List Your Business</a>
-      <a href="advertise.html" class="btn btn--primary btn--sm">Advertise</a>
-    </div>
-    <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-
 <div class="page-header page-header--edu">
   <div class="container">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="index.html">Home</a><span class="breadcrumbs__sep">&rsaquo;</span><span>Education &amp; Training Resources</span>
-    </nav>
     <div class="page-header__inner">
       <div class="page-header__left">
         <p class="page-header__eyebrow">Education &amp; Training Resources</p>
-        <h1 class="page-header__title">Browse Training, Certifications, and Ownership Education</h1>
-        <p class="page-header__sub">Use these destinations to compare programs, certification providers, acquisition training, and digital-skill platforms.</p>
-      </div>
-      <div class="page-header__right page-header__search">
-        <div class="search-bar">
-          <input class="search-bar__input" type="search" placeholder="Search certifications, bootcamps, training..." aria-label="Search education resources">
-          <button class="search-bar__btn" type="button">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          </button>
-        </div>
+        <h1 class="page-header__title">Browse Training and Certification Destinations</h1>
+        <p class="page-header__sub">Browse job-skill training, business education, digital training resources, and certification providers.</p>
       </div>
     </div>
   </div>
 </div>
-
 <div class="page-body">
   <div class="container">
-    <div class="filter-bar">
-      <span class="filter-bar__label">Filter by:</span>
-      <div class="filter-chips">
-        <button class="filter-chip active" data-filter="all">All</button>
-        <button class="filter-chip" data-filter="career">Career</button>
-        <button class="filter-chip" data-filter="certification">Certification</button>
-        <button class="filter-chip" data-filter="business">Business</button>
-        <button class="filter-chip" data-filter="digital">Digital Skills</button>
-        <button class="filter-chip" data-filter="acquisition">Acquisition</button>
+    <div class="cat-block">
+      <div class="cat-block__header">
+        <div>
+          <h2 class="cat-block__title">Career, Trade &amp; Job-Skill Training</h2>
+          <p class="cat-block__desc">Training platforms and credential resources for practical job-skill development.</p>
+        </div>
+      </div>
+      <div class="cat-block__grid">
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Co</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Coursera</h4>
+        <span class="listing-card__type">Learning Platform</span>
       </div>
     </div>
-
-    <div class="tab-container">
-      <div class="tab-bar" role="tablist">
-        <button class="tab-btn active" data-tab="edu-career" role="tab">1. Career, Trade &amp; Job-Skill</button>
-        <button class="tab-btn" data-tab="edu-business" role="tab">2. Business &amp; Ownership</button>
-        <button class="tab-btn" data-tab="edu-digital" role="tab">3. Income-Skill &amp; Digital</button>
-        <button class="tab-btn" data-tab="edu-certs" role="tab">4. Certification &amp; Exam Prep</button>
-      </div>
-
-      <div class="tab-panel active" id="edu-career" role="tabpanel">
-        <div class="dir-section">
-          <div class="cat-block">
-            <div class="cat-block__header">
-              <div>
-                <p class="cat-block__label">Career, Trade &amp; Job-Skill Training</p>
-                <h2 class="cat-block__title">Programs for Job Skills, Career Change, and Credential-Oriented Learning</h2>
-                <p class="cat-block__desc">These destinations are useful when the immediate goal is employable skills, certification prep, software fluency, or structured career training.</p>
-              </div>
-            </div>
-            <div class="cat-block__grid">
-              <div class="listing-card listing-card--featured" data-tags="coursera career certification online learning">
-                <span class="listing-card__badge">Featured</span>
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Co</div><div class="listing-card__title-block"><h4 class="listing-card__name">Coursera</h4><span class="listing-card__type">Online Learning Platform</span></div></div><p class="listing-card__desc">Course and certificate marketplace with university and employer-backed programs across business, technology, analytics, and healthcare-adjacent topics.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">career</span><span class="tag">certification</span><span class="tag">online-learning</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.coursera.org/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="skillshare creative career skills">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Sk</div><div class="listing-card__title-block"><h4 class="listing-card__name">Skillshare</h4><span class="listing-card__type">Creative Skills Platform</span></div></div><p class="listing-card__desc">Subscription learning platform with practical classes in design, video, freelancing, productivity, and creator-focused skills.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">career</span><span class="tag">creative</span><span class="tag">skills</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.skillshare.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="ed2go workforce continuing education">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">e2</div><div class="listing-card__title-block"><h4 class="listing-card__name">ed2go</h4><span class="listing-card__type">Career Training Marketplace</span></div></div><p class="listing-card__desc">Continuing education and career-training destination used by colleges and workforce programs for online certificate tracks.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">career</span><span class="tag">workforce</span><span class="tag">training</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.ed2go.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="aapc medical coding certification">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">AA</div><div class="listing-card__title-block"><h4 class="listing-card__name">AAPC</h4><span class="listing-card__type">Medical Coding Certification Provider</span></div></div><p class="listing-card__desc">Certification and training destination for medical coding, billing, auditing, and healthcare revenue-cycle career paths.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">career</span><span class="tag">certification</span><span class="tag">healthcare</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.aapc.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="quickbooks training proadvisor bookkeeping">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">QB</div><div class="listing-card__title-block"><h4 class="listing-card__name">QuickBooks Training / ProAdvisor</h4><span class="listing-card__type">Software Training &amp; Certification</span></div></div><p class="listing-card__desc">Training and certification path for bookkeepers, accountants, and finance support professionals using the QuickBooks ecosystem.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">career</span><span class="tag">software</span><span class="tag">bookkeeping</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://proadvisor.intuit.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="udemy business skills training">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">UB</div><div class="listing-card__title-block"><h4 class="listing-card__name">Udemy Business</h4><span class="listing-card__type">Business Learning Platform</span></div></div><p class="listing-card__desc">Business-focused learning library with courses across software, analytics, leadership, operations, marketing, and workplace skills.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">career</span><span class="tag">business</span><span class="tag">skills</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://business.udemy.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-panel" id="edu-business" role="tabpanel">
-        <div class="dir-section">
-          <div class="cat-block">
-            <div class="cat-block__header">
-              <div>
-                <p class="cat-block__label">Business, Entrepreneurship &amp; Ownership Education</p>
-                <h2 class="cat-block__title">Destinations for Ownership Education, Business Systems, and Acquisition Learning</h2>
-                <p class="cat-block__desc">These listings are organized around business-building education, acquisition-focused learning, and operator-oriented training resources.</p>
-              </div>
-            </div>
-            <div class="cat-block__grid">
-              <div class="listing-card listing-card--featured" data-tags="teachable business education creator">
-                <span class="listing-card__badge">Featured</span>
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Te</div><div class="listing-card__title-block"><h4 class="listing-card__name">Teachable</h4><span class="listing-card__type">Course Business Platform</span></div></div><p class="listing-card__desc">Platform used by educators and operators to package knowledge, sell courses, and build education-based businesses.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">business</span><span class="tag">creator</span><span class="tag">education</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://teachable.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="coursera business entrepreneurship">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Co</div><div class="listing-card__title-block"><h4 class="listing-card__name">Coursera</h4><span class="listing-card__type">Business Learning Platform</span></div></div><p class="listing-card__desc">University-backed business courses covering entrepreneurship, finance, management, and product operations.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">business</span><span class="tag">entrepreneurship</span><span class="tag">learning</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.coursera.org/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="udemy business operations leadership">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">UB</div><div class="listing-card__title-block"><h4 class="listing-card__name">Udemy Business</h4><span class="listing-card__type">Business Learning Platform</span></div></div><p class="listing-card__desc">Business-focused course library covering management, sales, operations, software, and role-based business skills.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">business</span><span class="tag">operations</span><span class="tag">leadership</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://business.udemy.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="ed2go business training continuing education">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">e2</div><div class="listing-card__title-block"><h4 class="listing-card__name">ed2go</h4><span class="listing-card__type">Online Training Marketplace</span></div></div><p class="listing-card__desc">Marketplace used by colleges and institutions for business and professional-skills training online.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">business</span><span class="tag">continuing-ed</span><span class="tag">training</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.ed2go.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="hubspot academy business marketing sales">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">HA</div><div class="listing-card__title-block"><h4 class="listing-card__name">HubSpot Academy</h4><span class="listing-card__type">Marketing &amp; Sales Education Platform</span></div></div><p class="listing-card__desc">Free training destination for CRM, inbound marketing, sales process, service operations, and revenue workflows.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">business</span><span class="tag">marketing</span><span class="tag">sales</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://academy.hubspot.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="smbootcamp acquisition education business-buying">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">SMB</div><div class="listing-card__title-block"><h4 class="listing-card__name">SMBootcamp</h4><span class="listing-card__type">Acquisition Education Program</span></div></div><p class="listing-card__desc">Hands-on education program focused on buying small businesses, SBA-backed acquisition deals, diligence, and deal execution.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">acquisition</span><span class="tag">business-buying</span><span class="tag">education</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.smbootcamp.co/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="acquire buying guides acquisition education">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Ac</div><div class="listing-card__title-block"><h4 class="listing-card__name">Acquire.com Buying Guides</h4><span class="listing-card__type">Marketplace Education Resource</span></div></div><p class="listing-card__desc">Buyer-oriented education from Acquire.com focused on evaluating, financing, and acquiring online businesses.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">acquisition</span><span class="tag">guides</span><span class="tag">online-business</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://blog.acquire.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="contrarian thinking acquisition foundations business-buying">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">CT</div><div class="listing-card__title-block"><h4 class="listing-card__name">Contrarian Thinking Acquisition Foundations</h4><span class="listing-card__type">Acquisition Education Program</span></div></div><p class="listing-card__desc">Structured program for business buyers covering deal sourcing, valuation, due diligence, financing, negotiation, and closing.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">acquisition</span><span class="tag">business-buying</span><span class="tag">training</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.contrarianthinking.co/acquisition-foundations" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-panel" id="edu-digital" role="tabpanel">
-        <div class="dir-section">
-          <div class="cat-block">
-            <div class="cat-block__header">
-              <div>
-                <p class="cat-block__label">Income-Skill, Creative &amp; Digital Training</p>
-                <h2 class="cat-block__title">Skill Platforms for Marketing, Software, Creator Revenue, and Digital Client Work</h2>
-                <p class="cat-block__desc">This section stays focused on skill-building destinations that can support freelance, digital, bookkeeping, creator, or software-related income paths.</p>
-              </div>
-            </div>
-            <div class="cat-block__grid">
-              <div class="listing-card listing-card--featured" data-tags="skillshare creative digital skills">
-                <span class="listing-card__badge">Featured</span>
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Sk</div><div class="listing-card__title-block"><h4 class="listing-card__name">Skillshare</h4><span class="listing-card__type">Digital Skills Platform</span></div></div><p class="listing-card__desc">Practical class platform covering design, content, editing, illustration, freelancing, and creative workflow skills.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">digital</span><span class="tag">creative</span><span class="tag">skills</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.skillshare.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="coursera digital software analytics">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Co</div><div class="listing-card__title-block"><h4 class="listing-card__name">Coursera</h4><span class="listing-card__type">Digital Skills Platform</span></div></div><p class="listing-card__desc">Destination for analytics, marketing, coding, product, AI, and business-technology certificates and courses.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">digital</span><span class="tag">software</span><span class="tag">analytics</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.coursera.org/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="teachable digital products creator skills">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Te</div><div class="listing-card__title-block"><h4 class="listing-card__name">Teachable</h4><span class="listing-card__type">Creator Platform</span></div></div><p class="listing-card__desc">Course platform where creators package knowledge, sell training, and build digital-product businesses.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">digital</span><span class="tag">creator</span><span class="tag">products</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://teachable.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="hubspot academy marketing digital skills">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">HA</div><div class="listing-card__title-block"><h4 class="listing-card__name">HubSpot Academy</h4><span class="listing-card__type">Marketing Training Platform</span></div></div><p class="listing-card__desc">Digital training destination for inbound marketing, CRM operations, content, sales process, and customer service systems.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">digital</span><span class="tag">marketing</span><span class="tag">crm</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://academy.hubspot.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="quickbooks bookkeeping software training">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">QB</div><div class="listing-card__title-block"><h4 class="listing-card__name">QuickBooks Training / ProAdvisor</h4><span class="listing-card__type">Bookkeeping Software Training</span></div></div><p class="listing-card__desc">Training path for people building bookkeeping, payroll, and finance-support skills around a widely used software ecosystem.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">digital</span><span class="tag">bookkeeping</span><span class="tag">software</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://proadvisor.intuit.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="coding bootcamps teachable digital skills">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">CB</div><div class="listing-card__title-block"><h4 class="listing-card__name">Coding Bootcamps on Teachable</h4><span class="listing-card__type">Course Platform Category</span></div></div><p class="listing-card__desc">Teachable is used by independent schools and instructors selling coding, web-development, and software-skills programs.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">digital</span><span class="tag">coding</span><span class="tag">bootcamps</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://teachable.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-panel" id="edu-certs" role="tabpanel">
-        <div class="dir-section">
-          <div class="cat-block">
-            <div class="cat-block__header">
-              <div>
-                <p class="cat-block__label">Certification, Licensing &amp; Exam Prep Resources</p>
-                <h2 class="cat-block__title">Destinations for Certifications, Platform Credentials, and Exam-Adjacent Learning</h2>
-                <p class="cat-block__desc">These listings focus on recognized certifications, software credentials, exam prep, and licensing-adjacent resource destinations.</p>
-              </div>
-            </div>
-            <div class="cat-block__grid">
-              <div class="listing-card listing-card--featured" data-tags="aapc certification coding exam prep">
-                <span class="listing-card__badge">Featured</span>
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">AA</div><div class="listing-card__title-block"><h4 class="listing-card__name">AAPC</h4><span class="listing-card__type">Certification Provider</span></div></div><p class="listing-card__desc">Medical coding and billing certification destination with credential tracks, prep resources, and continuing education.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">certification</span><span class="tag">exam-prep</span><span class="tag">coding</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.aapc.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="coursera certification online certificates">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">Co</div><div class="listing-card__title-block"><h4 class="listing-card__name">Coursera</h4><span class="listing-card__type">Certificate Marketplace</span></div></div><p class="listing-card__desc">Professional certificate destination with exam-adjacent and role-based credentials in business, technology, and data.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">certification</span><span class="tag">certificates</span><span class="tag">online-learning</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.coursera.org/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="hubspot academy certifications">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">HA</div><div class="listing-card__title-block"><h4 class="listing-card__name">HubSpot Academy</h4><span class="listing-card__type">Platform Certification Provider</span></div></div><p class="listing-card__desc">Certification programs covering inbound marketing, sales software, service hubs, and CRM implementation skills.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">certification</span><span class="tag">platform</span><span class="tag">marketing</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://academy.hubspot.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="quickbooks certification proadvisor bookkeeping">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">QB</div><div class="listing-card__title-block"><h4 class="listing-card__name">QuickBooks Training / ProAdvisor</h4><span class="listing-card__type">Software Certification</span></div></div><p class="listing-card__desc">Credential path for QuickBooks-adjacent bookkeeping and accounting work, including training and certification resources.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">certification</span><span class="tag">software</span><span class="tag">bookkeeping</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://proadvisor.intuit.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="ed2go certification exam prep workforce">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">e2</div><div class="listing-card__title-block"><h4 class="listing-card__name">ed2go</h4><span class="listing-card__type">Certificate &amp; Exam Prep Marketplace</span></div></div><p class="listing-card__desc">Online program destination used for workforce certifications, professional development, and credential-focused learning paths.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">certification</span><span class="tag">exam-prep</span><span class="tag">workforce</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://www.ed2go.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-              <div class="listing-card" data-tags="coding bootcamps teachable certifications">
-                <div class="listing-card__body"><div class="listing-card__header"><div class="listing-card__icon">CB</div><div class="listing-card__title-block"><h4 class="listing-card__name">Coding Bootcamps on Teachable</h4><span class="listing-card__type">Course Platform Category</span></div></div><p class="listing-card__desc">Platform-based coding programs and instructor-led software bootcamps delivered through Teachable storefronts.</p><div class="listing-card__meta"><span class="listing-card__coverage">National</span><div class="listing-card__tags"><span class="tag tag--purple">certification</span><span class="tag">coding</span><span class="tag">bootcamps</span></div></div></div><div class="listing-card__footer"><div class="listing-card__footer-inner"><a href="https://teachable.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a></div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <p class="listing-card__desc">Online learning platform with courses, certificates, and career-oriented programs.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">career</span><span class="tag">courses</span><span class="tag">certificates</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.coursera.org/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
     </div>
   </div>
 </div>
-
-<section class="state-section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-header__left">
-        <span class="section-eyebrow">State-Specific Structure</span>
-        <h2 class="section-title">Licensing and Workforce Resources by State</h2>
-        <p class="section-sub">State pages are used where licensing rules, notary requirements, real-estate education, chambers, and workforce programs are location-specific.</p>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Sk</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Skillshare</h4>
+        <span class="listing-card__type">Skills Platform</span>
       </div>
-      <a href="states/index.html" class="btn btn--outline btn--sm">Browse State Pages</a>
     </div>
-    <div class="need-chips">
-      <span class="need-chip need-chip--edu">Notary Resources</span>
-      <span class="need-chip need-chip--edu">Real Estate Licensing</span>
-      <span class="need-chip need-chip--edu">Workforce Training</span>
-      <span class="need-chip need-chip--edu">State Grant Programs</span>
-      <span class="need-chip need-chip--edu">Chambers of Commerce</span>
-      <span class="need-chip need-chip--edu">Permit &amp; Zoning Resources</span>
-    </div>
-    <div class="state-grid" style="margin-top:24px;">
-      <a href="states/california.html" class="state-link">California <span class="state-arrow">&rsaquo;</span></a>
-      <a href="states/florida.html" class="state-link">Florida <span class="state-arrow">&rsaquo;</span></a>
-      <a href="states/new-york.html" class="state-link">New York <span class="state-arrow">&rsaquo;</span></a>
-      <a href="states/texas.html" class="state-link">Texas <span class="state-arrow">&rsaquo;</span></a>
-      <a href="states/index.html" class="state-link" style="background:var(--bg-100); font-weight:600;">State Index &rsaquo;</a>
+    <p class="listing-card__desc">Subscription platform for practical classes in creative and digital skills.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">creative</span><span class="tag">skills</span><span class="tag">subscription</span></div>
     </div>
   </div>
-</section>
-
-<div class="cta-band">
-  <div class="container">
-    <h2 class="cta-band__title">Have a Training Program or Certification Resource?</h2>
-    <p class="cta-band__sub">Submit a school, platform, exam-prep provider, or state-specific training resource for inclusion.</p>
-    <div class="cta-band__actions">
-      <a href="list-business.html" class="btn btn--white btn--lg">Submit a Listing</a>
-      <a href="advertise.html" class="btn btn--white-outline btn--lg">Advertise</a>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.skillshare.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
     </div>
   </div>
 </div>
-
-<footer class="site-footer" role="contentinfo">
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">e2</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">ed2go</h4>
+        <span class="listing-card__type">Training Marketplace</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace for online workforce, career, and continuing education programs.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">workforce</span><span class="tag">training</span><span class="tag">courses</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.ed2go.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Aa</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">AAPC</h4>
+        <span class="listing-card__type">Certification Provider</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Training and certification provider for medical coding and billing roles.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">medical</span><span class="tag">coding</span><span class="tag">certification</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.aapc.com/training/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Qb</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">QuickBooks Training / ProAdvisor</h4>
+        <span class="listing-card__type">Software Training</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Training and certification path for QuickBooks and bookkeeping work.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">bookkeeping</span><span class="tag">software</span><span class="tag">certification</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://proadvisor.intuit.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Ub</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Udemy Business</h4>
+        <span class="listing-card__type">Business Learning Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Business-focused learning platform for workplace and technical skills.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">business</span><span class="tag">skills</span><span class="tag">courses</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://business.udemy.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+    <div class="cat-block">
+      <div class="cat-block__header">
+        <div>
+          <h2 class="cat-block__title">Business, Entrepreneurship &amp; Ownership Education</h2>
+          <p class="cat-block__desc">Programs and platforms focused on business operations, ownership, and acquisition learning.</p>
+        </div>
+      </div>
+      <div class="cat-block__grid">
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Te</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Teachable</h4>
+        <span class="listing-card__type">Course Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Platform used by independent operators and educators to publish business training.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">business</span><span class="tag">digital</span><span class="tag">platform</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://teachable.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Co</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Coursera</h4>
+        <span class="listing-card__type">Learning Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Provider of business, entrepreneurship, operations, and leadership coursework.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">business</span><span class="tag">courses</span><span class="tag">certificates</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.coursera.org/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Ub</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Udemy Business</h4>
+        <span class="listing-card__type">Business Learning Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Business learning destination covering management, operations, and functional skills.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">business</span><span class="tag">operations</span><span class="tag">skills</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://business.udemy.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">e2</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">ed2go</h4>
+        <span class="listing-card__type">Training Marketplace</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace with small business, entrepreneurship, and management training programs.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">business</span><span class="tag">training</span><span class="tag">courses</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.ed2go.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Ha</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">HubSpot Academy</h4>
+        <span class="listing-card__type">Academy Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Free business training destination for sales, marketing, CRM, and service workflows.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">marketing</span><span class="tag">sales</span><span class="tag">crm</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://academy.hubspot.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Sm</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">SMBootcamp</h4>
+        <span class="listing-card__type">Education Program</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Program focused on small business acquisition and ownership education.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">acquisition</span><span class="tag">business-buying</span><span class="tag">education</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.smbootcamp.co/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Ag</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Acquire.com Buying Guides</h4>
+        <span class="listing-card__type">Resource Library</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Resource library focused on buying and evaluating online businesses.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Online</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">acquisition</span><span class="tag">buying</span><span class="tag">resources</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://blog.acquire.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Ct</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Contrarian Thinking Acquisition Foundations</h4>
+        <span class="listing-card__type">Acquisition Program</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Acquisition-focused education program for buying and operating businesses.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Online</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">acquisition</span><span class="tag">business-buying</span><span class="tag">education</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.contrarianthinking.co/acquisition-foundations" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+    <div class="cat-block">
+      <div class="cat-block__header">
+        <div>
+          <h2 class="cat-block__title">Income-Skill, Creative &amp; Digital Training</h2>
+          <p class="cat-block__desc">Training destinations for digital, creative, and independent-service skills.</p>
+        </div>
+      </div>
+      <div class="cat-block__grid">
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Sk</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Skillshare</h4>
+        <span class="listing-card__type">Skills Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Platform with classes in design, video, freelancing, and creator skills.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">creative</span><span class="tag">digital</span><span class="tag">skills</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.skillshare.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Co</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Coursera</h4>
+        <span class="listing-card__type">Learning Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Platform with role-based and technical training across digital skill categories.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">digital</span><span class="tag">technology</span><span class="tag">courses</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.coursera.org/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Te</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Teachable</h4>
+        <span class="listing-card__type">Course Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Platform hosting many digital-skill and creator-led training programs.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">digital</span><span class="tag">creator</span><span class="tag">platform</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://teachable.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Ha</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">HubSpot Academy</h4>
+        <span class="listing-card__type">Academy Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Platform for digital marketing, CRM, and sales skill development.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">marketing</span><span class="tag">crm</span><span class="tag">digital</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://academy.hubspot.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Qb</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">QuickBooks Training / ProAdvisor</h4>
+        <span class="listing-card__type">Software Training</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Training path for bookkeeping software and service-based financial work.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">bookkeeping</span><span class="tag">software</span><span class="tag">digital</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://proadvisor.intuit.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Cb</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Coding Bootcamps on Teachable</h4>
+        <span class="listing-card__type">Platform Category</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Teachable-hosted coding and technical training storefronts.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Online</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">coding</span><span class="tag">bootcamp</span><span class="tag">digital</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://teachable.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+    <div class="cat-block">
+      <div class="cat-block__header">
+        <div>
+          <h2 class="cat-block__title">Certification, Licensing &amp; Exam Prep Resources</h2>
+          <p class="cat-block__desc">Certification providers and exam-prep destinations tied to skills, software, and credentials.</p>
+        </div>
+      </div>
+      <div class="cat-block__grid">
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Aa</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">AAPC</h4>
+        <span class="listing-card__type">Certification Provider</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Certification and exam-prep destination for medical coding and billing.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">certification</span><span class="tag">medical</span><span class="tag">exam-prep</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.aapc.com/training/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Co</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Coursera</h4>
+        <span class="listing-card__type">Certificate Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Destination for role-based certificates and exam-adjacent coursework.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">certificates</span><span class="tag">professional</span><span class="tag">online</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.coursera.org/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Ha</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">HubSpot Academy</h4>
+        <span class="listing-card__type">Certification Platform</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Platform with product and workflow certifications across marketing and sales.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Global</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">certification</span><span class="tag">marketing</span><span class="tag">sales</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://academy.hubspot.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Qb</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">QuickBooks Training / ProAdvisor</h4>
+        <span class="listing-card__type">Software Certification</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Certification track for QuickBooks-adjacent service and software skills.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">certification</span><span class="tag">bookkeeping</span><span class="tag">software</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://proadvisor.intuit.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">e2</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">ed2go</h4>
+        <span class="listing-card__type">Training Marketplace</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Marketplace for certification-oriented training and workforce exam-prep programs.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">National</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">certification</span><span class="tag">exam-prep</span><span class="tag">workforce</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://www.ed2go.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="listing-card">
+  <div class="listing-card__body">
+    <div class="listing-card__header">
+      <div class="listing-card__icon">Cb</div>
+      <div class="listing-card__title-block">
+        <h4 class="listing-card__name">Coding Bootcamps on Teachable</h4>
+        <span class="listing-card__type">Platform Category</span>
+      </div>
+    </div>
+    <p class="listing-card__desc">Platform entry point for coding bootcamps and technical training providers.</p>
+    <div class="listing-card__meta">
+      <span class="listing-card__coverage">Online</span>
+      <div class="listing-card__tags"><span class="tag tag--purple">coding</span><span class="tag">bootcamp</span><span class="tag">platform</span></div>
+    </div>
+  </div>
+  <div class="listing-card__footer">
+    <div class="listing-card__footer-inner">
+      <a href="https://teachable.com/" target="_blank" rel="noopener noreferrer" class="listing-card__cta">Visit Site &rarr;</a>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+</div><footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-brand__logo">
           <svg width="36" height="22" viewBox="0 0 200 120" aria-hidden="true">
             <defs>
-              <linearGradient id="ftGradEdu" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
-                <stop offset="0%" stop-color="#8B5CF6"/><stop offset="50%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#10B981"/>
+              <linearGradient id="ftGradCore" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="0">
+                <stop offset="0%" stop-color="#8B5CF6"/>
+                <stop offset="50%" stop-color="#3B82F6"/>
+                <stop offset="100%" stop-color="#10B981"/>
               </linearGradient>
-              <mask id="ftMaskEdu"><path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="white" stroke-width="22" stroke-linecap="round"/></mask>
+              <mask id="ftMaskCore">
+                <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="white" stroke-width="22" stroke-linecap="round"/>
+              </mask>
             </defs>
             <path d="M 18,105 A 82,82 0 0,1 182,105" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="22" stroke-linecap="round"/>
-            <rect x="10" y="15" width="180" height="95" fill="url(#ftGradEdu)" mask="url(#ftMaskEdu)"/>
+            <rect x="10" y="15" width="180" height="95" fill="url(#ftGradCore)" mask="url(#ftMaskCore)"/>
             <circle cx="100" cy="108" r="7" fill="white"/>
           </svg>
           <span class="footer-brand__text">IncomeSpectrum</span>
         </div>
-        <p class="footer-brand__tagline">A curated directory of real income opportunities, training programs, and business support services.</p>
+        <p class="footer-brand__tagline">Directory of real income opportunities, training resources, and supportive services.</p>
       </div>
-      <div class="footer-col"><h5 class="footer-col__title">Directory Hubs</h5><ul class="footer-links"><li><a href="income-options.html">Income Options Index</a></li><li><a href="education-training.html">Education &amp; Training</a></li><li><a href="supportive-services.html">Supportive Services</a></li><li><a href="states/index.html">Browse by State</a></li></ul></div>
-      <div class="footer-col"><h5 class="footer-col__title">Education Sections</h5><ul class="footer-links"><li><a href="#edu-career">Career Skills</a></li><li><a href="#edu-business">Business Education</a></li><li><a href="#edu-digital">Digital Skills</a></li><li><a href="#edu-certs">Certifications</a></li></ul></div>
-      <div class="footer-col"><h5 class="footer-col__title">Site</h5><ul class="footer-links"><li><a href="about.html">About</a></li><li><a href="advertise.html">Advertise</a></li><li><a href="list-business.html">List Your Business</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="footer-col"><h5 class="footer-col__title">Live States</h5><ul class="footer-links"><li><a href="states/california.html">California</a></li><li><a href="states/florida.html">Florida</a></li><li><a href="states/new-york.html">New York</a></li><li><a href="states/texas.html">Texas</a></li></ul></div>
+      <div class="footer-col">
+        <h5 class="footer-col__title">Pages</h5>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="income-options.html">Income Options Index</a></li>
+          <li><a href="education-training.html">Education &amp; Training Resources</a></li>
+          <li><a href="supportive-services.html">Supportive Services Directory</a></li>
+        </ul>
+      </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-bottom__copy">&copy; 2026 IncomeSpectrum.com &mdash; All rights reserved.</p>
-      <div class="footer-bottom__links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Disclaimer</a></div>
+      <p class="footer-bottom__copy">&copy; 2026 IncomeSpectrum.com</p>
     </div>
   </div>
 </footer>
-
 <script src="js/main.js"></script>
 </body>
 </html>

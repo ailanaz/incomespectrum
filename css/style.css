@@ -1457,8 +1457,8 @@ p { margin: 0; }
   border-bottom: 2px solid var(--c-income-border);
 }
 .page-header--edu {
-  background: linear-gradient(160deg, #eef2ff 0%, #f3f6ff 55%, #edf0ff 100%);
-  border-bottom: 2px solid var(--c-edu-border);
+  background: linear-gradient(160deg, #dbeafe 0%, #f0f9ff 55%, #e0f2fe 100%);
+  border-bottom: 2px solid #7dd3fc;
 }
 .page-header--svc {
   background: linear-gradient(160deg, #fffbeb 0%, #fefce8 55%, #fef9c3 100%);

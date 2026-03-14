@@ -2053,5 +2053,12 @@ body::before {
 .cat-card--svc:hover .cat-card__cta { color: #111827 !important; }
 .cat-card::before { display: none !important; }
 .cat-cards { grid-template-columns: repeat(3, 1fr) !important; }
-@media (max-width: 1024px) { .cat-cards { grid-template-columns: repeat(3, 1fr) !important; } }
-@media (max-width: 640px)  { .cat-cards { grid-template-columns: repeat(3, 1fr) !important; } }
+.cat-cards > :last-child { grid-column: auto !important; }
+@media (max-width: 1024px) {
+  .cat-cards { grid-template-columns: repeat(3, 1fr) !important; }
+  .cat-cards > :last-child { grid-column: auto !important; }
+}
+@media (max-width: 640px) {
+  .cat-cards { grid-template-columns: repeat(3, 1fr) !important; }
+  .cat-cards > :last-child { grid-column: auto !important; }
+}

@@ -1453,15 +1453,15 @@ p { margin: 0; }
   padding: 52px 0 60px;
 }
 .page-header--income {
-  background: linear-gradient(160deg, #EBF2FF 0%, #F5F8FF 55%, #EFF6FF 100%);
+  background: linear-gradient(160deg, #e6f4eb 0%, #f2faf5 55%, #edf7f1 100%);
   border-bottom: 2px solid var(--c-income-border);
 }
 .page-header--edu {
-  background: linear-gradient(160deg, #EDE9FF 0%, #F7F5FF 55%, #F5F3FF 100%);
+  background: linear-gradient(160deg, #eef2ff 0%, #f3f6ff 55%, #edf0ff 100%);
   border-bottom: 2px solid var(--c-edu-border);
 }
 .page-header--svc {
-  background: linear-gradient(160deg, #D1FAE5 0%, #F0FDF7 55%, #ECFDF5 100%);
+  background: linear-gradient(160deg, #fffbeb 0%, #fefce8 55%, #fef9c3 100%);
   border-bottom: 2px solid var(--c-svc-border);
 }
 .page-header__title {

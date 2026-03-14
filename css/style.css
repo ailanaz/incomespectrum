@@ -1808,7 +1808,7 @@ body::before {
 .hero {
   background-image:
     linear-gradient(160deg, rgba(8,16,44,0.76) 0%, rgba(4,14,36,0.66) 100%),
-    url('https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?auto=format&fit=crop&w=1600&q=80');
+    url('../img/HeroBG.png');
   background-size: auto, cover;
   background-position: center, center 45%;
   background-color: #0c1428;

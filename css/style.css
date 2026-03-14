@@ -2563,8 +2563,8 @@ body::before {
 .cat-card--gov {
   background: #383838 !important;
   background-image: none !important;
-  border-color: #525252 !important;
-  border-top-color: #909090 !important;
+  border-color: #888888 !important;
+  border-top-color: #a8a8a8 !important;
 }
 .cat-card--gov .cat-card__kicker {
   color: #d0d0ce !important;
@@ -2585,3 +2585,26 @@ body::before {
 .cat-card--gov:hover {
   box-shadow: 0 20px 40px rgba(0,0,0,0.35) !important;
 }
+
+/* ============================================================
+   FULL COLORED BORDER + CTA HOVER FIXES
+   ============================================================ */
+
+/* Full theme-colored border all the way around each card */
+.cat-card--income {
+  border-color: var(--c-income-border) !important;
+  border-top-color: var(--c-income) !important;
+}
+.cat-card--edu {
+  border-color: var(--c-edu-border) !important;
+  border-top-color: var(--c-edu) !important;
+}
+.cat-card--svc {
+  border-color: var(--c-svc-border) !important;
+  border-top-color: #b58b00 !important;
+}
+
+/* Keep CTA text visible on hover (light-background cards) */
+.cat-card--income:hover .cat-card__cta { color: var(--c-income) !important; }
+.cat-card--edu:hover    .cat-card__cta { color: var(--c-edu) !important; }
+.cat-card--svc:hover    .cat-card__cta { color: #8a6a00 !important; }

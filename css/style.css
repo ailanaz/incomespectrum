@@ -2448,6 +2448,22 @@ body::before {
   font-size: 13px !important;
 }
 
+.cat-block--income .listing-card {
+  border-color: var(--c-income-border) !important;
+}
+
+.cat-block--edu .listing-card {
+  border-color: var(--c-edu-border) !important;
+}
+
+.cat-block--svc .listing-card {
+  border-color: #efd36d !important;
+}
+
+.cat-block--gov .listing-card {
+  border-color: var(--c-gov-border) !important;
+}
+
 .site-footer {
   padding-top: 56px !important;
 }

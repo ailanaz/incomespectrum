@@ -2322,6 +2322,14 @@ body::before {
 .cat-card--svc .cat-card__cta { color: #8a6a00 !important; }
 .cat-card--gov .cat-card__cta { color: var(--c-gov) !important; }
 
+.cat-card--gov .cat-card__title {
+  color: var(--text-900) !important;
+}
+
+.cat-card--gov .cat-card__desc {
+  color: var(--text-500) !important;
+}
+
 .page-header__title {
   max-width: 820px;
 }

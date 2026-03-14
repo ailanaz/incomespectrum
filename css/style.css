@@ -2085,14 +2085,14 @@ body::before {
    ============================================================ */
 
 :root {
-  --c-gov: #1e3a5f;
-  --c-gov-bg: #eef2f7;
-  --c-gov-border: #b0c4d8;
+  --c-gov: #383838;
+  --c-gov-bg: #f0f0ee;
+  --c-gov-border: #c0bfbb;
 }
 
 /* Page header */
 .page-header--gov {
-  background: linear-gradient(160deg, #dde7f2 0%, #eef2f7 55%, #e5edf5 100%);
+  background: linear-gradient(160deg, #e8e8e6 0%, #f0f0ee 55%, #e6e6e4 100%);
   border-bottom: 2px solid var(--c-gov-border);
 }
 .page-header--gov .page-header__eyebrow { color: var(--c-gov); }
@@ -2113,13 +2113,13 @@ body::before {
 /* Cat-card on homepage */
 .cat-card--gov {
   background-image: none !important;
-  background-color: #1e3a5f !important;
+  background-color: #383838 !important;
 }
 .cat-card--gov .cat-card__title { color: #fff !important; }
 .cat-card--gov .cat-card__desc  { color: rgba(255,255,255,0.82) !important; }
 .cat-card--gov .cat-card__cta   { color: rgba(255,255,255,0.65) !important; }
 .cat-card--gov:hover .cat-card__cta { color: #fff !important; }
-.cat-card--gov:hover { box-shadow: 0 20px 56px rgba(30,58,95,0.28) !important; }
+.cat-card--gov:hover { box-shadow: 0 20px 56px rgba(56,56,56,0.28) !important; }
 
 /* Hero CTA button - gov */
 .hero-cta-btn--gov {
@@ -2131,7 +2131,7 @@ body::before {
   background: var(--c-gov);
   color: #fff;
   border-color: var(--c-gov);
-  box-shadow: 0 4px 16px rgba(30,58,95,0.22);
+  box-shadow: 0 4px 16px rgba(56,56,56,0.22);
   transform: translateY(-1px);
 }
 
@@ -2555,4 +2555,33 @@ body::before {
   .footer-grid {
     grid-template-columns: 1fr !important;
   }
+}
+
+/* ============================================================
+   GOV CARD CHARCOAL BACKGROUND - Final Override
+   ============================================================ */
+.cat-card--gov {
+  background: #383838 !important;
+  background-image: none !important;
+  border-color: #525252 !important;
+  border-top-color: #909090 !important;
+}
+.cat-card--gov .cat-card__kicker {
+  color: #d0d0ce !important;
+  background: rgba(255,255,255,0.1) !important;
+}
+.cat-card--gov .cat-card__title {
+  color: #ffffff !important;
+}
+.cat-card--gov .cat-card__desc {
+  color: rgba(255,255,255,0.75) !important;
+}
+.cat-card--gov .cat-card__cta {
+  color: rgba(255,255,255,0.55) !important;
+}
+.cat-card--gov:hover .cat-card__cta {
+  color: #ffffff !important;
+}
+.cat-card--gov:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35) !important;
 }

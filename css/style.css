@@ -2592,15 +2592,21 @@ body::before {
 
 /* Full theme-colored border all the way around each card */
 .cat-card--income {
-  border-color: var(--c-income-border) !important;
+  border-right-color: var(--c-income-border) !important;
+  border-bottom-color: var(--c-income-border) !important;
+  border-left-color: var(--c-income-border) !important;
   border-top-color: var(--c-income) !important;
 }
 .cat-card--edu {
-  border-color: var(--c-edu-border) !important;
+  border-right-color: var(--c-edu-border) !important;
+  border-bottom-color: var(--c-edu-border) !important;
+  border-left-color: var(--c-edu-border) !important;
   border-top-color: var(--c-edu) !important;
 }
 .cat-card--svc {
-  border-color: var(--c-svc-border) !important;
+  border-right-color: var(--c-svc-border) !important;
+  border-bottom-color: var(--c-svc-border) !important;
+  border-left-color: var(--c-svc-border) !important;
   border-top-color: #b58b00 !important;
 }
 

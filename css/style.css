@@ -1557,3 +1557,245 @@ p { margin: 0; }
   .cat-block { margin-bottom: 52px; }
   .cat-block__header { padding-left: 16px; }
 }
+
+/* ============================================================
+   DESIGN UPGRADE - Phase 2 Layout and Polish
+   ============================================================ */
+
+/* --- Top accent stripe (fixed, above nav) --- */
+body::before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--c-income) 0%, var(--sp-purple) 50%, var(--c-svc) 100%);
+  z-index: 9999;
+}
+
+/* Nudge sticky nav below the 3px stripe */
+.site-nav {
+  top: 3px;
+}
+
+/* --- Nav refinements --- */
+.nav-inner {
+  height: 60px;
+}
+.nav-links a {
+  font-size: 13.5px;
+  padding: 6px 12px;
+  letter-spacing: -0.01em;
+}
+.nav-links a.active {
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+/* --- Hero 2-column layout --- */
+.hero-inner {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  gap: 56px;
+}
+.hero-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-md);
+}
+.hero-visual {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-gauge {
+  margin-bottom: 0;
+}
+.hero-headline {
+  max-width: 560px;
+}
+.hero-sub {
+  max-width: 500px;
+}
+
+/* --- Hero CTA buttons --- */
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+.hero-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: var(--r-full);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s, transform 0.15s;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+.hero-cta-btn--income {
+  background: var(--c-income-bg);
+  color: var(--c-income);
+  border-color: var(--c-income-border);
+}
+.hero-cta-btn--income:hover {
+  background: var(--c-income);
+  color: #fff;
+  border-color: var(--c-income);
+  box-shadow: 0 4px 16px rgba(37,99,235,0.22);
+  transform: translateY(-1px);
+}
+.hero-cta-btn--edu {
+  background: var(--c-edu-bg);
+  color: var(--c-edu);
+  border-color: var(--c-edu-border);
+}
+.hero-cta-btn--edu:hover {
+  background: var(--c-edu);
+  color: #fff;
+  border-color: var(--c-edu);
+  box-shadow: 0 4px 16px rgba(124,58,237,0.22);
+  transform: translateY(-1px);
+}
+.hero-cta-btn--svc {
+  background: var(--c-svc-bg);
+  color: var(--c-svc);
+  border-color: var(--c-svc-border);
+}
+.hero-cta-btn--svc:hover {
+  background: var(--c-svc);
+  color: #fff;
+  border-color: var(--c-svc);
+  box-shadow: 0 4px 16px rgba(5,150,105,0.22);
+  transform: translateY(-1px);
+}
+
+/* --- Dir-categories section --- */
+.dir-categories {
+  background: var(--bg-50);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Section eyebrow pill badge */
+.section-eyebrow {
+  background: rgba(37,99,235,0.07);
+  border: 1px solid rgba(37,99,235,0.16);
+  border-radius: var(--r-full);
+  padding: 4px 14px;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--sp-blue);
+  display: inline-block;
+}
+
+/* --- Page jump nav (directory pages) --- */
+.page-jumpnav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0,0,0,0.07);
+}
+.page-jumpnav__label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-500);
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+.page-jumpnav__link {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 14px;
+  border-radius: var(--r-full);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  background: rgba(255,255,255,0.8);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.page-jumpnav--income .page-jumpnav__link { color: var(--c-income); border-color: var(--c-income-border); }
+.page-jumpnav--income .page-jumpnav__link:hover { background: var(--c-income); color: #fff; border-color: var(--c-income); }
+.page-jumpnav--edu    .page-jumpnav__link { color: var(--c-edu);    border-color: var(--c-edu-border); }
+.page-jumpnav--edu    .page-jumpnav__link:hover { background: var(--c-edu);    color: #fff; border-color: var(--c-edu); }
+.page-jumpnav--svc    .page-jumpnav__link { color: var(--c-svc);    border-color: var(--c-svc-border); }
+.page-jumpnav--svc    .page-jumpnav__link:hover { background: var(--c-svc);    color: #fff; border-color: var(--c-svc); }
+
+/* --- Cat-block separators (override Phase 1 margin-bottom) --- */
+.cat-block {
+  margin-bottom: 0;
+  padding-bottom: 64px;
+}
+.cat-block:last-child {
+  padding-bottom: 0;
+}
+.cat-block + .cat-block {
+  border-top: 1px solid var(--bg-200);
+  padding-top: 64px;
+}
+
+/* scroll-margin so jump nav anchors clear the sticky header */
+[id] {
+  scroll-margin-top: 80px;
+}
+
+/* --- Footer accent bar --- */
+.site-footer {
+  position: relative;
+}
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--c-income) 0%, var(--sp-purple) 50%, var(--c-svc) 100%);
+}
+
+/* --- Responsive: hero stacks at 900px --- */
+@media (max-width: 900px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: var(--gap-xl);
+  }
+  .hero-text {
+    align-items: center;
+  }
+  .hero-visual {
+    order: -1;
+  }
+  .hero-headline { max-width: 640px; }
+  .hero-sub { max-width: 560px; }
+  .hero-ctas { justify-content: center; }
+}
+
+@media (max-width: 640px) {
+  .page-jumpnav { margin-top: 16px; padding-top: 14px; }
+  .page-jumpnav__link { font-size: 12px; padding: 4px 11px; }
+  .hero-cta-btn { font-size: 13px; padding: 9px 16px; }
+  .cat-block { padding-bottom: 44px; }
+  .cat-block + .cat-block { padding-top: 44px; }
+}

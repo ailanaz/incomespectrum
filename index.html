@@ -37,9 +37,29 @@
     <div class="hero-text">
       <p class="hero-eyebrow">Income Spectrum</p>
       <h1 class="hero-headline">Income Options, Training Resources, and Supportive Services Directory</h1>
-      <form class="hero-search" action="income-options.html">
-        <input class="hero-search__input" type="search" placeholder="Search income options, training, and services...">
-        <button class="hero-search__btn" type="submit">Search</button>
+      <form class="hero-search" id="hero-nav-form" onsubmit="return false;">
+        <select class="hero-search__select" id="hero-nav-select" onchange="if(this.value) window.location.href=this.value">
+          <option value="" disabled selected>Browse all sections...</option>
+          <optgroup label="Income Options">
+            <option value="income-options.html#work-service">Work &amp; Service Income Options</option>
+            <option value="income-options.html#sell-product">Sell, Make &amp; Product Income Options</option>
+            <option value="income-options.html#business-ownership">Business Ownership &amp; Opportunity Income Options</option>
+            <option value="income-options.html#asset-recurring">Asset, Rental &amp; Recurring Income Options</option>
+          </optgroup>
+          <optgroup label="Education &amp; Training">
+            <option value="education-training.html#career-skills">Career, Trade &amp; Job-Skill Training</option>
+            <option value="education-training.html#business-education">Business, Entrepreneurship &amp; Ownership Education</option>
+            <option value="education-training.html#digital-training">Income-Skill, Creative &amp; Digital Training</option>
+            <option value="education-training.html#certifications">Certification, Licensing &amp; Exam Prep Resources</option>
+          </optgroup>
+          <optgroup label="Supportive Services">
+            <option value="supportive-services.html#finance-funding">Finance, Funding &amp; Credit Services</option>
+            <option value="supportive-services.html#legal-compliance">Legal, Compliance &amp; Protection Services</option>
+            <option value="supportive-services.html#operations-marketing">Business Operations, Marketing &amp; Technology Services</option>
+            <option value="supportive-services.html#advisory-transactions">Professional Support, Advisory &amp; Transaction Services</option>
+          </optgroup>
+        </select>
+        <button class="hero-search__btn" type="button" onclick="var s=document.getElementById('hero-nav-select');if(s.value)window.location.href=s.value">Go &rarr;</button>
       </form>
       <div class="hero-ctas">
         <a href="income-options.html" class="hero-cta-btn hero-cta-btn--income">Income Options &rarr;</a>

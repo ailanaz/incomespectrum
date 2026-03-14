@@ -37,10 +37,11 @@
   <div class="container hero-inner">
     <div class="hero-text">
       <p class="hero-eyebrow">Income Spectrum</p>
-      <h1 class="hero-headline">Income Options, Training Resources, and Supportive Services Directory</h1>
+      <h1 class="hero-headline">Browse Income Options, Training Resources, and Supportive Services</h1>
+      <p class="hero-sub">Income Spectrum is a directory of income destinations, business training resources, supportive services, and official business information links.</p>
       <form class="hero-search" id="hero-nav-form" onsubmit="return false;">
         <select class="hero-search__select" id="hero-nav-select" onchange="if(this.value) window.location.href=this.value">
-          <option value="" disabled selected>Explore the Spectrum...</option>
+          <option value="" disabled selected>Jump to a directory section</option>
           <optgroup label="Income Options">
             <option value="income-options.html#work-service">Work &amp; Service Income Options</option>
             <option value="income-options.html#sell-product">Sell, Make &amp; Product Income Options</option>
@@ -59,23 +60,17 @@
             <option value="supportive-services.html#operations-marketing">Business Operations, Marketing &amp; Technology Services</option>
             <option value="supportive-services.html#advisory-transactions">Professional Support, Advisory &amp; Transaction Services</option>
           </optgroup>
-          <optgroup label="State &amp; Federal Resources">
-            <option value="state-federal-resources.html#state-business-info">State Business Information Portals</option>
-            <option value="state-federal-resources.html#state-filing">State Filing &amp; Compliance Links</option>
+          <optgroup label="State &amp; Federal Business Information Resources">
+            <option value="state-federal-resources.html#state-business-info">State Business Information</option>
+            <option value="state-federal-resources.html#state-filing">State Filing, Registration &amp; Compliance Links</option>
             <option value="state-federal-resources.html#federal-business-info">Federal Business Information</option>
-            <option value="state-federal-resources.html#ein-registration">EIN, Tax ID &amp; Federal Registration</option>
-            <option value="state-federal-resources.html#contractor-classification">Contractor Classification Resources</option>
-            <option value="state-federal-resources.html#additional-resources">Additional Official Resource Links</option>
+            <option value="state-federal-resources.html#ein-registration">EIN, Tax ID &amp; Federal Registration Resources</option>
+            <option value="state-federal-resources.html#contractor-classification">Independent Contractor Rules &amp; Classification Resources</option>
+            <option value="state-federal-resources.html#additional-resources">Additional Official Business Resource Links</option>
           </optgroup>
         </select>
-        <button class="hero-search__btn" type="button" onclick="var s=document.getElementById('hero-nav-select');if(s.value)window.location.href=s.value">Go &rarr;</button>
+        <button class="hero-search__btn" type="button" onclick="var s=document.getElementById('hero-nav-select');if(s.value)window.location.href=s.value">Open Directory &rarr;</button>
       </form>
-      <div class="hero-ctas">
-        <a href="income-options.html" class="hero-cta-btn hero-cta-btn--income">Income Options &rarr;</a>
-        <a href="education-training.html" class="hero-cta-btn hero-cta-btn--edu">Education &amp; Training &rarr;</a>
-        <a href="supportive-services.html" class="hero-cta-btn hero-cta-btn--svc">Supportive Services &rarr;</a>
-        <a href="state-federal-resources.html" class="hero-cta-btn hero-cta-btn--gov">State &amp; Federal Resources &rarr;</a>
-      </div>
     </div>
   </div>
 </section>
@@ -83,23 +78,27 @@
   <div class="container">
     <div class="cat-cards">
       <a href="income-options.html" class="cat-card cat-card--income">
+        <p class="cat-card__kicker">Income destinations</p>
         <h3 class="cat-card__title">Income Options Index</h3>
-        <p class="cat-card__desc">For people starting a business, working for themselves, freelancing, contracting, exploring business ownership, or looking for stable part-time income options.</p>
+        <p class="cat-card__desc">Browse work platforms, product marketplaces, business opportunity sources, and recurring-income destinations.</p>
         <span class="cat-card__cta">Open Directory &rarr;</span>
       </a>
       <a href="education-training.html" class="cat-card cat-card--edu">
+        <p class="cat-card__kicker">Training destinations</p>
         <h3 class="cat-card__title">Education &amp; Training Resources</h3>
-        <p class="cat-card__desc">For people building skills for self-employment, business ownership, income growth, or greater financial self-sufficiency.</p>
+        <p class="cat-card__desc">Browse job-skill training, business education, digital training platforms, and certification resources.</p>
         <span class="cat-card__cta">Open Directory &rarr;</span>
       </a>
       <a href="supportive-services.html" class="cat-card cat-card--svc">
+        <p class="cat-card__kicker">Business support</p>
         <h3 class="cat-card__title">Supportive Services Directory</h3>
-        <p class="cat-card__desc">For entrepreneurs, solopreneurs, self-employed workers, independent contractors, and current small business owners who need business and operational support.</p>
+        <p class="cat-card__desc">Browse finance, legal, operations, advisory, and transaction service destinations.</p>
         <span class="cat-card__cta">Open Directory &rarr;</span>
       </a>
       <a href="state-federal-resources.html" class="cat-card cat-card--gov">
-        <h3 class="cat-card__title">State &amp; Federal Resources</h3>
-        <p class="cat-card__desc">For business owners, self-employed workers, and independent contractors looking for official state and federal business information, filing resources, and regulatory references.</p>
+        <p class="cat-card__kicker">Official resources</p>
+        <h3 class="cat-card__title">State &amp; Federal Business Information Resources</h3>
+        <p class="cat-card__desc">Browse official state and federal business information, filing resources, agency contacts, and compliance links.</p>
         <span class="cat-card__cta">Open Directory &rarr;</span>
       </a>
     </div>

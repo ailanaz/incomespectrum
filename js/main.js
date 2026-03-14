@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initFilterChips();
   initSmoothScroll();
   setActiveNav();
+  applyCardLogos();
+  enhanceFooter();
 });
 
 /* ---- Tab Navigation -------------------------------------- */
@@ -204,3 +206,79 @@ function setActiveNav() {
     }
   });
 })();
+
+function applyCardLogos() {
+  const path = window.location.pathname;
+  if (path.includes('/states/') || path.endsWith('state-federal-resources.html')) return;
+
+  const domainOverrides = {
+    'QuickBooks Training / ProAdvisor': 'intuit.com',
+    'Shopify Partners': 'shopify.com',
+    'Acquire.com Buying Guides': 'acquire.com',
+    'Acquire.com Partner Program': 'acquire.com',
+    'Coding Bootcamps on Teachable': 'teachable.com',
+    'Route-Based Opportunities via BizBuySell': 'bizbuysell.com',
+    'Laundromat Opportunities via BizBuySell': 'bizbuysell.com',
+    'Car Wash Opportunities via BizBuySell': 'bizbuysell.com',
+    'Vending Opportunities via Franchise Direct': 'franchisedirect.com'
+  };
+
+  document.querySelectorAll('.listing-card').forEach(card => {
+    if (card.closest('.cat-block--gov')) return;
+
+    const name = card.querySelector('.listing-card__name')?.textContent.trim();
+    const icon = card.querySelector('.listing-card__icon');
+    const link = card.querySelector('.listing-card__cta[href^="http"]');
+    if (!name || !icon || !link) return;
+
+    const domain = domainOverrides[name] || getLogoDomain(link.href);
+    if (!domain) return;
+
+    const img = new Image();
+    img.className = 'listing-card__logo';
+    img.alt = `${name} logo`;
+    img.loading = 'lazy';
+    img.referrerPolicy = 'no-referrer';
+
+    img.addEventListener('load', () => {
+      icon.textContent = '';
+      icon.classList.add('has-logo');
+      icon.appendChild(img);
+    });
+
+    img.src = `https://logo.clearbit.com/${domain}?size=80`;
+  });
+}
+
+function getLogoDomain(url) {
+  try {
+    const hostname = new URL(url).hostname.replace(/^www\./, '');
+    if (hostname.endsWith('.gov')) return '';
+    return hostname;
+  } catch {
+    return '';
+  }
+}
+
+function enhanceFooter() {
+  const disclaimerText = 'Income Spectrum is a directory and database for informational purposes only. Nothing on this site is legal, financial, tax, business, investment, or professional advice. We do not verify, guarantee, endorse, or accept responsibility for any third-party company, service, platform, provider, opportunity, listing, claim, or result. Users are responsible for their own due diligence and decisions.';
+
+  document.querySelectorAll('.site-footer').forEach(footer => {
+    const brandText = footer.querySelector('.footer-brand__text');
+    if (brandText) brandText.textContent = 'Income Spectrum';
+
+    footer.querySelectorAll('.footer-links a').forEach(link => {
+      if ((link.getAttribute('href') || '').includes('state-federal-resources.html')) {
+        link.textContent = 'State & Federal Business Information Resources';
+      }
+    });
+
+    const footerBottom = footer.querySelector('.footer-bottom');
+    if (!footerBottom || footerBottom.querySelector('.footer-bottom__disclaimer')) return;
+
+    const disclaimer = document.createElement('p');
+    disclaimer.className = 'footer-bottom__disclaimer';
+    disclaimer.textContent = disclaimerText;
+    footerBottom.appendChild(disclaimer);
+  });
+}

@@ -2079,3 +2079,68 @@ body::before {
   .cat-cards { grid-template-columns: repeat(3, 1fr) !important; }
   .cat-cards > :last-child { grid-column: auto !important; }
 }
+
+/* ============================================================
+   GOV THEME - State & Federal Resources Page
+   ============================================================ */
+
+:root {
+  --c-gov: #1e3a5f;
+  --c-gov-bg: #eef2f7;
+  --c-gov-border: #b0c4d8;
+}
+
+/* Page header */
+.page-header--gov {
+  background: linear-gradient(160deg, #dde7f2 0%, #eef2f7 55%, #e5edf5 100%);
+  border-bottom: 2px solid var(--c-gov-border);
+}
+.page-header--gov .page-header__eyebrow { color: var(--c-gov); }
+
+/* Jump nav */
+.page-jumpnav--gov .page-jumpnav__link { color: var(--c-gov); border-color: var(--c-gov-border); }
+.page-jumpnav--gov .page-jumpnav__link:hover { background: var(--c-gov); color: #fff; border-color: var(--c-gov); }
+
+/* Cat-block */
+.cat-block--gov .cat-block__header { border-left-color: var(--c-gov); }
+.cat-block--gov .cat-block__title { color: var(--c-gov); }
+.cat-block--gov .listing-card__icon { background: var(--c-gov-bg); color: var(--c-gov); }
+.cat-block--gov .listing-card__cta { color: var(--c-gov); }
+
+/* Tag */
+.tag--gov { background: var(--c-gov-bg); color: var(--c-gov); border-color: var(--c-gov-border); }
+
+/* Cat-card on homepage */
+.cat-card--gov {
+  background-image: none !important;
+  background-color: #1e3a5f !important;
+}
+.cat-card--gov .cat-card__title { color: #fff !important; }
+.cat-card--gov .cat-card__desc  { color: rgba(255,255,255,0.82) !important; }
+.cat-card--gov .cat-card__cta   { color: rgba(255,255,255,0.65) !important; }
+.cat-card--gov:hover .cat-card__cta { color: #fff !important; }
+.cat-card--gov:hover { box-shadow: 0 20px 56px rgba(30,58,95,0.28) !important; }
+
+/* Hero CTA button - gov */
+.hero-cta-btn--gov {
+  background: var(--c-gov-bg);
+  color: var(--c-gov);
+  border-color: var(--c-gov-border);
+}
+.hero-cta-btn--gov:hover {
+  background: var(--c-gov);
+  color: #fff;
+  border-color: var(--c-gov);
+  box-shadow: 0 4px 16px rgba(30,58,95,0.22);
+  transform: translateY(-1px);
+}
+
+/* 4-card homepage grid */
+.cat-cards { grid-template-columns: repeat(4, 1fr) !important; }
+.cat-cards > :last-child { grid-column: auto !important; }
+@media (max-width: 900px) {
+  .cat-cards { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 480px) {
+  .cat-cards { grid-template-columns: 1fr !important; }
+}

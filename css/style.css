@@ -2151,7 +2151,12 @@ body::before {
 
 .hero {
   padding: 72px 0 56px !important;
-  background: linear-gradient(180deg, #eef4ff 0%, #f8fbff 56%, #ffffff 100%) !important;
+  background-image:
+    linear-gradient(90deg, rgba(20, 98, 44, 0.88) 0%, rgba(20, 98, 44, 0.58) 34%, rgba(20, 98, 44, 0.22) 60%, rgba(20, 98, 44, 0.00) 100%),
+    url('../img/HeroBG.png') !important;
+  background-size: cover !important;
+  background-position: center right !important;
+  background-repeat: no-repeat !important;
   border-bottom: 1px solid var(--border);
 }
 
@@ -2177,7 +2182,7 @@ body::before {
   max-width: 720px;
   margin-top: 14px;
   font-size: 17px;
-  color: var(--text-500);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .hero-search {
@@ -2487,6 +2492,7 @@ body::before {
 @media (max-width: 700px) {
   .hero {
     padding: 60px 0 44px !important;
+    background-position: center center !important;
   }
 
   .hero-search {

@@ -1387,3 +1387,173 @@ p { margin: 0; }
   .hero { padding: 40px 0 52px; }
   .tab-btn { padding: 10px 14px; font-size: 13px; }
 }
+
+/* ============================================================
+   DESIGN REFRESH - Visual Polish
+   ============================================================ */
+
+/* --- Hero --- */
+.hero {
+  padding: 80px 0 96px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 16px;
+  background: rgba(37, 99, 235, 0.07);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  border-radius: var(--r-full);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sp-blue);
+}
+.hero-headline {
+  font-size: clamp(34px, 5.5vw, 58px);
+  letter-spacing: -1.5px;
+  line-height: 1.12;
+}
+.hero-sub + .hero-sub {
+  color: var(--text-300);
+  font-size: 14px;
+}
+
+/* --- Homepage directory cards --- */
+.dir-categories {
+  padding: 80px 0 96px;
+}
+.dir-categories .section-header {
+  margin-bottom: 40px;
+}
+.section-title {
+  font-size: clamp(22px, 2.8vw, 30px);
+  letter-spacing: -0.4px;
+}
+.cat-card {
+  padding: 36px;
+}
+.cat-card__icon {
+  width: 56px;
+  height: 56px;
+  font-size: 26px;
+  border-radius: 14px;
+  margin-bottom: 22px;
+}
+.cat-card__title {
+  font-size: 21px;
+  margin-bottom: 12px;
+}
+.cat-card--income:hover { box-shadow: 0 20px 56px rgba(37,99,235,0.16); }
+.cat-card--edu:hover    { box-shadow: 0 20px 56px rgba(124,58,237,0.16); }
+.cat-card--svc:hover    { box-shadow: 0 20px 56px rgba(5,150,105,0.16); }
+
+/* --- Page header (inner directory pages) --- */
+.page-header {
+  padding: 52px 0 60px;
+}
+.page-header--income {
+  background: linear-gradient(160deg, #EBF2FF 0%, #F5F8FF 55%, #EFF6FF 100%);
+  border-bottom: 2px solid var(--c-income-border);
+}
+.page-header--edu {
+  background: linear-gradient(160deg, #EDE9FF 0%, #F7F5FF 55%, #F5F3FF 100%);
+  border-bottom: 2px solid var(--c-edu-border);
+}
+.page-header--svc {
+  background: linear-gradient(160deg, #D1FAE5 0%, #F0FDF7 55%, #ECFDF5 100%);
+  border-bottom: 2px solid var(--c-svc-border);
+}
+.page-header__title {
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-top: 4px;
+}
+
+/* --- Directory page body --- */
+.page-body {
+  padding: 56px 0 96px;
+}
+
+/* --- Category blocks --- */
+.cat-block {
+  margin-bottom: 72px;
+}
+.cat-block:last-child {
+  margin-bottom: 0;
+}
+.cat-block__header {
+  border-bottom: none;
+  padding-bottom: 0;
+  padding-left: 20px;
+  border-left: 3px solid var(--border-dark);
+  margin-bottom: 28px;
+  align-items: flex-start;
+}
+.cat-block--income .cat-block__header { border-left-color: var(--c-income); }
+.cat-block--edu    .cat-block__header { border-left-color: var(--c-edu); }
+.cat-block--svc    .cat-block__header { border-left-color: var(--c-svc); }
+
+.cat-block__title {
+  font-size: 20px;
+  letter-spacing: -0.2px;
+}
+.cat-block__grid {
+  gap: 18px;
+}
+
+/* --- Listing card icon coloring by category --- */
+.cat-block--income .listing-card__icon {
+  background: var(--c-income-bg);
+  color: var(--c-income);
+  border-color: var(--c-income-border);
+}
+.cat-block--edu .listing-card__icon {
+  background: var(--c-edu-bg);
+  color: var(--c-edu);
+  border-color: var(--c-edu-border);
+}
+.cat-block--svc .listing-card__icon {
+  background: var(--c-svc-bg);
+  color: var(--c-svc);
+  border-color: var(--c-svc-border);
+}
+
+/* --- Listing card CTA coloring by category --- */
+.cat-block--edu .listing-card__cta { color: var(--c-edu); }
+.cat-block--svc .listing-card__cta { color: var(--c-svc); }
+
+/* --- Listing card body polish --- */
+.listing-card__body {
+  padding: 22px;
+  gap: 12px;
+}
+.listing-card__header {
+  padding-right: 8px;
+}
+.listing-card__icon {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.listing-card__footer {
+  padding: 0 22px 18px;
+}
+.listing-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-color: var(--border-dark);
+}
+.listing-card__cta {
+  font-weight: 700;
+}
+
+/* --- Responsive overrides for refresh --- */
+@media (max-width: 640px) {
+  .hero { padding: 52px 0 64px; }
+  .dir-categories { padding: 56px 0 64px; }
+  .page-body { padding: 36px 0 64px; }
+  .cat-block { margin-bottom: 52px; }
+  .cat-block__header { padding-left: 16px; }
+}

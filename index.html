@@ -50,7 +50,7 @@
       <h1 class="hero-headline">Browse Income Options, Training Resources, and Supportive Services</h1>
       <p class="hero-sub">Income Spectrum is a directory of income destinations, business training resources, supportive services, and official business information links.</p>
       <form class="hero-search" id="hero-nav-form" onsubmit="return false;">
-        <select class="hero-search__select" id="hero-nav-select" onchange="if(this.value) window.location.href=this.value">
+        <select class="hero-search__select" id="hero-nav-select">
           <option value="" disabled selected>Explore the Spectrum...</option>
           <optgroup label="Income Options">
             <option value="income-options.html#work-service">Work &amp; Service Income Options</option>
@@ -79,7 +79,7 @@
             <option value="state-federal-resources.html#additional-resources">Additional Official Business Resource Links</option>
           </optgroup>
         </select>
-        <button class="hero-search__btn" type="button" onclick="var s=document.getElementById('hero-nav-select');if(s.value)window.location.href=s.value">Open Directory &rarr;</button>
+        <button class="hero-search__btn" type="button" onclick="var s=document.getElementById('hero-nav-select');window.location.href=s.value||'income-options.html'">Open Directory &rarr;</button>
       </form>
     </div>
   </div>

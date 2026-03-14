@@ -2452,16 +2452,32 @@ body::before {
   border-color: var(--c-income-border) !important;
 }
 
+.cat-block--income .listing-card:hover {
+  border-color: var(--c-income) !important;
+}
+
 .cat-block--edu .listing-card {
   border-color: var(--c-edu-border) !important;
+}
+
+.cat-block--edu .listing-card:hover {
+  border-color: var(--c-edu) !important;
 }
 
 .cat-block--svc .listing-card {
   border-color: #efd36d !important;
 }
 
+.cat-block--svc .listing-card:hover {
+  border-color: #d4a800 !important;
+}
+
 .cat-block--gov .listing-card {
   border-color: var(--c-gov-border) !important;
+}
+
+.cat-block--gov .listing-card:hover {
+  border-color: var(--c-gov) !important;
 }
 
 .site-footer {

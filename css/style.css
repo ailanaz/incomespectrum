@@ -2107,6 +2107,21 @@ body::before {
 .cat-block--gov .listing-card__icon { background: var(--c-gov-bg); color: var(--c-gov); }
 .cat-block--gov .listing-card__cta { color: var(--c-gov); }
 
+/* Section divider label (State Information / Federal Information) */
+.cat-section-divider {
+  margin: 40px 0 8px;
+  padding: 10px 0 10px 16px;
+  border-left: 4px solid var(--c-gov);
+}
+.cat-section-divider__label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-gov);
+  margin: 0;
+}
+
 /* Tag */
 .tag--gov { background: var(--c-gov-bg); color: var(--c-gov); border-color: var(--c-gov-border); }
 

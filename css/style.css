@@ -1808,7 +1808,7 @@ body::before {
 .hero {
   background-image:
     linear-gradient(160deg, rgba(8,16,44,0.76) 0%, rgba(4,14,36,0.66) 100%),
-    url('../img/HeroBG.png');
+    url('../img/HeroBG.jpg');
   background-size: auto, cover;
   background-position: center, center 45%;
   background-color: #0c1428;
@@ -2153,7 +2153,7 @@ body::before {
   padding: 72px 0 56px !important;
   background-image:
     linear-gradient(90deg, rgba(20, 98, 44, 0.88) 0%, rgba(20, 98, 44, 0.58) 34%, rgba(20, 98, 44, 0.22) 60%, rgba(20, 98, 44, 0.00) 100%),
-    url('../img/HeroBG.png') !important;
+    url('../img/HeroBG.jpg') !important;
   background-size: cover !important;
   background-position: right 50% top 38% !important;
   background-repeat: no-repeat !important;

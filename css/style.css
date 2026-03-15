@@ -2152,7 +2152,7 @@ body::before {
 .hero {
   padding: 72px 0 56px !important;
   background-image:
-    linear-gradient(rgba(8, 16, 44, 0.52), rgba(8, 16, 44, 0.52)),
+    linear-gradient(rgba(10, 50, 25, 0.60), rgba(10, 50, 25, 0.60)),
     url('../img/HeroBG.jpg') !important;
   background-size: cover !important;
   background-position: center 45% !important;

@@ -1,0 +1,7 @@
+# Reference and notes - local only, not part of the site
+_reference/
+_notes/
+_audit/
+
+# OS files
+.DS_Store

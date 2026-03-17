@@ -296,7 +296,7 @@ function getPageType() {
 }
 
 function enhanceFooter() {
-  const disclaimerText = 'Income Spectrum is a directory and database for informational purposes only. Nothing on this site is legal, financial, tax, business, investment, or professional advice. We do not verify, guarantee, endorse, or accept responsibility for any third-party company, service, platform, provider, opportunity, listing, claim, or result. Users are responsible for their own due diligence and decisions.';
+  const disclaimerHtml = 'Transparency & Disclosure: Income Spectrum is an independent directory. To maintain this information infrastructure, we may receive compensation through affiliate links or sponsored content. This does not influence our routing process; our primary focus is providing direct access to a broad spectrum of resources to help you navigate your own entrepreneurial path. <a href="/disclaimer.html">Read the disclaimer.</a>';
 
   document.querySelectorAll('.site-footer').forEach(footer => {
     const brandText = footer.querySelector('.footer-brand__text');
@@ -308,12 +308,15 @@ function enhanceFooter() {
       }
     });
 
-    const footerBottom = footer.querySelector('.footer-bottom');
-    if (!footerBottom || footerBottom.querySelector('.footer-bottom__disclaimer')) return;
+    if (footer.nextElementSibling?.classList.contains('site-disclosure-bar')) return;
 
-    const disclaimer = document.createElement('p');
-    disclaimer.className = 'footer-bottom__disclaimer';
-    disclaimer.textContent = disclaimerText;
-    footerBottom.appendChild(disclaimer);
+    const disclosureBar = document.createElement('div');
+    disclosureBar.className = 'site-disclosure-bar';
+    disclosureBar.innerHTML = `
+      <div class="container">
+        <p class="site-disclosure-bar__text">${disclaimerHtml}</p>
+      </div>
+    `;
+    footer.insertAdjacentElement('afterend', disclosureBar);
   });
 }

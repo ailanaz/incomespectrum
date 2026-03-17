@@ -308,7 +308,8 @@ function enhanceFooter() {
       }
     });
 
-    if (footer.nextElementSibling?.classList.contains('site-disclosure-bar')) return;
+    const footerBottom = footer.querySelector('.footer-bottom');
+    if (!footerBottom || footer.querySelector('.site-disclosure-bar')) return;
 
     const disclosureBar = document.createElement('div');
     disclosureBar.className = 'site-disclosure-bar';
@@ -317,6 +318,6 @@ function enhanceFooter() {
         <p class="site-disclosure-bar__text">${disclaimerHtml}</p>
       </div>
     `;
-    footer.insertAdjacentElement('afterend', disclosureBar);
+    footer.insertBefore(disclosureBar, footerBottom);
   });
 }

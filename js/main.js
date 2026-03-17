@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   setActiveNav();
   applyCardLogos();
+  initListingClickTracking();
   enhanceFooter();
 });
 
@@ -258,6 +259,40 @@ function getLogoDomain(url) {
   } catch {
     return '';
   }
+}
+
+function initListingClickTracking() {
+  document.addEventListener('click', event => {
+    const link = event.target.closest('.listing-card__cta');
+    if (!link || typeof window.gtag !== 'function') return;
+
+    const card = link.closest('.listing-card');
+    if (!card) return;
+
+    const badgeText = card.querySelector('.listing-card__badge')?.textContent.toLowerCase() || '';
+    const rel = (link.getAttribute('rel') || '').toLowerCase();
+    const tags = (card.dataset.tags || '').trim();
+
+    window.gtag('event', 'listing_click', {
+      listing_name: card.querySelector('.listing-card__name')?.textContent.trim() || 'unknown',
+      listing_category: tags ? tags.split(/\s+/)[0] : 'uncategorized',
+      page_type: getPageType(),
+      is_affiliate: rel.includes('sponsored'),
+      is_sponsored: badgeText.includes('sponsored') || badgeText.includes('featured')
+    });
+  });
+}
+
+function getPageType() {
+  const path = window.location.pathname;
+
+  if (path.includes('/states/')) return 'state_page';
+  if (path.endsWith('income-options.html')) return 'income_options';
+  if (path.endsWith('education-training.html')) return 'education_training';
+  if (path.endsWith('supportive-services.html')) return 'supportive_services';
+  if (path.endsWith('state-federal-resources.html')) return 'state_federal_resources';
+  if (path.endsWith('index.html') || path === '/' || path.endsWith('/')) return 'home';
+  return 'other';
 }
 
 function enhanceFooter() {

@@ -296,8 +296,6 @@ function getPageType() {
 }
 
 function enhanceFooter() {
-  const disclaimerHtml = 'Transparency & Disclosure: Income Spectrum is an independent directory. To maintain this information infrastructure, we may receive compensation through affiliate links or sponsored content. This does not influence our routing process; our primary focus is providing direct access to a broad spectrum of resources to help you navigate your own entrepreneurial path. <a href="/disclaimer.html">Read the disclaimer.</a>';
-
   document.querySelectorAll('.site-footer').forEach(footer => {
     const brandText = footer.querySelector('.footer-brand__text');
     if (brandText) brandText.textContent = 'Income Spectrum';
@@ -307,17 +305,5 @@ function enhanceFooter() {
         link.textContent = 'State & Federal Business Information Resources';
       }
     });
-
-    const footerBottom = footer.querySelector('.footer-bottom');
-    if (!footerBottom || footer.querySelector('.site-disclosure-bar')) return;
-
-    const disclosureBar = document.createElement('div');
-    disclosureBar.className = 'site-disclosure-bar';
-    disclosureBar.innerHTML = `
-      <div class="container">
-        <p class="site-disclosure-bar__text">${disclaimerHtml}</p>
-      </div>
-    `;
-    footer.insertBefore(disclosureBar, footerBottom);
   });
 }

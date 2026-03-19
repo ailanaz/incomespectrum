@@ -1351,7 +1351,7 @@
   function renderPlannerSignupPrompt() {
     document.getElementById("progressStages").innerHTML = `
       <section class="progress-stage progress-stage--overview">
-        <h4>Planner is for signed-in users</h4>
+        <h4>Sign Up to Access Planner</h4>
         <p>Create an account to keep your personal business pathway plan, return to it later, and keep your state, notes, and saved path items together.</p>
         <div class="inline-actions">
           <button class="app-btn app-btn--secondary" data-action="start-setup-signup">Sign Up to Use Planner</button>

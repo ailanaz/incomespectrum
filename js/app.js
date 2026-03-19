@@ -367,7 +367,7 @@
             { label: "Sunbiz", href: "https://dos.fl.gov/sunbiz/" },
             { label: "Florida Division of Corporations", href: "https://dos.myflorida.com/sunbiz/" }
           ],
-          New York: [
+          "New York": [
             { label: "New York Department of State", href: "https://dos.ny.gov/" },
             { label: "New York Business Express", href: "https://businessexpress.ny.gov/" }
           ],
@@ -396,7 +396,7 @@
           Florida: [
             { label: "Florida Department of Revenue", href: "https://floridarevenue.com/" }
           ],
-          New York: [
+          "New York": [
             { label: "New York Department of Taxation and Finance", href: "https://www.tax.ny.gov/" }
           ],
           Illinois: [
@@ -422,7 +422,7 @@
           Florida: [
             { label: "Florida DBPR", href: "https://www2.myfloridalicense.com/" }
           ],
-          New York: [
+          "New York": [
             { label: "New York State License Center", href: "https://www.businessexpress.ny.gov/app/answers/cms/a_id/3411" }
           ],
           Illinois: [
@@ -475,7 +475,7 @@
           Florida: [
             { label: "MyFloridaMarketPlace", href: "https://vendor.myfloridamarketplace.com/" }
           ],
-          New York: [
+          "New York": [
             { label: "New York State Contract Reporter", href: "https://www.nyscr.ny.gov/" }
           ],
           Illinois: [
@@ -501,7 +501,7 @@
           Florida: [
             { label: "Florida interpreter-related state information", href: "asl-official-information-by-state.html" }
           ],
-          New York: [
+          "New York": [
             { label: "New York interpreter-related state information", href: "asl-official-information-by-state.html" }
           ],
           Illinois: [

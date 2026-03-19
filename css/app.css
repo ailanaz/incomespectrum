@@ -386,6 +386,11 @@ a {
   list-style: none;
 }
 
+.stack-actions {
+  display: grid;
+  gap: 10px;
+}
+
 .stack-list li,
 .mini-card,
 .saved-block,
@@ -522,6 +527,19 @@ a {
 
 .detail-section h3 {
   margin-bottom: 8px;
+}
+
+.detail-links {
+  padding-left: 18px;
+}
+
+.detail-links li {
+  color: var(--app-text-soft);
+}
+
+.detail-links a {
+  color: var(--app-navy);
+  text-decoration: underline;
 }
 
 .note-editor {

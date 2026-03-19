@@ -1085,7 +1085,7 @@ a {
   width: 100%;
   margin: 0;
   padding: 0 env(safe-area-inset-right, 0px) calc(env(safe-area-inset-bottom, 0px)) env(safe-area-inset-left, 0px);
-  background: #fffdf6;
+  background: rgba(25, 120, 46, 0.14);
   backdrop-filter: none;
   border-top: 2px solid var(--app-navy);
   box-shadow: none;

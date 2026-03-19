@@ -520,8 +520,9 @@ a {
 }
 
 .browse-card--official {
-  background: rgba(25, 120, 46, 0.18);
-  color: var(--app-navy);
+  background: rgba(15, 23, 42, 0.22);
+  color: #243244;
+  border-color: #243244;
 }
 
 .stack-list,

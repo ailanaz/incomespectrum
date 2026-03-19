@@ -1087,7 +1087,7 @@ a {
   padding: 0 env(safe-area-inset-right, 0px) calc(env(safe-area-inset-bottom, 0px)) env(safe-area-inset-left, 0px);
   background: rgba(25, 120, 46, 0.14);
   backdrop-filter: none;
-  border-top: 2px solid rgba(25, 120, 46, 0.28);
+  border-top: 2px solid rgba(25, 120, 46, 0.18);
   box-shadow: none;
   height: auto;
 }

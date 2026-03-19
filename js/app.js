@@ -1011,19 +1011,32 @@
     appState.goal = getActiveChoiceValue(document.getElementById("setupGoal")) || appState.goal;
   }
 
+  function getStartDestinationFromGoal() {
+    const sectionByGoal = {
+      "explore/confirm options": "income",
+      "gain knowledge": "training",
+      "get support": "services",
+      "find official information": "official"
+    };
+    const section = sectionByGoal[appState.goal];
+    if (!section) return "home";
+    appState.activeExploreSection = section;
+    return "explore";
+  }
+
   function completeSetup(signIn = false) {
     applySetupSelections();
     appState.isSignedIn = signIn;
     appState.setupComplete = true;
     saveState();
-    openApp("home");
+    openApp(getStartDestinationFromGoal());
   }
 
   function completeSignup() {
     appState.isSignedIn = true;
     appState.setupComplete = true;
     saveState();
-    openApp("home");
+    openApp(getStartDestinationFromGoal());
   }
 
   function getActiveChoiceValue(node) {

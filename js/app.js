@@ -2150,8 +2150,7 @@
         const parsed = JSON.parse(localRaw);
         if (parsed.isSignedIn) return { ...structuredClone(defaultState), ...parsed };
       }
-      const sessionRaw = sessionStorage.getItem(STORAGE_KEY_SESSION);
-      if (sessionRaw) return { ...structuredClone(defaultState), ...JSON.parse(sessionRaw) };
+      sessionStorage.removeItem(STORAGE_KEY_SESSION);
       return structuredClone(defaultState);
     } catch (error) {
       return structuredClone(defaultState);

@@ -1175,6 +1175,14 @@
     const activeFilter = currentFilter() || "state";
     const stateItems = data.official.filter((item) => item.tags.includes("state") || item.coverage === selectedState);
     const federalItems = data.official.filter((item) => item.tags.includes("federal"));
+    const accountActions = appState.isSignedIn ? `
+      <div class="inline-actions">
+        <button class="app-btn app-btn--ghost" data-action="show-view" data-view="profile">Change State</button>
+      </div>
+    ` : "";
+    const stateContext = appState.isSignedIn
+      ? `<div class="detail-section"><p>Your saved state is <strong>${appState.selectedState}</strong>. Browsing another state here does not change your saved default state.</p></div>`
+      : `<div class="detail-section"><p>Browse official business information by state without changing anything in your account.</p></div>`;
     if (activeFilter === "federal") {
       return `
         <div class="card">
@@ -1183,9 +1191,7 @@
               <p class="section-kicker">Official Information</p>
               <h2>Federal Information</h2>
             </div>
-            <div class="inline-actions">
-              <button class="app-btn app-btn--ghost" data-action="show-view" data-view="profile">Change State</button>
-            </div>
+            ${accountActions}
           </div>
           <div class="detail-section">
             <p>Federal EIN, IRS, federal guidance, federal contracting, and related national resources for doing business in the U.S.</p>
@@ -1200,19 +1206,15 @@
       `;
     }
     return `
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <p class="section-kicker">Official Information</p>
-            <h2>Browse by State</h2>
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <p class="section-kicker">Official Information</p>
+              <h2>Browse by State</h2>
+            </div>
+            ${accountActions}
           </div>
-          <div class="inline-actions">
-            <button class="app-btn app-btn--ghost" data-action="show-view" data-view="profile">Change State</button>
-          </div>
-        </div>
-        <div class="detail-section">
-          <p>Your saved state is <strong>${appState.selectedState}</strong>. Browsing another state here does not change your saved default state.</p>
-        </div>
+        ${stateContext}
         <div class="state-browser-grid">
           ${allStates.map((state) => `
             <button class="state-browser-card ${state === selectedState ? "state-browser-card--current" : ""}" type="button" data-action="open-state-detail" data-state="${state}">
@@ -1831,11 +1833,12 @@
     const detailType = document.getElementById("detailType");
     const detailTitle = document.getElementById("detailTitle");
     const detailBody = document.getElementById("detailBody");
-    const stateItems = data.official.filter((item) => item.tags.includes("state") || item.coverage === stateName);
-    const statePageItems = await loadStateSpecificOfficialItems(stateName);
-
+    openOverlay("detailOverlay");
     detailType.textContent = "State Detail";
     detailTitle.textContent = `${stateName} Official Business Information`;
+    detailBody.innerHTML = `<div class="empty-state">Loading ${stateName} official information...</div>`;
+    const stateItems = data.official.filter((item) => item.tags.includes("state") || item.coverage === stateName);
+    const statePageItems = await loadStateSpecificOfficialItems(stateName);
     detailBody.innerHTML = `
       <div class="detail-section">
         <p>Official business registration, tax, licensing, agency, and state contracting links for ${stateName}.</p>
@@ -1866,8 +1869,6 @@
         </div>
       ` : ""}
     `;
-
-    openOverlay("detailOverlay");
   }
 
   function buildQuizResult() {

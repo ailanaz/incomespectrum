@@ -644,7 +644,8 @@
     populateStateSelects();
     renderSetupChoices();
     bindEvents();
-    syncGateState();
+    showGate("opening");
+    document.getElementById("mainApp").classList.add("hidden");
     renderAll();
     await hydrateCatalogFromSite();
     renderAll();
@@ -670,7 +671,11 @@
     if (actionNode) {
       const action = actionNode.dataset.action;
       if (action === "start-setup") {
-        showGate("setup");
+        if (appState.setupComplete) {
+          openApp(appState.activeView || "home");
+        } else {
+          showGate("setup");
+        }
       } else if (action === "start-setup-signup") {
         showGate("signup");
       } else if (action === "sign-in-demo") {

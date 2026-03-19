@@ -843,6 +843,20 @@ a {
   color: var(--app-navy);
 }
 
+.section-tabs--explore .section-tab,
+.section-tabs--explore .section-tab.active {
+  display: block;
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+  place-self: stretch;
+  box-sizing: border-box;
+  border-radius: 0;
+  color: var(--app-navy);
+}
+
+.section-tabs--explore .section-tab.active {
+}
 .search-chip--wide {
   width: 100%;
   text-align: left;

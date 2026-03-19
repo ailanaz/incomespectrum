@@ -687,10 +687,10 @@ a {
   top: 88px;
   align-self: start;
   display: grid;
-  gap: 16px;
+  gap: 10px;
   max-height: calc(100vh - 108px);
   overflow-y: auto;
-  padding-right: 4px;
+  padding-right: 0;
   scrollbar-width: thin;
   justify-items: stretch;
 }
@@ -706,6 +706,7 @@ a {
 .explore-rail__block {
   padding: 18px 16px;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .section-tabs--explore {
@@ -717,6 +718,7 @@ a {
   background: rgba(255, 253, 246, 0.97);
   box-shadow: var(--app-shadow);
   width: 100%;
+  box-sizing: border-box;
   justify-self: stretch;
 }
 

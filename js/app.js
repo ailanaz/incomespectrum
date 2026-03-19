@@ -1385,6 +1385,25 @@
       `;
     }
 
+    if (type === "article") {
+      return `
+        <div class="detail-section">
+          <p>${item.description || "This article is available inside the Income Spectrum resource base."}</p>
+        </div>
+        <div class="detail-section">
+          <h3>How to use this</h3>
+          <p>Use this guide as a reference point while you sort options, save related items, and move ideas into your planner.</p>
+        </div>
+        <div class="detail-section">
+          <h3>Keep this connected</h3>
+          <p>You can save this guide in the app, add notes to it, and use it alongside related income options, training, services, and official information.</p>
+        </div>
+        ${item.href ? `<div class="detail-section"><a class="app-btn app-btn--secondary" href="${item.href}" target="_blank" rel="noopener noreferrer">Open Website Article</a></div>` : ""}
+        ${renderDetailActions(item.id, type)}
+        ${renderNoteEditor(item.id)}
+      `;
+    }
+
     return `
       <div class="detail-section">
         <p>${item.description || item.explanation || ""}</p>
@@ -1467,10 +1486,7 @@
               <strong>${item.title}</strong>
               <p>${item.description}</p>
               <div class="inline-actions">
-                ${type === "article"
-                  ? `<a class="app-btn app-btn--secondary" href="${item.href}" target="_blank" rel="noopener noreferrer">Open</a>`
-                  : `<button class="app-btn ${openButtonClass(type)}" data-action="open-item" data-id="${item.id}" data-type="${type}">Open</button>`
-                }
+                <button class="app-btn ${openButtonClass(type)}" data-action="open-item" data-id="${item.id}" data-type="${type}">Open</button>
               </div>
             </div>
           `).join("")}

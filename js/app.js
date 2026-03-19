@@ -1327,8 +1327,13 @@
   }
 
   function renderProgress() {
-    const stageOrder = ["just exploring", "interested", "comparing", "launch"];
     const plan = buildPlanSnapshot();
+    const planIds = unique([
+      ...Object.values(appState.progress).flat(),
+      ...appState.savedIds
+    ]);
+    const planItems = planIds.map((id) => findItem(id)).filter(Boolean);
+    const compareItems = appState.compareIds.map((id) => findItem(id)).filter(Boolean);
     const overview = appState.quizResult ? `
       <section class="progress-stage progress-stage--overview">
         <h4>${appState.quizResult.planTitle}</h4>
@@ -1340,28 +1345,41 @@
         <p>Use the quiz to generate a first-draft personal business pathway plan, then adjust it from there.</p>
       </section>
     `;
-    document.getElementById("progressStages").innerHTML = overview + stageOrder.map((stage) => {
-      const ids = appState.progress[stage] || [];
-      const items = ids.map((id) => findItem(id)).filter(Boolean);
-      return `
-        <section class="progress-stage">
-          <h4>${titleCase(stage)}</h4>
-          <p>${stageDescription(stage)}</p>
-          ${items.length
-            ? items.map((item) => `
-                <div class="mini-card">
-                  <strong>${item.title}</strong>
-                  <div class="inline-actions">
-                    <button class="app-btn ${openButtonClass(detectItemType(item.id))}" data-action="open-item" data-id="${item.id}" data-type="${detectItemType(item.id)}">Open</button>
-                    ${renderStageButtons(item.id, stage)}
-                  </div>
+    const planSection = `
+      <section class="progress-stage">
+        <h4>Plan Items</h4>
+        <p>The items currently shaping your path and plan.</p>
+        ${planItems.length
+          ? planItems.map((item) => `
+              <div class="mini-card">
+                <strong>${item.title}</strong>
+                <div class="inline-actions">
+                  <button class="app-btn ${openButtonClass(detectItemType(item.id))}" data-action="open-item" data-id="${item.id}" data-type="${detectItemType(item.id)}">Open</button>
                 </div>
-              `).join("")
-            : `<div class="empty-state">No items in this stage yet.</div>`
-          }
-        </section>
-      `;
-    }).join("");
+              </div>
+            `).join("")
+          : `<div class="empty-state">No plan items yet. Explore, save, or take the quiz to start building your plan.</div>`
+        }
+      </section>
+    `;
+    const compareSection = `
+      <section class="progress-stage">
+        <h4>Compare</h4>
+        <p>Income options you are weighing side by side.</p>
+        ${compareItems.length
+          ? compareItems.map((item) => `
+              <div class="mini-card">
+                <strong>${item.title}</strong>
+                <div class="inline-actions">
+                  <button class="app-btn ${openButtonClass(detectItemType(item.id))}" data-action="open-item" data-id="${item.id}" data-type="${detectItemType(item.id)}">Open</button>
+                </div>
+              </div>
+            `).join("")
+          : `<div class="empty-state">No compare items yet.</div>`
+        }
+      </section>
+    `;
+    document.getElementById("progressStages").innerHTML = overview + planSection + compareSection;
   }
 
   function renderPlannerSignupPrompt() {
@@ -1540,16 +1558,9 @@
           <button class="app-btn app-btn--primary" data-action="save-item" data-id="${id}">${isSaved(id) ? "Saved" : "Save"}</button>
           ${type === "income" ? `<button class="app-btn app-btn--secondary" data-action="compare-item" data-id="${id}">${appState.compareIds.includes(id) ? "Comparing" : "Compare"}</button>` : ""}
           <button class="app-btn app-btn--ghost" data-action="open-notes">Open Notes</button>
-          <div class="compare-actions">${renderStageButtons(id, currentStageFor(id))}</div>
         </div>
       </div>
     `;
-  }
-
-  function renderStageButtons(id, activeStage) {
-    return ["just exploring", "interested", "comparing", "launch"].map((stage) => `
-      <button class="progress-chip ${stage === activeStage ? "active" : ""}" data-action="set-stage" data-id="${id}" data-stage="${stage}">${titleCase(stage)}</button>
-    `).join("");
   }
 
   function renderNoteEditor(id) {

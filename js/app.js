@@ -75,7 +75,7 @@
         id: "income-virtual-assistant",
         title: "Virtual Assistant Services",
         description: "Offer remote admin support, inbox management, scheduling, client communications, and process help.",
-        overview: "A practical online income option that can start with one client and expand into an agency or specialized support model.",
+        overview: "A online income option that can start with one client and expand into an agency or specialized support model.",
         whyChoose: "People often choose this when they already organize, communicate, and keep projects moving for others.",
         fit: "Useful for someone who prefers online service work, flexible client relationships, and a lower startup cost.",
         tags: ["online", "service-based", "skill-based", "low-cost to start", "recurring income"],
@@ -150,9 +150,9 @@
       {
         id: "income-government-contracting",
         title: "Government Contracting Services",
-        description: "Pursue federal, state, or local contracting opportunities for practical services and structured deliverables.",
+        description: "Pursue federal, state, or local contracting opportunities for services and structured deliverables.",
         overview: "A business direction for operators who want to connect existing service capabilities to public-sector purchasing systems.",
-        whyChoose: "This may fit a business owner who already offers practical services and wants an additional client lane beyond private work.",
+        whyChoose: "This may fit a business owner who already offers services and wants an additional client lane beyond private work.",
         fit: "Useful for someone willing to handle registrations, certifications, capability statements, and procurement processes.",
         tags: ["service-based", "ownership-based", "skill-based", "online", "local"],
         startupCost: "Medium",
@@ -174,7 +174,7 @@
         provider: "Official state notary information",
         format: "Self-paced",
         cost: "Varies by state",
-        description: "State-based information on commission steps, requirements, and practical entry points for notary work.",
+        description: "State-based information on commission steps, requirements, and entry points for notary work.",
         covers: "Application basics, notary requirements, and early setup steps.",
         fit: "Useful for someone exploring mobile notary work or a local document service.",
         tags: ["beginner", "online", "certification", "short-form"],
@@ -271,7 +271,7 @@
         format: "Online",
         cost: "Free",
         description: "Entry-level training on SAM registration, set-asides, capability statements, and contracting systems.",
-        covers: "Registrations, federal systems, and practical starting points.",
+        covers: "Registrations, federal systems, and starting points.",
         fit: "Useful for businesses assessing whether public-sector work is worth pursuing.",
         tags: ["free", "beginner", "online", "short-form"],
         relatedIncomeIds: ["income-government-contracting"]
@@ -541,7 +541,7 @@
       {
         id: "article-government-contracting",
         title: "Government Contracting Resources",
-        description: "A practical guide to federal contracting basics, registrations, and why some small businesses should not write it off too early.",
+        description: "A guide to federal contracting basics, registrations, and why some small businesses should not write it off too early.",
         href: "blog/government-contracting-resources/"
       }
     ]
@@ -1657,7 +1657,7 @@
 
     const resultMap = {
       "Survival and Stability": {
-        title: "Stability and practical support are driving demand.",
+        title: "Stability and support are driving demand.",
         income: ["income-virtual-assistant", "income-commercial-cleaning"],
         training: ["training-business-foundations", "training-operations-basics"],
         services: ["service-bookkeeping", "service-legal"],
@@ -1769,7 +1769,7 @@
       steps.push("Save at least two income options so you can compare them side by side.");
     }
     if (!appState.quizResult) {
-      steps.push("Take the quiz to connect motivation patterns to practical next moves.");
+      steps.push("Take the quiz to connect motivation patterns to next moves.");
     }
     if (!Object.keys(appState.notes).length) {
       steps.push("Add one note to a saved item so you can remember why it matters.");

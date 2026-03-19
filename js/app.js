@@ -49,6 +49,7 @@
     { path: "blog/what-people-will-pay-for-quiz/index.html", section: "article", parser: "article" }
   ];
   const statePageCache = new Map();
+  const articleContentCache = new Map();
 
   const data = {
     income: [
@@ -938,7 +939,8 @@
       id: `article-${slugify(normalizedTitle)}`,
       title: normalizedTitle,
       description,
-      href
+      href,
+      sourcePage: source.path
     }];
   }
 
@@ -1279,7 +1281,7 @@
     node.innerHTML = renderQuizResult(appState.quizResult, false);
   }
 
-  function openDetail(id, type) {
+  async function openDetail(id, type) {
     const item = findItem(id);
     if (!item) return;
     registerViewed(id);
@@ -1288,11 +1290,17 @@
     const detailBody = document.getElementById("detailBody");
     detailType.textContent = sectionLabels[type] || titleCase(type);
     detailTitle.textContent = item.title;
-    detailBody.innerHTML = renderDetailBody(item, type);
     openOverlay("detailOverlay");
+    if (type === "article") {
+      detailBody.innerHTML = `<div class="empty-state">Loading article...</div>`;
+      const articleContent = await loadArticleContent(item);
+      detailBody.innerHTML = renderDetailBody(item, type, articleContent);
+      return;
+    }
+    detailBody.innerHTML = renderDetailBody(item, type);
   }
 
-  function renderDetailBody(item, type) {
+  function renderDetailBody(item, type, articleContent = null) {
     if (type === "income") {
       return `
         <div class="detail-section">
@@ -1390,10 +1398,9 @@
         <div class="detail-section">
           <p>${item.description || "This article is available inside the Income Spectrum resource base."}</p>
         </div>
-        <div class="detail-section">
-          <h3>How to use this</h3>
-          <p>Use this article as a reference point while you sort options, save related items, and move ideas into your planner.</p>
-        </div>
+        ${articleContent?.meta ? `<div class="detail-section"><p><strong>${articleContent.meta}</strong></p></div>` : ""}
+        ${articleContent?.lead ? `<div class="detail-section"><p>${articleContent.lead}</p></div>` : ""}
+        ${articleContent?.bodyHtml ? `<div class="detail-section article-live-content">${articleContent.bodyHtml}</div>` : ""}
         <div class="detail-section">
           <h3>Keep this connected</h3>
           <p>You can save this article in the app, add notes to it, and use it alongside related income options, training, services, and official information.</p>
@@ -1978,6 +1985,55 @@
       statePageCache.set(stateName, []);
       return [];
     }
+  }
+
+  async function loadArticleContent(item) {
+    const key = item.sourcePage || item.href || item.id;
+    if (articleContentCache.has(key)) return articleContentCache.get(key);
+    const path = item.sourcePage || item.href;
+    if (!path) {
+      const empty = { meta: "", lead: "", bodyHtml: "" };
+      articleContentCache.set(key, empty);
+      return empty;
+    }
+    try {
+      const response = await fetch(path);
+      if (!response.ok) {
+        const empty = { meta: "", lead: "", bodyHtml: "" };
+        articleContentCache.set(key, empty);
+        return empty;
+      }
+      const html = await response.text();
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const meta = textContentOf(doc.querySelector(".article-header__meta"));
+      const lead = textContentOf(doc.querySelector(".article-header__lead, .article-hero__lead"));
+      const bodyNode = doc.querySelector(".article-body");
+      const bodyHtml = bodyNode ? normalizeArticleHtml(bodyNode, path) : "";
+      const content = { meta, lead, bodyHtml };
+      articleContentCache.set(key, content);
+      return content;
+    } catch {
+      const empty = { meta: "", lead: "", bodyHtml: "" };
+      articleContentCache.set(key, empty);
+      return empty;
+    }
+  }
+
+  function normalizeArticleHtml(bodyNode, sourcePath) {
+    const clone = bodyNode.cloneNode(true);
+    const baseUrl = new URL(sourcePath, window.location.href);
+    clone.querySelectorAll("script, style").forEach((node) => node.remove());
+    clone.querySelectorAll("a[href], img[src]").forEach((node) => {
+      const attr = node.tagName === "IMG" ? "src" : "href";
+      const value = node.getAttribute(attr);
+      if (!value || value.startsWith("#") || value.startsWith("mailto:") || value.startsWith("tel:")) return;
+      try {
+        node.setAttribute(attr, new URL(value, baseUrl).href);
+      } catch {
+        // Leave the original value if URL resolution fails.
+      }
+    });
+    return clone.innerHTML;
   }
 
   async function hydrateStatePagesInBackground() {

@@ -620,6 +620,7 @@
   let appState = loadState();
   let quizIndex = 0;
   let savedFilter = "all";
+  let exploreFilter = "all";
 
   document.addEventListener("DOMContentLoaded", init);
 
@@ -636,6 +637,10 @@
   function bindEvents() {
     document.body.addEventListener("click", handleClick);
     document.getElementById("globalSearchInput").addEventListener("input", renderSearchResults);
+    document.getElementById("filterSelect").addEventListener("change", (event) => {
+      exploreFilter = event.target.value;
+      renderExplore(exploreFilter);
+    });
     document.getElementById("profileState").addEventListener("change", (event) => {
       appState.selectedState = event.target.value;
       saveState();
@@ -668,6 +673,7 @@
         showView("explore");
       } else if (action === "open-explore-section") {
         appState.activeExploreSection = actionNode.dataset.section;
+        exploreFilter = "all";
         showView("explore");
       } else if (action === "open-search") {
         openOverlay("searchOverlay");
@@ -732,6 +738,7 @@
     const sectionTab = event.target.closest(".section-tab");
     if (sectionTab) {
       appState.activeExploreSection = sectionTab.dataset.section;
+      exploreFilter = "all";
       saveState();
       renderExplore();
       return;
@@ -757,13 +764,6 @@
       }
     }
 
-    const filterPill = event.target.closest(".filter-pill");
-    if (filterPill) {
-      const wrap = filterPill.parentElement;
-      wrap.querySelectorAll(".filter-pill").forEach((pill) => pill.classList.remove("active"));
-      filterPill.classList.add("active");
-      renderExplore(filterPill.dataset.filter || "all");
-    }
   }
 
   function populateStateSelects() {
@@ -1015,7 +1015,8 @@
       tab.classList.toggle("active", tab.dataset.section === appState.activeExploreSection);
     });
 
-    renderFilterChips(appState.activeExploreSection, filter);
+    renderFilterSelector(appState.activeExploreSection, filter);
+    document.getElementById("filterPanel").dataset.section = appState.activeExploreSection;
     const content = document.getElementById("exploreContent");
     if (appState.activeExploreSection === "official") {
       content.innerHTML = renderOfficialList();
@@ -1034,7 +1035,7 @@
     `;
   }
 
-  function renderFilterChips(section, activeFilter) {
+  function renderFilterSelector(section, activeFilter) {
     const filtersBySection = {
       income: ["all", "online", "local", "both", "service-based", "product-based", "recurring income", "low-cost to start", "skill-based", "hands-on", "ownership-based"],
       training: ["all", "free", "paid", "beginner", "advanced", "online", "in-person", "certification", "short-form", "full program"],
@@ -1042,8 +1043,8 @@
       official: ["all", "state", "federal"]
     };
     const filters = filtersBySection[section];
-    document.getElementById("filterChips").innerHTML = filters.map((filter) => `
-      <button class="filter-pill ${filter === activeFilter ? "active" : ""}" type="button" data-filter="${filter}">${titleCase(filter)}</button>
+    document.getElementById("filterSelect").innerHTML = filters.map((filter) => `
+      <option value="${filter}" ${filter === activeFilter ? "selected" : ""}>${titleCase(filter)}</option>
     `).join("");
   }
 
@@ -1738,7 +1739,7 @@
   }
 
   function currentFilter() {
-    return document.querySelector("#filterChips .filter-pill.active")?.dataset.filter || "all";
+    return document.getElementById("filterSelect")?.value || exploreFilter || "all";
   }
 
   function toggleSaved(id) {

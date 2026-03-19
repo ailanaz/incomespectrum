@@ -193,9 +193,12 @@
               <button class="section-tab" data-section="services">Supportive Services</button>
               <button class="section-tab" data-section="official">Official Information</button>
             </div>
-            <div class="explore-rail__block">
+            <div class="explore-rail__block" id="filterPanel">
               <p class="section-kicker">Filters</p>
-              <div class="toolbar__chips toolbar__chips--stacked" id="filterChips"></div>
+              <label class="filter-select-wrap" for="filterSelect">
+                <span class="filter-select-wrap__label">Select Filter</span>
+                <select id="filterSelect"></select>
+              </label>
             </div>
           </aside>
           <div class="explore-panel">

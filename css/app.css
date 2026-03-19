@@ -706,50 +706,91 @@ a {
   display: grid;
   gap: 0;
   overflow: hidden;
-  border: 2px solid var(--app-navy);
-  border-radius: var(--app-radius);
-  background: rgba(255, 253, 246, 0.96);
-  box-shadow: var(--app-shadow);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .section-tabs--explore .section-tab {
   width: 100%;
   text-align: left;
   border: 0;
-  border-bottom: 1px solid rgba(20, 37, 61, 0.18);
+  border-top: 2px solid rgba(20, 37, 61, 0.75);
+  border-bottom: 0;
   border-radius: 0;
   background: transparent;
   padding: 16px 18px;
   color: var(--app-navy);
+  font-size: 1.05rem;
 }
 
 .section-tabs--explore .section-tab:last-child {
-  border-bottom: 0;
+  border-bottom: 2px solid rgba(20, 37, 61, 0.75);
 }
 
 .section-tabs--explore .section-tab[data-section="income"] {
-  background: rgba(25, 120, 46, 0.12);
+  background: rgba(25, 120, 46, 0.10);
 }
 
 .section-tabs--explore .section-tab[data-section="training"] {
-  background: rgba(27, 72, 216, 0.12);
+  background: rgba(27, 72, 216, 0.10);
 }
 
 .section-tabs--explore .section-tab[data-section="services"] {
-  background: rgba(253, 210, 21, 0.18);
+  background: rgba(253, 210, 21, 0.14);
 }
 
 .section-tabs--explore .section-tab[data-section="official"] {
-  background: rgba(36, 50, 68, 0.12);
+  background: rgba(36, 50, 68, 0.10);
 }
 
 .section-tabs--explore .section-tab.active {
   font-weight: 800;
-  box-shadow: inset 4px 0 0 var(--app-navy);
+  box-shadow: inset 5px 0 0 var(--app-navy);
 }
 
 .explore-panel {
   padding: 20px;
+}
+
+.filter-select-wrap {
+  display: grid;
+  gap: 10px;
+}
+
+.filter-select-wrap__label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--app-navy);
+}
+
+#filterPanel[data-section="income"] {
+  background: rgba(25, 120, 46, 0.16);
+}
+
+#filterPanel[data-section="training"] {
+  background: rgba(27, 72, 216, 0.16);
+}
+
+#filterPanel[data-section="services"] {
+  background: rgba(253, 210, 21, 0.18);
+}
+
+#filterPanel[data-section="official"] {
+  background: rgba(36, 50, 68, 0.14);
+}
+
+#filterSelect {
+  width: 100%;
+  border: 2px solid var(--app-navy);
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: rgba(255, 253, 246, 0.94);
+  color: var(--app-navy);
+  font-weight: 700;
 }
 
 .explore-rail::-webkit-scrollbar {

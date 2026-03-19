@@ -704,7 +704,11 @@
         openApp("home");
       } else if (action === "show-view") {
         closeAllOverlays();
-        showView(actionNode.dataset.view);
+        if (actionNode.dataset.view === "profile" && !appState.isSignedIn) {
+          showGate("signup");
+        } else {
+          showView(actionNode.dataset.view);
+        }
       } else if (action === "go-explore") {
         closeAllOverlays();
         showView("explore");
@@ -843,6 +847,8 @@
     document.getElementById("profileSignupCard").classList.toggle("hidden", appState.isSignedIn);
     document.getElementById("profileToolsTitle").textContent = appState.isSignedIn ? "App tools" : "Guest tools";
     document.getElementById("profileTabLabel").textContent = appState.isSignedIn ? "Profile" : "Sign Up";
+    document.getElementById("topPlannerButton").textContent = appState.isSignedIn ? "Planner" : "Sign Up";
+    document.getElementById("topPlannerButton").setAttribute("aria-label", appState.isSignedIn ? "Open planner" : "Sign up");
   }
 
   async function hydrateCatalogFromSite() {
@@ -1087,6 +1093,9 @@
     document.getElementById("heroStateValue").textContent = appState.selectedState;
     document.getElementById("heroPathValue").textContent = currentPath.label;
     document.getElementById("heroPlanValue").textContent = currentPlan.label;
+    document.getElementById("homeSecondaryAction").textContent = appState.isSignedIn ? "Open Plan" : "Sign Up to Save Your Plan";
+    document.getElementById("topPlannerButton").textContent = appState.isSignedIn ? "Planner" : "Sign Up";
+    document.getElementById("topPlannerButton").setAttribute("aria-label", appState.isSignedIn ? "Open planner" : "Sign up");
 
     const nextSteps = buildNextSteps();
     document.getElementById("nextStepsList").innerHTML = nextSteps.map((step) => `<li>${step}</li>`).join("");

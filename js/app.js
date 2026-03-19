@@ -6,7 +6,7 @@
     training: "Education & Training",
     services: "Supportive Services",
     official: "Official Information",
-    article: "Article / Guide",
+    article: "Article / Resource",
     quiz: "Quiz Result"
   };
   const setupGoals = [
@@ -541,7 +541,7 @@
       {
         id: "article-government-contracting",
         title: "Government Contracting Resources",
-        description: "A guide to federal contracting basics, registrations, and why some small businesses should not write it off too early.",
+        description: "An article on federal contracting basics, registrations, and why some small businesses should not write it off too early.",
         href: "blog/government-contracting-resources/"
       }
     ]
@@ -1392,11 +1392,11 @@
         </div>
         <div class="detail-section">
           <h3>How to use this</h3>
-          <p>Use this guide as a reference point while you sort options, save related items, and move ideas into your planner.</p>
+          <p>Use this article as a reference point while you sort options, save related items, and move ideas into your planner.</p>
         </div>
         <div class="detail-section">
           <h3>Keep this connected</h3>
-          <p>You can save this guide in the app, add notes to it, and use it alongside related income options, training, services, and official information.</p>
+          <p>You can save this article in the app, add notes to it, and use it alongside related income options, training, services, and official information.</p>
         </div>
         ${item.href ? `<div class="detail-section"><a class="app-btn app-btn--secondary" href="${item.href}" target="_blank" rel="noopener noreferrer">Open Website Article</a></div>` : ""}
         ${renderDetailActions(item.id, type)}

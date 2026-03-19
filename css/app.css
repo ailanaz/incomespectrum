@@ -1081,10 +1081,10 @@ a {
   width: 100%;
   margin: 0;
   padding: 0 env(safe-area-inset-right, 0px) calc(env(safe-area-inset-bottom, 0px)) env(safe-area-inset-left, 0px);
-  background: rgba(255, 253, 246, 0.98);
-  backdrop-filter: blur(18px);
+  background: #fffdf6;
+  backdrop-filter: none;
   border-top: 2px solid var(--app-navy);
-  box-shadow: 0 -8px 24px rgba(20, 37, 61, 0.08);
+  box-shadow: none;
   height: auto;
 }
 
@@ -1094,12 +1094,12 @@ a {
   justify-content: center;
   background: transparent;
   border: 0;
-  border-right: 1px solid rgba(20, 37, 61, 0.14);
+  border-right: 1px solid rgba(20, 37, 61, 0.10);
   color: var(--app-navy);
   font-weight: 700;
-  padding: 16px 8px;
-  min-height: 64px;
-  height: 64px;
+  padding: 18px 8px;
+  min-height: 72px;
+  height: 72px;
   white-space: nowrap;
 }
 

@@ -1315,7 +1315,7 @@
       </section>
     ` : `
       <section class="progress-stage progress-stage--overview">
-        <h4>Start your PBPP</h4>
+        <h4>Build Your Personal Business Pathway Plan</h4>
         <p>Use the quiz to generate a first-draft personal business pathway plan, then adjust it from there.</p>
       </section>
     `;
@@ -1901,7 +1901,7 @@
     }
     if (!appState.quizResult) {
       return {
-        label: "Start your PBPP",
+        label: "Build Your Personal Business Pathway Plan",
         summary: "Take the quiz to generate a first-draft personal business pathway plan."
       };
     }

@@ -2168,6 +2168,9 @@ body::before {
 .app-home-link {
   margin-top: 18px;
   text-align: center;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
 }
 
 .app-home-link__text {
@@ -2176,10 +2179,25 @@ body::before {
   color: var(--text-600);
 }
 
-.app-home-link__text a {
+.app-home-link__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--c-income);
+  background: rgba(25, 120, 46, 0.08);
   color: var(--c-income);
   font-weight: 700;
-  text-decoration: underline;
+  text-decoration: none;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.app-home-link__button:hover,
+.app-home-link__button:focus-visible {
+  background: var(--c-income);
+  color: #fff;
+  border-color: var(--c-income);
 }
 .cat-card--gov:hover { box-shadow: 0 20px 56px rgba(56,56,56,0.28) !important; }
 

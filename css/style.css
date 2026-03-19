@@ -430,6 +430,7 @@ p { margin: 0; }
   color: var(--text-700);
   margin: 0 auto;
   text-align: center;
+  text-wrap: pretty;
 }
 .site-intro__body p + p {
   margin-top: 18px;

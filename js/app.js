@@ -42,7 +42,11 @@
     { path: "asl-education-and-training-by-state.html", section: "training" },
     { path: "asl-communication-access-services-by-state.html", section: "services" },
     { path: "asl-official-information-by-state.html", section: "official" },
-    { path: "blog/index.html", section: "article", parser: "blog" }
+    { path: "blog/index.html", section: "article", parser: "blog" },
+    { path: "blog/what-people-will-pay-for/index.html", section: "article", parser: "article" },
+    { path: "blog/government-contracting-resources/index.html", section: "article", parser: "article" },
+    { path: "blog/best-ai-tools-for-people-trying-to-make-money-on-their-own/index.html", section: "article", parser: "article" },
+    { path: "blog/what-people-will-pay-for-quiz/index.html", section: "article", parser: "article" }
   ];
   const statePageCache = new Map();
 
@@ -815,6 +819,9 @@
     if (source.parser === "blog") {
       return parseBlogCards(doc, source);
     }
+    if (source.parser === "article") {
+      return parseArticlePage(doc, source);
+    }
     return parseListingCards(doc, source);
   }
 
@@ -915,6 +922,24 @@
         href: href.startsWith("http") ? href : `blog/${href.replace(/^\.?\//, "")}`
       };
     }).filter(Boolean);
+  }
+
+  function parseArticlePage(doc, source) {
+    const title = textContentOf(doc.querySelector("meta[property='og:title']")) || textContentOf(doc.querySelector("title")) || textContentOf(doc.querySelector("h1"));
+    if (!title) return [];
+    const normalizedTitle = title.replace(/\s*\|\s*Income Spectrum\s*$/i, "").trim();
+    const description =
+      doc.querySelector("meta[name='description']")?.getAttribute("content")?.trim() ||
+      textContentOf(doc.querySelector(".article-hero__lead, .article-body p")) ||
+      normalizedTitle;
+    let href = source.path;
+    if (href.endsWith("/index.html")) href = href.replace(/index\.html$/, "");
+    return [{
+      id: `article-${slugify(normalizedTitle)}`,
+      title: normalizedTitle,
+      description,
+      href
+    }];
   }
 
   function mergeImportedItems(section, importedItems) {

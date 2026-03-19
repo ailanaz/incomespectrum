@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Income Spectrum App | Sort, Save, Compare, and Track Progress</title>
+  <title>Income Spectrum App | Sort, Save, Compare, and Plan Your Next Move</title>
   <meta name="description" content="A standalone Income Spectrum companion app for exploring income options, saving resources, comparing directions, and tracking next steps.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/app.css?v=20260319b">
+  <link rel="stylesheet" href="css/app.css?v=20260319c">
 </head>
 <body>
   <div class="app-shell">
@@ -64,7 +64,7 @@
           <h1 class="app-topbar__title" id="viewTitle">Home</h1>
         </div>
         <div class="app-topbar__actions">
-          <button class="app-icon-btn" data-action="open-progress" aria-label="Open progress">Progress</button>
+          <button class="app-icon-btn" data-action="open-progress" aria-label="Open planner">Planner</button>
         </div>
       </header>
 
@@ -76,7 +76,7 @@
             <p id="continueCopy">Set your state, browse a few directions, and save what looks useful.</p>
             <div class="hero-card__actions">
               <button class="app-btn app-btn--primary" data-action="go-explore">Open Explore</button>
-              <button class="app-btn app-btn--ghost app-btn--ghost-light" data-action="open-progress">View Progress</button>
+              <button class="app-btn app-btn--ghost app-btn--ghost-light" data-action="open-progress">Open Planner</button>
             </div>
           </div>
           <div class="hero-stats">
@@ -129,7 +129,7 @@
           <section class="card card--stacked">
             <div class="card-header">
               <div>
-                <p class="section-kicker">Progress</p>
+                <p class="section-kicker">Planner</p>
               </div>
             </div>
             <ul class="stack-list" id="nextStepsList"></ul>
@@ -264,7 +264,7 @@
             </div>
             <div class="stack-actions">
               <button class="app-btn app-btn--secondary" data-action="open-notes">Open Notes</button>
-              <button class="app-btn app-btn--secondary" data-action="open-progress">Open Progress</button>
+              <button class="app-btn app-btn--secondary" data-action="open-progress">Open Planner</button>
               <button class="app-btn app-btn--secondary" data-action="open-quiz">Open Quiz</button>
               <button class="app-btn app-btn--ghost" data-action="reset-app">Reset App Data</button>
             </div>
@@ -322,7 +322,8 @@
     <div class="overlay-panel">
       <div class="overlay-header">
         <div>
-          <p class="section-kicker">Progress</p>
+          <p class="section-kicker">Planner</p>
+          <h2>Plan your next move</h2>
         </div>
         <button class="close-btn" data-action="close-overlay" data-target="progressOverlay">Close</button>
       </div>
@@ -347,6 +348,6 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=20260319a"></script>
+  <script src="js/app.js?v=20260319c"></script>
 </body>
 </html>

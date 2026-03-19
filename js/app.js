@@ -1837,10 +1837,7 @@
     detailType.textContent = "State Detail";
     detailTitle.textContent = `${stateName} Official Business Information`;
     detailBody.innerHTML = `<div class="empty-state">Loading ${stateName} official information...</div>`;
-    const stateItems = data.official.filter((item) => {
-      const links = resolveOfficialLinks(item, stateName);
-      return links.length > 0 && (item.tags.includes("state") || item.coverage === stateName);
-    });
+    const stateItems = data.official.filter((item) => item.stateLinks && item.stateLinks[stateName]?.length);
     const statePageItems = await loadStateSpecificOfficialItems(stateName);
     detailBody.innerHTML = `
       <div class="detail-section">

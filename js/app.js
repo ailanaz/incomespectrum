@@ -803,7 +803,9 @@
       const group = choicePill.closest(".choice-group, .pill-row");
       group.querySelectorAll(".choice-pill").forEach((pill) => pill.classList.remove("active"));
       choicePill.classList.add("active");
-      if (group.id === "profileGoal") {
+      if (group.id === "setupGoal") {
+        appState.goal = choicePill.dataset.value;
+      } else if (group.id === "profileGoal") {
         appState.goal = choicePill.dataset.value;
         saveState();
       } else if (group.id === "profileWorkPref") {

@@ -356,7 +356,7 @@ a {
   align-items: flex-start;
   gap: 16px;
   padding: 18px 20px 14px;
-  background: rgba(255, 253, 246, 0.94);
+  background: rgba(25, 120, 46, 0.14);
   backdrop-filter: blur(18px);
   border-bottom: 2px solid var(--app-navy);
   box-shadow: 0 8px 0 rgba(253, 210, 21, 0.18);

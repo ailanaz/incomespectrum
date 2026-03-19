@@ -996,6 +996,9 @@
     document.getElementById("continueCopy").textContent = lastViewed
       ? `You last opened ${lastViewed.title}. You can save it, compare it, or move it into your next-step stage.`
       : "Set your state, browse a few directions, and save what looks useful.";
+    document.getElementById("heroStateValue").textContent = appState.selectedState;
+    document.getElementById("heroSavedCount").textContent = `${appState.savedIds.length} ${appState.savedIds.length === 1 ? "item" : "items"}`;
+    document.getElementById("heroCompareCount").textContent = `${appState.compareIds.length} ${appState.compareIds.length === 1 ? "option" : "options"}`;
 
     const nextSteps = buildNextSteps();
     document.getElementById("nextStepsList").innerHTML = nextSteps.map((step) => `<li>${step}</li>`).join("");

@@ -382,6 +382,62 @@ a {
   color: inherit;
 }
 
+.hero-card--dashboard {
+  padding: 28px;
+  min-height: 240px;
+}
+
+.hero-card__content,
+.feature-band__content {
+  position: relative;
+  z-index: 1;
+  max-width: 42rem;
+}
+
+.hero-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.app-btn--ghost-light {
+  color: #fffdf6;
+  border-color: rgba(255, 253, 246, 0.5);
+  background: rgba(255, 253, 246, 0.08);
+}
+
+.hero-stats {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 12px;
+  min-width: 220px;
+}
+
+.hero-stat {
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 253, 246, 0.28);
+  background: rgba(20, 37, 61, 0.20);
+  backdrop-filter: blur(8px);
+}
+
+.hero-stat__label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.78;
+}
+
+.hero-stat strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 1.15rem;
+}
+
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -399,38 +455,71 @@ a {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.quick-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+.home-section {
+  margin-top: 20px;
 }
 
-.quick-tile {
+.section-headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.browse-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.browse-card {
+  display: grid;
+  gap: 10px;
   padding: 18px 16px;
+  min-height: 170px;
+  text-align: left;
+  align-content: start;
+  border-radius: 18px;
   font-size: 15px;
   font-weight: 700;
-  text-align: left;
-  min-height: 96px;
   border: 2px solid var(--app-navy);
   box-shadow: 0 10px 0 rgba(20, 37, 61, 0.08);
 }
 
-.quick-tile--income {
+.browse-card strong {
+  font-size: 1.1rem;
+  line-height: 1.15;
+}
+
+.browse-card span:last-child {
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.browse-card__eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.browse-card--income {
   background: rgba(25, 120, 46, 0.12);
   color: var(--app-green);
 }
 
-.quick-tile--training {
+.browse-card--training {
   background: rgba(27, 72, 216, 0.10);
   color: var(--app-blue);
 }
 
-.quick-tile--services {
+.browse-card--services {
   background: rgba(253, 210, 21, 0.18);
   color: #8b6d00;
 }
 
-.quick-tile--official {
+.browse-card--official {
   background: rgba(20, 37, 61, 0.06);
   color: var(--app-navy);
 }
@@ -461,6 +550,10 @@ a {
   border: 1px solid var(--app-border);
   border-radius: 16px;
   background: var(--app-surface-alt);
+}
+
+.card--stacked {
+  min-height: 100%;
 }
 
 .mini-card + .mini-card,
@@ -502,6 +595,64 @@ a {
   justify-content: space-between;
   gap: 10px;
   align-items: center;
+}
+
+.toolbar__chips--stacked {
+  display: grid;
+  gap: 10px;
+}
+
+.feature-card--quiz,
+.feature-band {
+  background:
+    linear-gradient(180deg, rgba(255, 253, 246, 0.96), rgba(245, 241, 225, 0.96));
+}
+
+.feature-band {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.explore-shell {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.explore-rail {
+  position: sticky;
+  top: 98px;
+  display: grid;
+  gap: 16px;
+}
+
+.explore-rail__block,
+.explore-panel {
+  background: rgba(255, 253, 246, 0.97);
+  border: 2px solid var(--app-navy);
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-shadow);
+}
+
+.explore-rail__block {
+  padding: 18px 16px;
+}
+
+.section-tabs--explore {
+  display: grid;
+  gap: 10px;
+}
+
+.explore-panel {
+  padding: 20px;
+}
+
+.toolbar--explore {
+  margin-top: 0;
+  margin-bottom: 16px;
 }
 
 .section-tab,
@@ -718,7 +869,8 @@ a {
 
 @media (max-width: 860px) {
   .card-grid--two,
-  .quick-grid {
+  .browse-strip,
+  .explore-shell {
     grid-template-columns: 1fr;
   }
 
@@ -726,9 +878,14 @@ a {
   .toolbar,
   .section-tabs,
   .app-topbar,
-  .overlay-header {
+  .overlay-header,
+  .feature-band {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .explore-rail {
+    position: static;
   }
 }
 

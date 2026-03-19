@@ -72,35 +72,68 @@
 
       <section class="view active" id="view-home" data-view="home">
         <div class="search-strip">
-          <button class="search-chip search-chip--wide" data-action="open-search">Search income options, training, services, and official information</button>
+          <button class="search-chip search-chip--wide" data-action="open-search">Search income options, training, services, official information, and guides</button>
         </div>
 
-        <div class="card hero-card">
-          <div>
-            <p class="section-kicker">Continue where you left off</p>
+        <section class="hero-card hero-card--dashboard">
+          <div class="hero-card__content">
+            <p class="section-kicker">Income Spectrum Companion</p>
             <h2 id="continueTitle">Start exploring Income Spectrum.</h2>
             <p id="continueCopy">Set your state, browse a few directions, and save what looks useful.</p>
+            <div class="hero-card__actions">
+              <button class="app-btn app-btn--primary" data-action="go-explore">Open Explore</button>
+              <button class="app-btn app-btn--ghost app-btn--ghost-light" data-action="open-progress">View Next Steps</button>
+            </div>
           </div>
-          <button class="app-btn app-btn--primary" data-action="go-explore">Open Explore</button>
-        </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat__label">State</span>
+              <strong id="heroStateValue">Texas</strong>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat__label">Saved</span>
+              <strong id="heroSavedCount">0 items</strong>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat__label">Comparing</span>
+              <strong id="heroCompareCount">0 options</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="home-section">
+          <div class="section-headline">
+            <div>
+              <p class="section-kicker">Browse</p>
+              <h3>Start from the right lane</h3>
+            </div>
+          </div>
+          <div class="browse-strip">
+            <button class="browse-card browse-card--income" data-action="open-explore-section" data-section="income">
+              <span class="browse-card__eyebrow">Income</span>
+              <strong>Opportunities</strong>
+              <span>Service, product, ownership, and recurring-income directions.</span>
+            </button>
+            <button class="browse-card browse-card--training" data-action="open-explore-section" data-section="training">
+              <span class="browse-card__eyebrow">Training</span>
+              <strong>Skills &amp; Preparation</strong>
+              <span>Programs, certifications, exam prep, and business education.</span>
+            </button>
+            <button class="browse-card browse-card--services" data-action="open-explore-section" data-section="services">
+              <span class="browse-card__eyebrow">Support</span>
+              <strong>Build Infrastructure</strong>
+              <span>Legal, bookkeeping, operations, marketing, and access services.</span>
+            </button>
+            <button class="browse-card browse-card--official" data-action="open-explore-section" data-section="official">
+              <span class="browse-card__eyebrow">Official</span>
+              <strong>Rules &amp; Registration</strong>
+              <span>State and federal information for doing business in the U.S.</span>
+            </button>
+          </div>
+        </section>
 
         <div class="card-grid card-grid--two">
-          <section class="card">
-            <div class="card-header">
-              <div>
-                <p class="section-kicker">Quick Access</p>
-                <h3>Browse by section</h3>
-              </div>
-            </div>
-            <div class="quick-grid">
-              <button class="quick-tile quick-tile--income" data-action="open-explore-section" data-section="income">Income Options</button>
-              <button class="quick-tile quick-tile--training" data-action="open-explore-section" data-section="training">Education &amp; Training</button>
-              <button class="quick-tile quick-tile--services" data-action="open-explore-section" data-section="services">Supportive Services</button>
-              <button class="quick-tile quick-tile--official" data-action="open-explore-section" data-section="official">Official Information</button>
-            </div>
-          </section>
-
-          <section class="card">
+          <section class="card card--stacked">
             <div class="card-header">
               <div>
                 <p class="section-kicker">Recommended Next Steps</p>
@@ -109,10 +142,8 @@
             </div>
             <ul class="stack-list" id="nextStepsList"></ul>
           </section>
-        </div>
 
-        <div class="card-grid card-grid--two">
-          <section class="card">
+          <section class="card card--stacked">
             <div class="card-header">
               <div>
                 <p class="section-kicker">Saved Preview</p>
@@ -122,8 +153,10 @@
             </div>
             <div id="savedPreview"></div>
           </section>
+        </div>
 
-          <section class="card">
+        <div class="card-grid card-grid--two">
+          <section class="card card--stacked">
             <div class="card-header">
               <div>
                 <p class="section-kicker">Recently Viewed</p>
@@ -132,42 +165,52 @@
             </div>
             <div id="recentlyViewed"></div>
           </section>
-        </div>
 
-        <div class="card-grid card-grid--two">
-          <section class="card feature-card">
+          <section class="card feature-card feature-card--quiz">
             <p class="section-kicker">Featured Quiz</p>
             <h3>What People Will Pay For</h3>
             <p>A plainspoken quiz that helps you see what people are really paying for, what they are paying with, and where opportunity starts.</p>
             <button class="app-btn app-btn--secondary" data-action="open-quiz">Take the Quiz</button>
           </section>
+        </div>
 
-          <section class="card feature-card">
+        <section class="card feature-band">
+          <div class="feature-band__content">
             <p class="section-kicker">Featured Guide</p>
             <h3>Government Contracting Resources</h3>
             <p>See one more lane for practical service businesses, and connect what you already do to federal work, registration, and certifications.</p>
-            <a class="app-btn app-btn--ghost" href="blog/government-contracting-resources/" target="_blank" rel="noopener noreferrer">Open Guide</a>
-          </section>
-        </div>
+          </div>
+          <a class="app-btn app-btn--ghost" href="blog/government-contracting-resources/" target="_blank" rel="noopener noreferrer">Open Guide</a>
+        </section>
       </section>
 
       <section class="view" id="view-explore" data-view="explore">
-        <div class="section-tabs" id="exploreTabs">
-          <button class="section-tab active" data-section="income">Income Options</button>
-          <button class="section-tab" data-section="training">Education &amp; Training</button>
-          <button class="section-tab" data-section="services">Supportive Services</button>
-          <button class="section-tab" data-section="official">Official Information</button>
-        </div>
-
-        <div class="toolbar">
-          <div class="toolbar__chips" id="filterChips"></div>
-          <div class="toolbar__actions">
-            <button class="app-btn app-btn--ghost" data-action="open-filter">Filter</button>
-            <button class="app-btn app-btn--ghost" data-action="toggle-sort">Sort</button>
+        <section class="explore-shell">
+          <aside class="explore-rail">
+            <div class="section-tabs section-tabs--explore" id="exploreTabs">
+              <button class="section-tab active" data-section="income">Income Options</button>
+              <button class="section-tab" data-section="training">Education &amp; Training</button>
+              <button class="section-tab" data-section="services">Supportive Services</button>
+              <button class="section-tab" data-section="official">Official Information</button>
+            </div>
+            <div class="explore-rail__block">
+              <p class="section-kicker">Filters</p>
+              <div class="toolbar__chips toolbar__chips--stacked" id="filterChips"></div>
+            </div>
+          </aside>
+          <div class="explore-panel">
+            <div class="toolbar toolbar--explore">
+              <div>
+                <p class="section-kicker">Results</p>
+                <h3>Browse the directory</h3>
+              </div>
+              <div class="toolbar__actions">
+                <button class="app-btn app-btn--ghost" data-action="toggle-sort">Sort</button>
+              </div>
+            </div>
+            <div id="exploreContent"></div>
           </div>
-        </div>
-
-        <div id="exploreContent"></div>
+        </section>
       </section>
 
       <section class="view" id="view-saved" data-view="saved">

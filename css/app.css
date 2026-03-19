@@ -589,6 +589,25 @@ a {
   flex: 0 0 auto;
 }
 
+.utility-link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--app-text-soft);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.utility-link--active {
+  color: var(--app-blue);
+}
+
+.utility-link--danger {
+  color: #8b3a3a;
+}
+
 .tag {
   display: inline-flex;
   align-items: center;

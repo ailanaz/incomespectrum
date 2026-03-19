@@ -1143,9 +1143,9 @@
             ? `<button class="app-btn app-btn--secondary" data-action="open-quiz">Open Quiz</button>`
             : `<button class="app-btn app-btn--secondary" data-action="open-item" data-id="${id}" data-type="${type}">Open</button>`
           }
-          ${type === "income" ? `<button class="app-btn app-btn--ghost" data-action="compare-item" data-id="${id}">${appState.compareIds.includes(id) ? "Comparing" : "Compare"}</button>` : ""}
-          ${type !== "quiz" ? `<button class="app-btn app-btn--ghost" data-action="open-notes">Notes</button>` : ""}
-          ${type !== "quiz" ? `<button class="app-btn app-btn--ghost" data-action="remove-saved" data-id="${id}">Remove</button>` : ""}
+          ${type === "income" ? `<button class="utility-link ${appState.compareIds.includes(id) ? "utility-link--active" : ""}" data-action="compare-item" data-id="${id}">${appState.compareIds.includes(id) ? "Comparing" : "Compare"}</button>` : ""}
+          ${type !== "quiz" ? `<button class="utility-link" data-action="open-notes">Notes</button>` : ""}
+          ${type !== "quiz" ? `<button class="utility-link utility-link--danger" data-action="remove-saved" data-id="${id}">Remove</button>` : ""}
         </div>
       </div>
     `;

@@ -11,7 +11,7 @@
     quiz: "Quiz Result"
   };
   const setupGoals = [
-    { value: "explore/confirm options", label: "Explore/Confirm Options" },
+    { value: "explore options", label: "Explore Options" },
     { value: "gain knowledge", label: "Gain Knowledge" },
     { value: "get support", label: "Get Support" },
     { value: "find official information", label: "Find Official Information" }
@@ -611,7 +611,7 @@
     isSignedIn: false,
     setupComplete: false,
     selectedState: "Texas",
-    goal: "explore/confirm options",
+    goal: "explore options",
     workPreference: "both",
     activeView: "home",
     activeExploreSection: "income",
@@ -1017,7 +1017,7 @@
 
   function getStartDestinationFromGoal() {
     const sectionByGoal = {
-      "explore/confirm options": "income",
+      "explore options": "income",
       "gain knowledge": "training",
       "get support": "services",
       "find official information": "official"

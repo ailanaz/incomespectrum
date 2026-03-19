@@ -778,6 +778,8 @@
       } else if (action === "save-quiz-result") {
         saveQuizResult();
       } else if (action === "open-state-detail") {
+        appState.browseOfficialState = actionNode.dataset.state || appState.selectedState;
+        saveState();
         openStateDetail(actionNode.dataset.state || appState.selectedState);
       } else if (action === "browse-official-state") {
         appState.browseOfficialState = actionNode.dataset.state || appState.selectedState;
@@ -1213,10 +1215,10 @@
         </div>
         <div class="state-browser-grid">
           ${allStates.map((state) => `
-            <button class="state-browser-card ${state === selectedState ? "state-browser-card--current" : ""}" type="button" data-action="browse-official-state" data-state="${state}">
+            <button class="state-browser-card ${state === selectedState ? "state-browser-card--current" : ""}" type="button" data-action="open-state-detail" data-state="${state}">
               <span class="state-browser-card__eyebrow">${state === appState.selectedState ? "Saved State" : "State"}</span>
               <strong>${state}</strong>
-              <span class="state-browser-card__meta">${state === selectedState ? "Selected" : "Browse this state"}</span>
+              <span class="state-browser-card__meta">Open state information</span>
             </button>
           `).join("")}
         </div>

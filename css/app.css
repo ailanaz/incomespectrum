@@ -704,8 +704,8 @@ a {
 
 .section-tabs--explore {
   display: grid;
-  gap: 0;
-  overflow: hidden;
+  gap: 12px;
+  overflow: visible;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -717,39 +717,36 @@ a {
   display: block;
   width: 100%;
   text-align: left;
-  border: 0;
-  border-top: 2px solid rgba(20, 37, 61, 0.75);
-  border-bottom: 0;
-  border-radius: 0;
-  background: transparent;
-  padding: 16px 18px;
-  color: var(--app-navy);
+  border: 2px solid var(--app-navy);
+  border-radius: 18px;
+  padding: 18px 18px 20px;
+  color: #fffdf6;
   font-size: 1.05rem;
-}
-
-.section-tabs--explore .section-tab:last-child {
-  border-bottom: 2px solid rgba(20, 37, 61, 0.75);
+  line-height: 1.15;
+  box-shadow: var(--app-shadow);
 }
 
 .section-tabs--explore .section-tab[data-section="income"] {
-  background: rgba(25, 120, 46, 0.10);
+  background: linear-gradient(135deg, rgba(25, 120, 46, 0.72), rgba(25, 120, 46, 0.58));
 }
 
 .section-tabs--explore .section-tab[data-section="training"] {
-  background: rgba(27, 72, 216, 0.10);
+  background: linear-gradient(135deg, rgba(27, 72, 216, 0.72), rgba(27, 72, 216, 0.58));
 }
 
 .section-tabs--explore .section-tab[data-section="services"] {
-  background: rgba(253, 210, 21, 0.14);
+  background: linear-gradient(135deg, rgba(253, 210, 21, 0.78), rgba(253, 210, 21, 0.6));
+  color: var(--app-navy);
 }
 
 .section-tabs--explore .section-tab[data-section="official"] {
-  background: rgba(36, 50, 68, 0.10);
+  background: linear-gradient(135deg, rgba(36, 50, 68, 0.78), rgba(36, 50, 68, 0.6));
 }
 
 .section-tabs--explore .section-tab.active {
   font-weight: 800;
-  box-shadow: inset 5px 0 0 var(--app-navy);
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 3px rgba(255, 253, 246, 0.35), var(--app-shadow);
 }
 
 .explore-panel {

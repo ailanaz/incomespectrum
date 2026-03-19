@@ -624,9 +624,14 @@ a {
 
 .explore-rail {
   position: sticky;
-  top: 98px;
+  top: 88px;
+  align-self: start;
   display: grid;
   gap: 16px;
+  max-height: calc(100vh - 108px);
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-width: thin;
 }
 
 .explore-rail__block,
@@ -648,6 +653,15 @@ a {
 
 .explore-panel {
   padding: 20px;
+}
+
+.explore-rail::-webkit-scrollbar {
+  width: 8px;
+}
+
+.explore-rail::-webkit-scrollbar-thumb {
+  background: rgba(20, 37, 61, 0.25);
+  border-radius: 999px;
 }
 
 .toolbar--explore {

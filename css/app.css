@@ -259,6 +259,30 @@ a {
   border-color: var(--app-blue);
 }
 
+.app-btn--income {
+  background: var(--app-green);
+  color: #fffdf6;
+  border-color: var(--app-green);
+}
+
+.app-btn--knowledge {
+  background: var(--app-blue);
+  color: #fffdf6;
+  border-color: var(--app-blue);
+}
+
+.app-btn--support {
+  background: var(--app-yellow);
+  color: var(--app-navy);
+  border-color: #c8a700;
+}
+
+.app-btn--official {
+  background: #243244;
+  color: #fffdf6;
+  border-color: #243244;
+}
+
 .app-btn--ghost,
 .text-link,
 .app-icon-btn,

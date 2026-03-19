@@ -1091,7 +1091,7 @@
         <strong>${item.title}</strong>
         <p>${item.description}</p>
         <div class="inline-actions">
-          <button class="app-btn app-btn--secondary" data-action="open-item" data-id="${item.id}" data-type="official">Open</button>
+          <button class="app-btn ${openButtonClass("official")}" data-action="open-item" data-id="${item.id}" data-type="official">Open</button>
           <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>
           ${topLink ? `<a class="app-btn app-btn--ghost" href="${topLink.href}" target="_blank" rel="noopener noreferrer">Open Link</a>` : ""}
         </div>
@@ -1141,7 +1141,7 @@
         <div class="inline-actions inline-actions--saved">
           ${type === "quiz"
             ? `<button class="app-btn app-btn--secondary" data-action="open-quiz">Open Quiz</button>`
-            : `<button class="app-btn app-btn--secondary" data-action="open-item" data-id="${id}" data-type="${type}">Open</button>`
+            : `<button class="app-btn ${openButtonClass(type)}" data-action="open-item" data-id="${id}" data-type="${type}">Open</button>`
           }
           ${type === "income" ? `<button class="utility-link ${appState.compareIds.includes(id) ? "utility-link--active" : ""}" data-action="compare-item" data-id="${id}">${appState.compareIds.includes(id) ? "Comparing" : "Compare"}</button>` : ""}
           ${type !== "quiz" ? `<button class="utility-link" data-action="open-notes">Notes</button>` : ""}
@@ -1207,7 +1207,7 @@
               <h4>${item.title}</h4>
               <p>${note}</p>
               <div class="inline-actions">
-                <button class="app-btn app-btn--secondary" data-action="open-item" data-id="${id}" data-type="${detectItemType(id)}">Open</button>
+                <button class="app-btn ${openButtonClass(detectItemType(id))}" data-action="open-item" data-id="${id}" data-type="${detectItemType(id)}">Open</button>
                 <button class="app-btn app-btn--ghost" data-action="delete-note" data-id="${id}">Delete Note</button>
               </div>
             </div>
@@ -1230,7 +1230,7 @@
                 <div class="mini-card">
                   <strong>${item.title}</strong>
                   <div class="inline-actions">
-                    <button class="app-btn app-btn--secondary" data-action="open-item" data-id="${item.id}" data-type="${detectItemType(item.id)}">Open</button>
+                    <button class="app-btn ${openButtonClass(detectItemType(item.id))}" data-action="open-item" data-id="${item.id}" data-type="${detectItemType(item.id)}">Open</button>
                     ${renderStageButtons(item.id, stage)}
                   </div>
                 </div>
@@ -1438,7 +1438,7 @@
               <div class="inline-actions">
                 ${type === "article"
                   ? `<a class="app-btn app-btn--secondary" href="${item.href}" target="_blank" rel="noopener noreferrer">Open</a>`
-                  : `<button class="app-btn app-btn--secondary" data-action="open-item" data-id="${item.id}" data-type="${type}">Open</button>`
+                  : `<button class="app-btn ${openButtonClass(type)}" data-action="open-item" data-id="${item.id}" data-type="${type}">Open</button>`
                 }
               </div>
             </div>
@@ -1684,7 +1684,7 @@
         <p>${item.description}</p>
         <div class="item-tags">${(item.tags || []).map(renderTag).join("")}</div>
         <div class="inline-actions">
-          <button class="app-btn app-btn--secondary" data-action="open-item" data-id="${item.id}" data-type="${type}">Open</button>
+          <button class="app-btn ${openButtonClass(type)}" data-action="open-item" data-id="${item.id}" data-type="${type}">Open</button>
           <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>
           ${type === "income" ? `<button class="app-btn app-btn--ghost" data-action="compare-item" data-id="${item.id}">${appState.compareIds.includes(item.id) ? "Comparing" : "Compare"}</button>` : ""}
         </div>
@@ -1699,10 +1699,18 @@
         <strong>${item.title}</strong>
         <p>${item.description || item.explanation || ""}</p>
         <div class="inline-actions">
-          <button class="app-btn app-btn--secondary" data-action="open-item" data-id="${item.id}" data-type="${detectItemType(item.id)}">Open</button>
+          <button class="app-btn ${openButtonClass(detectItemType(item.id))}" data-action="open-item" data-id="${item.id}" data-type="${detectItemType(item.id)}">Open</button>
         </div>
       </div>
     `;
+  }
+
+  function openButtonClass(type) {
+    if (type === "income") return "app-btn--income";
+    if (type === "training") return "app-btn--knowledge";
+    if (type === "services") return "app-btn--support";
+    if (type === "official") return "app-btn--official";
+    return "app-btn--secondary";
   }
 
   function buildNextSteps() {

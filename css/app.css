@@ -856,6 +856,40 @@ a {
   color: var(--app-navy);
 }
 
+.rail-linkout {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 2px solid rgba(20, 37, 61, 0.12);
+  display: grid;
+  gap: 10px;
+}
+
+.rail-linkout__copy {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--app-text-soft);
+}
+
+.rail-linkout__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 2px solid var(--app-navy);
+  background: rgba(255, 253, 246, 0.96);
+  color: var(--app-navy);
+  font-weight: 700;
+  text-align: center;
+}
+
+.rail-linkout__cta:hover,
+.rail-linkout__cta:focus-visible {
+  background: rgba(25, 120, 46, 0.12);
+}
+
 #filterPanel[data-section="income"] {
   background: rgba(25, 120, 46, 0.16);
 }

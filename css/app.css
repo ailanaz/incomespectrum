@@ -89,17 +89,6 @@ a {
   width: min(820px, 100%);
 }
 
-.gate-panel::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 auto;
-  width: 220px;
-  height: 120px;
-  border-radius: 0;
-  background: linear-gradient(135deg, rgba(27, 72, 216, 0.10), rgba(27, 72, 216, 0.20));
-  clip-path: polygon(34% 0, 100% 0, 100% 100%, 0 100%);
-}
-
 .app-brand {
   display: inline-flex;
   align-items: center;

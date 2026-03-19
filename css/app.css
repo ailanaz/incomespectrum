@@ -577,6 +577,18 @@ a {
   margin-top: 10px;
 }
 
+.inline-actions--saved {
+  align-items: center;
+}
+
+.inline-actions--saved .app-btn {
+  padding: 9px 12px;
+  font-size: 13px;
+  line-height: 1.1;
+  min-height: 36px;
+  flex: 0 0 auto;
+}
+
 .tag {
   display: inline-flex;
   align-items: center;

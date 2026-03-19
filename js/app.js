@@ -1138,7 +1138,7 @@
       <div class="mini-card">
         <strong>${item.title}</strong>
         <p>${item.description || item.explanation || ""}</p>
-        <div class="inline-actions">
+        <div class="inline-actions inline-actions--saved">
           ${type === "quiz"
             ? `<button class="app-btn app-btn--secondary" data-action="open-quiz">Open Quiz</button>`
             : `<button class="app-btn app-btn--secondary" data-action="open-item" data-id="${id}" data-type="${type}">Open</button>`

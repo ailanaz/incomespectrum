@@ -11,10 +11,10 @@
     quiz: "Quiz Result"
   };
   const setupGoals = [
-    { value: "explore income options", label: "Explore income options" },
-    { value: "find training", label: "Find training" },
-    { value: "find support services", label: "Find support services" },
-    { value: "find official information", label: "Find official information" }
+    { value: "explore/confirm options", label: "Explore/Confirm Options" },
+    { value: "gain knowledge", label: "Gain Knowledge" },
+    { value: "get support", label: "Get Support" },
+    { value: "find official information", label: "Find Official Information" }
   ];
   const workPreferences = [
     { value: "online", label: "Online" },
@@ -611,7 +611,7 @@
     isSignedIn: false,
     setupComplete: false,
     selectedState: "Texas",
-    goal: "explore income options",
+    goal: "explore/confirm options",
     workPreference: "both",
     activeView: "home",
     activeExploreSection: "income",

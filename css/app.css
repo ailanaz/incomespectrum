@@ -551,6 +551,11 @@ a {
   margin-top: 20px;
 }
 
+.guest-upgrade {
+  margin-top: 18px;
+  background: linear-gradient(135deg, rgba(253, 210, 21, 0.18), rgba(25, 120, 46, 0.08));
+}
+
 .section-headline {
   display: flex;
   justify-content: space-between;

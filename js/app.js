@@ -805,6 +805,8 @@
       choicePill.classList.add("active");
       if (group.id === "setupGoal") {
         appState.goal = choicePill.dataset.value;
+        completeSetup(false);
+        return;
       } else if (group.id === "profileGoal") {
         appState.goal = choicePill.dataset.value;
         saveState();

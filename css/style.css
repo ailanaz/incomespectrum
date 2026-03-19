@@ -417,6 +417,23 @@ p { margin: 0; }
 }
 
 /* ============================================================
+   SITE INTRO (Homepage)
+   ============================================================ */
+.site-intro {
+  padding: var(--gap-xl) 0 var(--gap-lg);
+  background: var(--bg-white);
+}
+.site-intro__body {
+  max-width: 740px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-700);
+}
+.site-intro__body p + p {
+  margin-top: 18px;
+}
+
+/* ============================================================
    CATEGORY CARDS (Homepage)
    ============================================================ */
 .dir-categories {

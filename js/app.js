@@ -611,6 +611,7 @@
     isSignedIn: false,
     setupComplete: false,
     selectedState: "Texas",
+    browseOfficialState: "Texas",
     goal: "explore options",
     workPreference: "both",
     activeView: "home",
@@ -709,7 +710,10 @@
         showView("explore");
       } else if (action === "open-explore-section") {
         appState.activeExploreSection = actionNode.dataset.section;
-        exploreFilter = "all";
+        exploreFilter = actionNode.dataset.section === "official" ? "state" : "all";
+        if (actionNode.dataset.section === "official" && !appState.browseOfficialState) {
+          appState.browseOfficialState = appState.selectedState;
+        }
         closeAllOverlays();
         showView("explore");
       } else if (action === "open-progress") {
@@ -775,6 +779,10 @@
         saveQuizResult();
       } else if (action === "open-state-detail") {
         openStateDetail(actionNode.dataset.state || appState.selectedState);
+      } else if (action === "browse-official-state") {
+        appState.browseOfficialState = actionNode.dataset.state || appState.selectedState;
+        saveState();
+        renderExplore();
       } else if (action === "open-all-states") {
         openAllStatesBrowser();
       } else if (action === "open-path-summary") {
@@ -786,7 +794,10 @@
     const sectionTab = event.target.closest(".section-tab");
     if (sectionTab) {
       appState.activeExploreSection = sectionTab.dataset.section;
-      exploreFilter = "all";
+      exploreFilter = sectionTab.dataset.section === "official" ? "state" : "all";
+      if (sectionTab.dataset.section === "official" && !appState.browseOfficialState) {
+        appState.browseOfficialState = appState.selectedState;
+      }
       saveState();
       renderExplore();
       return;
@@ -1149,7 +1160,7 @@
       income: ["all", "online", "local", "both", "service-based", "product-based", "recurring income", "low-cost to start", "skill-based", "hands-on", "ownership-based"],
       training: ["all", "free", "paid", "beginner", "advanced", "online", "in-person", "certification", "short-form", "full program"],
       services: ["all", "legal", "bookkeeping", "accounting", "branding", "websites", "marketing", "operations", "advisory", "communication access", "interpreting services"],
-      official: ["all", "state", "federal"]
+      official: ["state", "federal"]
     };
     const filters = filtersBySection[section];
     document.getElementById("filterSelect").innerHTML = filters.map((filter) => `
@@ -1158,36 +1169,65 @@
   }
 
   function renderOfficialList() {
-    const selectedState = appState.selectedState;
+    const selectedState = appState.browseOfficialState || appState.selectedState;
+    const activeFilter = currentFilter() || "state";
     const stateItems = data.official.filter((item) => item.tags.includes("state") || item.coverage === selectedState);
     const federalItems = data.official.filter((item) => item.tags.includes("federal"));
+    const visibleBlocks = [];
+    if (activeFilter === "state") {
+      visibleBlocks.push(`
+        <div class="saved-block">
+          <h4>State Information</h4>
+          <p>Business registration, tax, licensing, agencies, and state contracting resources.</p>
+          <div class="plain-list">
+            ${stateItems.map((item) => renderOfficialMini(item, selectedState)).join("")}
+          </div>
+        </div>
+      `);
+    }
+    if (activeFilter === "federal") {
+      visibleBlocks.push(`
+        <div class="saved-block">
+          <h4>Federal Information</h4>
+          <p>EIN, IRS, federal guidance, federal contracting, and related national resources.</p>
+          <div class="plain-list">
+            ${federalItems.map((item) => renderOfficialMini(item, selectedState)).join("")}
+          </div>
+        </div>
+      `);
+    }
     return `
       <div class="card">
         <div class="card-header">
           <div>
             <p class="section-kicker">Official Information</p>
-            <h2>${selectedState}</h2>
+            <h2>Browse by State</h2>
           </div>
           <div class="inline-actions">
-            <button class="app-btn app-btn--secondary" data-action="open-state-detail">Open State Detail</button>
             <button class="app-btn app-btn--ghost" data-action="show-view" data-view="profile">Change State</button>
           </div>
         </div>
+        <div class="detail-section">
+          <p>Your saved state is <strong>${appState.selectedState}</strong>. Browsing another state here does not change your saved default state.</p>
+        </div>
+        <div class="state-browser-grid">
+          ${allStates.map((state) => `
+            <button class="state-browser-card ${state === selectedState ? "state-browser-card--current" : ""}" type="button" data-action="browse-official-state" data-state="${state}">
+              <span class="state-browser-card__eyebrow">${state === appState.selectedState ? "Saved State" : "State"}</span>
+              <strong>${state}</strong>
+              <span class="state-browser-card__meta">${state === selectedState ? "Selected" : "Browse this state"}</span>
+            </button>
+          `).join("")}
+        </div>
         <div class="card-grid card-grid--two">
           <div class="saved-block">
-            <h4>State Information</h4>
-            <p>Business registration, tax, licensing, agencies, and state contracting resources.</p>
-            <div class="plain-list">
-              ${stateItems.map((item) => renderOfficialMini(item, selectedState)).join("")}
+            <h4>${selectedState}</h4>
+            <p>${activeFilter === "state" ? "Showing state-level official information." : "Showing federal information relevant across states."}</p>
+            <div class="inline-actions">
+              <button class="app-btn app-btn--secondary" data-action="open-state-detail" data-state="${selectedState}">Open State Detail</button>
             </div>
           </div>
-          <div class="saved-block">
-            <h4>Federal Information</h4>
-            <p>EIN, IRS, federal guidance, federal contracting, and related national resources.</p>
-            <div class="plain-list">
-              ${federalItems.map((item) => renderOfficialMini(item, selectedState)).join("")}
-            </div>
-          </div>
+          ${visibleBlocks.join("")}
         </div>
       </div>
     `;

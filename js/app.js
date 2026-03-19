@@ -714,7 +714,11 @@
         closeAllOverlays();
         showView("explore");
       } else if (action === "open-progress") {
-        renderProgress();
+        if (appState.isSignedIn) {
+          renderProgress();
+        } else {
+          renderPlannerSignupPrompt();
+        }
         openOverlay("progressOverlay");
       } else if (action === "open-notes") {
         renderNotes();
@@ -1337,6 +1341,19 @@
     }).join("");
   }
 
+  function renderPlannerSignupPrompt() {
+    document.getElementById("progressStages").innerHTML = `
+      <section class="progress-stage progress-stage--overview">
+        <h4>Planner is for signed-in users</h4>
+        <p>Create an account to keep your personal business pathway plan, return to it later, and keep your state, notes, and saved path items together.</p>
+        <div class="inline-actions">
+          <button class="app-btn app-btn--secondary" data-action="start-setup-signup">Sign Up</button>
+          <button class="app-btn app-btn--ghost" data-action="go-explore">Keep Exploring</button>
+        </div>
+      </section>
+    `;
+  }
+
   function renderSavedQuizResult() {
     const node = document.getElementById("savedQuizResult");
     if (!appState.quizResult) {
@@ -1874,6 +1891,12 @@
 
   function buildPlanSnapshot() {
     const totalPlanned = Object.values(appState.progress).reduce((count, ids) => count + ids.length, 0);
+    if (!appState.isSignedIn) {
+      return {
+        label: "Sign up to keep it",
+        summary: "Create an account to keep your personal business pathway plan."
+      };
+    }
     if (!appState.quizResult) {
       return {
         label: "Start your PBPP",

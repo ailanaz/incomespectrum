@@ -348,8 +348,7 @@ a {
 }
 
 .app-topbar {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 15;
   display: flex;
   justify-content: space-between;

@@ -2164,6 +2164,23 @@ body::before {
 .cat-card--gov .cat-card__desc  { color: rgba(255,255,255,0.82) !important; }
 .cat-card--gov .cat-card__cta   { color: rgba(255,255,255,0.65) !important; }
 .cat-card--gov:hover .cat-card__cta { color: #fff !important; }
+
+.app-home-link {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.app-home-link__text {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-600);
+}
+
+.app-home-link__text a {
+  color: var(--c-income);
+  font-weight: 700;
+  text-decoration: underline;
+}
 .cat-card--gov:hover { box-shadow: 0 20px 56px rgba(56,56,56,0.28) !important; }
 
 /* Hero CTA button - gov */

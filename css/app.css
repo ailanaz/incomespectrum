@@ -1090,9 +1090,9 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fffdf6;
-  border: 2px solid var(--app-navy);
-  color: var(--app-text-soft);
+  background: var(--app-green);
+  border: 2px solid var(--app-green);
+  color: #fffdf6;
   font-weight: 700;
   padding: 12px 6px;
   min-height: 52px;

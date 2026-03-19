@@ -672,7 +672,7 @@
       if (action === "start-setup") {
         showGate("setup");
       } else if (action === "start-setup-signup") {
-        showGate("setup");
+        showGate("signup");
       } else if (action === "sign-in-demo") {
         appState.isSignedIn = true;
         appState.setupComplete = true;
@@ -686,9 +686,14 @@
       } else if (action === "complete-setup") {
         completeSetup();
       } else if (action === "complete-setup-signup") {
-        completeSetup(true);
+        applySetupSelections();
+        showGate("signup");
       } else if (action === "complete-setup-guest") {
         completeSetup(false);
+      } else if (action === "complete-signup") {
+        completeSignup();
+      } else if (action === "back-to-setup") {
+        showGate("setup");
       } else if (action === "skip-setup") {
         appState.setupComplete = true;
         openApp("home");
@@ -991,10 +996,21 @@
     });
   }
 
-  function completeSetup(signIn = false) {
+  function applySetupSelections() {
     appState.selectedState = document.getElementById("setupState").value;
     appState.goal = getActiveChoiceValue(document.getElementById("setupGoal")) || appState.goal;
+  }
+
+  function completeSetup(signIn = false) {
+    applySetupSelections();
     appState.isSignedIn = signIn;
+    appState.setupComplete = true;
+    saveState();
+    openApp("home");
+  }
+
+  function completeSignup() {
+    appState.isSignedIn = true;
     appState.setupComplete = true;
     saveState();
     openApp("home");

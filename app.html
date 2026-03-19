@@ -49,6 +49,32 @@
       </div>
     </section>
 
+    <section class="gate-screen" id="signupScreen" data-screen="signup">
+      <div class="gate-panel gate-panel--wide">
+        <p class="gate-kicker">Sign Up</p>
+        <h2>Create an account to keep your PBPP.</h2>
+        <p class="gate-copy">Save your state, path, plan, notes, and selected items so you can come back to the same business path later.</p>
+        <div class="setup-grid">
+          <label class="field">
+            <span>Name</span>
+            <input id="signupName" type="text" placeholder="Your name">
+          </label>
+          <label class="field">
+            <span>Email</span>
+            <input id="signupEmail" type="email" placeholder="you@example.com">
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input id="signupPassword" type="password" placeholder="Create a password">
+          </label>
+        </div>
+        <div class="gate-actions">
+          <button class="app-btn app-btn--primary" data-action="complete-signup">Create Account</button>
+          <button class="app-btn app-btn--ghost" data-action="back-to-setup">Back</button>
+        </div>
+      </div>
+    </section>
+
     <main class="app-shell__main hidden" id="mainApp">
       <header class="app-topbar">
         <div class="app-topbar__brand">

@@ -1173,28 +1173,29 @@
     const activeFilter = currentFilter() || "state";
     const stateItems = data.official.filter((item) => item.tags.includes("state") || item.coverage === selectedState);
     const federalItems = data.official.filter((item) => item.tags.includes("federal"));
-    const visibleBlocks = [];
-    if (activeFilter === "state") {
-      visibleBlocks.push(`
-        <div class="saved-block">
-          <h4>State Information</h4>
-          <p>Business registration, tax, licensing, agencies, and state contracting resources.</p>
-          <div class="plain-list">
-            ${stateItems.map((item) => renderOfficialMini(item, selectedState)).join("")}
-          </div>
-        </div>
-      `);
-    }
     if (activeFilter === "federal") {
-      visibleBlocks.push(`
-        <div class="saved-block">
-          <h4>Federal Information</h4>
-          <p>EIN, IRS, federal guidance, federal contracting, and related national resources.</p>
-          <div class="plain-list">
-            ${federalItems.map((item) => renderOfficialMini(item, selectedState)).join("")}
+      return `
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <p class="section-kicker">Official Information</p>
+              <h2>Federal Information</h2>
+            </div>
+            <div class="inline-actions">
+              <button class="app-btn app-btn--ghost" data-action="show-view" data-view="profile">Change State</button>
+            </div>
+          </div>
+          <div class="detail-section">
+            <p>Federal EIN, IRS, federal guidance, federal contracting, and related national resources for doing business in the U.S.</p>
+          </div>
+          <div class="saved-block">
+            <h4>All Federal Resources</h4>
+            <div class="plain-list">
+              ${federalItems.map((item) => renderOfficialMini(item, selectedState)).join("")}
+            </div>
           </div>
         </div>
-      `);
+      `;
     }
     return `
       <div class="card">
@@ -1222,12 +1223,18 @@
         <div class="card-grid card-grid--two">
           <div class="saved-block">
             <h4>${selectedState}</h4>
-            <p>${activeFilter === "state" ? "Showing state-level official information." : "Showing federal information relevant across states."}</p>
+            <p>Showing state-level official information.</p>
             <div class="inline-actions">
               <button class="app-btn app-btn--secondary" data-action="open-state-detail" data-state="${selectedState}">Open State Detail</button>
             </div>
           </div>
-          ${visibleBlocks.join("")}
+          <div class="saved-block">
+            <h4>State Information</h4>
+            <p>Business registration, tax, licensing, agencies, and state contracting resources.</p>
+            <div class="plain-list">
+              ${stateItems.map((item) => renderOfficialMini(item, selectedState)).join("")}
+            </div>
+          </div>
         </div>
       </div>
     `;

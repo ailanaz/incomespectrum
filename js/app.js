@@ -842,6 +842,7 @@
       : "You are browsing as a guest. Your state, path, and plan only stay for this session unless you sign in.";
     document.getElementById("profileSignupCard").classList.toggle("hidden", appState.isSignedIn);
     document.getElementById("profileToolsTitle").textContent = appState.isSignedIn ? "App tools" : "Guest tools";
+    document.getElementById("profileTabLabel").textContent = appState.isSignedIn ? "Profile" : "Sign Up";
   }
 
   async function hydrateCatalogFromSite() {

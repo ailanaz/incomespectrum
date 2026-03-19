@@ -426,6 +426,7 @@ p { margin: 0; }
 .site-intro__body {
   max-width: 820px;
   font-size: 16px;
+  font-style: italic;
   line-height: 1.75;
   color: var(--text-700);
   margin: 0 auto;

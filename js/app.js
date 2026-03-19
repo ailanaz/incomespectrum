@@ -615,7 +615,7 @@
       "just exploring": [],
       interested: [],
       comparing: [],
-      "ready to act": []
+      launch: []
     },
     quizAnswers: {},
     quizResult: null
@@ -1245,7 +1245,7 @@
   }
 
   function renderProgress() {
-    const stageOrder = ["just exploring", "interested", "comparing", "ready to act"];
+    const stageOrder = ["just exploring", "interested", "comparing", "launch"];
     document.getElementById("progressStages").innerHTML = stageOrder.map((stage) => {
       const ids = appState.progress[stage] || [];
       const items = ids.map((id) => findItem(id)).filter(Boolean);
@@ -1435,7 +1435,7 @@
   }
 
   function renderStageButtons(id, activeStage) {
-    return ["just exploring", "interested", "comparing", "ready to act"].map((stage) => `
+    return ["just exploring", "interested", "comparing", "launch"].map((stage) => `
       <button class="progress-chip ${stage === activeStage ? "active" : ""}" data-action="set-stage" data-id="${id}" data-stage="${stage}">${titleCase(stage)}</button>
     `).join("");
   }
@@ -1953,7 +1953,7 @@
     if (stage === "just exploring") return "Items you are still learning about.";
     if (stage === "interested") return "Items worth a closer look.";
     if (stage === "comparing") return "Items you are actively weighing against each other.";
-    return "Items that feel close to action.";
+    return "Items that feel close to launch.";
   }
 
   async function loadStateSpecificOfficialItems(stateName) {

@@ -809,9 +809,6 @@
     document.getElementById("setupGoal").innerHTML = setupGoals.map((goal) => `
       <button class="choice-pill ${goal.value === appState.goal ? "active" : ""}" type="button" data-value="${goal.value}">${goal.label}</button>
     `).join("");
-    document.getElementById("setupWorkPref").innerHTML = workPreferences.map((pref) => `
-      <button class="choice-pill ${pref.value === appState.workPreference ? "active" : ""}" type="button" data-value="${pref.value}">${pref.label}</button>
-    `).join("");
     renderProfilePrefs();
   }
 
@@ -991,7 +988,6 @@
   function completeSetup() {
     appState.selectedState = document.getElementById("setupState").value;
     appState.goal = getActiveChoiceValue(document.getElementById("setupGoal")) || appState.goal;
-    appState.workPreference = getActiveChoiceValue(document.getElementById("setupWorkPref")) || appState.workPreference;
     appState.setupComplete = true;
     openApp("home");
   }

@@ -116,6 +116,10 @@ a {
   font-weight: 800;
 }
 
+.app-brand__regular {
+  font-weight: 400;
+}
+
 .app-brand img {
   flex-shrink: 0;
 }

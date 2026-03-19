@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Income Spectrum App | Sort, Save, Compare, and Next Steps</title>
+  <title>Income Spectrum App | Sort, Save, Compare, and Track Progress</title>
   <meta name="description" content="A standalone Income Spectrum companion app for exploring income options, saving resources, comparing directions, and tracking next steps.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,7 +64,7 @@
           <h1 class="app-topbar__title" id="viewTitle">Home</h1>
         </div>
         <div class="app-topbar__actions">
-          <button class="app-icon-btn" data-action="open-progress" aria-label="Open progress">Next Steps</button>
+          <button class="app-icon-btn" data-action="open-progress" aria-label="Open progress">Progress</button>
         </div>
       </header>
 
@@ -76,7 +76,7 @@
             <p id="continueCopy">Set your state, browse a few directions, and save what looks useful.</p>
             <div class="hero-card__actions">
               <button class="app-btn app-btn--primary" data-action="go-explore">Open Explore</button>
-              <button class="app-btn app-btn--ghost app-btn--ghost-light" data-action="open-progress">View Next Steps</button>
+              <button class="app-btn app-btn--ghost app-btn--ghost-light" data-action="open-progress">View Progress</button>
             </div>
           </div>
           <div class="hero-stats">
@@ -129,7 +129,7 @@
           <section class="card card--stacked">
             <div class="card-header">
               <div>
-                <p class="section-kicker">Recommended Next Steps</p>
+                <p class="section-kicker">Progress</p>
               </div>
             </div>
             <ul class="stack-list" id="nextStepsList"></ul>
@@ -322,7 +322,7 @@
     <div class="overlay-panel">
       <div class="overlay-header">
         <div>
-          <p class="section-kicker">Progress / Next Steps</p>
+          <p class="section-kicker">Progress</p>
         </div>
         <button class="close-btn" data-action="close-overlay" data-target="progressOverlay">Close</button>
       </div>

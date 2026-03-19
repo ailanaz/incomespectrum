@@ -694,7 +694,7 @@ a {
 .explore-panel {
   background: rgba(255, 253, 246, 0.97);
   border: 2px solid var(--app-navy);
-  border-radius: var(--app-radius);
+  border-radius: 0;
   box-shadow: var(--app-shadow);
 }
 
@@ -710,9 +710,11 @@ a {
   border-radius: 0;
   background: transparent;
   box-shadow: none;
+  width: 100%;
 }
 
 .section-tabs--explore .section-tab {
+  display: block;
   width: 100%;
   text-align: left;
   border: 0;

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Income Spectrum App | Sort, Save, Compare, and Next Steps</title>
+  <meta name="description" content="A standalone Income Spectrum companion app for exploring income options, saving resources, comparing directions, and tracking next steps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <section class="gate-screen active" id="openingScreen" data-screen="opening">
+      <div class="gate-panel">
+        <p class="gate-kicker">Income Spectrum App</p>
+        <h1>Sort what matters. Save what fits. Move toward your next step.</h1>
+        <p class="gate-copy">Explore income options, save resources, compare directions, and keep track of your next steps.</p>
+        <div class="gate-actions">
+          <button class="app-btn app-btn--primary" data-action="start-setup">Get Started</button>
+          <button class="app-btn app-btn--secondary" data-action="sign-in-demo">Sign In</button>
+          <button class="app-btn app-btn--ghost" data-action="continue-guest">Continue as Guest</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="gate-screen" id="setupScreen" data-screen="setup">
+      <div class="gate-panel gate-panel--wide">
+        <p class="gate-kicker">Welcome</p>
+        <h2>Set a few preferences before you start.</h2>
+        <div class="setup-grid">
+          <label class="field">
+            <span>State</span>
+            <select id="setupState"></select>
+          </label>
+          <div class="field">
+            <span>What are you trying to do?</span>
+            <div class="choice-group" id="setupGoal"></div>
+          </div>
+          <div class="field">
+            <span>Work preference</span>
+            <div class="choice-group" id="setupWorkPref"></div>
+          </div>
+        </div>
+        <div class="gate-actions">
+          <button class="app-btn app-btn--primary" data-action="complete-setup">Continue</button>
+          <button class="app-btn app-btn--ghost" data-action="skip-setup">Skip for now</button>
+        </div>
+      </div>
+    </section>
+
+    <main class="app-shell__main hidden" id="mainApp">
+      <header class="app-topbar">
+        <div>
+          <p class="app-topbar__eyebrow">Income Spectrum App</p>
+          <h1 class="app-topbar__title" id="viewTitle">Home</h1>
+        </div>
+        <div class="app-topbar__actions">
+          <button class="app-icon-btn" data-action="open-search" aria-label="Open search">Search</button>
+          <button class="app-icon-btn" data-action="open-progress" aria-label="Open progress">Next Steps</button>
+        </div>
+      </header>
+
+      <section class="view active" id="view-home" data-view="home">
+        <div class="search-strip">
+          <button class="search-chip search-chip--wide" data-action="open-search">Search income options, training, services, and official information</button>
+        </div>
+
+        <div class="card hero-card">
+          <div>
+            <p class="section-kicker">Continue where you left off</p>
+            <h2 id="continueTitle">Start exploring Income Spectrum.</h2>
+            <p id="continueCopy">Set your state, browse a few directions, and save what looks useful.</p>
+          </div>
+          <button class="app-btn app-btn--primary" data-action="go-explore">Open Explore</button>
+        </div>
+
+        <div class="card-grid card-grid--two">
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <p class="section-kicker">Quick Access</p>
+                <h3>Browse by section</h3>
+              </div>
+            </div>
+            <div class="quick-grid">
+              <button class="quick-tile quick-tile--income" data-action="open-explore-section" data-section="income">Income Options</button>
+              <button class="quick-tile quick-tile--training" data-action="open-explore-section" data-section="training">Education &amp; Training</button>
+              <button class="quick-tile quick-tile--services" data-action="open-explore-section" data-section="services">Supportive Services</button>
+              <button class="quick-tile quick-tile--official" data-action="open-explore-section" data-section="official">Official Information</button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <p class="section-kicker">Recommended Next Steps</p>
+                <h3>What to do next</h3>
+              </div>
+            </div>
+            <ul class="stack-list" id="nextStepsList"></ul>
+          </section>
+        </div>
+
+        <div class="card-grid card-grid--two">
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <p class="section-kicker">Saved Preview</p>
+                <h3>Items to revisit</h3>
+              </div>
+              <button class="text-link" data-action="show-view" data-view="saved">Open Saved</button>
+            </div>
+            <div id="savedPreview"></div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <p class="section-kicker">Recently Viewed</p>
+                <h3>Keep moving</h3>
+              </div>
+            </div>
+            <div id="recentlyViewed"></div>
+          </section>
+        </div>
+
+        <div class="card-grid card-grid--two">
+          <section class="card feature-card">
+            <p class="section-kicker">Featured Quiz</p>
+            <h3>What People Will Pay For</h3>
+            <p>A plainspoken quiz that helps you see what people are really paying for, what they are paying with, and where opportunity starts.</p>
+            <button class="app-btn app-btn--secondary" data-action="open-quiz">Take the Quiz</button>
+          </section>
+
+          <section class="card feature-card">
+            <p class="section-kicker">Featured Guide</p>
+            <h3>Government Contracting Resources</h3>
+            <p>See one more lane for practical service businesses, and connect what you already do to federal work, registration, and certifications.</p>
+            <a class="app-btn app-btn--ghost" href="blog/government-contracting-resources/" target="_blank" rel="noopener noreferrer">Open Guide</a>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="view-explore" data-view="explore">
+        <div class="section-tabs" id="exploreTabs">
+          <button class="section-tab active" data-section="income">Income Options</button>
+          <button class="section-tab" data-section="training">Education &amp; Training</button>
+          <button class="section-tab" data-section="services">Supportive Services</button>
+          <button class="section-tab" data-section="official">Official Information</button>
+        </div>
+
+        <div class="toolbar">
+          <div class="toolbar__chips" id="filterChips"></div>
+          <div class="toolbar__actions">
+            <button class="app-btn app-btn--ghost" data-action="open-filter">Filter</button>
+            <button class="app-btn app-btn--ghost" data-action="toggle-sort">Sort</button>
+          </div>
+        </div>
+
+        <div id="exploreContent"></div>
+      </section>
+
+      <section class="view" id="view-saved" data-view="saved">
+        <div class="toolbar">
+          <div class="toolbar__chips" id="savedTypeFilters"></div>
+          <div class="toolbar__actions">
+            <button class="app-btn app-btn--ghost" data-action="saved-sort">Sort by date saved</button>
+          </div>
+        </div>
+        <div id="savedSections"></div>
+      </section>
+
+      <section class="view" id="view-compare" data-view="compare">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <p class="section-kicker">Compare</p>
+              <h2>Income directions side by side</h2>
+            </div>
+          </div>
+          <p class="helper-copy">Select two to four saved income options. Compare startup cost, speed to start, skill, location style, repeat income potential, customer interaction, and complexity.</p>
+          <div id="compareSelection"></div>
+          <div class="compare-table-wrap" id="compareTableWrap"></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-profile" data-view="profile">
+        <div class="card-grid card-grid--two">
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <p class="section-kicker">Profile</p>
+                <h2>Preferences</h2>
+              </div>
+            </div>
+            <div class="profile-list">
+              <label class="field">
+                <span>Selected state</span>
+                <select id="profileState"></select>
+              </label>
+              <div class="field">
+                <span>Saved work preference</span>
+                <div class="pill-row" id="profileWorkPref"></div>
+              </div>
+              <div class="field">
+                <span>Saved goal</span>
+                <div class="pill-row" id="profileGoal"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <p class="section-kicker">Account</p>
+                <h2>App tools</h2>
+              </div>
+            </div>
+            <div class="stack-actions">
+              <button class="app-btn app-btn--secondary" data-action="open-notes">Open Notes</button>
+              <button class="app-btn app-btn--secondary" data-action="open-progress">Open Progress</button>
+              <button class="app-btn app-btn--secondary" data-action="open-quiz">Open Quiz</button>
+              <button class="app-btn app-btn--ghost" data-action="reset-app">Reset App Data</button>
+            </div>
+          </section>
+        </div>
+
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <p class="section-kicker">Saved Quiz Result</p>
+              <h3>Latest result</h3>
+            </div>
+          </div>
+          <div id="savedQuizResult"></div>
+        </section>
+      </section>
+
+      <nav class="app-bottom-nav" aria-label="App navigation">
+        <button class="bottom-tab active" data-view="home">Home</button>
+        <button class="bottom-tab" data-view="explore">Explore</button>
+        <button class="bottom-tab" data-view="saved">Saved</button>
+        <button class="bottom-tab" data-view="compare">Compare</button>
+        <button class="bottom-tab" data-view="profile">Profile</button>
+      </nav>
+    </main>
+  </div>
+
+  <div class="overlay hidden" id="detailOverlay">
+    <div class="overlay-panel overlay-panel--detail">
+      <div class="overlay-header">
+        <div>
+          <p class="section-kicker" id="detailType"></p>
+          <h2 id="detailTitle"></h2>
+        </div>
+        <button class="close-btn" data-action="close-overlay" data-target="detailOverlay">Close</button>
+      </div>
+      <div id="detailBody"></div>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="searchOverlay">
+    <div class="overlay-panel">
+      <div class="overlay-header">
+        <div>
+          <p class="section-kicker">Search</p>
+          <h2>Search the app</h2>
+        </div>
+        <button class="close-btn" data-action="close-overlay" data-target="searchOverlay">Close</button>
+      </div>
+      <label class="field">
+        <span>Search</span>
+        <input type="search" id="globalSearchInput" placeholder="Search income options, training, services, official information, and guides">
+      </label>
+      <div class="recent-searches" id="recentSearches"></div>
+      <div id="searchResults"></div>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="notesOverlay">
+    <div class="overlay-panel">
+      <div class="overlay-header">
+        <div>
+          <p class="section-kicker">Notes</p>
+          <h2>Notes by item</h2>
+        </div>
+        <button class="close-btn" data-action="close-overlay" data-target="notesOverlay">Close</button>
+      </div>
+      <div id="notesList"></div>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="progressOverlay">
+    <div class="overlay-panel">
+      <div class="overlay-header">
+        <div>
+          <p class="section-kicker">Progress / Next Steps</p>
+          <h2>Move from browsing to action</h2>
+        </div>
+        <button class="close-btn" data-action="close-overlay" data-target="progressOverlay">Close</button>
+      </div>
+      <div id="progressStages"></div>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="quizOverlay">
+    <div class="overlay-panel">
+      <div class="overlay-header">
+        <div>
+          <p class="section-kicker">Quiz</p>
+          <h2 id="quizTitle">What People Will Pay For</h2>
+        </div>
+        <button class="close-btn" data-action="close-overlay" data-target="quizOverlay">Close</button>
+      </div>
+      <div class="quiz-progress">
+        <div class="quiz-progress__bar"><span id="quizProgressBar"></span></div>
+        <p id="quizProgressText"></p>
+      </div>
+      <div id="quizBody"></div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

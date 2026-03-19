@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../img/apple-touch-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What People Will Pay For | Quiz | Income Spectrum</title>
+  <meta name="description" content="A plainspoken quiz built from the What People Will Pay For framework. Use it to see what people are paying for, what they are paying with, and where business opportunity starts.">
+  <meta property="og:title" content="What People Will Pay For | Quiz | Income Spectrum">
+  <meta property="og:description" content="A quiz built from the What People Will Pay For framework to help you see the real motivators, costs, and opportunity behind demand.">
+  <meta property="og:url" content="https://incomespectrum.com/blog/what-people-will-pay-for-quiz/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://incomespectrum.com/img/logo.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What People Will Pay For | Quiz | Income Spectrum">
+  <meta name="twitter:description" content="Use this quiz to understand what people are really paying for, what they are paying with, and how motivation turns into opportunity.">
+  <meta name="twitter:image" content="https://incomespectrum.com/img/logo.png">
+  <link rel="canonical" href="https://incomespectrum.com/blog/what-people-will-pay-for-quiz/">
+  <meta name="google-site-verification" content="dK63OO5EuAWmAcfY69i644eoVLcJCYW2KsKhk9uA_7o" />
+  <meta name='impact-site-verification' value='ad1dc14d-c290-4985-a6f9-f6ca852907ab'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E0X0YYVSC4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-E0X0YYVSC4');
+  </script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .quiz-shell {
+      max-width: 840px;
+      margin: 0 auto;
+    }
+    .quiz-intro {
+      margin-bottom: 28px;
+    }
+    .quiz-intro p {
+      margin-bottom: 14px;
+      color: var(--text-700);
+      line-height: 1.75;
+    }
+    .quiz-step {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      background: #fff;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+    }
+    .quiz-step h2 {
+      font-size: 22px;
+      margin: 0 0 8px;
+      color: var(--text-900);
+    }
+    .quiz-step p {
+      margin: 0 0 16px;
+      color: var(--text-700);
+      line-height: 1.7;
+    }
+    .quiz-note {
+      font-size: 14px;
+      color: var(--text-600);
+      background: #f8fafc;
+      border-left: 4px solid var(--c-income);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 18px;
+    }
+    .quiz-options {
+      display: grid;
+      gap: 12px;
+    }
+    .quiz-option {
+      display: block;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .quiz-option:hover {
+      border-color: var(--c-income);
+      background: #fbfdff;
+    }
+    .quiz-option input {
+      margin-right: 10px;
+    }
+    .quiz-option strong {
+      color: var(--text-900);
+    }
+    .quiz-actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .quiz-btn {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .quiz-btn--primary {
+      background: var(--c-income);
+      color: #fff;
+    }
+    .quiz-btn--secondary {
+      background: #eef2ff;
+      color: var(--text-900);
+    }
+    .quiz-results {
+      margin-top: 30px;
+      border: 1px solid #dbe4ef;
+      border-radius: 20px;
+      padding: 24px;
+      background: #f8fbff;
+    }
+    .quiz-results[hidden] {
+      display: none;
+    }
+    .quiz-results h2 {
+      margin: 0 0 14px;
+      color: var(--text-900);
+    }
+    .quiz-results h3 {
+      margin: 20px 0 8px;
+      color: var(--text-900);
+      font-size: 18px;
+    }
+    .quiz-results p {
+      margin: 0 0 12px;
+      line-height: 1.75;
+      color: var(--text-700);
+    }
+    .quiz-results ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .quiz-results li {
+      margin-bottom: 8px;
+      color: var(--text-700);
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="container nav-inner">
+    <a href="../../index.html" class="nav-logo" aria-label="Income Spectrum Home">
+      <img src="../../img/logo.png" class="nav-logo__gauge" width="44" height="44" alt="" aria-hidden="true">
+      <span class="nav-logo__text"><strong>Income</strong>Spectrum</span>
+    </a>
+    <ul class="nav-links" id="mainNav">
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../income-options.html">Income Options</a></li>
+      <li><a href="../../education-training.html">Education &amp; Training</a></li>
+      <li><a href="../../supportive-services.html">Supportive Services</a></li>
+      <li><a href="../../state-federal-resources.html">Official Resources</a></li>
+      <li><a href="../../blog/" class="active">Blog</a></li>
+    </ul>
+    <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="page-header page-header--blog">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumbs__sep">&rsaquo;</span>
+      <a href="../">Blog</a>
+      <span class="breadcrumbs__sep">&rsaquo;</span>
+      <span>What People Will Pay For</span>
+    </nav>
+    <div class="page-header__inner">
+      <div class="page-header__left">
+        <p class="page-header__eyebrow">Business Ideas Unblocked</p>
+        <h1 class="page-header__title">What People Will Pay For</h1>
+        <p class="page-header__sub">A quiz built from the actual framework. Use it to see what people are paying for, what they are paying with, and where opportunity starts.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container">
+    <div class="quiz-shell">
+      <div class="quiz-intro">
+        <p>This is not a personality test. It is a way to slow down and look at demand more clearly.</p>
+        <p>The point is not to guess what people might buy in the abstract. The point is to look at the pressure underneath behavior: what is driving it, what people are already paying with, what culture pattern you are actually looking at, and how a business could lower the cost or raise the value.</p>
+        <p>If you do not already know how to see demand, that is fine. This walks you through it.</p>
+      </div>
+
+      <form id="wppfQuiz">
+        <section class="quiz-step">
+          <h2>1. What is driving the behavior most strongly?</h2>
+          <p>Start with the six motivators. Every useful business direction is serving at least one of them.</p>
+          <div class="quiz-note">You are not trying to pick a market category here. You are trying to name the deeper human pressure underneath the behavior.</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="motivator" value="survival" required> <strong>Survival and Stability</strong><br>Income, housing, daily functioning, basic life stability.</label>
+            <label class="quiz-option"><input type="radio" name="motivator" value="safety"> <strong>Safety and Protection</strong><br>Preventing loss, staying secure, avoiding the worst-case outcome.</label>
+            <label class="quiz-option"><input type="radio" name="motivator" value="relief"> <strong>Relief and Health</strong><br>Pain, fatigue, stress, mental or physical strain, the need to feel better.</label>
+            <label class="quiz-option"><input type="radio" name="motivator" value="comfort"> <strong>Pleasure and Comfort</strong><br>Ease, enjoyment, convenience, aesthetics, relaxation.</label>
+            <label class="quiz-option"><input type="radio" name="motivator" value="belonging"> <strong>Belonging and Love</strong><br>Connection, acceptance, family, community, not wanting to feel alone.</label>
+            <label class="quiz-option"><input type="radio" name="motivator" value="status"> <strong>Status, Meaning, and Legacy</strong><br>Mattering, reputation, identity, purpose, what someone is building or proving.</label>
+          </div>
+        </section>
+
+        <section class="quiz-step">
+          <h2>2. What are people paying with most heavily right now?</h2>
+          <p>This is the Cost of Living in the framework. People pay with more than money.</p>
+          <div class="quiz-note">When someone keeps dealing with the same problem, ask what it is costing them to keep going the way they are going.</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="cost" value="money-time" required> <strong>Money and Time</strong><br>They are spending cash, driving, waiting, scheduling, repeating steps, or losing hours.</label>
+            <label class="quiz-option"><input type="radio" name="cost" value="energy-attention"> <strong>Energy and Attention</strong><br>They are thinking about it too much, managing too many details, or staying mentally occupied by it.</label>
+            <label class="quiz-option"><input type="radio" name="cost" value="comfort-risk"> <strong>Comfort and Risk</strong><br>They are tolerating stress, uncertainty, exposure, physical discomfort, or a bad outcome they are trying to avoid.</label>
+          </div>
+        </section>
+
+        <section class="quiz-step">
+          <h2>3. What is the shared pattern in the group you are looking at?</h2>
+          <p>This is where niche becomes culture.</p>
+          <div class="quiz-note">A niche is not just age, income, or location. A culture is a shared pattern of motivation, tradeoffs, and what people will or will not keep paying.</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="culture" value="frustration" required> <strong>They are stuck in the same frustration</strong><br>The same thing keeps going wrong and they are tired of it.</label>
+            <label class="quiz-option"><input type="radio" name="culture" value="goal"> <strong>They are chasing the same outcome</strong><br>They want a specific result badly enough to keep paying toward it.</label>
+            <label class="quiz-option"><input type="radio" name="culture" value="risk"> <strong>They are trying to avoid the same risk</strong><br>They are managing exposure, uncertainty, or the consequences of getting it wrong.</label>
+            <label class="quiz-option"><input type="radio" name="culture" value="identity"> <strong>They are protecting or building the same identity</strong><br>Who they are, or who they are trying to be, shapes what they pay for.</label>
+            <label class="quiz-option"><input type="radio" name="culture" value="routine"> <strong>They live inside the same routine and tradeoffs</strong><br>Their day-to-day pattern creates the demand.</label>
+          </div>
+        </section>
+
+        <section class="quiz-step">
+          <h2>4. Where does the business direction most likely come from?</h2>
+          <p>Business directions come from lowering costs or increasing value within that culture.</p>
+          <div class="quiz-note">If you are unsure, pick the one that feels most concrete. Concrete usually beats clever.</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="direction" value="lower-money-time" required> <strong>Lower money and time cost</strong><br>Make it cheaper, faster, shorter, or easier to complete.</label>
+            <label class="quiz-option"><input type="radio" name="direction" value="lower-energy-attention"> <strong>Lower energy and attention cost</strong><br>Make it easier to understand, decide, manage, or stay consistent with.</label>
+            <label class="quiz-option"><input type="radio" name="direction" value="lower-comfort-risk"> <strong>Lower comfort and risk cost</strong><br>Reduce uncertainty, friction, exposure, or discomfort.</label>
+            <label class="quiz-option"><input type="radio" name="direction" value="increase-value"> <strong>Increase value for what they already pay</strong><br>Make the result clearer, better, more complete, or more trustworthy.</label>
+          </div>
+        </section>
+
+        <section class="quiz-step">
+          <h2>5. What is the simplest first business shape for this?</h2>
+          <p>You are not locking yourself into a final model. You are choosing a practical first form.</p>
+          <div class="quiz-note">Most good directions can become more than one kind of business. Start with the form that matches the pressure best.</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="shape" value="service" required> <strong>Service</strong><br>Someone wants help, execution, support, or direct handling.</label>
+            <label class="quiz-option"><input type="radio" name="shape" value="tool"> <strong>Tool or system</strong><br>Someone needs a repeatable way to solve or manage the problem.</label>
+            <label class="quiz-option"><input type="radio" name="shape" value="guide"> <strong>Guide, content, or education</strong><br>Someone needs clarity, understanding, decision help, or a better path.</label>
+            <label class="quiz-option"><input type="radio" name="shape" value="product"> <strong>Product or kit</strong><br>Someone wants a direct, usable thing that reduces effort or improves results.</label>
+          </div>
+        </section>
+
+        <div class="quiz-actions">
+          <button type="submit" class="quiz-btn quiz-btn--primary">See the Readout</button>
+          <button type="button" class="quiz-btn quiz-btn--secondary" id="resetQuiz">Reset</button>
+        </div>
+      </form>
+
+      <section class="quiz-results" id="quizResults" hidden>
+        <h2>Your Readout</h2>
+        <p id="resultSummary"></p>
+
+        <h3>What is driving this</h3>
+        <p id="resultMotivator"></p>
+
+        <h3>What people are paying with</h3>
+        <p id="resultCost"></p>
+
+        <h3>The culture underneath the niche</h3>
+        <p id="resultCulture"></p>
+
+        <h3>Where opportunity likely starts</h3>
+        <p id="resultDirection"></p>
+
+        <h3>Plain next moves</h3>
+        <ul id="resultNextMoves"></ul>
+      </section>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand__logo">
+          <img src="../../img/logo.png" width="34" height="34" alt="" aria-hidden="true">
+          <span class="footer-brand__text">IncomeSpectrum</span>
+        </div>
+        <p class="footer-brand__tagline">A curated directory of income options, education and training resources, supportive services, and official state and federal information for doing business in the U.S.</p>
+      </div>
+      <div class="footer-col">
+        <h5 class="footer-col__title">Pages</h5>
+        <ul class="footer-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../income-options.html">Income Options</a></li>
+          <li><a href="../../education-training.html">Education &amp; Training</a></li>
+          <li><a href="../../supportive-services.html">Supportive Services</a></li>
+          <li><a href="../../state-federal-resources.html">Official Resources</a></li>
+          <li><a href="../../blog/">Blog</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="https://www.reddit.com/r/IncomeSpectrum/" target="_blank" rel="noopener noreferrer">Join the Income Spectrum Reddit community</a></li>
+          <li><a href="../../disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-disclosure-bar">
+      <div class="container">
+        <p class="site-disclosure-bar__text">Transparency &amp; Disclosure: Income Spectrum is an independent directory. To maintain this information infrastructure, we may receive compensation through affiliate links or sponsored content. This does not influence our routing process; our primary focus is providing direct access to a broad spectrum of resources to help you navigate your own entrepreneurial path. <a href="/disclaimer.html">Read the disclaimer.</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-bottom__copy">&copy; 2026 IncomeSpectrum.com</p>
+    </div>
+  </div>
+</footer>
+<script>
+  const motivators = {
+    survival: {
+      title: "Survival and Stability",
+      text: "This usually means the pressure is concrete. Income, housing, steady work, bills, daily functioning, or basic life stability are under strain."
+    },
+    safety: {
+      title: "Safety and Protection",
+      text: "This usually means people are trying to prevent loss, avoid a bad outcome, or feel more secure before something goes wrong."
+    },
+    relief: {
+      title: "Relief and Health",
+      text: "This usually means people are dealing with pain, strain, stress, fatigue, anxiety, or a quality-of-life problem they want reduced."
+    },
+    comfort: {
+      title: "Pleasure and Comfort",
+      text: "This usually means people want ease, convenience, enjoyment, aesthetics, or a better day-to-day experience."
+    },
+    belonging: {
+      title: "Belonging and Love",
+      text: "This usually means the demand is tied to connection, acceptance, family, community, or not wanting to feel left out."
+    },
+    status: {
+      title: "Status, Meaning, and Legacy",
+      text: "This usually means the demand is tied to reputation, identity, purpose, progress, or how someone wants to be seen."
+    }
+  };
+
+  const costs = {
+    "money-time": "Right now the visible cost is money and time. People are already paying in cash, delay, repetition, scheduling, waiting, or lost hours.",
+    "energy-attention": "Right now the visible cost is energy and attention. People are carrying the issue mentally, trying to stay on top of it, or burning focus on it over and over.",
+    "comfort-risk": "Right now the visible cost is comfort and risk. People are tolerating uncertainty, discomfort, friction, stress, or the chance of getting it wrong."
+  };
+
+  const cultures = {
+    frustration: "The culture pattern here is shared frustration. These are people who are tired of the same thing staying broken and are willing to pay for a cleaner way out.",
+    goal: "The culture pattern here is shared pursuit. These are people trying to reach the same result and paying steadily toward it.",
+    risk: "The culture pattern here is shared exposure. These are people trying to avoid the same bad outcome or reduce the same vulnerability.",
+    identity: "The culture pattern here is shared identity. These are people whose self-image, role, or sense of who they are shapes what they will and will not pay for.",
+    routine: "The culture pattern here is shared routine. Their daily pattern creates the demand, and the opportunity usually lives inside the repeated friction."
+  };
+
+  const directions = {
+    "lower-money-time": "The strongest opportunity is probably to lower the money and time cost. Think shorter path, clearer path, fewer steps, less waste, or less expense.",
+    "lower-energy-attention": "The strongest opportunity is probably to lower the energy and attention cost. Think simpler decisions, clearer understanding, less management, or less mental drag.",
+    "lower-comfort-risk": "The strongest opportunity is probably to lower the comfort and risk cost. Think reassurance, reduction of exposure, less friction, less uncertainty, or a safer path.",
+    "increase-value": "The strongest opportunity is probably to increase value for what people are already paying. Think better results, more trust, clearer proof, better fit, or a stronger outcome."
+  };
+
+  const shapes = {
+    service: [
+      "Talk to three people in this pattern and ask what they are already doing now, what it costs them, and what they still wish someone would just handle.",
+      "Sketch a simple service that lowers one visible cost first instead of trying to solve everything at once.",
+      "Write one sentence that says what pressure you remove and what people no longer have to keep paying with."
+    ],
+    tool: [
+      "List the repeated steps, repeated mistakes, or repeated decisions people keep paying through.",
+      "Look for the smallest tool, template, tracker, checklist, or system that removes one repeat cost cleanly.",
+      "Test whether people want control with structure rather than full outsourcing."
+    ],
+    guide: [
+      "Look at where people are paying with confusion, uncertainty, scattered information, or second-guessing.",
+      "Build around clarity, explanation, comparison, proof, or a decision path instead of generic information.",
+      "Keep asking: what would help them stop burning attention on this?"
+    ],
+    product: [
+      "Look for a direct object, kit, or bundle that reduces effort or improves the result without extra complexity.",
+      "Notice where people are piecing together three or four things that should already be one purchase decision.",
+      "Make the value concrete: what cost goes down, or what result gets better, because this exists?"
+    ]
+  };
+
+  const form = document.getElementById("wppfQuiz");
+  const resetBtn = document.getElementById("resetQuiz");
+  const results = document.getElementById("quizResults");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const data = new FormData(form);
+    const motivator = data.get("motivator");
+    const cost = data.get("cost");
+    const culture = data.get("culture");
+    const direction = data.get("direction");
+    const shape = data.get("shape");
+
+    if (!motivator || !cost || !culture || !direction || !shape) {
+      return;
+    }
+
+    document.getElementById("resultSummary").textContent =
+      "What people will pay for here is not random. The pattern points to " +
+      motivators[motivator].title +
+      ", with people already paying through " +
+      cost.replace("-", " and ") +
+      ". That is where a business direction starts.";
+
+    document.getElementById("resultMotivator").textContent = motivators[motivator].text;
+    document.getElementById("resultCost").textContent = costs[cost];
+    document.getElementById("resultCulture").textContent = cultures[culture];
+    document.getElementById("resultDirection").textContent = directions[direction];
+
+    const list = document.getElementById("resultNextMoves");
+    list.innerHTML = "";
+    shapes[shape].forEach(function (item) {
+      const li = document.createElement("li");
+      li.textContent = item;
+      list.appendChild(li);
+    });
+
+    results.hidden = false;
+    results.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  resetBtn.addEventListener("click", function () {
+    form.reset();
+    results.hidden = true;
+  });
+</script>
+<script src="../../js/main.js"></script>
+</body>
+</html>

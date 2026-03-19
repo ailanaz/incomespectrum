@@ -12,7 +12,6 @@
   };
   const setupGoals = [
     { value: "explore income options", label: "Explore income options" },
-    { value: "confirm an idea", label: "Confirm an idea" },
     { value: "find training", label: "Find training" },
     { value: "find support services", label: "Find support services" },
     { value: "find official information", label: "Find official information" }

@@ -1092,10 +1092,10 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: var(--app-green);
   border: 0;
   border-right: 1px solid rgba(20, 37, 61, 0.10);
-  color: var(--app-navy);
+  color: #fffdf6;
   font-weight: 700;
   padding: 18px 8px;
   min-height: 72px;

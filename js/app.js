@@ -636,7 +636,8 @@
 
   function bindEvents() {
     document.body.addEventListener("click", handleClick);
-    document.getElementById("globalSearchInput").addEventListener("input", renderSearchResults);
+    const globalSearchInput = document.getElementById("globalSearchInput");
+    if (globalSearchInput) globalSearchInput.addEventListener("input", renderSearchResults);
     document.getElementById("filterSelect").addEventListener("change", (event) => {
       exploreFilter = event.target.value;
       renderExplore(exploreFilter);
@@ -675,8 +676,6 @@
         appState.activeExploreSection = actionNode.dataset.section;
         exploreFilter = "all";
         showView("explore");
-      } else if (action === "open-search") {
-        openOverlay("searchOverlay");
       } else if (action === "open-progress") {
         renderProgress();
         openOverlay("progressOverlay");
@@ -714,8 +713,11 @@
         savedFilter = actionNode.dataset.filter;
         renderSaved();
       } else if (action === "recent-search") {
-        document.getElementById("globalSearchInput").value = actionNode.dataset.query;
-        renderSearchResults();
+        const globalSearchInput = document.getElementById("globalSearchInput");
+        if (globalSearchInput) {
+          globalSearchInput.value = actionNode.dataset.query;
+          renderSearchResults();
+        }
       } else if (action === "reset-app") {
         appState = structuredClone(defaultState);
         saveState();
@@ -1407,12 +1409,15 @@
   }
 
   function renderSearchResults() {
+    const recentSearchesNode = document.getElementById("recentSearches");
+    const searchResultsNode = document.getElementById("searchResults");
+    if (!recentSearchesNode || !searchResultsNode) return;
     const query = (document.getElementById("globalSearchInput")?.value || "").trim().toLowerCase();
-    document.getElementById("recentSearches").innerHTML = appState.recentSearches.map((term) => `
+    recentSearchesNode.innerHTML = appState.recentSearches.map((term) => `
       <button class="recent-search" data-action="recent-search" data-query="${term}">${term}</button>
     `).join("");
     if (!query) {
-      document.getElementById("searchResults").innerHTML = `<div class="empty-state">Search across income options, training, services, official information, and articles.</div>`;
+      searchResultsNode.innerHTML = `<div class="empty-state">Search across income options, training, services, official information, and articles.</div>`;
       return;
     }
 
@@ -1448,7 +1453,7 @@
       `;
     }).join("");
 
-    document.getElementById("searchResults").innerHTML = groups || `<div class="empty-state">No results found. Try a different term.</div>`;
+    searchResultsNode.innerHTML = groups || `<div class="empty-state">No results found. Try a different term.</div>`;
   }
 
   function renderQuiz() {

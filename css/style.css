@@ -1023,7 +1023,7 @@ p { margin: 0; }
    FOOTER
    ============================================================ */
 .site-footer {
-  background: #19782e;
+  background: #0a5a33;
   color: rgba(255,255,255,0.85);
   padding: var(--gap-2xl) 0 var(--gap-lg);
 }

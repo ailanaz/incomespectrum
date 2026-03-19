@@ -112,6 +112,10 @@ a {
   z-index: 1;
 }
 
+.app-brand strong {
+  font-weight: 800;
+}
+
 .app-brand img {
   flex-shrink: 0;
 }

@@ -1040,6 +1040,8 @@
   }
 
   function showGate(screen) {
+    closeAllOverlays();
+    document.getElementById("mainApp").classList.add("hidden");
     document.querySelectorAll(".gate-screen").forEach((node) => node.classList.remove("active"));
     document.querySelector(`[data-screen="${screen}"]`).classList.add("active");
   }
@@ -1347,7 +1349,7 @@
         <h4>Planner is for signed-in users</h4>
         <p>Create an account to keep your personal business pathway plan, return to it later, and keep your state, notes, and saved path items together.</p>
         <div class="inline-actions">
-          <button class="app-btn app-btn--secondary" data-action="start-setup-signup">Sign Up</button>
+          <button class="app-btn app-btn--secondary" data-action="start-setup-signup">Sign Up to Use Planner</button>
           <button class="app-btn app-btn--ghost" data-action="go-explore">Keep Exploring</button>
         </div>
       </section>

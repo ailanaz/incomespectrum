@@ -1704,7 +1704,7 @@
           <h4>PBPP inputs: Official Information</h4>
           ${renderRelatedLinks(result.suggestedOfficialIds, "official")}
         </div>
-        ${includeSaveButton ? `<div class="inline-actions"><button class="app-btn app-btn--primary" data-action="save-quiz-result">Build PBPP</button></div>` : ""}
+        ${includeSaveButton ? `<div class="inline-actions"><button class="app-btn app-btn--primary" data-action="save-quiz-result">Build Plan</button></div>` : ""}
       </div>
     `;
   }

@@ -737,7 +737,9 @@
       } else if (action === "save-quiz-result") {
         saveQuizResult();
       } else if (action === "open-state-detail") {
-        openStateDetail();
+        openStateDetail(actionNode.dataset.state || appState.selectedState);
+      } else if (action === "open-all-states") {
+        openAllStatesBrowser();
       }
       return;
     }
@@ -1619,24 +1621,55 @@
     renderSaved();
   }
 
-  async function openStateDetail() {
+  function openAllStatesBrowser() {
     const detailType = document.getElementById("detailType");
     const detailTitle = document.getElementById("detailTitle");
     const detailBody = document.getElementById("detailBody");
-    const stateItems = data.official.filter((item) => item.tags.includes("state") || item.coverage === appState.selectedState);
-    const statePageItems = await loadStateSpecificOfficialItems(appState.selectedState);
 
-    detailType.textContent = "State Detail";
-    detailTitle.textContent = `${appState.selectedState} Official Business Information`;
+    detailType.textContent = "All States";
+    detailTitle.textContent = "Browse Official Information by State";
     detailBody.innerHTML = `
       <div class="detail-section">
-        <p>Official business registration, tax, licensing, agency, and state contracting links for ${appState.selectedState}.</p>
+        <p>Your saved state is <strong>${appState.selectedState}</strong>. Opening another state here will not change your default state in the app.</p>
+      </div>
+      <div class="state-browser-grid">
+        ${allStates.map((state) => `
+          <button class="state-browser-card ${state === appState.selectedState ? "state-browser-card--current" : ""}" type="button" data-action="open-state-detail" data-state="${state}">
+            <span class="state-browser-card__eyebrow">${state === appState.selectedState ? "Saved State" : "State"}</span>
+            <strong>${state}</strong>
+            <span class="state-browser-card__meta">Open official information</span>
+          </button>
+        `).join("")}
+      </div>
+    `;
+
+    openOverlay("detailOverlay");
+  }
+
+  async function openStateDetail(stateName = appState.selectedState) {
+    const detailType = document.getElementById("detailType");
+    const detailTitle = document.getElementById("detailTitle");
+    const detailBody = document.getElementById("detailBody");
+    const stateItems = data.official.filter((item) => item.tags.includes("state") || item.coverage === stateName);
+    const statePageItems = await loadStateSpecificOfficialItems(stateName);
+
+    detailType.textContent = "State Detail";
+    detailTitle.textContent = `${stateName} Official Business Information`;
+    detailBody.innerHTML = `
+      <div class="detail-section">
+        <p>Official business registration, tax, licensing, agency, and state contracting links for ${stateName}.</p>
+      </div>
+      <div class="detail-section">
+        <div class="inline-actions">
+          <button class="app-btn app-btn--ghost" data-action="open-all-states">Back to All States</button>
+          ${stateName !== appState.selectedState ? `<button class="app-btn app-btn--ghost" data-action="open-state-detail" data-state="${appState.selectedState}">Open Saved State</button>` : ""}
+        </div>
       </div>
       ${stateItems.map((item) => `
         <div class="detail-section">
           <h3>${item.title}</h3>
           <ul class="detail-links">
-            ${resolveOfficialLinks(item, appState.selectedState).map((link) => `<li><a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a></li>`).join("") || "<li>No direct links for this state in the current seed data.</li>"}
+            ${resolveOfficialLinks(item, stateName).map((link) => `<li><a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a></li>`).join("") || "<li>No direct links for this state in the current seed data.</li>"}
           </ul>
           <div class="inline-actions">
             <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>
@@ -1645,7 +1678,7 @@
       `).join("")}
       ${statePageItems.length ? `
         <div class="detail-section">
-          <h3>From the ${appState.selectedState} state page</h3>
+          <h3>From the ${stateName} state page</h3>
           <ul class="detail-links">
             ${statePageItems.map((item) => `<li><a href="${item.externalHref}" target="_blank" rel="noopener noreferrer">${item.title}</a> ${item.description ? `- ${item.description}` : ""}</li>`).join("")}
           </ul>

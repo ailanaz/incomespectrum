@@ -30,6 +30,21 @@
     "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
     "West Virginia", "Wisconsin", "Wyoming"
   ];
+  const liveContentSources = [
+    { path: "income-options.html", section: "income" },
+    { path: "education-training.html", section: "training" },
+    { path: "supportive-services.html", section: "services" },
+    { path: "state-federal-resources.html", section: "official" },
+    { path: "federal-contracting-resources.html", section: "official" },
+    { path: "state-contracting-resources.html", section: "official" },
+    { path: "local-government-contracting-resources.html", section: "official" },
+    { path: "asl-interpreter-opportunities-by-state.html", section: "income" },
+    { path: "asl-education-and-training-by-state.html", section: "training" },
+    { path: "asl-communication-access-services-by-state.html", section: "services" },
+    { path: "asl-official-information-by-state.html", section: "official" },
+    { path: "blog/index.html", section: "article", parser: "blog" }
+  ];
+  const statePageCache = new Map();
 
   const data = {
     income: [
@@ -608,11 +623,13 @@
 
   document.addEventListener("DOMContentLoaded", init);
 
-  function init() {
+  async function init() {
     populateStateSelects();
     renderSetupChoices();
     bindEvents();
     syncGateState();
+    renderAll();
+    await hydrateCatalogFromSite();
     renderAll();
   }
 
@@ -779,6 +796,144 @@
     `).join("");
   }
 
+  async function hydrateCatalogFromSite() {
+    const pageResults = await Promise.allSettled(liveContentSources.map((source) => loadSourcePage(source)));
+    pageResults.forEach((result, index) => {
+      if (result.status !== "fulfilled") return;
+      mergeImportedItems(liveContentSources[index].section, result.value);
+    });
+    hydrateStatePagesInBackground();
+  }
+
+  async function loadSourcePage(source) {
+    const response = await fetch(source.path);
+    if (!response.ok) return [];
+    const html = await response.text();
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    if (source.parser === "blog") {
+      return parseBlogCards(doc, source);
+    }
+    return parseListingCards(doc, source);
+  }
+
+  function parseListingCards(doc, source) {
+    const pageTitle = textContentOf(doc.querySelector(".page-header__title, h1")) || source.path;
+    return [...doc.querySelectorAll(".listing-card")].map((card, index) => {
+      const title = textContentOf(card.querySelector(".listing-card__name"));
+      if (!title) return null;
+      const description = textContentOf(card.querySelector(".listing-card__desc")) || `${title} resource from ${pageTitle}.`;
+      const block = card.closest(".cat-block, .subcat");
+      const groupTitle = textContentOf(block?.querySelector(".cat-block__title, .subcat__title")) || pageTitle;
+      const href = card.querySelector(".listing-card__cta")?.getAttribute("href") || "";
+      const typeText = textContentOf(card.querySelector(".listing-card__type")) || groupTitle;
+      const coverage = textContentOf(card.querySelector(".listing-card__coverage"));
+      const tags = extractTags(card, groupTitle, coverage);
+      const id = `${source.section}-${slugify(title)}-${slugify(source.path)}-${index}`;
+
+      if (source.section === "income") {
+        return {
+          id,
+          title,
+          description,
+          overview: description,
+          whyChoose: `This sits inside ${groupTitle.toLowerCase()} on ${pageTitle.toLowerCase()}.`,
+          fit: coverage ? `Useful when you are looking at ${coverage.toLowerCase()} coverage or fit.` : `Useful when ${groupTitle.toLowerCase()} is the direction you want to explore.`,
+          tags,
+          trainingIds: [],
+          serviceIds: [],
+          officialIds: [],
+          externalHref: href,
+          sourcePage: source.path,
+          groupTitle,
+          typeLabel: typeText
+        };
+      }
+
+      if (source.section === "training") {
+        return {
+          id,
+          title,
+          provider: typeText,
+          format: groupTitle,
+          cost: "Varies",
+          description,
+          covers: description,
+          fit: `Useful for people exploring ${groupTitle.toLowerCase()}.`,
+          tags,
+          relatedIncomeIds: [],
+          externalHref: href,
+          sourcePage: source.path,
+          groupTitle
+        };
+      }
+
+      if (source.section === "services") {
+        return {
+          id,
+          title,
+          description,
+          category: groupTitle,
+          helpsWith: description,
+          examples: `This service sits inside ${groupTitle.toLowerCase()} in the live directory.`,
+          providerLinks: href ? [{ label: "Open resource", href }] : [],
+          relatedIncomeIds: [],
+          tags,
+          externalHref: href,
+          sourcePage: source.path,
+          groupTitle
+        };
+      }
+
+      return {
+        id,
+        title,
+        description,
+        type: groupTitle,
+        categories: [groupTitle],
+        stateLinks: coverage ? { [coverage]: href ? [{ label: title, href }] : [] } : {},
+        federalLinks: !coverage && href ? [{ label: title, href }] : [],
+        tags,
+        externalHref: href,
+        sourcePage: source.path,
+        coverage,
+        groupTitle
+      };
+    }).filter(Boolean);
+  }
+
+  function parseBlogCards(doc) {
+    return [...doc.querySelectorAll(".blog-card")].map((card, index) => {
+      const title = textContentOf(card.querySelector(".blog-card__title"));
+      if (!title) return null;
+      const href = card.querySelector(".blog-card__title a, .blog-card__cta")?.getAttribute("href") || "";
+      return {
+        id: `article-${slugify(title)}-${index}`,
+        title,
+        description: textContentOf(card.querySelector(".blog-card__excerpt")) || title,
+        href: href.startsWith("http") ? href : `blog/${href.replace(/^\.?\//, "")}`
+      };
+    }).filter(Boolean);
+  }
+
+  function mergeImportedItems(section, importedItems) {
+    const existingByTitle = new Map(data[section].map((item) => [normalizeKey(item.title), item]));
+    importedItems.forEach((item) => {
+      const match = existingByTitle.get(normalizeKey(item.title));
+      if (match) {
+        Object.assign(match, {
+          ...item,
+          tags: unique([...(match.tags || []), ...(item.tags || [])]),
+          categories: unique([...(match.categories || []), ...(item.categories || [])]),
+          providerLinks: uniqueLinks([...(match.providerLinks || []), ...(item.providerLinks || [])]),
+          federalLinks: uniqueLinks([...(match.federalLinks || []), ...(item.federalLinks || [])]),
+          stateLinks: mergeStateLinks(match.stateLinks || {}, item.stateLinks || {})
+        });
+        return;
+      }
+      data[section].push(item);
+    });
+  }
+
   function completeSetup() {
     appState.selectedState = document.getElementById("setupState").value;
     appState.goal = getActiveChoiceValue(document.getElementById("setupGoal")) || appState.goal;
@@ -891,7 +1046,7 @@
 
   function renderOfficialList() {
     const selectedState = appState.selectedState;
-    const stateItems = data.official.filter((item) => item.tags.includes("state"));
+    const stateItems = data.official.filter((item) => item.tags.includes("state") || item.coverage === selectedState);
     const federalItems = data.official.filter((item) => item.tags.includes("federal"));
     return `
       <div class="card">
@@ -926,7 +1081,7 @@
   }
 
   function renderOfficialMini(item, selectedState) {
-    const links = item.tags.includes("state") ? (item.stateLinks[selectedState] || []) : item.federalLinks;
+    const links = resolveOfficialLinks(item, selectedState);
     const topLink = links[0];
     return `
       <div class="mini-card">
@@ -1030,7 +1185,7 @@
           ${rows.map(([label, key]) => `
             <tr>
               <th>${label}</th>
-              ${compareItems.map((item) => `<td>${item[key]}</td>`).join("")}
+              ${compareItems.map((item) => `<td>${item[key] || "Varies"}</td>`).join("")}
             </tr>
           `).join("")}
         </tbody>
@@ -1110,29 +1265,30 @@
     if (type === "income") {
       return `
         <div class="detail-section">
-          <p>${item.overview}</p>
-          <div class="item-tags">${item.tags.map(renderTag).join("")}</div>
+          <p>${item.overview || item.description}</p>
+          <div class="item-tags">${(item.tags || []).map(renderTag).join("")}</div>
         </div>
         <div class="detail-section">
           <h3>Why someone may choose it</h3>
-          <p>${item.whyChoose}</p>
+          <p>${item.whyChoose || `This appears in ${item.groupTitle || "the live directory"} and may fit someone exploring this direction.`}</p>
         </div>
         <div class="detail-section">
           <h3>What kind of person or situation it may fit</h3>
-          <p>${item.fit}</p>
+          <p>${item.fit || `Useful when ${item.groupTitle ? item.groupTitle.toLowerCase() : "this path"} fits what you are trying to build.`}</p>
         </div>
         <div class="detail-section">
           <h3>Related training</h3>
-          ${renderRelatedLinks(item.trainingIds, "training")}
+          ${renderRelatedLinks(item.trainingIds, "training", item, "income")}
         </div>
         <div class="detail-section">
           <h3>Related support services</h3>
-          ${renderRelatedLinks(item.serviceIds, "services")}
+          ${renderRelatedLinks(item.serviceIds, "services", item, "income")}
         </div>
         <div class="detail-section">
           <h3>Related official information</h3>
-          ${renderRelatedLinks(item.officialIds, "official")}
+          ${renderRelatedLinks(item.officialIds, "official", item, "income")}
         </div>
+        ${item.externalHref ? `<div class="detail-section"><a class="app-btn app-btn--secondary" href="${item.externalHref}" target="_blank" rel="noopener noreferrer">Open Source Listing</a></div>` : ""}
         ${renderDetailActions(item.id, type)}
         ${renderNoteEditor(item.id)}
       `;
@@ -1141,19 +1297,20 @@
     if (type === "training") {
       return `
         <div class="detail-section">
-          <p><strong>Provider:</strong> ${item.provider}</p>
-          <p><strong>Format:</strong> ${item.format}</p>
-          <p><strong>Cost:</strong> ${item.cost}</p>
-          <p>${item.covers}</p>
+          <p><strong>Provider:</strong> ${item.provider || item.groupTitle || "Training resource"}</p>
+          <p><strong>Format:</strong> ${item.format || item.groupTitle || "Resource"}</p>
+          <p><strong>Cost:</strong> ${item.cost || "Varies"}</p>
+          <p>${item.covers || item.description}</p>
         </div>
         <div class="detail-section">
           <h3>Who it may fit</h3>
-          <p>${item.fit}</p>
+          <p>${item.fit || `Useful when you are building skills around ${item.groupTitle ? item.groupTitle.toLowerCase() : "this path"}.`}</p>
         </div>
         <div class="detail-section">
           <h3>Related income options</h3>
-          ${renderRelatedLinks(item.relatedIncomeIds, "income")}
+          ${renderRelatedLinks(item.relatedIncomeIds, "income", item, "training")}
         </div>
+        ${item.externalHref ? `<div class="detail-section"><a class="app-btn app-btn--secondary" href="${item.externalHref}" target="_blank" rel="noopener noreferrer">Open Source Listing</a></div>` : ""}
         ${renderDetailActions(item.id, type)}
         ${renderNoteEditor(item.id)}
       `;
@@ -1162,19 +1319,19 @@
     if (type === "services") {
       return `
         <div class="detail-section">
-          <p>${item.helpsWith}</p>
+          <p>${item.helpsWith || item.description}</p>
         </div>
         <div class="detail-section">
           <h3>Examples of when someone may need it</h3>
-          <p>${item.examples}</p>
+          <p>${item.examples || `This can matter when ${item.groupTitle ? item.groupTitle.toLowerCase() : "support work"} becomes a bottleneck.`}</p>
         </div>
         <div class="detail-section">
           <h3>Related providers or resources</h3>
-          <ul class="detail-links">${item.providerLinks.map((link) => `<li><a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a></li>`).join("") || "<li>No linked provider resources in this seed set yet.</li>"}</ul>
+          <ul class="detail-links">${(item.providerLinks || []).map((link) => `<li><a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a></li>`).join("") || (item.externalHref ? `<li><a href="${item.externalHref}" target="_blank" rel="noopener noreferrer">Open source listing</a></li>` : "<li>No linked provider resources in this directory item yet.</li>")}</ul>
         </div>
         <div class="detail-section">
           <h3>Related income options</h3>
-          ${renderRelatedLinks(item.relatedIncomeIds, "income")}
+          ${renderRelatedLinks(item.relatedIncomeIds, "income", item, "services")}
         </div>
         ${renderDetailActions(item.id, type)}
         ${renderNoteEditor(item.id)}
@@ -1182,7 +1339,7 @@
     }
 
     if (type === "official") {
-      const links = item.tags.includes("state") ? (item.stateLinks[appState.selectedState] || []) : item.federalLinks;
+      const links = resolveOfficialLinks(item, appState.selectedState);
       return `
         <div class="detail-section">
           <p>${item.description}</p>
@@ -1204,11 +1361,14 @@
     `;
   }
 
-  function renderRelatedLinks(ids, type) {
-    const items = ids.map((id) => findItem(id)).filter(Boolean);
+  function renderRelatedLinks(ids, type, sourceItem = null, sourceType = "") {
+    let items = ids.map((id) => findItem(id)).filter(Boolean);
+    if (!items.length && sourceItem) {
+      items = inferRelatedItems(sourceItem, type, sourceType);
+    }
     return items.length
       ? `<ul class="detail-links">${items.map((item) => `<li><button class="text-link" data-action="open-item" data-id="${item.id}" data-type="${type}">${item.title}</button></li>`).join("")}</ul>`
-      : `<div class="empty-state">No related items in this seed set yet.</div>`;
+      : `<div class="empty-state">No close related items surfaced for this one yet.</div>`;
   }
 
   function renderDetailActions(id, type) {
@@ -1402,11 +1562,12 @@
     renderSaved();
   }
 
-  function openStateDetail() {
+  async function openStateDetail() {
     const detailType = document.getElementById("detailType");
     const detailTitle = document.getElementById("detailTitle");
     const detailBody = document.getElementById("detailBody");
-    const stateItems = data.official.filter((item) => item.tags.includes("state"));
+    const stateItems = data.official.filter((item) => item.tags.includes("state") || item.coverage === appState.selectedState);
+    const statePageItems = await loadStateSpecificOfficialItems(appState.selectedState);
 
     detailType.textContent = "State Detail";
     detailTitle.textContent = `${appState.selectedState} Official Business Information`;
@@ -1418,13 +1579,21 @@
         <div class="detail-section">
           <h3>${item.title}</h3>
           <ul class="detail-links">
-            ${(item.stateLinks[appState.selectedState] || []).map((link) => `<li><a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a></li>`).join("") || "<li>No direct links for this state in the current seed data.</li>"}
+            ${resolveOfficialLinks(item, appState.selectedState).map((link) => `<li><a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a></li>`).join("") || "<li>No direct links for this state in the current seed data.</li>"}
           </ul>
           <div class="inline-actions">
             <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>
           </div>
         </div>
       `).join("")}
+      ${statePageItems.length ? `
+        <div class="detail-section">
+          <h3>From the ${appState.selectedState} state page</h3>
+          <ul class="detail-links">
+            ${statePageItems.map((item) => `<li><a href="${item.externalHref}" target="_blank" rel="noopener noreferrer">${item.title}</a> ${item.description ? `- ${item.description}` : ""}</li>`).join("")}
+          </ul>
+        </div>
+      ` : ""}
     `;
 
     openOverlay("detailOverlay");
@@ -1499,10 +1668,12 @@
 
   function renderListItem(item, type) {
     const secondary = type === "training"
-      ? `<p><strong>${item.provider}</strong> · ${item.format}</p>`
+      ? `<p><strong>${item.provider || item.groupTitle || "Training resource"}</strong> · ${item.format || "Resource"}</p>`
       : type === "services"
-        ? `<p><strong>${titleCase(item.category)}</strong></p>`
-        : "";
+        ? `<p><strong>${titleCase(item.category || item.groupTitle || "supportive services")}</strong></p>`
+        : type === "income"
+          ? `<p><strong>${item.typeLabel || item.groupTitle || "Income option"}</strong></p>`
+          : "";
     return `
       <article class="list-item">
         <h3>${item.title}</h3>
@@ -1725,5 +1896,106 @@
     if (stage === "interested") return "Items worth a closer look.";
     if (stage === "comparing") return "Items you are actively weighing against each other.";
     return "Items that feel close to action.";
+  }
+
+  async function loadStateSpecificOfficialItems(stateName) {
+    if (statePageCache.has(stateName)) return statePageCache.get(stateName);
+    const path = `states/${slugify(stateName)}.html`;
+    try {
+      const response = await fetch(path);
+      if (!response.ok) {
+        statePageCache.set(stateName, []);
+        return [];
+      }
+      const html = await response.text();
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const items = parseListingCards(doc, { path, section: "official" }).map((item) => ({
+        ...item,
+        coverage: stateName
+      }));
+      statePageCache.set(stateName, items);
+      mergeImportedItems("official", items);
+      return items;
+    } catch {
+      statePageCache.set(stateName, []);
+      return [];
+    }
+  }
+
+  async function hydrateStatePagesInBackground() {
+    const stateJobs = allStates.map((state) => loadStateSpecificOfficialItems(state));
+    await Promise.allSettled(stateJobs);
+    renderAll();
+  }
+
+  function resolveOfficialLinks(item, selectedState) {
+    if (item.stateLinks && item.stateLinks[selectedState]?.length) return item.stateLinks[selectedState];
+    if (item.coverage === selectedState && item.externalHref) return [{ label: item.title, href: item.externalHref }];
+    if (item.federalLinks?.length) return item.federalLinks;
+    if (item.externalHref) return [{ label: item.title, href: item.externalHref }];
+    return [];
+  }
+
+  function extractTags(card, groupTitle, coverage) {
+    const dataTags = (card.dataset.tags || "").split(/\s+/).filter(Boolean);
+    const visualTags = [...card.querySelectorAll(".tag")].map((tag) => normalizeTag(tag.textContent));
+    const derived = [normalizeTag(groupTitle), normalizeTag(coverage)].filter(Boolean);
+    return unique([...dataTags, ...visualTags, ...derived]);
+  }
+
+  function normalizeTag(value) {
+    return (value || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  }
+
+  function textContentOf(node) {
+    return node?.textContent?.replace(/\s+/g, " ").trim() || "";
+  }
+
+  function slugify(value) {
+    return (value || "")
+      .toLowerCase()
+      .replace(/&/g, " and ")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
+  function normalizeKey(value) {
+    return slugify(value);
+  }
+
+  function uniqueLinks(links) {
+    const seen = new Set();
+    return links.filter((link) => {
+      const key = `${link.label}|${link.href}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
+  function mergeStateLinks(base, incoming) {
+    const merged = { ...base };
+    Object.entries(incoming).forEach(([state, links]) => {
+      merged[state] = uniqueLinks([...(merged[state] || []), ...links]);
+    });
+    return merged;
+  }
+
+  function inferRelatedItems(sourceItem, targetType, sourceType) {
+    const pool = data[targetType] || [];
+    const sourceTags = new Set((sourceItem.tags || []).map(normalizeTag).filter(Boolean));
+    const sourceText = normalizeTag(`${sourceItem.title} ${sourceItem.description || ""} ${sourceItem.groupTitle || ""}`);
+    return pool
+      .filter((item) => item.id !== sourceItem.id)
+      .map((item) => {
+        const itemTags = (item.tags || []).map(normalizeTag);
+        const overlap = itemTags.filter((tag) => sourceTags.has(tag)).length;
+        const textScore = sourceText && normalizeTag(`${item.title} ${item.description || ""} ${item.groupTitle || ""}`).split(" ").some((word) => word && sourceText.includes(word)) ? 1 : 0;
+        return { item, score: overlap + textScore };
+      })
+      .filter((entry) => entry.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, sourceType === "income" ? 4 : 3)
+      .map((entry) => entry.item);
   }
 })();

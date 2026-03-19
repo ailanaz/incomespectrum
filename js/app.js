@@ -1837,7 +1837,10 @@
     detailType.textContent = "State Detail";
     detailTitle.textContent = `${stateName} Official Business Information`;
     detailBody.innerHTML = `<div class="empty-state">Loading ${stateName} official information...</div>`;
-    const stateItems = data.official.filter((item) => item.tags.includes("state") || item.coverage === stateName);
+    const stateItems = data.official.filter((item) => {
+      const links = resolveOfficialLinks(item, stateName);
+      return links.length > 0 && (item.tags.includes("state") || item.coverage === stateName);
+    });
     const statePageItems = await loadStateSpecificOfficialItems(stateName);
     detailBody.innerHTML = `
       <div class="detail-section">
@@ -1853,7 +1856,7 @@
         <div class="detail-section">
           <h3>${item.title}</h3>
           <ul class="detail-links">
-            ${resolveOfficialLinks(item, stateName).map((link) => `<li><a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a></li>`).join("") || "<li>No direct links for this state in the current seed data.</li>"}
+            ${resolveOfficialLinks(item, stateName).map((link) => `<li><a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a></li>`).join("")}
           </ul>
           <div class="inline-actions">
             <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>

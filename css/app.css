@@ -711,6 +711,7 @@ a {
 
 .section-tabs--explore {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0;
   overflow: hidden;
   border: 2px solid var(--app-navy);
@@ -749,20 +750,20 @@ a {
 }
 
 .section-tabs--explore .section-tab[data-section="income"] {
-  background: rgba(25, 120, 46, 0.12);
+  background: rgba(25, 120, 46, 0.34);
 }
 
 .section-tabs--explore .section-tab[data-section="training"] {
-  background: rgba(27, 72, 216, 0.12);
+  background: rgba(27, 72, 216, 0.28);
 }
 
 .section-tabs--explore .section-tab[data-section="services"] {
-  background: rgba(253, 210, 21, 0.16);
+  background: rgba(253, 210, 21, 0.28);
   color: var(--app-navy);
 }
 
 .section-tabs--explore .section-tab[data-section="official"] {
-  background: rgba(36, 50, 68, 0.12);
+  background: rgba(36, 50, 68, 0.22);
 }
 
 .section-tabs--explore .section-tab.active {

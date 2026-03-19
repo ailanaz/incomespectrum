@@ -447,17 +447,6 @@ a {
   overflow: hidden;
 }
 
-.hero-card::after {
-  content: "";
-  position: absolute;
-  right: -80px;
-  top: -40px;
-  width: 220px;
-  height: 220px;
-  border-radius: 999px;
-  background: rgba(253, 210, 21, 0.35);
-}
-
 .hero-card h2,
 .hero-card p,
 .feature-card h3 {

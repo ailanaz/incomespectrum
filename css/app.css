@@ -494,11 +494,15 @@ a {
 }
 
 .hero-stat {
+  appearance: none;
+  width: 100%;
   padding: 14px 16px;
   border-radius: 8px;
   border: 1px solid rgba(255, 253, 246, 0.28);
   background: rgba(20, 37, 61, 0.14);
   backdrop-filter: blur(8px);
+  color: #fffdf6;
+  text-align: left;
 }
 
 .hero-stat__label {
@@ -514,6 +518,12 @@ a {
   display: block;
   margin-top: 4px;
   font-size: 1.15rem;
+}
+
+.hero-stat:hover,
+.hero-stat:focus-visible {
+  border-color: rgba(253, 210, 21, 0.55);
+  background: rgba(20, 37, 61, 0.22);
 }
 
 .card-header {
@@ -1008,6 +1018,12 @@ a {
   background: rgba(255, 253, 246, 0.98);
   border: 2px solid var(--app-navy);
   box-shadow: 0 8px 0 rgba(20, 37, 61, 0.06);
+}
+
+.progress-stage--overview {
+  grid-column: 1 / -1;
+  min-height: auto;
+  background: linear-gradient(135deg, rgba(25, 120, 46, 0.10), rgba(27, 72, 216, 0.08));
 }
 
 .progress-stage + .progress-stage {

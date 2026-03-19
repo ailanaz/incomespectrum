@@ -1,5 +1,6 @@
 (function () {
-  const STORAGE_KEY = "income-spectrum-app-state-v1";
+  const STORAGE_KEY_LOCAL = "income-spectrum-app-state-v2-local";
+  const STORAGE_KEY_SESSION = "income-spectrum-app-state-v2-session";
   const sections = ["income", "training", "services", "official"];
   const sectionLabels = {
     income: "Income Options",
@@ -550,7 +551,7 @@
 
   const quiz = {
     title: "What People Will Pay For",
-    intro: "This is not a personality quiz. It helps you read behavior, cost, and demand so you can see where opportunity may start.",
+    intro: "This is not a personality quiz. It helps you read what people pay for, choose a path on the spectrum, and generate a first-draft PBPP.",
     questions: [
       {
         id: "motivator",
@@ -592,6 +593,16 @@
           { value: "Lower the cost", label: "Lower the cost" },
           { value: "Increase the value", label: "Increase the value" },
           { value: "A mix of both", label: "A mix of both" }
+        ]
+      },
+      {
+        id: "pathway",
+        prompt: "Which area of the spectrum feels closest to where you want to start?",
+        options: [
+          { value: "Income Options", label: "Income Options" },
+          { value: "Education & Training", label: "Education & Training" },
+          { value: "Supportive Services", label: "Supportive Services" },
+          { value: "Official Information", label: "Official Information" }
         ]
       }
     ]
@@ -663,10 +674,12 @@
       } else if (action === "sign-in-demo") {
         appState.isSignedIn = true;
         appState.setupComplete = true;
+        saveState();
         openApp("home");
       } else if (action === "continue-guest") {
         appState.isSignedIn = false;
         appState.setupComplete = true;
+        saveState();
         openApp("home");
       } else if (action === "complete-setup") {
         completeSetup();
@@ -674,12 +687,15 @@
         appState.setupComplete = true;
         openApp("home");
       } else if (action === "show-view") {
+        closeAllOverlays();
         showView(actionNode.dataset.view);
       } else if (action === "go-explore") {
+        closeAllOverlays();
         showView("explore");
       } else if (action === "open-explore-section") {
         appState.activeExploreSection = actionNode.dataset.section;
         exploreFilter = "all";
+        closeAllOverlays();
         showView("explore");
       } else if (action === "open-progress") {
         renderProgress();
@@ -725,6 +741,8 @@
         }
       } else if (action === "reset-app") {
         appState = structuredClone(defaultState);
+        localStorage.removeItem(STORAGE_KEY_LOCAL);
+        sessionStorage.removeItem(STORAGE_KEY_SESSION);
         saveState();
         syncGateState();
         renderAll();
@@ -740,6 +758,8 @@
         openStateDetail(actionNode.dataset.state || appState.selectedState);
       } else if (action === "open-all-states") {
         openAllStatesBrowser();
+      } else if (action === "open-path-summary") {
+        openPathSummary();
       }
       return;
     }
@@ -803,6 +823,9 @@
     document.getElementById("profileWorkPref").innerHTML = workPreferences.map((pref) => `
       <button class="choice-pill ${pref.value === appState.workPreference ? "active" : ""}" type="button" data-value="${pref.value}">${pref.label}</button>
     `).join("");
+    document.getElementById("accountStatusCopy").textContent = appState.isSignedIn
+      ? "You are signed in. Your state, path, plan, notes, and saved items stay with your account."
+      : "You are browsing as a guest. Your state, path, and plan only stay for this session unless you sign in.";
   }
 
   async function hydrateCatalogFromSite() {
@@ -1023,13 +1046,15 @@
 
   function renderHome() {
     const lastViewed = appState.recentlyViewed[0] ? findItem(appState.recentlyViewed[0]) : null;
-    document.getElementById("continueTitle").textContent = lastViewed ? `Continue with ${lastViewed.title}` : "Start exploring Income Spectrum.";
+    const currentPath = buildPathSnapshot();
+    const currentPlan = buildPlanSnapshot();
+    document.getElementById("continueTitle").textContent = lastViewed ? `Continue with ${lastViewed.title}` : "Start building your pathway plan.";
     document.getElementById("continueCopy").textContent = lastViewed
-      ? `You last opened ${lastViewed.title}. You can save it, compare it, or move it into your next-step stage.`
-      : "Set your state, browse a few directions, and save what looks useful.";
+      ? `You last opened ${lastViewed.title}. Keep shaping your path and move the right items into your PBPP.`
+      : "Set your state, explore the spectrum, and build a path from what people pay for to where you want to go.";
     document.getElementById("heroStateValue").textContent = appState.selectedState;
-    document.getElementById("heroSavedCount").textContent = `${appState.savedIds.length} ${appState.savedIds.length === 1 ? "item" : "items"}`;
-    document.getElementById("heroCompareCount").textContent = `${appState.compareIds.length} ${appState.compareIds.length === 1 ? "option" : "options"}`;
+    document.getElementById("heroPathValue").textContent = currentPath.label;
+    document.getElementById("heroPlanValue").textContent = currentPlan.label;
 
     const nextSteps = buildNextSteps();
     document.getElementById("nextStepsList").innerHTML = nextSteps.map((step) => `<li>${step}</li>`).join("");
@@ -1149,7 +1174,7 @@
 
     if (appState.quizResult && (savedFilter === "all" || savedFilter === "quiz")) {
       grouped.quiz = grouped.quiz || [];
-      grouped.quiz.push({ ...appState.quizResult, id: "saved-quiz-result", title: appState.quizResult.title || "Saved Quiz Result" });
+      grouped.quiz.push({ ...appState.quizResult, id: "saved-quiz-result", title: appState.quizResult.planTitle || "Saved PBPP Draft" });
     }
 
     const markup = Object.entries(grouped).map(([type, items]) => `
@@ -1250,7 +1275,19 @@
 
   function renderProgress() {
     const stageOrder = ["just exploring", "interested", "comparing", "launch"];
-    document.getElementById("progressStages").innerHTML = stageOrder.map((stage) => {
+    const plan = buildPlanSnapshot();
+    const overview = appState.quizResult ? `
+      <section class="progress-stage progress-stage--overview">
+        <h4>${appState.quizResult.planTitle}</h4>
+        <p>${plan.summary}</p>
+      </section>
+    ` : `
+      <section class="progress-stage progress-stage--overview">
+        <h4>Start your PBPP</h4>
+        <p>Use the quiz to generate a first-draft personal business pathway plan, then adjust it from there.</p>
+      </section>
+    `;
+    document.getElementById("progressStages").innerHTML = overview + stageOrder.map((stage) => {
       const ids = appState.progress[stage] || [];
       const items = ids.map((id) => findItem(id)).filter(Boolean);
       return `
@@ -1277,7 +1314,7 @@
   function renderSavedQuizResult() {
     const node = document.getElementById("savedQuizResult");
     if (!appState.quizResult) {
-      node.innerHTML = `<div class="empty-state">Take the quiz to save a result and connect it to suggested income options, training, services, and official information.</div>`;
+      node.innerHTML = `<div class="empty-state">Take the quiz to generate a first-draft PBPP based on what people pay for and where you want to start on the spectrum.</div>`;
       return;
     }
     node.innerHTML = renderQuizResult(appState.quizResult, false);
@@ -1558,10 +1595,13 @@
       return;
     }
     appState.quizResult = buildQuizResult();
+    applyQuizResultToPlan(appState.quizResult);
     quizIndex = quiz.questions.length;
     saveState();
     renderQuiz();
     renderSavedQuizResult();
+    renderProgress();
+    renderHome();
   }
 
   function previousQuizStep() {
@@ -1574,8 +1614,21 @@
   function renderQuizResult(result, includeSaveButton) {
     return `
       <div class="result-group">
-        <h3>${result.title}</h3>
+        <h3>${result.planTitle}</h3>
         <p>${result.explanation}</p>
+        <div class="detail-section">
+          <h4>State</h4>
+          <p>${appState.selectedState}</p>
+        </div>
+        <div class="detail-section">
+          <h4>Path</h4>
+          <p><strong>${result.pathLabel}</strong></p>
+          <p>${result.pathSummary}</p>
+        </div>
+        <div class="detail-section">
+          <h4>Plan</h4>
+          <p>${result.planSummary}</p>
+        </div>
         <div class="detail-section">
           <h4>What is driving the behavior</h4>
           <p>${result.motivator}</p>
@@ -1593,30 +1646,32 @@
           <p>${result.direction}</p>
         </div>
         <div class="detail-section">
-          <h4>Suggested income options</h4>
+          <h4>PBPP inputs: Income Options</h4>
           ${renderRelatedLinks(result.suggestedIncomeIds, "income")}
         </div>
         <div class="detail-section">
-          <h4>Suggested training</h4>
+          <h4>PBPP inputs: Knowledge</h4>
           ${renderRelatedLinks(result.suggestedTrainingIds, "training")}
         </div>
         <div class="detail-section">
-          <h4>Suggested support services</h4>
+          <h4>PBPP inputs: Support</h4>
           ${renderRelatedLinks(result.suggestedServiceIds, "services")}
         </div>
         <div class="detail-section">
-          <h4>Suggested official information</h4>
+          <h4>PBPP inputs: Official Information</h4>
           ${renderRelatedLinks(result.suggestedOfficialIds, "official")}
         </div>
-        ${includeSaveButton ? `<div class="inline-actions"><button class="app-btn app-btn--primary" data-action="save-quiz-result">Save Result</button></div>` : ""}
+        ${includeSaveButton ? `<div class="inline-actions"><button class="app-btn app-btn--primary" data-action="save-quiz-result">Build PBPP</button></div>` : ""}
       </div>
     `;
   }
 
   function saveQuizResult() {
     appState.quizResult = buildQuizResult();
+    applyQuizResultToPlan(appState.quizResult);
     appState.savedIds = unique(appState.savedIds);
     saveState();
+    renderProgress();
     renderSavedQuizResult();
     renderSaved();
   }
@@ -1694,6 +1749,7 @@
     const payment = appState.quizAnswers.payment || "Money and Time";
     const culture = appState.quizAnswers.culture || "People trying to get organized and stable";
     const direction = appState.quizAnswers.direction || "Lower the cost";
+    const pathway = appState.quizAnswers.pathway || "Income Options";
 
     const resultMap = {
       "Survival and Stability": {
@@ -1741,19 +1797,124 @@
     };
 
     const result = resultMap[motivator];
+    const sectionMap = {
+      "Income Options": "income",
+      "Education & Training": "training",
+      "Supportive Services": "services",
+      "Official Information": "official"
+    };
+    const directionText = direction === "A mix of both"
+      ? "The best opening may come from lowering cost in one area while increasing value in another."
+      : direction === "Lower the cost"
+        ? "Look for ways to reduce what this group is spending in time, energy, attention, comfort, or risk."
+        : "Look for ways to make the result more valuable inside the culture you are looking at.";
+    const pathLabel = `${pathway} path`;
+    const planTitle = `${pathway} PBPP`;
     return {
       id: "quiz-result",
       title: result.title,
-      explanation: `The strongest pattern here is ${motivator}. People are not just paying money. They are paying with ${payment.toLowerCase()}, and the culture pattern suggests ${culture.toLowerCase()}. Opportunity starts where you can ${direction.toLowerCase()}.`,
+      planTitle,
+      explanation: `The strongest pattern here is ${motivator}. People are not just paying money. They are paying with ${payment.toLowerCase()}, and the culture pattern suggests ${culture.toLowerCase()}. This points toward ${pathway.toLowerCase()} as a strong place to start building your PBPP.`,
       motivator,
       payment,
       culture,
-      direction: direction === "A mix of both" ? "The best opening may come from lowering cost in one area while increasing value in another." : direction === "Lower the cost" ? "Look for ways to reduce what this group is spending in time, energy, attention, comfort, or risk." : "Look for ways to make the result more valuable inside the culture you are looking at.",
+      pathway,
+      primarySection: sectionMap[pathway],
+      pathLabel,
+      pathSummary: `Start in ${pathway.toLowerCase()} and build around ${motivator.toLowerCase()}, ${payment.toLowerCase()}, and the shared pressure inside this culture.`,
+      planSummary: `Use ${pathway.toLowerCase()} as your entry point, then connect the training, support, and official pieces that help you move from your current position to a workable business direction.`,
+      direction: directionText,
       suggestedIncomeIds: result.income,
       suggestedTrainingIds: result.training,
       suggestedServiceIds: result.services,
       suggestedOfficialIds: result.official
     };
+  }
+
+  function buildPathSnapshot() {
+    if (!appState.quizResult) {
+      return {
+        label: "Choose a direction",
+        summary: "Use the quiz to identify the area of the spectrum you want to start in.",
+        primarySection: "income"
+      };
+    }
+    return {
+      label: appState.quizResult.pathLabel,
+      summary: appState.quizResult.pathSummary,
+      primarySection: appState.quizResult.primarySection
+    };
+  }
+
+  function buildPlanSnapshot() {
+    const totalPlanned = Object.values(appState.progress).reduce((count, ids) => count + ids.length, 0);
+    if (!appState.quizResult) {
+      return {
+        label: "Start your PBPP",
+        summary: "Take the quiz to generate a first-draft personal business pathway plan."
+      };
+    }
+    return {
+      label: totalPlanned ? `${totalPlanned} items in plan` : "Draft ready",
+      summary: appState.quizResult.planSummary
+    };
+  }
+
+  function applyQuizResultToPlan(result) {
+    const nextProgress = {
+      "just exploring": [],
+      interested: [],
+      comparing: [],
+      launch: []
+    };
+    const pathIds = {
+      income: result.suggestedIncomeIds,
+      training: result.suggestedTrainingIds,
+      services: result.suggestedServiceIds,
+      official: result.suggestedOfficialIds
+    };
+    const leadIds = pathIds[result.primarySection] || [];
+    nextProgress["just exploring"] = unique(leadIds.slice(0, 2));
+    nextProgress.interested = unique([
+      ...(pathIds.training || []).slice(0, 1),
+      ...(pathIds.services || []).slice(0, 1)
+    ]);
+    nextProgress.comparing = unique((pathIds.income || []).slice(0, 2));
+    nextProgress.launch = unique((pathIds.official || []).slice(0, 2));
+    appState.progress = nextProgress;
+    appState.savedIds = unique([
+      ...appState.savedIds,
+      ...result.suggestedIncomeIds,
+      ...result.suggestedTrainingIds,
+      ...result.suggestedServiceIds,
+      ...result.suggestedOfficialIds
+    ]);
+  }
+
+  function openPathSummary() {
+    const detailType = document.getElementById("detailType");
+    const detailTitle = document.getElementById("detailTitle");
+    const detailBody = document.getElementById("detailBody");
+    const path = buildPathSnapshot();
+
+    detailType.textContent = "Path";
+    detailTitle.textContent = "Current Path";
+    detailBody.innerHTML = `
+      <div class="detail-section">
+        <p>${path.summary}</p>
+      </div>
+      <div class="detail-section">
+        <h3>Where this path starts</h3>
+        <p>${appState.quizResult ? `Your current PBPP starts in ${appState.quizResult.pathway} and uses the What People Will Pay For framework as its base.` : "Take the quiz or explore the four categories to choose where you want to start on the spectrum."}</p>
+      </div>
+      <div class="detail-section">
+        <div class="inline-actions">
+          <button class="app-btn app-btn--secondary" data-action="open-quiz">Open Quiz</button>
+          <button class="app-btn app-btn--ghost" data-action="go-explore">Open Explore</button>
+        </div>
+      </div>
+    `;
+    openOverlay("detailOverlay");
   }
 
   function renderListItem(item, type) {
@@ -1801,20 +1962,21 @@
   }
 
   function buildNextSteps() {
+    const path = buildPathSnapshot();
     const steps = [];
-    if (!appState.savedIds.length) {
-      steps.push("Browse a few income options and save the ones that look realistic.");
-    }
-    if (appState.savedIds.filter((id) => detectItemType(id) === "income").length < 2) {
-      steps.push("Save at least two income options so you can compare them side by side.");
-    }
     if (!appState.quizResult) {
-      steps.push("Take the quiz to connect motivation patterns to next moves.");
+      steps.push("Take the quiz to turn what people pay for into a first-draft PBPP.");
+    }
+    if (!appState.savedIds.length) {
+      steps.push("Save the items that belong in your path so they can be used in your PBPP.");
     }
     if (!Object.keys(appState.notes).length) {
-      steps.push("Add one note to a saved item so you can remember why it matters.");
+      steps.push("Add a note to one saved item so your plan reflects what matters to you.");
     }
-    steps.push(`Check official information for ${appState.selectedState} before moving into action.`);
+    if (path.primarySection === "income" && appState.compareIds.length < 2) {
+      steps.push("Compare at least two income options so your path is based on a real choice, not a guess.");
+    }
+    steps.push(`Use ${appState.selectedState} official information to anchor your plan in the rules that apply where you are.`);
     return steps.slice(0, 4);
   }
 
@@ -1952,14 +2114,25 @@
   }
 
   function saveState() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+    const payload = JSON.stringify(appState);
+    if (appState.isSignedIn) {
+      localStorage.setItem(STORAGE_KEY_LOCAL, payload);
+      sessionStorage.removeItem(STORAGE_KEY_SESSION);
+      return;
+    }
+    sessionStorage.setItem(STORAGE_KEY_SESSION, payload);
   }
 
   function loadState() {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return structuredClone(defaultState);
-      return { ...structuredClone(defaultState), ...JSON.parse(raw) };
+      const localRaw = localStorage.getItem(STORAGE_KEY_LOCAL);
+      if (localRaw) {
+        const parsed = JSON.parse(localRaw);
+        if (parsed.isSignedIn) return { ...structuredClone(defaultState), ...parsed };
+      }
+      const sessionRaw = sessionStorage.getItem(STORAGE_KEY_SESSION);
+      if (sessionRaw) return { ...structuredClone(defaultState), ...JSON.parse(sessionRaw) };
+      return structuredClone(defaultState);
     } catch (error) {
       return structuredClone(defaultState);
     }
@@ -1971,6 +2144,10 @@
 
   function closeOverlay(id) {
     document.getElementById(id).classList.add("hidden");
+  }
+
+  function closeAllOverlays() {
+    document.querySelectorAll(".overlay").forEach((node) => node.classList.add("hidden"));
   }
 
   function renderTag(tag) {
@@ -1990,10 +2167,10 @@
   }
 
   function stageDescription(stage) {
-    if (stage === "just exploring") return "Items you are still learning about.";
-    if (stage === "interested") return "Items worth a closer look.";
-    if (stage === "comparing") return "Items you are actively weighing against each other.";
-    return "Items that feel close to launch.";
+    if (stage === "just exploring") return "The starting point for the path you are building.";
+    if (stage === "interested") return "Items that support or strengthen the path.";
+    if (stage === "comparing") return "Options you are weighing before you commit.";
+    return "Items that move the plan toward launch.";
   }
 
   async function loadStateSpecificOfficialItems(stateName) {

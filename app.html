@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Income Spectrum App | Sort, Save, Compare, and Plan Your Next Move</title>
-  <meta name="description" content="A standalone Income Spectrum companion app for exploring income options, saving resources, comparing directions, and tracking next steps.">
+  <title>Income Spectrum App | Explore the Spectrum and Build Your PBPP</title>
+  <meta name="description" content="A standalone Income Spectrum companion app for exploring options, shaping a path, and building a personal business pathway plan.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/app.css?v=20260319e">
+  <link rel="stylesheet" href="css/app.css?v=20260319f">
 </head>
 <body>
   <div class="app-shell">
@@ -19,8 +19,8 @@
           <span><strong>Income</strong>Spectrum</span>
         </div>
         <p class="gate-kicker">Income Spectrum App</p>
-        <h1>Sort what matters. Save what fits. Move toward your next step.</h1>
-        <p class="gate-copy">Explore income options, save resources, compare directions, and keep track of your next steps.</p>
+        <h1>Explore the spectrum. Shape a path. Build your PBPP.</h1>
+        <p class="gate-copy">Explore income options, shape a direction, and build a personal business pathway plan from where you are now to where you want to go.</p>
         <div class="gate-actions">
           <button class="app-btn app-btn--primary" data-action="start-setup">Get Started</button>
           <button class="app-btn app-btn--secondary" data-action="sign-in-demo">Sign In</button>
@@ -65,7 +65,7 @@
         </div>
         <div class="app-topbar__actions">
           <a class="app-icon-btn" href="/" aria-label="Open website">Website</a>
-          <button class="app-icon-btn" data-action="open-progress" aria-label="Open planner">Planner</button>
+          <button class="app-icon-btn" data-action="open-progress" aria-label="Open PBPP">PBPP</button>
         </div>
       </header>
 
@@ -73,26 +73,26 @@
         <section class="hero-card hero-card--dashboard">
           <div class="hero-card__content">
             <p class="section-kicker">Income Spectrum Companion</p>
-            <h2 id="continueTitle">Start exploring Income Spectrum.</h2>
-            <p id="continueCopy">Set your state, browse a few directions, and save what looks useful.</p>
+            <h2 id="continueTitle">Start building your pathway plan.</h2>
+            <p id="continueCopy">Set your state, explore the spectrum, and build a path from what people pay for to where you want to go.</p>
             <div class="hero-card__actions">
               <button class="app-btn app-btn--primary" data-action="go-explore">Open Explore</button>
-              <button class="app-btn app-btn--ghost app-btn--ghost-light" data-action="open-progress">Open Planner</button>
+              <button class="app-btn app-btn--ghost app-btn--ghost-light" data-action="open-progress">Open PBPP</button>
             </div>
           </div>
           <div class="hero-stats">
-            <div class="hero-stat">
+            <button class="hero-stat" type="button" data-action="open-state-detail">
               <span class="hero-stat__label">State</span>
               <strong id="heroStateValue">Texas</strong>
-            </div>
-            <div class="hero-stat">
-              <span class="hero-stat__label">Saved</span>
-              <strong id="heroSavedCount">0 items</strong>
-            </div>
-            <div class="hero-stat">
-              <span class="hero-stat__label">Comparing</span>
-              <strong id="heroCompareCount">0 options</strong>
-            </div>
+            </button>
+            <button class="hero-stat" type="button" data-action="open-path-summary">
+              <span class="hero-stat__label">Path</span>
+              <strong id="heroPathValue">Choose a direction</strong>
+            </button>
+            <button class="hero-stat" type="button" data-action="open-progress">
+              <span class="hero-stat__label">Plan</span>
+              <strong id="heroPlanValue">Start your PBPP</strong>
+            </button>
           </div>
         </section>
 
@@ -130,7 +130,8 @@
           <section class="card card--stacked">
             <div class="card-header">
               <div>
-                <p class="section-kicker">Planner</p>
+                <p class="section-kicker">PBPP</p>
+                <h3>Personal Business Pathway Plan</h3>
               </div>
             </div>
             <ul class="stack-list" id="nextStepsList"></ul>
@@ -139,7 +140,7 @@
           <section class="card card--stacked">
             <div class="card-header">
               <div>
-                <p class="section-kicker">Saved Preview</p>
+                <p class="section-kicker">Path Materials</p>
               </div>
               <button class="text-link" data-action="show-view" data-view="saved">Open Saved</button>
             </div>
@@ -160,7 +161,7 @@
           <section class="card feature-card feature-card--quiz">
             <p class="section-kicker">Featured Quiz</p>
             <h3>What People Will Pay For</h3>
-            <p>A plainspoken quiz that helps you see what people are really paying for, what they are paying with, and where opportunity starts.</p>
+            <p>Use the quiz to turn what people pay for into a path direction and a first-draft PBPP.</p>
             <button class="app-btn app-btn--secondary" data-action="open-quiz">Take the Quiz</button>
           </section>
         </div>
@@ -257,6 +258,10 @@
                 <span>Saved goal</span>
                 <div class="pill-row" id="profileGoal"></div>
               </div>
+              <div class="field">
+                <span>Account status</span>
+                <p class="helper-copy" id="accountStatusCopy"></p>
+              </div>
             </div>
           </section>
 
@@ -269,8 +274,9 @@
             </div>
             <div class="stack-actions">
               <button class="app-btn app-btn--secondary" data-action="open-notes">Open Notes</button>
-              <button class="app-btn app-btn--secondary" data-action="open-progress">Open Planner</button>
+              <button class="app-btn app-btn--secondary" data-action="open-progress">Open PBPP</button>
               <button class="app-btn app-btn--secondary" data-action="open-quiz">Open Quiz</button>
+              <button class="app-btn app-btn--ghost" data-action="sign-in-demo">Sign In to Keep Your PBPP</button>
               <button class="app-btn app-btn--ghost" data-action="reset-app">Reset App Data</button>
             </div>
           </section>
@@ -279,8 +285,8 @@
         <section class="card">
           <div class="card-header">
             <div>
-              <p class="section-kicker">Saved Quiz Result</p>
-              <h3>Latest result</h3>
+              <p class="section-kicker">Latest PBPP Draft</p>
+              <h3>Quiz-generated plan</h3>
             </div>
           </div>
           <div id="savedQuizResult"></div>
@@ -327,8 +333,8 @@
     <div class="overlay-panel">
       <div class="overlay-header">
         <div>
-          <p class="section-kicker">Planner</p>
-          <h2>Plan your next move</h2>
+          <p class="section-kicker">PBPP</p>
+          <h2>Plan Overview</h2>
         </div>
         <button class="close-btn" data-action="close-overlay" data-target="progressOverlay">Close</button>
       </div>
@@ -353,6 +359,6 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=20260319e"></script>
+  <script src="js/app.js?v=20260319f"></script>
 </body>
 </html>

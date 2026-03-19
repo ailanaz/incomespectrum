@@ -671,11 +671,7 @@
     if (actionNode) {
       const action = actionNode.dataset.action;
       if (action === "start-setup") {
-        if (appState.setupComplete) {
-          openApp(appState.activeView || "home");
-        } else {
-          showGate("setup");
-        }
+        showGate("setup");
       } else if (action === "start-setup-signup") {
         showGate("signup");
       } else if (action === "sign-in-demo") {

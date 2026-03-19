@@ -87,6 +87,26 @@ a {
   width: min(820px, 100%);
 }
 
+.app-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  color: var(--app-navy);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.app-brand img {
+  flex-shrink: 0;
+}
+
+.app-brand--compact {
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
 .gate-kicker,
 .section-kicker {
   margin: 0 0 8px;
@@ -256,6 +276,11 @@ a {
   color: var(--app-text-soft);
   text-transform: uppercase;
   letter-spacing: 0.12em;
+}
+
+.app-topbar__brand {
+  display: grid;
+  gap: 0;
 }
 
 .app-topbar__title {

@@ -843,6 +843,8 @@
     document.getElementById("accountStatusCopy").textContent = appState.isSignedIn
       ? "You are signed in. Your state, path, plan, notes, and saved items stay with your account."
       : "You are browsing as a guest. Your state, path, and plan only stay for this session unless you sign in.";
+    document.getElementById("profileSignupCard").classList.toggle("hidden", appState.isSignedIn);
+    document.getElementById("profileToolsTitle").textContent = appState.isSignedIn ? "App tools" : "Guest tools";
   }
 
   async function hydrateCatalogFromSite() {

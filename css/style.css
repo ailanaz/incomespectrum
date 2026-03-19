@@ -1022,8 +1022,8 @@ p { margin: 0; }
    FOOTER
    ============================================================ */
 .site-footer {
-  background: var(--text-900);
-  color: rgba(255,255,255,0.7);
+  background: #19782e;
+  color: rgba(255,255,255,0.85);
   padding: var(--gap-2xl) 0 var(--gap-lg);
 }
 .footer-grid {

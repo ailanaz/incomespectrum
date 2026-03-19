@@ -688,6 +688,7 @@ a {
   overflow-y: auto;
   padding-right: 4px;
   scrollbar-width: thin;
+  justify-items: stretch;
 }
 
 .explore-rail__block,
@@ -700,6 +701,7 @@ a {
 
 .explore-rail__block {
   padding: 18px 16px;
+  width: 100%;
 }
 
 .section-tabs--explore {
@@ -711,6 +713,7 @@ a {
   background: transparent;
   box-shadow: none;
   width: 100%;
+  justify-self: stretch;
 }
 
 .section-tabs--explore .section-tab {

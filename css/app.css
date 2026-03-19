@@ -92,11 +92,12 @@ a {
 .gate-panel::after {
   content: "";
   position: absolute;
-  inset: auto -40px -40px auto;
-  width: 180px;
-  height: 180px;
-  border-radius: 999px;
-  background: rgba(27, 72, 216, 0.35);
+  inset: auto 0 0 auto;
+  width: 220px;
+  height: 120px;
+  border-radius: 0;
+  background: linear-gradient(135deg, rgba(27, 72, 216, 0.10), rgba(27, 72, 216, 0.20));
+  clip-path: polygon(34% 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .app-brand {

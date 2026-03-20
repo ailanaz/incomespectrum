@@ -1778,7 +1778,7 @@
     document.getElementById("progressStages").innerHTML = `
       <section class="progress-stage progress-stage--overview">
         <h4>Sign Up to Access Founder File</h4>
-        <p>Create a Founder account to save your progress, return to it later, and keep your state, notes, and selected items together.</p>
+        <p>Create a Founder account to build your Founder File and save your notes, relevant information, and Founder progress.</p>
         <div class="inline-actions">
           <button class="app-btn app-btn--secondary" data-action="start-setup-signup">Founder Sign Up</button>
           <button class="app-btn app-btn--ghost" data-action="go-explore">Keep Exploring</button>

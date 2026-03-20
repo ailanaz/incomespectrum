@@ -795,6 +795,7 @@
 
     const sectionTab = event.target.closest(".section-tab");
     if (sectionTab) {
+      const previousSection = appState.activeExploreSection;
       appState.activeExploreSection = sectionTab.dataset.section;
       exploreFilter = sectionTab.dataset.section === "official" ? "state" : "all";
       if (sectionTab.dataset.section === "income") {
@@ -802,6 +803,10 @@
       }
       if (sectionTab.dataset.section === "official" && !appState.browseOfficialState) {
         appState.browseOfficialState = appState.selectedState;
+      }
+      if (previousSection === "official" && appState.activeExploreSection !== "official") {
+        document.getElementById("exploreContent").innerHTML = "";
+        document.getElementById("filterSelect").innerHTML = "";
       }
       saveState();
       renderAll();

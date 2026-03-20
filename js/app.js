@@ -1135,7 +1135,7 @@
     document.getElementById("recentlyViewed").innerHTML = recentMarkup || `<div class="empty-state">Recently viewed items will show up here.</div>`;
   }
 
-  function renderExplore(filter = currentFilter()) {
+  function renderExplore(filter = exploreFilter || "all") {
     document.querySelectorAll(".section-tab").forEach((tab) => {
       tab.classList.toggle("active", tab.dataset.section === appState.activeExploreSection);
     });
@@ -1175,7 +1175,7 @@
 
   function renderOfficialList() {
     const selectedState = appState.browseOfficialState || appState.selectedState;
-    const activeFilter = currentFilter() || "state";
+    const activeFilter = exploreFilter || "state";
     const stateItems = data.official.filter((item) => item.tags.includes("state") || item.coverage === selectedState);
     const federalItems = data.official.filter((item) => item.tags.includes("federal"));
     const accountActions = appState.isSignedIn ? `
@@ -2128,7 +2128,7 @@
   }
 
   function currentFilter() {
-    return document.getElementById("filterSelect")?.value || exploreFilter || "all";
+    return exploreFilter || "all";
   }
 
   function toggleSaved(id) {

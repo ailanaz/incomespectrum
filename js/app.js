@@ -2591,6 +2591,15 @@
     }
   }
 
+  function resetIncompleteQuiz() {
+    const hasCompletedResult = Boolean(appState.quizResult);
+    const isQuizComplete = quizIndex >= quiz.questions.length;
+    if (hasCompletedResult || isQuizComplete) return;
+    appState.quizAnswers = {};
+    quizIndex = 0;
+    saveState();
+  }
+
   function renderQuizResult(result, includeSaveButton) {
     return `
       <div class="result-group">
@@ -3365,6 +3374,9 @@
   }
 
   function closeOverlay(id) {
+    if (id === "quizOverlay") {
+      resetIncompleteQuiz();
+    }
     document.getElementById(id).classList.add("hidden");
     if (appState.overlayState?.id === id) {
       appState.overlayState = { ...structuredClone(defaultState.overlayState) };
@@ -3373,6 +3385,9 @@
   }
 
   function closeAllOverlays() {
+    if (appState.overlayState?.id === "quizOverlay") {
+      resetIncompleteQuiz();
+    }
     document.querySelectorAll(".overlay").forEach((node) => node.classList.add("hidden"));
     appState.overlayState = { ...structuredClone(defaultState.overlayState) };
     saveState();

@@ -1199,6 +1199,7 @@
 
     const nextSteps = buildNextSteps();
     document.getElementById("nextStepsList").innerHTML = nextSteps.map((step) => `<li>${step}</li>`).join("");
+    document.getElementById("founderSpaceLink").classList.toggle("hidden", appState.isSignedIn);
 
     const savedPreview = appState.savedIds.slice(0, 4).map((id) => renderMiniCard(findItem(id))).join("");
     document.getElementById("savedPreview").innerHTML = savedPreview || `<div class="empty-state">Your plan, notes, and saved items will show up here once you start building them.</div>`;

@@ -3088,11 +3088,11 @@
       ? `Official information should be handled early in this plan. Use ${appState.selectedState} and federal resources to clarify registration, tax, licensing, contracting, or other requirements that shape the work.`
       : `Official information still matters because it anchors the business in real rules. Use ${appState.selectedState} and federal resources to confirm the registrations, tax steps, and requirements that apply.`;
     const planSteps = [
-      "Start with what people are already paying for, seeking, carrying, trying to solve, improve, protect, attain, or enjoy, not with a business format.",
-      `Use this ${path.pathLabel.toLowerCase()} as a working reference, not a fixed identity.`,
+      "Start with what people are paying for and the result they are seeking.",
+      `Use ${path.pathLabel.toLowerCase()} as a useful reference, not a fixed label.`,
       startingMaterialMap[startingMaterial],
-      "Browse app ideas that fit this pressure pattern, then generate your own ideas too, even if they seem common.",
-      "Treat this as a living plan. Keep what fits, revise what does not, and let the app help you keep the parts together."
+      "Browse app ideas that fit what you are observing, then generate your own ideas too, even if they seem common.",
+      "Keep what fits, revise what does not, and update the file as your understanding changes."
     ];
     const proofSummary = "Proof can be simple at first: the pattern keeps showing up, the idea clearly reduces a cost or increases a valued result, and the plan feels workable enough to test with real people or real next steps.";
     return {

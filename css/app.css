@@ -1590,11 +1590,150 @@ a {
   color: var(--app-text-soft);
 }
 
+@media (max-width: 1100px) {
+  .browse-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "pbpp pbpp"
+      "quiz articles"
+      "saved recent";
+  }
+
+  .home-panel--pbpp {
+    min-height: 300px;
+  }
+
+  .hero-card {
+    align-items: stretch;
+  }
+}
+
 @media (max-width: 860px) {
   .card-grid--two,
-  .home-dashboard-grid,
+  .explore-shell,
+  .plan-page-grid,
+  .plan-template-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .plan-page-block--template {
+    grid-column: auto;
+  }
+
+  .hero-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .hero-card--dashboard {
+    min-height: auto;
+    padding: 22px;
+  }
+
+  .hero-card__content,
+  .feature-band__content {
+    max-width: none;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-width: 0;
+  }
+
+  .app-topbar {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+    padding: 12px 16px 10px;
+  }
+
+  .app-topbar__brand {
+    min-width: 0;
+    flex: 1 1 260px;
+  }
+
+  .app-topbar__actions {
+    width: auto;
+    flex: 0 0 auto;
+  }
+
+  .overlay-header,
+  .feature-band {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .explore-rail {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+
+  #progressStages {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .gate-screen,
+  .view,
+  .overlay {
+    padding: 12px;
+  }
+
+  .gate-panel,
+  .card,
+  .overlay-panel {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .gate-panel h1 {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+    max-width: 15ch;
+  }
+
+  .gate-copy,
+  .helper-copy {
+    font-size: 0.97rem;
+    line-height: 1.55;
+  }
+
+  .app-topbar {
+    padding: 10px 12px 8px;
+  }
+
+  .app-topbar__brand {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .app-topbar__actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .app-icon-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .view {
+    padding-bottom: 104px;
+    min-height: calc(100vh - 148px);
+  }
+
   .browse-strip,
-  .explore-shell {
+  .home-dashboard-grid,
+  .hero-stats,
+  #progressStages {
     grid-template-columns: 1fr;
   }
 
@@ -1608,60 +1747,78 @@ a {
     grid-auto-rows: auto;
   }
 
-  #progressStages {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .home-panel--pbpp,
+  .home-panel--quiz,
+  .home-panel--articles,
+  .home-panel--saved,
+  .home-panel--recent {
+    min-height: auto;
   }
 
-  .plan-template-grid {
-    grid-template-columns: 1fr;
+  .browse-card {
+    min-height: 138px;
+    padding: 16px 14px;
   }
 
-  .plan-page-grid {
-    grid-template-columns: 1fr;
+  .explore-panel {
+    padding: 16px;
   }
 
-  .plan-page-block--template {
-    grid-column: auto;
+  .section-tabs--explore .section-tab {
+    padding: 16px 14px;
+    font-size: 1rem;
   }
 
-  .hero-card,
-  .toolbar,
-  .section-tabs,
-  .app-topbar,
-  .overlay-header,
-  .feature-band {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .explore-rail {
-    position: static;
-  }
-}
-
-@media (max-width: 640px) {
-  .gate-screen,
-  .view,
   .overlay {
-    padding: 14px;
+    padding: 0;
+    place-items: end stretch;
   }
 
-  .gate-panel,
-  .card,
-  .overlay-panel {
-    padding: 18px;
-    border-radius: 24px;
+  .overlay-panel,
+  .overlay-panel--detail {
+    width: 100%;
+    max-height: 92vh;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-radius: 18px 18px 0 0;
+    padding: 18px 16px calc(18px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .article-live-content,
+  .article-detail-shell,
+  .article-detail-footer,
+  .article-directory-shell {
+    max-width: none;
+  }
+
+  .article-live-content {
+    font-size: 16px;
+  }
+
+  .article-live-content h2 {
+    font-size: 28px;
+  }
+
+  .article-live-content h3 {
+    font-size: 22px;
+  }
+
+  .article-live-content h4 {
+    font-size: 19px;
   }
 
   .app-bottom-nav {
-    width: 100%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px));
   }
 
   .bottom-tab {
+    min-height: 64px;
+    height: 64px;
+    padding: 12px 4px;
     font-size: 12px;
-  }
-
-  #progressStages {
-    grid-template-columns: 1fr;
+    line-height: 1.15;
+    white-space: normal;
   }
 }

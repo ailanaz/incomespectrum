@@ -1264,7 +1264,7 @@
       delete founderSpaceLink.dataset.view;
     }
 
-    const recentMarkup = appState.recentlyViewed.slice(0, 4).map((id) => renderMiniCard(findItem(id))).join("");
+    const recentMarkup = appState.recentlyViewed.slice(0, 1).map((id) => renderMiniCard(findItem(id))).join("");
     document.getElementById("recentlyViewed").innerHTML = recentMarkup || `<div class="empty-state">Recently viewed items will show up here.</div>`;
   }
 

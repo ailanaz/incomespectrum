@@ -934,6 +934,21 @@ button.field-toggle::after {
   color: var(--app-navy);
 }
 
+.founder-note-link-card {
+  display: grid;
+  gap: 4px;
+}
+
+.founder-note-link {
+  justify-self: start;
+}
+
+.founder-note-link__meta {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--app-text-soft);
+}
+
 .toolbar,
 .section-tabs {
   display: flex;

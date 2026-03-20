@@ -781,6 +781,14 @@
       appState.planDraft[planField.dataset.planField] = planField.value;
       saveState();
     }
+    const founderNoteField = event.target.closest("[data-founder-note-field]");
+    if (founderNoteField && appState.isSignedIn) {
+      updateFounderNoteField(
+        founderNoteField.dataset.noteId,
+        founderNoteField.dataset.founderNoteField,
+        founderNoteField.value
+      );
+    }
     if (["signupName", "signupEmail", "signupPassword"].includes(event.target.id)) {
       updateSignupButtonState();
     }
@@ -871,11 +879,30 @@
       } else if (action === "open-notes") {
         if (appState.isSignedIn) {
           renderNotes();
-          openOverlay("notesOverlay", { kind: "notes" });
+          openOverlay("notesOverlay", { kind: "notes", itemId: null });
         } else {
           renderSaveSignupPrompt();
           openOverlay("progressOverlay", { kind: "save-signup" });
         }
+      } else if (action === "open-founder-note") {
+        if (appState.isSignedIn) {
+          renderNotes(actionNode.dataset.id);
+          openOverlay("notesOverlay", { kind: "notes", itemId: actionNode.dataset.id });
+        } else {
+          renderSaveSignupPrompt();
+          openOverlay("progressOverlay", { kind: "save-signup" });
+        }
+      } else if (action === "new-founder-note") {
+        if (appState.isSignedIn) {
+          const newNoteId = createFounderNote();
+          renderNotes(newNoteId);
+          openOverlay("notesOverlay", { kind: "notes", itemId: newNoteId });
+        } else {
+          renderSaveSignupPrompt();
+          openOverlay("progressOverlay", { kind: "save-signup" });
+        }
+      } else if (action === "delete-founder-note") {
+        deleteFounderNote(actionNode.dataset.id);
       } else if (action === "scroll-founder-file-section") {
         const target = document.getElementById(actionNode.dataset.target);
         if (target) {
@@ -1733,7 +1760,7 @@
       ? { ...buildPlanDraft(appState.quizResult), ...appState.planDraft }
       : appState.planDraft;
     const planSummary = buildPlanSnapshot();
-    const noteEntries = buildNoteCardsMarkup();
+    const noteEntries = buildFounderNoteLinksMarkup();
     const savedCollections = buildSavedCollectionsMarkup();
     const currentFocus = buildPathSnapshot();
     const goalLabel = setupGoals.find((goal) => goal.value === appState.goal)?.label || "Explore Options";
@@ -1931,6 +1958,94 @@
     }).join("");
   }
 
+  function getFounderNotesEntries() {
+    let entries = Array.isArray(appState.planDraft.founderNotesEntries)
+      ? appState.planDraft.founderNotesEntries.map((entry) => ({
+          id: entry.id,
+          subject: entry.subject || "",
+          body: entry.body || "",
+          updatedAt: entry.updatedAt || new Date().toISOString()
+        }))
+      : [];
+    if (!entries.length && typeof appState.planDraft.founderNotes === "string" && appState.planDraft.founderNotes.trim()) {
+      entries = [{
+        id: `founder-note-${Date.now()}`,
+        subject: "Founder Note",
+        body: appState.planDraft.founderNotes.trim(),
+        updatedAt: new Date().toISOString()
+      }];
+      appState.planDraft.founderNotesEntries = entries;
+      delete appState.planDraft.founderNotes;
+      saveState();
+    }
+    return entries.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+  }
+
+  function saveFounderNotesEntries(entries) {
+    appState.planDraft.founderNotesEntries = entries;
+    delete appState.planDraft.founderNotes;
+    saveState();
+  }
+
+  function createFounderNote() {
+    const entries = getFounderNotesEntries();
+    const newEntry = {
+      id: `founder-note-${Date.now()}`,
+      subject: "",
+      body: "",
+      updatedAt: new Date().toISOString()
+    };
+    saveFounderNotesEntries([newEntry, ...entries]);
+    renderSaved();
+    return newEntry.id;
+  }
+
+  function updateFounderNoteField(noteId, field, value) {
+    const entries = getFounderNotesEntries();
+    const entry = entries.find((item) => item.id === noteId);
+    if (!entry) return;
+    entry[field] = value;
+    entry.updatedAt = new Date().toISOString();
+    saveFounderNotesEntries(entries);
+    renderSaved();
+    renderProgress();
+  }
+
+  function deleteFounderNote(noteId) {
+    const entries = getFounderNotesEntries().filter((entry) => entry.id !== noteId);
+    saveFounderNotesEntries(entries);
+    renderSaved();
+    renderProgress();
+    renderNotes(entries[0]?.id || null);
+    openOverlay("notesOverlay", { kind: "notes", itemId: entries[0]?.id || null });
+  }
+
+  function formatFounderNoteDate(value) {
+    if (!value) return "";
+    try {
+      return new Intl.DateTimeFormat("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+      }).format(new Date(value));
+    } catch {
+      return value;
+    }
+  }
+
+  function buildFounderNoteLinksMarkup() {
+    const entries = getFounderNotesEntries();
+    if (!entries.length) {
+      return `<div class="empty-state">Founder notes will show up here.</div>`;
+    }
+    return entries.map((entry) => `
+      <div class="mini-card founder-note-link-card">
+        <button class="text-link founder-note-link" data-action="open-founder-note" data-id="${entry.id}">${escapeHtml(entry.subject || "Untitled Note")}</button>
+        <p class="founder-note-link__meta">${escapeHtml(formatFounderNoteDate(entry.updatedAt))}</p>
+      </div>
+    `).join("");
+  }
+
   function buildSavedCollectionsMarkup() {
     const grouped = {};
     appState.savedIds.forEach((id) => {
@@ -1969,19 +2084,46 @@
     `;
   }
 
-  function renderNotes() {
-    const planDraft = appState.quizResult
-      ? { ...buildPlanDraft(appState.quizResult), ...appState.planDraft }
-      : appState.planDraft;
+  function renderNotes(selectedFounderNoteId = null) {
+    const founderNotes = getFounderNotesEntries();
+    const activeFounderNote = founderNotes.find((entry) => entry.id === selectedFounderNoteId) || founderNotes[0] || null;
     const noteEntries = buildSortedNoteEntries();
     document.getElementById("notesList").innerHTML = `
       <section class="saved-block">
         <h4>Founder Notes</h4>
         <p>Use this space for free-form notes you want to keep in your Founder File.</p>
-        <label class="field plan-draft-field">
-          <span>Notes</span>
-          <textarea data-plan-field="founderNotes" placeholder="Add notes, reminders, observations, or anything else you want to keep here.">${planDraft.founderNotes || ""}</textarea>
-        </label>
+        <div class="inline-actions">
+          <button class="utility-link" data-action="new-founder-note">New Note</button>
+        </div>
+        ${activeFounderNote ? `
+          <label class="field plan-draft-field">
+            <span>Subject</span>
+            <input data-founder-note-field="subject" data-note-id="${activeFounderNote.id}" type="text" placeholder="Subject" value="${escapeHtml(activeFounderNote.subject)}">
+          </label>
+          <label class="field plan-draft-field">
+            <span>Date</span>
+            <input type="text" value="${escapeHtml(formatFounderNoteDate(activeFounderNote.updatedAt))}" disabled>
+          </label>
+          <label class="field plan-draft-field">
+            <span>Note</span>
+            <textarea data-founder-note-field="body" data-note-id="${activeFounderNote.id}" placeholder="Add notes, reminders, observations, or anything else you want to keep here.">${escapeHtml(activeFounderNote.body)}</textarea>
+          </label>
+          <div class="inline-actions">
+            <button class="utility-link utility-link--danger" data-action="delete-founder-note" data-id="${activeFounderNote.id}">Delete Note</button>
+          </div>
+        ` : `<div class="empty-state">Start a Founder note to keep free-form thoughts, reminders, and ideas in one place.</div>`}
+      </section>
+      <section class="saved-block">
+        <h4>Founder Note List</h4>
+        ${founderNotes.length
+          ? `<div class="plain-list">${founderNotes.map((entry) => `
+              <div class="mini-card founder-note-link-card">
+                <button class="text-link founder-note-link" data-action="open-founder-note" data-id="${entry.id}">${escapeHtml(entry.subject || "Untitled Note")}</button>
+                <p class="founder-note-link__meta">${escapeHtml(formatFounderNoteDate(entry.updatedAt))}</p>
+              </div>
+            `).join("")}</div>`
+          : `<div class="empty-state">Your Founder notes will show up here once you create them.</div>`
+        }
       </section>
       <section class="saved-block">
         <h4>Notes by Item</h4>
@@ -3124,8 +3266,8 @@
     }
     if (overlayState.kind === "notes") {
       if (appState.isSignedIn) {
-        renderNotes();
-        openOverlay("notesOverlay", { kind: "notes" });
+        renderNotes(overlayState.itemId || null);
+        openOverlay("notesOverlay", { kind: "notes", itemId: overlayState.itemId || null });
       }
       return;
     }
@@ -3185,6 +3327,15 @@
 
   function titleCase(value) {
     return value.replace(/\b\w/g, (char) => char.toUpperCase());
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
   }
 
   function capitalize(value) {

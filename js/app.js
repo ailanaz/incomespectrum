@@ -1251,20 +1251,16 @@
           </div>
         ${stateContext}
         <div class="state-browser-grid">
-          ${allStates.map((state) => {
-            const stateCardItem = ensureOfficialStateCard(state);
-            return `
+          ${allStates.map((state) => `
             <div class="state-browser-card ${state === selectedState ? "state-browser-card--current" : ""}">
               <span class="state-browser-card__eyebrow">${state === appState.selectedState ? "Saved State" : "State"}</span>
               <strong>${state}</strong>
               <span class="state-browser-card__meta">Open state information</span>
               <div class="inline-actions inline-actions--state-browser">
                 <button class="app-btn app-btn--secondary" type="button" data-action="open-state-detail" data-state="${state}">Open</button>
-                <button class="app-btn app-btn--ghost" type="button" data-action="save-item" data-id="${stateCardItem.id}">${isSaved(stateCardItem.id) ? "Saved" : "Save"}</button>
               </div>
             </div>
-          `;
-          }).join("")}
+          `).join("")}
         </div>
         <div class="card-grid card-grid--two">
           <div class="saved-block">
@@ -1300,24 +1296,6 @@
         </div>
       </div>
     `;
-  }
-
-  function ensureOfficialStateCard(stateName) {
-    const id = `official-state-card-${slugify(stateName)}`;
-    let item = data.official.find((entry) => entry.id === id);
-    if (item) return item;
-    item = {
-      id,
-      title: `${stateName} Official Information`,
-      description: `Official business registration, tax, licensing, agency, and state contracting information for ${stateName}.`,
-      type: "State Information",
-      categories: ["State Information"],
-      stateCard: true,
-      stateName,
-      tags: ["state information", normalizeTag(stateName)]
-    };
-    data.official.push(item);
-    return item;
   }
 
   function renderSaved() {
@@ -1531,10 +1509,6 @@
   async function openDetail(id, type) {
     const item = findItem(id);
     if (!item) return;
-    if (type === "official" && item.stateCard && item.stateName) {
-      await openStateDetail(item.stateName);
-      return;
-    }
     registerViewed(id);
     const detailType = document.getElementById("detailType");
     const detailTitle = document.getElementById("detailTitle");

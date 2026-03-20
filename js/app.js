@@ -1100,11 +1100,7 @@
     const accountStatusCopy = document.getElementById("accountStatusCopy");
     const profileSignupCard = document.getElementById("profileSignupCard");
     const profileToolsTitle = document.getElementById("profileToolsTitle");
-    const accountModeBadge = document.getElementById("accountModeBadge");
-    const signOutButton = document.getElementById("signOutButton");
     const topSignOutButton = document.getElementById("topSignOutButton");
-    const homeSignOutButton = document.getElementById("homeSignOutButton");
-    const testControlsModeCopy = document.getElementById("testControlsModeCopy");
     if (signupState) signupState.value = appState.selectedState;
     if (signupGoal) signupGoal.innerHTML = setupGoals.map((goal) => `
       <button class="choice-pill ${goal.value === appState.goal ? "active" : ""}" type="button" data-value="${goal.value}">${goal.label}</button>
@@ -1118,19 +1114,7 @@
       : "You are browsing in Guest Mode. Founder File access and saved progress require a Founder sign-in.";
     if (profileSignupCard) profileSignupCard.classList.toggle("hidden", appState.isSignedIn);
     if (profileToolsTitle) profileToolsTitle.textContent = appState.isSignedIn ? "App tools" : "Guest tools";
-    if (signOutButton) signOutButton.classList.toggle("hidden", !appState.isSignedIn);
     if (topSignOutButton) topSignOutButton.classList.toggle("hidden", !appState.isSignedIn);
-    if (homeSignOutButton) homeSignOutButton.classList.toggle("hidden", !appState.isSignedIn);
-    if (accountModeBadge) {
-      accountModeBadge.textContent = appState.isSignedIn ? "Founder Mode" : "Guest Mode";
-      accountModeBadge.classList.toggle("app-mode-badge--founder", appState.isSignedIn);
-      accountModeBadge.classList.toggle("app-mode-badge--guest", !appState.isSignedIn);
-    }
-    if (testControlsModeCopy) {
-      testControlsModeCopy.textContent = appState.isSignedIn
-        ? "You are testing in Founder Mode on this device."
-        : "You are testing in Guest Mode on this device.";
-    }
     document.getElementById("topPlannerButton").textContent = "Founder File Overview";
     document.getElementById("topPlannerButton").setAttribute("aria-label", "Open Founder File Overview");
   }

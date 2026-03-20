@@ -1249,7 +1249,20 @@
     document.getElementById("continueCopy").textContent = lastViewed
       ? `You last opened ${lastViewed.title}. Keep exploring the spectrum and place the right items into your Founder File.`
       : "The Income Spectrum App is an interactive companion for exploring income opportunities, knowledge resources, support services, official information, and articles while building your personal Founder File in one place.";
-    document.getElementById("heroStateValue").textContent = appState.selectedState;
+    const heroStateButton = document.getElementById("heroStateButton");
+    if (appState.isSignedIn) {
+      document.getElementById("heroStateValue").textContent = appState.selectedState;
+      if (heroStateButton) {
+        heroStateButton.dataset.action = "open-state-detail";
+        delete heroStateButton.dataset.state;
+      }
+    } else {
+      document.getElementById("heroStateValue").textContent = "Browse All States";
+      if (heroStateButton) {
+        heroStateButton.dataset.action = "open-all-states";
+        delete heroStateButton.dataset.state;
+      }
+    }
     document.getElementById("heroPathValue").textContent = currentPath.label;
     document.getElementById("heroPlanValue").textContent = currentPlan.label;
     document.getElementById("homeSecondaryAction").textContent = appState.isSignedIn ? "Open File" : "Sign Up to Save Your File";

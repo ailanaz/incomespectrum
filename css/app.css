@@ -504,7 +504,8 @@ button.field-toggle::after {
   align-items: start;
 }
 
-.plan-page-block--template {
+.plan-page-block--template,
+.plan-page-block--fullwidth {
   grid-column: 1 / -1;
 }
 

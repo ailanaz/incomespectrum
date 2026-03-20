@@ -1808,15 +1808,6 @@
     const nextMovesMarkup = `
       ${renderFounderFileField("Next Steps", "nextMoves", planDraft.nextMoves || "", "List the next actions you want to take inside or outside the app.")}
     `;
-    const revisitQuizMarkup = `
-      <section class="saved-block plan-page-block">
-        <h4>Explore Another Set of Ideas</h4>
-        <p>If you are feeling different, seeing a different opportunity pattern, or want to test another set of ideas, you can revisit the quiz.</p>
-        <div class="inline-actions">
-          <button class="utility-link" data-action="open-quiz">Revisit the Quiz</button>
-        </div>
-      </section>
-    `;
 
     planHubHeader.innerHTML = `
       <section class="card">
@@ -1835,28 +1826,24 @@
 
     savedSectionsNode.className = "plan-page-grid";
     savedSectionsNode.innerHTML = `
-      <section class="saved-block plan-page-block plan-page-block--template">
-        <div class="plain-list">${founderIdentityItems}</div>
-      </section>
-      <section class="saved-block plan-page-block">
-        <h4>Current Focus</h4>
-        <div class="plain-list">${currentFocusMarkup}</div>
-      </section>
       <section class="saved-block plan-page-block">
         <h4>Ideas</h4>
         <div class="plain-list">${ideasMarkup}</div>
+      </section>
+      <section class="saved-block plan-page-block plan-page-block--identity">
+        <div class="plain-list">${founderIdentityItems}</div>
       </section>
       <section class="saved-block plan-page-block">
         <h4>Knowledge</h4>
         <div class="plain-list">${knowledgeMarkup}</div>
       </section>
       <section class="saved-block plan-page-block">
-        <h4>Support</h4>
-        <div class="plain-list">${supportMarkup}</div>
+        <h4>Goals</h4>
+        <div class="plain-list">${goalsMarkup}</div>
       </section>
       <section class="saved-block plan-page-block">
-        <h4>Official Needs</h4>
-        <div class="plain-list">${officialMarkup}</div>
+        <h4>Support</h4>
+        <div class="plain-list">${supportMarkup}</div>
       </section>
       <section class="saved-block plan-page-block">
         <h4>Saved Items</h4>
@@ -1864,21 +1851,31 @@
           ${savedCollections}
         </div>
       </section>
+      <section class="saved-block plan-page-block">
+        <h4>Official Needs</h4>
+        <div class="plain-list">${officialMarkup}</div>
+      </section>
       <section class="saved-block plan-page-block" id="founderFileNotesSection">
         <h4>Notes</h4>
         <div class="plain-list">
           ${noteEntries}
         </div>
       </section>
-      <section class="saved-block plan-page-block">
-        <h4>Goals</h4>
-        <div class="plain-list">${goalsMarkup}</div>
-      </section>
       <section class="saved-block plan-page-block" id="founderFileNextStepsSection">
         <h4>Next Steps</h4>
         <div class="plain-list">${nextMovesMarkup}</div>
       </section>
-      ${revisitQuizMarkup}
+      <section class="saved-block plan-page-block plan-page-block--fullwidth">
+        <h4>Current Focus</h4>
+        <div class="plain-list">${currentFocusMarkup}</div>
+      </section>
+      <section class="saved-block plan-page-block plan-page-block--fullwidth">
+        <h4>Explore Another Set of Ideas</h4>
+        <p>If you are feeling different, seeing a different opportunity pattern, or want to test another set of ideas, you can revisit the quiz.</p>
+        <div class="inline-actions">
+          <button class="utility-link" data-action="open-quiz">Revisit the Quiz</button>
+        </div>
+      </section>
     `;
   }
 

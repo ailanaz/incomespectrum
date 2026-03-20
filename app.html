@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/app.css?v=20260319ak">
+  <link rel="stylesheet" href="css/app.css?v=20260319al">
 </head>
 <body>
   <div class="app-shell">
@@ -148,8 +148,8 @@
           </div>
         </section>
 
-        <div class="card-grid card-grid--two">
-          <section class="card card--stacked">
+        <div class="home-dashboard-grid">
+          <section class="card card--stacked home-panel home-panel--pbpp">
             <div class="card-header">
               <div>
                 <p class="section-kicker">PBPP</p>
@@ -159,19 +159,30 @@
             <ul class="stack-list" id="nextStepsList"></ul>
           </section>
 
-          <section class="card card--stacked">
+          <section class="card card--stacked home-panel home-panel--saved">
             <div class="card-header">
               <div>
-                <p class="section-kicker">Path Materials</p>
+                <p class="section-kicker">Saved and Notes</p>
               </div>
               <button class="text-link" data-action="show-view" data-view="saved">Open Saved</button>
             </div>
             <div id="savedPreview"></div>
+            <div class="inline-actions inline-actions--home">
+              <button class="utility-link" data-action="open-notes">Open Notes</button>
+            </div>
           </section>
-        </div>
 
-        <div class="card-grid card-grid--two">
-          <section class="card card--stacked">
+          <section class="card home-panel home-panel--articles">
+            <div class="card-header">
+              <div>
+                <p class="section-kicker">Articles</p>
+              </div>
+            </div>
+            <p>Open the full article library inside the app and move between resources without leaving your workflow.</p>
+            <button class="text-link" data-action="open-articles">Open Articles</button>
+          </section>
+
+          <section class="card card--stacked home-panel home-panel--recent">
             <div class="card-header">
               <div>
                 <p class="section-kicker">Recently Viewed</p>
@@ -179,22 +190,7 @@
             </div>
             <div id="recentlyViewed"></div>
           </section>
-
-          <section class="card feature-card feature-card--quiz">
-            <p class="section-kicker">Featured Quiz</p>
-            <h3>What People Will Pay For</h3>
-            <p>Use the quiz to turn what people pay for into a path direction and a first-draft PBPP.</p>
-            <button class="app-btn app-btn--secondary" data-action="open-quiz">Take the Quiz</button>
-          </section>
         </div>
-
-        <section class="card feature-band">
-          <div class="feature-band__content">
-            <p class="section-kicker">Articles</p>
-            <p>Open the full article library inside the app and move between resources without leaving your workflow.</p>
-          </div>
-          <button class="app-btn app-btn--ghost" data-action="open-articles">Open Articles</button>
-        </section>
       </section>
 
       <section class="view" id="view-explore" data-view="explore">
@@ -376,6 +372,6 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=20260319ak"></script>
+  <script src="js/app.js?v=20260319al"></script>
 </body>
 </html>

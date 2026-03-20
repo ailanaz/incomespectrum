@@ -3246,12 +3246,24 @@
   }
 
   function buildNextSteps() {
-    const steps = [];
-    steps.push("Understand what people pay for and how the Cost of Living drives Opportunity.");
-    steps.push("Save the items you reviewed in your personal Founder File.");
-    steps.push("Add notes about what matters to you.");
-    steps.push("Find and save opportunities, resources, Official Information, and more that are relevant to your Founder goals.");
-    return steps;
+    return [
+      {
+        label: "Quiz",
+        value: "Understand what people pay for and how the Cost of Living drives Opportunity."
+      },
+      {
+        label: "File",
+        value: "Save the information you want to keep in your Founder File."
+      },
+      {
+        label: "Notes",
+        value: "Record what matters to you as ideas and priorities become clearer."
+      },
+      {
+        label: "Explore",
+        value: "Review opportunities, resources, and Official Information that are relevant to your business."
+      }
+    ];
   }
 
   function matchesFilter(item, filter) {

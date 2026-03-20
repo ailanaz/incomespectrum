@@ -1920,23 +1920,18 @@
       <div class="detail-section">
         <p>Official business registration, tax, licensing, agency, and state contracting links for ${stateName}.</p>
       </div>
-      <div class="detail-section">
-        <div class="inline-actions">
-          <button class="app-btn app-btn--ghost" data-action="open-all-states">Back to All States</button>
-          ${appState.isSignedIn && stateName !== appState.selectedState ? `<button class="app-btn app-btn--ghost" data-action="open-state-detail" data-state="${appState.selectedState}">Open Saved State</button>` : ""}
-        </div>
-      </div>
       <div class="card-grid card-grid--two">
         ${stateItems.map((item) => `
           <section class="saved-block">
+            <div class="inline-actions">
+              <button class="app-btn app-btn--ghost" data-action="open-all-states">Back to All States</button>
+              <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>
+            </div>
             <h3>${item.title}</h3>
             <p>${item.description}</p>
             <ul class="detail-links">
               ${resolveOfficialLinks(item, stateName).map((link) => `<li><a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a></li>`).join("")}
             </ul>
-            <div class="inline-actions">
-              <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>
-            </div>
           </section>
         `).join("")}
       </div>

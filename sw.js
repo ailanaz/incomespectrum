@@ -1,4 +1,4 @@
-const CACHE_NAME = 'income-spectrum-v1';
+const CACHE_NAME = 'income-spectrum-v2';
 
 const APP_SHELL = [
   '/app.html',
@@ -9,7 +9,23 @@ const APP_SHELL = [
   '/img/icon-512.png',
   '/img/apple-touch-icon.png',
   '/img/favicon.png',
-  '/manifest.json'
+  '/manifest.json',
+  '/income-options.html',
+  '/education-training.html',
+  '/supportive-services.html',
+  '/state-federal-resources.html',
+  '/federal-contracting-resources.html',
+  '/state-contracting-resources.html',
+  '/local-government-contracting-resources.html',
+  '/asl-interpreter-opportunities-by-state.html',
+  '/asl-education-and-training-by-state.html',
+  '/asl-communication-access-services-by-state.html',
+  '/asl-official-information-by-state.html',
+  '/blog/index.html',
+  '/blog/what-people-will-pay-for/index.html',
+  '/blog/government-contracting-resources/index.html',
+  '/blog/best-ai-tools-for-people-trying-to-make-money-on-their-own/index.html',
+  '/blog/what-people-will-pay-for-quiz/index.html'
 ];
 
 // Install - cache the app shell

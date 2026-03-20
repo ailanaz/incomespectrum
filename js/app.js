@@ -2506,7 +2506,7 @@
   function buildPathSnapshot() {
     if (!appState.quizResult) {
       return {
-        label: "Choose a focus",
+        label: "Find your focus",
         summary: "Use the quiz to understand what people pay for and turn that into a starting point.",
         primarySection: "income"
       };

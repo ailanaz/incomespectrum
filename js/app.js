@@ -558,7 +558,7 @@
   const quiz = {
     title: "What People Will Pay For",
     intro: "This quiz is designed to help you understand what people are paying for and turn that understanding into a living Personal Business Pathway Plan.",
-    cultureNote: "In this concept, culture is not just who people are. Culture is the shared cost people are carrying and the shared relief, protection, access, improvement, or result they are seeking.",
+    cultureNote: "Culture is shared cost and shared relief sought.",
     questions: [
       {
         id: "block",

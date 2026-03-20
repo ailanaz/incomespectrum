@@ -159,6 +159,10 @@ a {
   font-weight: 400;
 }
 
+.gate-title__light {
+  font-weight: 400;
+}
+
 .gate-panel h2 {
   font-size: clamp(1.85rem, 4vw, 2.8rem);
 }

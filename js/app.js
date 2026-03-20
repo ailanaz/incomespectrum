@@ -1838,7 +1838,6 @@
     savedSectionsNode.innerHTML = `
       <section class="saved-block plan-page-block plan-page-block--template">
         <h4>Founder Identity</h4>
-        <p>The identity, account context, and starting conditions attached to your Founder File.</p>
         <div class="plain-list">${founderIdentityItems}</div>
       </section>
       <section class="saved-block plan-page-block">

@@ -1589,7 +1589,7 @@
     const quizStatus = appState.quizResult ? "Quiz complete" : "Quiz not started";
     return `
       <div class="mini-card">
-        <span class="section-kicker">Identity</span>
+        <p><strong class="founder-space-label">Identity:</strong></p>
         <strong>${founderIdentity}</strong>
         <p>${goalSummary || quizStatus}</p>
       </div>

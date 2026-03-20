@@ -235,6 +235,10 @@ a {
   font-weight: 700;
 }
 
+.field-toggle::after {
+  content: none;
+}
+
 .choice-group,
 .pill-row,
 .toolbar__chips,

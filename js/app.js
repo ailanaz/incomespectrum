@@ -673,6 +673,17 @@
       itemId: null,
       itemType: null,
       stateName: null
+    },
+    signupReturn: {
+      hasReturn: false,
+      view: null,
+      overlayState: {
+        id: null,
+        kind: null,
+        itemId: null,
+        itemType: null,
+        stateName: null
+      }
     }
   };
 
@@ -743,6 +754,7 @@
         saveState();
         openApp("explore");
       } else if (action === "start-setup-signup") {
+        captureSignupReturn();
         showGate("signup");
       } else if (action === "sign-in-demo") {
         appState.isSignedIn = true;
@@ -757,7 +769,7 @@
       } else if (action === "complete-signup") {
         completeSignup();
       } else if (action === "back-to-opening") {
-        showGate("opening");
+        returnFromSignup();
       } else if (action === "skip-setup") {
         appState.setupComplete = true;
         openApp("home");
@@ -1127,8 +1139,51 @@
   function completeSignup() {
     appState.isSignedIn = true;
     appState.setupComplete = true;
+    clearSignupReturn();
     saveState();
     openApp("home");
+  }
+
+  function captureSignupReturn() {
+    if (!appState.setupComplete) {
+      clearSignupReturn();
+      saveState();
+      return;
+    }
+    appState.signupReturn = {
+      hasReturn: true,
+      view: appState.activeView || "home",
+      overlayState: appState.overlayState?.id
+        ? { ...structuredClone(defaultState.overlayState), ...appState.overlayState }
+        : { ...structuredClone(defaultState.overlayState) }
+    };
+    saveState();
+  }
+
+  function clearSignupReturn() {
+    appState.signupReturn = structuredClone(defaultState.signupReturn);
+  }
+
+  function returnFromSignup() {
+    const signupReturn = appState.signupReturn || structuredClone(defaultState.signupReturn);
+    if (!signupReturn.hasReturn) {
+      clearSignupReturn();
+      saveState();
+      showGate("opening");
+      return;
+    }
+    clearSignupReturn();
+    saveState();
+    syncGateState();
+    showView(signupReturn.view || "home");
+    if (signupReturn.overlayState?.id) {
+      appState.overlayState = {
+        ...structuredClone(defaultState.overlayState),
+        ...signupReturn.overlayState
+      };
+      saveState();
+      void restoreOverlayState();
+    }
   }
 
   function getActiveChoiceValue(node) {

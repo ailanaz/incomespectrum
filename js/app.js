@@ -1802,7 +1802,7 @@
         </div>
         <p>${planSummary.summary}</p>
         <div class="inline-actions">
-          <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileNotesSection">Notes</button>
+          <button class="utility-link-pill" data-action="open-notes">Notes</button>
           <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileNextStepsSection">Next Steps</button>
         </div>
       </section>
@@ -1971,9 +1971,23 @@
   }
 
   function renderNotes() {
+    const planDraft = appState.quizResult
+      ? { ...buildPlanDraft(appState.quizResult), ...appState.planDraft }
+      : appState.planDraft;
     const noteEntries = buildSortedNoteEntries();
-    document.getElementById("notesList").innerHTML = noteEntries.length
-      ? noteEntries.map(({ id, note, item }) => {
+    document.getElementById("notesList").innerHTML = `
+      <section class="saved-block">
+        <h4>Founder Notes</h4>
+        <p>Use this space for free-form notes you want to keep in your Founder File.</p>
+        <label class="field plan-draft-field">
+          <span>Notes</span>
+          <textarea data-plan-field="founderNotes" placeholder="Add notes, reminders, observations, or anything else you want to keep here.">${planDraft.founderNotes || ""}</textarea>
+        </label>
+      </section>
+      <section class="saved-block">
+        <h4>Notes by Item</h4>
+        ${noteEntries.length
+          ? noteEntries.map(({ id, note, item }) => {
           return `
             <div class="note-card">
               <h4>${item.title}</h4>
@@ -1986,7 +2000,10 @@
             </div>
           `;
         }).join("")
-      : `<div class="empty-state">Notes you add to income options, training, services, and official resources will show up here.</div>`;
+          : `<div class="empty-state">Notes you add to income options, training, services, and official resources will show up here.</div>`
+        }
+      </section>
+    `;
   }
 
   function renderProgress() {

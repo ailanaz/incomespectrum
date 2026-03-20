@@ -947,8 +947,8 @@
     document.getElementById("profileSignupCard").classList.toggle("hidden", appState.isSignedIn);
     document.getElementById("profileToolsTitle").textContent = appState.isSignedIn ? "App tools" : "Guest tools";
     document.getElementById("profileTabLabel").textContent = "Profile";
-    document.getElementById("topPlannerButton").textContent = "Planner";
-    document.getElementById("topPlannerButton").setAttribute("aria-label", "Open planner");
+    document.getElementById("topPlannerButton").textContent = "Founder File";
+    document.getElementById("topPlannerButton").setAttribute("aria-label", "Open Founder File");
   }
 
   async function hydrateCatalogFromSite() {
@@ -1194,8 +1194,8 @@
     document.getElementById("heroPathValue").textContent = currentPath.label;
     document.getElementById("heroPlanValue").textContent = currentPlan.label;
     document.getElementById("homeSecondaryAction").textContent = appState.isSignedIn ? "Open Plan" : "Sign Up to Save Your Plan";
-    document.getElementById("topPlannerButton").textContent = "Planner";
-    document.getElementById("topPlannerButton").setAttribute("aria-label", "Open planner");
+    document.getElementById("topPlannerButton").textContent = "Founder File";
+    document.getElementById("topPlannerButton").setAttribute("aria-label", "Open Founder File");
 
     const nextSteps = buildNextSteps();
     document.getElementById("nextStepsList").innerHTML = nextSteps.map((step) => `<li>${step}</li>`).join("");

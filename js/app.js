@@ -1994,21 +1994,22 @@
       .map((step) => step.trim())
       .filter(Boolean)
       .slice(0, 4);
-    const overviewNextSteps = nextMoves.length ? nextMoves : buildNextSteps().slice(0, 4);
+    const overviewNextSteps = nextMoves.length ? nextMoves : [];
     const goalSummary = planDraft.goals || planDraft.proof || "Clarify what progress, traction, or proof would matter most right now.";
     document.getElementById("progressStages").innerHTML = `
       <section class="progress-stage">
         <h4>Identity</h4>
         <div class="mini-card">
           <strong>${founderIdentity}</strong>
-          <p>Your current founder type.</p>
+          <p>Your current founder type will show here.</p>
         </div>
       </section>
       <section class="progress-stage">
         <h4>Next Steps</h4>
-        <ul class="overview-list">
-          ${overviewNextSteps.map((step) => `<li>${step}</li>`).join("")}
-        </ul>
+        ${overviewNextSteps.length
+          ? `<ul class="overview-list">${overviewNextSteps.map((step) => `<li>${step}</li>`).join("")}</ul>`
+          : `<div class="mini-card"><p>Next steps will show here.</p></div>`
+        }
       </section>
       <section class="progress-stage">
         <h4>Notes Highlights</h4>
@@ -2019,7 +2020,7 @@
                 <p>${note.text}</p>
               </div>
             `).join("")
-          : `<div class="empty-state">Notes you save in the app will surface here as highlights.</div>`
+          : `<div class="mini-card"><p>Your most important notes will show here.</p></div>`
         }
       </section>
       <section class="progress-stage">

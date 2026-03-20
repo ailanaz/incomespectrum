@@ -556,11 +556,11 @@
 
   const quiz = {
     title: "What People Will Pay For",
-    intro: "This is not a personality quiz. It helps you read what people pay for, choose a path on the spectrum, and generate a first-draft PBPP.",
+    intro: "This is not a personality quiz. It helps you understand what people pay for, where opportunity may be forming, and how to turn that into a living plan you can adjust as your idea develops.",
     questions: [
       {
         id: "motivator",
-        prompt: "Which motivator feels most active in the situation you are looking at?",
+        prompt: "Which motivator seems most active in the situation you are observing?",
         options: [
           { value: "Survival and Stability", label: "Survival and Stability" },
           { value: "Safety and Protection", label: "Safety and Protection" },
@@ -581,7 +581,7 @@
       },
       {
         id: "culture",
-        prompt: "Which culture pattern best fits the group you are looking at?",
+        prompt: "Which culture pattern best fits the group you are observing?",
         options: [
           { value: "People trying to get organized and stable", label: "People trying to get organized and stable" },
           { value: "People trying to protect what they have", label: "People trying to protect what they have" },
@@ -592,22 +592,33 @@
         ]
       },
       {
-        id: "direction",
-        prompt: "Where does the strongest business direction seem to come from?",
+        id: "delivery",
+        prompt: "Where does the clearest opening seem to be?",
         options: [
-          { value: "Lower the cost", label: "Lower the cost" },
-          { value: "Increase the value", label: "Increase the value" },
-          { value: "A mix of both", label: "A mix of both" }
+          { value: "Service-led", label: "Doing the work, solving the problem, or delivering the service directly" },
+          { value: "Product-led", label: "Giving people something to buy, use, or keep using" },
+          { value: "Ownership-led", label: "Owning or operating a business, asset, or acquired opportunity" },
+          { value: "Process-led", label: "Helping people move through systems, requirements, or structured opportunities" }
         ]
       },
       {
-        id: "pathway",
-        prompt: "Which area of the spectrum feels closest to where you want to start?",
+        id: "readiness",
+        prompt: "What do you have most of right now?",
         options: [
-          { value: "Income Options", label: "Income Options" },
-          { value: "Education & Training", label: "Education & Training" },
-          { value: "Supportive Services", label: "Supportive Services" },
-          { value: "Official Information", label: "Official Information" }
+          { value: "Usable Skill", label: "A usable skill, service, or experience I can work from" },
+          { value: "Need Knowledge", label: "A rough direction, but I still need knowledge or training" },
+          { value: "Need Support", label: "A direction, but I will need support services to operate well" },
+          { value: "Need Official Clarity", label: "A direction, but I need clarity on rules, registration, or compliance" },
+          { value: "Still Early", label: "I am still early and need a starting path more than a fixed idea" }
+        ]
+      },
+      {
+        id: "direction",
+        prompt: "Where is the strongest value likely to come from?",
+        options: [
+          { value: "Lower the cost", label: "Lowering the cost people are already carrying" },
+          { value: "Increase the value", label: "Increasing the value or result people receive" },
+          { value: "A mix of both", label: "A mix of lowering cost and increasing value" }
         ]
       }
     ]
@@ -1444,7 +1455,7 @@
   function renderSavedQuizResult() {
     const node = document.getElementById("savedQuizResult");
     if (!appState.quizResult) {
-      node.innerHTML = `<div class="empty-state">Take the quiz to generate a first-draft PBPP based on what people pay for and where you want to start on the spectrum.</div>`;
+      node.innerHTML = `<div class="empty-state">Take the quiz to generate a first-draft personal business pathway plan based on what people pay for and where opportunity may be forming.</div>`;
       return;
     }
     node.innerHTML = renderQuizResult(appState.quizResult, false);
@@ -1809,19 +1820,42 @@
           <p>${result.direction}</p>
         </div>
         <div class="detail-section">
-          <h4>PBPP inputs: Income Options</h4>
+          <h4>Income Idea</h4>
+          <p><strong>${result.incomeIdeaTitle}</strong></p>
+          <p>${result.incomeIdeaSummary}</p>
+        </div>
+        <div class="detail-section">
+          <h4>Knowledge</h4>
+          <p>${result.knowledgeSummary}</p>
+        </div>
+        <div class="detail-section">
+          <h4>Supportive Services</h4>
+          <p>${result.supportSummary}</p>
+        </div>
+        <div class="detail-section">
+          <h4>Official Needs</h4>
+          <p>${result.officialSummary}</p>
+        </div>
+        <div class="detail-section">
+          <h4>How to use this plan</h4>
+          <ul class="detail-links">
+            ${result.planSteps.map((step) => `<li>${step}</li>`).join("")}
+          </ul>
+        </div>
+        <div class="detail-section">
+          <h4>Plan Inputs: Income Options</h4>
           ${renderRelatedLinks(result.suggestedIncomeIds, "income")}
         </div>
         <div class="detail-section">
-          <h4>PBPP inputs: Knowledge</h4>
+          <h4>Plan Inputs: Knowledge</h4>
           ${renderRelatedLinks(result.suggestedTrainingIds, "training")}
         </div>
         <div class="detail-section">
-          <h4>PBPP inputs: Support</h4>
+          <h4>Plan Inputs: Support</h4>
           ${renderRelatedLinks(result.suggestedServiceIds, "services")}
         </div>
         <div class="detail-section">
-          <h4>PBPP inputs: Official Information</h4>
+          <h4>Plan Inputs: Official Information</h4>
           ${renderRelatedLinks(result.suggestedOfficialIds, "official")}
         </div>
         ${includeSaveButton ? `<div class="inline-actions"><button class="app-btn app-btn--primary" data-action="save-quiz-result">${appState.isSignedIn ? "Build Plan" : "Sign Up to Build Plan"}</button></div>` : ""}
@@ -1933,8 +1967,9 @@
     const motivator = appState.quizAnswers.motivator || "Survival and Stability";
     const payment = appState.quizAnswers.payment || "Money and Time";
     const culture = appState.quizAnswers.culture || "People trying to get organized and stable";
+    const delivery = appState.quizAnswers.delivery || "Service-led";
+    const readiness = appState.quizAnswers.readiness || "Still Early";
     const direction = appState.quizAnswers.direction || "Lower the cost";
-    const pathway = appState.quizAnswers.pathway || "Income Options";
 
     const resultMap = {
       "Survival and Stability": {
@@ -1982,32 +2017,84 @@
     };
 
     const result = resultMap[motivator];
-    const sectionMap = {
-      "Income Options": "income",
-      "Education & Training": "training",
-      "Supportive Services": "services",
-      "Official Information": "official"
+    const deliveryMap = {
+      "Service-led": {
+        pathLabel: "Service-led path",
+        primarySection: "income",
+        incomeIdeaTitle: "A service-based income direction is the clearest starting point.",
+        incomeIdeaSummary: "This pattern suggests people are most likely to pay for direct help, done-for-you work, or expert delivery. If you already have your own idea, keep it if it solves this pressure clearly. If you do not, start with one of the service options surfaced below."
+      },
+      "Product-led": {
+        pathLabel: "Product-led path",
+        primarySection: "income",
+        incomeIdeaTitle: "A product-based income direction is the clearest starting point.",
+        incomeIdeaSummary: "This pattern suggests people may pay for something they can buy, use, or keep using without needing constant direct labor from you. If you already have a product idea, shape it around this pressure. If not, use the app options below as starting points."
+      },
+      "Ownership-led": {
+        pathLabel: "Ownership-led path",
+        primarySection: "income",
+        incomeIdeaTitle: "An ownership or acquisition direction may be the clearest starting point.",
+        incomeIdeaSummary: "This pattern points toward operating a business, asset, or structured opportunity rather than only selling your hours. If you already have a business idea, test whether it fits this ownership pattern. If not, use the surfaced options to identify something you could operate or acquire."
+      },
+      "Process-led": {
+        pathLabel: "Process-led path",
+        primarySection: "official",
+        incomeIdeaTitle: "A process, compliance, or structured-opportunity direction may be the clearest starting point.",
+        incomeIdeaSummary: "This pattern suggests value may come from helping people move through systems, requirements, registrations, or formal opportunities. If you already have an idea, anchor it in the process people need help navigating. If not, use the official and service inputs below to find a workable direction."
+      }
+    };
+    const readinessMap = {
+      "Usable Skill": "You already have something usable to work from, so the plan should start by shaping and testing that skill against real demand.",
+      "Need Knowledge": "Knowledge is the first gap, so this plan should place more weight on training, clarity, and skill-building before expansion.",
+      "Need Support": "Support structure is part of the plan, not an afterthought. This path should include outside help where it reduces friction or strengthens delivery.",
+      "Need Official Clarity": "Rules, registration, licensing, or formal requirements are part of the pathway. Official information should be treated as an early step, not a later detail.",
+      "Still Early": "You do not need a fixed idea yet. The plan should help you identify a starting point, test it, and keep adjusting as the signal gets clearer."
     };
     const directionText = direction === "A mix of both"
       ? "The best opening may come from lowering cost in one area while increasing value in another."
       : direction === "Lower the cost"
         ? "Look for ways to reduce what this group is spending in time, energy, attention, comfort, or risk."
         : "Look for ways to make the result more valuable inside the culture you are looking at.";
-    const pathLabel = `${pathway} path`;
-    const planTitle = `${pathway} PBPP`;
+    const path = deliveryMap[delivery];
+    const planTitle = "Personal Business Pathway Plan";
+    const knowledgeSummary = readiness === "Usable Skill"
+      ? "You may not need a large new training stack to begin. Start by tightening what you already know, then add knowledge where it strengthens the offer."
+      : readiness === "Need Official Clarity"
+        ? "Knowledge should focus on understanding the rules, registrations, and steps that affect whether this idea can operate cleanly."
+        : "This path should include targeted knowledge, not random learning. Use the suggested training items to close the exact gaps between your current position and a workable offer.";
+    const supportSummary = readiness === "Need Support"
+      ? "Support services are likely part of the operating model from the start. Choose only the ones that reduce friction, protect the business, or help you deliver consistently."
+      : "Support services are optional at first, but they can strengthen delivery, reduce risk, and help the path run more smoothly as it grows.";
+    const officialSummary = delivery === "Process-led" || readiness === "Need Official Clarity"
+      ? `Official information should be handled early in this plan. Use ${appState.selectedState} and federal resources to clarify registration, tax, licensing, contracting, or other requirements that shape the path.`
+      : `Official information still matters because it anchors the business in real rules. Use ${appState.selectedState} and federal resources to confirm the registrations, tax steps, and requirements that apply.`;
+    const planSteps = [
+      "Start with the pressure people are already carrying, not with a business format.",
+      `Use this ${path.pathLabel.toLowerCase()} as a working direction, not a fixed identity.`,
+      readinessMap[readiness],
+      directionText,
+      "Treat this as a living plan. Keep what fits, revise what does not, and let the app help you keep the parts together."
+    ];
     return {
       id: "quiz-result",
       title: result.title,
       planTitle,
-      explanation: `The strongest pattern here is ${motivator}. People are not just paying money. They are paying with ${payment.toLowerCase()}, and the culture pattern suggests ${culture.toLowerCase()}. This points toward ${pathway.toLowerCase()} as a strong place to start building your PBPP.`,
+      explanation: `The strongest pattern here is ${motivator}. People are not just paying money. They are paying with ${payment.toLowerCase()}, and the culture pattern suggests ${culture.toLowerCase()}. That gives you a starting read on where opportunity may sit and how to turn it into a living business pathway plan.`,
       motivator,
       payment,
       culture,
-      pathway,
-      primarySection: sectionMap[pathway],
-      pathLabel,
-      pathSummary: `Start in ${pathway.toLowerCase()} and build around ${motivator.toLowerCase()}, ${payment.toLowerCase()}, and the shared pressure inside this culture.`,
-      planSummary: `Use ${pathway.toLowerCase()} as your entry point, then connect the training, support, and official pieces that help you move from your current position to a workable business direction.`,
+      delivery,
+      readiness,
+      primarySection: path.primarySection,
+      pathLabel: path.pathLabel,
+      pathSummary: `Build around ${motivator.toLowerCase()}, ${payment.toLowerCase()}, and the shared pressure inside this culture. Let the path stay flexible while the signal becomes clearer.`,
+      planSummary: "This plan is not a formal business-plan document. It is a living pathway plan meant to help you nurture an idea you already have or develop one you discovered in the app.",
+      incomeIdeaTitle: path.incomeIdeaTitle,
+      incomeIdeaSummary: path.incomeIdeaSummary,
+      knowledgeSummary,
+      supportSummary,
+      officialSummary,
+      planSteps,
       direction: directionText,
       suggestedIncomeIds: result.income,
       suggestedTrainingIds: result.training,
@@ -2020,7 +2107,7 @@
     if (!appState.quizResult) {
       return {
         label: "Choose a direction",
-        summary: "Use the quiz to identify the area of the spectrum you want to start in.",
+        summary: "Use the quiz to understand what people pay for and turn that into a starting path.",
         primarySection: "income"
       };
     }
@@ -2042,7 +2129,7 @@
     if (!appState.quizResult) {
       return {
         label: "Build Your Personal Business Pathway Plan",
-        summary: "Take the quiz to generate a first-draft personal business pathway plan."
+        summary: "Take the quiz to generate a living pathway plan built around idea, knowledge, support, and official needs."
       };
     }
     return {
@@ -2155,7 +2242,7 @@
     const path = buildPathSnapshot();
     const steps = [];
     if (!appState.quizResult) {
-      steps.push("Take the quiz to turn what people pay for into a first-draft PBPP.");
+      steps.push("Take the quiz to turn what people pay for into a first-draft personal business pathway plan.");
     }
     if (!appState.savedIds.length) {
       steps.push("Save the items that belong in your path so they can be used in your PBPP.");

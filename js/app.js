@@ -561,7 +561,7 @@
     questions: [
       {
         id: "block",
-        prompt: "What has been getting in the way most when you try to think about business ideas?",
+        prompt: "What have you been noticing most when business ideas do not come together easily?",
         options: [
           { value: "Overload", label: "Too much information, too many ideas, and too much noise" },
           { value: "NoStartingPoint", label: "I do not know where to start or what to look at" },
@@ -572,7 +572,7 @@
       },
       {
         id: "problem",
-        prompt: "What kind of cost, relief, or result seems to keep showing up?",
+        prompt: "What kind of cost, relief, or result do you keep noticing people circling around?",
         options: [
           { value: "Relief and Health", label: "Relief, solution, or improvement" },
           { value: "Safety and Protection", label: "Prevention, protection, or risk reduction" },
@@ -584,7 +584,7 @@
       },
       {
         id: "payment",
-        prompt: "What are people paying with most heavily right now?",
+        prompt: "What do people seem to be spending most heavily right now?",
         options: [
           { value: "Time", label: "Time" },
           { value: "Energy", label: "Energy" },
@@ -595,19 +595,19 @@
       },
       {
         id: "culture",
-        prompt: "What kind of people seem to share this pressure or pattern?",
+        prompt: "What shared cost and shared relief seem to define the culture here?",
         options: [
-          { value: "People trying to get organized and stable", label: "People in a similar day-to-day situation trying to get organized and stable" },
-          { value: "People trying to protect what they have", label: "People in a similar situation trying to protect what they have" },
-          { value: "People trying to reduce strain or pain", label: "People dealing with similar strain, pain, or friction" },
-          { value: "People trying to make life easier or more enjoyable", label: "People trying to make life easier or more enjoyable in the same context" },
-          { value: "People trying to stay connected or understood", label: "People trying to feel connected, included, or understood in the same context" },
-          { value: "People trying to advance, prove something, or leave a mark", label: "People trying to advance, prove something, or leave a mark in the same context" }
+          { value: "People trying to get organized and stable", label: "A repeated pressure around instability, disorder, or access, with relief sought through stability or order" },
+          { value: "People trying to protect what they have", label: "A repeated pressure around exposure or loss, with relief sought through protection or prevention" },
+          { value: "People trying to reduce strain or pain", label: "A repeated pressure around strain, pain, or friction, with relief sought through solution or reduction" },
+          { value: "People trying to make life easier or more enjoyable", label: "A repeated pressure around inconvenience or discomfort, with relief sought through ease or enjoyment" },
+          { value: "People trying to stay connected or understood", label: "A repeated pressure around disconnection, exclusion, or misunderstanding, with relief sought through connection" },
+          { value: "People trying to advance, prove something, or leave a mark", label: "A repeated pressure around uncertainty, growth, or proving value, with relief sought through progress or proof" }
         ]
       },
       {
         id: "action",
-        prompt: "What are people actually trying to do when they pay to deal with this?",
+        prompt: "When people pay around this pattern, what do they seem to be trying to move toward?",
         options: [
           { value: "Get It Done", label: "Get something done for them" },
           { value: "Get Relief", label: "Get relief, clarity, or peace of mind" },
@@ -618,7 +618,7 @@
       },
       {
         id: "value",
-        prompt: "Where does the clearest opportunity seem to come from?",
+        prompt: "From what you are observing, where does the clearest opportunity seem to be forming?",
         options: [
           { value: "Lower the cost", label: "Lowering the cost people are already carrying" },
           { value: "Increase the value", label: "Increasing the value or result people receive" },
@@ -627,7 +627,7 @@
       },
       {
         id: "startingMaterial",
-        prompt: "Which starting material do you have most of right now?",
+        prompt: "Looking at what you already have, what seems most usable as a starting point?",
         options: [
           { value: "Own Idea", label: "An idea of my own that I want to test" },
           { value: "Usable Skill", label: "A usable skill, service, or experience I can work from" },

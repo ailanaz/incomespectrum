@@ -2134,7 +2134,11 @@
   function matchesFilter(item, filter) {
     if (!filter || filter === "all") return true;
     if (filter === "both") return item.location === "Both" || (item.tags || []).includes("both");
-    return (item.tags || []).includes(filter) || item.category === filter;
+    const normalizedFilter = normalizeTag(filter);
+    return (item.tags || []).some((tag) => normalizeTag(tag) === normalizedFilter)
+      || normalizeTag(item.category) === normalizedFilter
+      || (item.categories || []).some((category) => normalizeTag(category) === normalizedFilter)
+      || normalizeTag(item.groupTitle) === normalizedFilter;
   }
 
   function currentFilter() {

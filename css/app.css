@@ -577,19 +577,13 @@ a {
 .home-dashboard-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: 150px 150px 180px;
+  grid-template-areas:
+    "quiz articles"
+    "pbpp pbpp"
+    "recent recent";
   gap: 18px;
   align-items: stretch;
   margin-top: 18px;
-}
-
-.home-dashboard-stack {
-  display: grid;
-  grid-column: 2;
-  grid-row: 1 / span 3;
-  grid-template-rows: 150px 150px 180px;
-  gap: 18px;
-  height: 100%;
 }
 
 .home-panel {
@@ -600,24 +594,25 @@ a {
 }
 
 .home-panel--pbpp {
-  grid-column: 1;
-  grid-row: 1 / span 3;
-  min-height: 0;
-  height: 100%;
+  grid-area: pbpp;
+  min-height: 420px;
 }
 
 .home-panel--quiz {
-  min-height: 0;
+  grid-area: quiz;
+  min-height: 150px;
   justify-content: space-between;
   gap: 14px;
 }
 
 .home-panel--articles {
-  min-height: 0;
+  grid-area: articles;
+  min-height: 150px;
 }
 
 .home-panel--recent {
-  min-height: 0;
+  grid-area: recent;
+  min-height: 150px;
 }
 
 .home-panel .card-header {
@@ -1585,21 +1580,15 @@ a {
 
   .home-dashboard-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-
-  .home-dashboard-stack {
-    grid-column: auto;
-    grid-row: auto;
-    grid-template-rows: auto;
-    height: auto;
+    grid-template-areas:
+      "quiz"
+      "articles"
+      "pbpp"
+      "recent";
   }
 
   .home-panel--pbpp {
-    grid-column: auto;
-    grid-row: auto;
     min-height: 300px;
-    height: auto;
   }
 
   .hero-card {

@@ -235,8 +235,9 @@ a {
   font-weight: 700;
 }
 
-.field-toggle::after {
-  content: none;
+.text-link.field-toggle::after,
+button.field-toggle::after {
+  content: none !important;
 }
 
 .choice-group,

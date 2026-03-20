@@ -683,6 +683,7 @@
       itemType: null,
       stateName: null
     },
+    activeGateScreen: "opening",
     signupReturn: {
       hasReturn: false,
       view: null,
@@ -1409,7 +1410,7 @@
 
   function syncGateState() {
     if (!appState.setupComplete) {
-      showGate("opening");
+      showGate(appState.activeGateScreen || "opening");
       document.getElementById("mainApp").classList.add("hidden");
       return;
     }
@@ -1419,13 +1420,16 @@
 
   function showGate(screen) {
     closeAllOverlays();
+    appState.activeGateScreen = screen;
     document.getElementById("mainApp").classList.add("hidden");
     document.querySelectorAll(".gate-screen").forEach((node) => node.classList.remove("active"));
     document.querySelector(`[data-screen="${screen}"]`).classList.add("active");
+    saveState();
   }
 
   function openApp(view) {
     appState.setupComplete = true;
+    appState.activeGateScreen = "opening";
     saveState();
     syncGateState();
     showView(view);

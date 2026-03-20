@@ -712,8 +712,11 @@
     const actionNode = event.target.closest("[data-action]");
     if (actionNode) {
       const action = actionNode.dataset.action;
-      if (action === "start-setup") {
-        showGate("setup");
+      if (action === "start-explore-guest") {
+        appState.isSignedIn = false;
+        appState.setupComplete = true;
+        saveState();
+        openApp("explore");
       } else if (action === "start-setup-signup") {
         showGate("signup");
       } else if (action === "sign-in-demo") {
@@ -726,17 +729,10 @@
         appState.setupComplete = true;
         saveState();
         openApp("home");
-      } else if (action === "complete-setup") {
-        completeSetup();
-      } else if (action === "complete-setup-signup") {
-        applySetupSelections();
-        showGate("signup");
-      } else if (action === "complete-setup-guest") {
-        completeSetup(false);
       } else if (action === "complete-signup") {
         completeSignup();
-      } else if (action === "back-to-setup") {
-        showGate("setup");
+      } else if (action === "back-to-opening") {
+        showGate("opening");
       } else if (action === "skip-setup") {
         appState.setupComplete = true;
         openApp("home");
@@ -878,11 +874,7 @@
       const group = choicePill.closest(".choice-group, .pill-row");
       group.querySelectorAll(".choice-pill").forEach((pill) => pill.classList.remove("active"));
       choicePill.classList.add("active");
-      if (group.id === "setupGoal") {
-        appState.goal = choicePill.dataset.value;
-        saveState();
-        return;
-      } else if (group.id === "profileGoal") {
+      if (group.id === "profileGoal") {
         appState.goal = choicePill.dataset.value;
         saveState();
       } else if (group.id === "profileWorkPref") {
@@ -894,19 +886,15 @@
   }
 
   function populateStateSelects() {
-    const setupSelect = document.getElementById("setupState");
     const profileSelect = document.getElementById("profileState");
     const options = allStates.map((state) => `<option value="${state}">${state}</option>`).join("");
-    setupSelect.innerHTML = options;
-    profileSelect.innerHTML = options;
-    setupSelect.value = appState.selectedState;
-    profileSelect.value = appState.selectedState;
+    if (profileSelect) {
+      profileSelect.innerHTML = options;
+      profileSelect.value = appState.selectedState;
+    }
   }
 
   function renderSetupChoices() {
-    document.getElementById("setupGoal").innerHTML = setupGoals.map((goal) => `
-      <button class="choice-pill ${goal.value === appState.goal ? "active" : ""}" type="button" data-value="${goal.value}">${goal.label}</button>
-    `).join("");
     renderProfilePrefs();
   }
 
@@ -1085,11 +1073,6 @@
     });
   }
 
-  function applySetupSelections() {
-    appState.selectedState = document.getElementById("setupState").value;
-    appState.goal = getActiveChoiceValue(document.getElementById("setupGoal")) || appState.goal;
-  }
-
   function getStartDestinationFromGoal() {
     const sectionByGoal = {
       "explore options": "income",
@@ -1103,19 +1086,11 @@
     return "explore";
   }
 
-  function completeSetup(signIn = false) {
-    applySetupSelections();
-    appState.isSignedIn = signIn;
-    appState.setupComplete = true;
-    saveState();
-    openApp(signIn ? getStartDestinationFromGoal() : "home");
-  }
-
   function completeSignup() {
     appState.isSignedIn = true;
     appState.setupComplete = true;
     saveState();
-    openApp(getStartDestinationFromGoal());
+    openApp("home");
   }
 
   function getActiveChoiceValue(node) {

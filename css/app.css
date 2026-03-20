@@ -605,7 +605,7 @@ button.field-toggle::after {
 .feature-band__content {
   position: relative;
   z-index: 1;
-  max-width: 42rem;
+  max-width: 34rem;
 }
 
 .hero-card__actions {

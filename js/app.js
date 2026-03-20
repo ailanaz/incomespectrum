@@ -557,7 +557,7 @@
 
   const quiz = {
     title: "What People Will Pay For",
-    intro: "This is not a personality quiz. It is a way to understand what you are seeing, understand what people are paying for, and turn that into a living plan you can change as needed.",
+    intro: "This quiz is designed to help you understand what people are paying for and turn that understanding into a living plan.",
     questions: [
       {
         id: "block",

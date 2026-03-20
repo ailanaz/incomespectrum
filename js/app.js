@@ -1620,13 +1620,15 @@
 
     if (type === "article") {
       return `
-        <div class="detail-section">
-          <p>${item.description || "This article is available inside the Income Spectrum resource base."}</p>
+        <div class="detail-section article-detail-shell">
+          ${articleContent?.meta ? `<p class="article-detail-meta">${articleContent.meta}</p>` : ""}
+          <div class="article-detail-intro">
+            <p class="article-detail-description">${item.description || "This article is available inside the Income Spectrum resource base."}</p>
+            ${articleContent?.lead ? `<p class="article-detail-lead">${articleContent.lead}</p>` : ""}
+          </div>
+          ${articleContent?.bodyHtml ? `<div class="article-live-content">${articleContent.bodyHtml}</div>` : ""}
         </div>
-        ${articleContent?.meta ? `<div class="detail-section"><p><strong>${articleContent.meta}</strong></p></div>` : ""}
-        ${articleContent?.lead ? `<div class="detail-section"><p>${articleContent.lead}</p></div>` : ""}
-        ${articleContent?.bodyHtml ? `<div class="detail-section article-live-content">${articleContent.bodyHtml}</div>` : ""}
-        <div class="detail-section">
+        <div class="detail-section article-detail-footer">
           <h3>Keep this connected</h3>
           <p>You can save this article in the app, add notes to it, and use it alongside related income options, training, services, and official information.</p>
         </div>

@@ -666,7 +666,14 @@
       launch: []
     },
     quizAnswers: {},
-    quizResult: null
+    quizResult: null,
+    overlayState: {
+      id: null,
+      kind: null,
+      itemId: null,
+      itemType: null,
+      stateName: null
+    }
   };
 
   let appState = loadState();
@@ -683,13 +690,23 @@
     renderAll();
     syncGateState();
     if (appState.setupComplete) {
+      if (!appState.isSignedIn && appState.activeView === "saved") {
+        appState.activeView = "home";
+        saveState();
+      }
       showView(appState.activeView || "home");
+      await restoreOverlayState();
     }
     await hydrateCatalogFromSite();
     renderAll();
     syncGateState();
     if (appState.setupComplete) {
+      if (!appState.isSignedIn && appState.activeView === "saved") {
+        appState.activeView = "home";
+        saveState();
+      }
       showView(appState.activeView || "home");
+      await restoreOverlayState();
     }
   }
 
@@ -748,6 +765,9 @@
         closeAllOverlays();
         if (actionNode.dataset.view === "profile" && !appState.isSignedIn) {
           showGate("signup");
+        } else if (actionNode.dataset.view === "saved" && !appState.isSignedIn) {
+          renderPlannerSignupPrompt();
+          openOverlay("progressOverlay", { kind: "planner-signup" });
         } else {
           showView(actionNode.dataset.view);
         }
@@ -765,20 +785,25 @@
       } else if (action === "open-progress") {
         if (appState.isSignedIn) {
           renderProgress();
+          openOverlay("progressOverlay", { kind: "progress" });
         } else {
           renderPlannerSignupPrompt();
+          openOverlay("progressOverlay", { kind: "planner-signup" });
         }
-        openOverlay("progressOverlay");
       } else if (action === "open-notes") {
-        renderNotes();
-        openOverlay("notesOverlay");
+        if (appState.isSignedIn) {
+          renderNotes();
+          openOverlay("notesOverlay", { kind: "notes" });
+        } else {
+          renderSaveSignupPrompt();
+          openOverlay("progressOverlay", { kind: "save-signup" });
+        }
       } else if (action === "open-quiz") {
         quizIndex = 0;
         renderQuiz();
-        openOverlay("quizOverlay");
+        openOverlay("quizOverlay", { kind: "quiz" });
       } else if (action === "open-articles") {
         renderArticleDirectory();
-        openOverlay("detailOverlay");
       } else if (action === "close-overlay") {
         closeOverlay(actionNode.dataset.target);
       } else if (action === "open-item") {
@@ -788,7 +813,7 @@
           toggleSaved(actionNode.dataset.id);
         } else {
           renderSaveSignupPrompt();
-          openOverlay("progressOverlay");
+          openOverlay("progressOverlay", { kind: "save-signup" });
         }
       } else if (action === "remove-saved") {
         removeSaved(actionNode.dataset.id);
@@ -800,7 +825,7 @@
         } else {
           closeOverlay("notesOverlay");
           renderSaveSignupPrompt();
-          openOverlay("progressOverlay");
+          openOverlay("progressOverlay", { kind: "save-signup" });
         }
       } else if (action === "delete-note") {
         deleteNote(actionNode.dataset.id);
@@ -873,7 +898,12 @@
 
     const bottomTab = event.target.closest(".bottom-tab");
     if (bottomTab) {
-      showView(bottomTab.dataset.view);
+      if (bottomTab.dataset.view === "saved" && !appState.isSignedIn) {
+        renderPlannerSignupPrompt();
+        openOverlay("progressOverlay", { kind: "planner-signup" });
+      } else {
+        showView(bottomTab.dataset.view);
+      }
       return;
     }
 
@@ -1571,10 +1601,10 @@
   function renderPlannerSignupPrompt() {
     document.getElementById("progressStages").innerHTML = `
       <section class="progress-stage progress-stage--overview">
-        <h4>Sign Up to Access Planner</h4>
-        <p>Create an account to save your progress, return to it later, and keep your state, notes, and saved items together.</p>
+        <h4>Sign Up to Access Founder File</h4>
+        <p>Create a Founder account to save your progress, return to it later, and keep your state, notes, and selected items together.</p>
         <div class="inline-actions">
-          <button class="app-btn app-btn--secondary" data-action="start-setup-signup">Sign Up to Use Planner</button>
+          <button class="app-btn app-btn--secondary" data-action="start-setup-signup">Founder Sign Up</button>
           <button class="app-btn app-btn--ghost" data-action="go-explore">Keep Exploring</button>
         </div>
       </section>
@@ -1626,6 +1656,7 @@
         </div>
       </div>
     `;
+    openOverlay("detailOverlay", { kind: "article-directory" });
   }
 
   async function openDetail(id, type) {
@@ -1641,7 +1672,7 @@
     const detailBody = document.getElementById("detailBody");
     detailType.textContent = sectionLabels[type] || titleCase(type);
     detailTitle.textContent = item.title;
-    openOverlay("detailOverlay");
+    openOverlay("detailOverlay", { kind: "item", itemId: id, itemType: type });
     if (type === "article") {
       detailBody.innerHTML = `<div class="empty-state">Loading article...</div>`;
       const articleContent = await loadArticleContent(item);
@@ -2008,7 +2039,7 @@
   function saveQuizResult() {
     if (!appState.isSignedIn) {
       renderPlannerSignupPrompt();
-      openOverlay("progressOverlay");
+      openOverlay("progressOverlay", { kind: "planner-signup" });
       return;
     }
     appState.quizResult = buildQuizResult();
@@ -2063,14 +2094,14 @@
       </div>
     `;
 
-    openOverlay("detailOverlay");
+    openOverlay("detailOverlay", { kind: "all-states" });
   }
 
   async function openStateDetail(stateName = appState.selectedState) {
     const detailType = document.getElementById("detailType");
     const detailTitle = document.getElementById("detailTitle");
     const detailBody = document.getElementById("detailBody");
-    openOverlay("detailOverlay");
+    openOverlay("detailOverlay", { kind: "state-detail", stateName });
     detailType.textContent = "State Detail";
     detailTitle.textContent = `${stateName} Official Business Information`;
     detailBody.innerHTML = `<div class="empty-state">Loading ${stateName} official information...</div>`;
@@ -2390,7 +2421,7 @@
         </div>
       </div>
     `;
-    openOverlay("detailOverlay");
+    openOverlay("detailOverlay", { kind: "path-summary" });
   }
 
   function renderListItem(item, type) {
@@ -2603,16 +2634,87 @@
     }
   }
 
-  function openOverlay(id) {
+  async function restoreOverlayState() {
+    const overlayState = appState.overlayState || {};
+    if (!overlayState.id) return;
+    if (!appState.isSignedIn && appState.activeView === "saved") {
+      appState.activeView = "home";
+      appState.overlayState = { ...structuredClone(defaultState.overlayState) };
+      saveState();
+      return;
+    }
+    if (overlayState.kind === "planner-signup") {
+      renderPlannerSignupPrompt();
+      openOverlay("progressOverlay", { kind: "planner-signup" });
+      return;
+    }
+    if (overlayState.kind === "save-signup") {
+      renderSaveSignupPrompt();
+      openOverlay("progressOverlay", { kind: "save-signup" });
+      return;
+    }
+    if (overlayState.kind === "progress") {
+      if (appState.isSignedIn) {
+        renderProgress();
+        openOverlay("progressOverlay", { kind: "progress" });
+      }
+      return;
+    }
+    if (overlayState.kind === "notes") {
+      if (appState.isSignedIn) {
+        renderNotes();
+        openOverlay("notesOverlay", { kind: "notes" });
+      }
+      return;
+    }
+    if (overlayState.kind === "quiz") {
+      renderQuiz();
+      openOverlay("quizOverlay", { kind: "quiz" });
+      return;
+    }
+    if (overlayState.kind === "article-directory") {
+      renderArticleDirectory();
+      return;
+    }
+    if (overlayState.kind === "path-summary") {
+      openPathSummary();
+      return;
+    }
+    if (overlayState.kind === "all-states") {
+      openAllStatesBrowser();
+      return;
+    }
+    if (overlayState.kind === "state-detail" && overlayState.stateName) {
+      await openStateDetail(overlayState.stateName);
+      return;
+    }
+    if (overlayState.kind === "item" && overlayState.itemId && overlayState.itemType) {
+      await openDetail(overlayState.itemId, overlayState.itemType);
+    }
+  }
+
+  function openOverlay(id, state = null) {
+    if (state) {
+      appState.overlayState = { ...structuredClone(defaultState.overlayState), id, ...state };
+    } else {
+      appState.overlayState = { ...(appState.overlayState || structuredClone(defaultState.overlayState)), id };
+    }
+    saveState();
     document.getElementById(id).classList.remove("hidden");
   }
 
   function closeOverlay(id) {
     document.getElementById(id).classList.add("hidden");
+    if (appState.overlayState?.id === id) {
+      appState.overlayState = { ...structuredClone(defaultState.overlayState) };
+      saveState();
+    }
   }
 
   function closeAllOverlays() {
     document.querySelectorAll(".overlay").forEach((node) => node.classList.add("hidden"));
+    appState.overlayState = { ...structuredClone(defaultState.overlayState) };
+    saveState();
   }
 
   function renderTag(tag) {

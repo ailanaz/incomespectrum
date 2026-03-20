@@ -587,6 +587,7 @@ a {
 .home-panel .text-link,
 .home-panel .utility-link {
   align-self: flex-start;
+  font-size: 16px;
 }
 
 .home-panel--saved #savedPreview,

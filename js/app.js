@@ -949,16 +949,20 @@
   }
 
   function renderProfilePrefs() {
-    document.getElementById("profileState").value = appState.selectedState;
-    document.getElementById("profileGoal").innerHTML = setupGoals.map((goal) => `
+    const profileState = document.getElementById("profileState");
+    const profileGoal = document.getElementById("profileGoal");
+    const accountStatusCopy = document.getElementById("accountStatusCopy");
+    const profileSignupCard = document.getElementById("profileSignupCard");
+    const profileToolsTitle = document.getElementById("profileToolsTitle");
+    if (profileState) profileState.value = appState.selectedState;
+    if (profileGoal) profileGoal.innerHTML = setupGoals.map((goal) => `
       <button class="choice-pill ${goal.value === appState.goal ? "active" : ""}" type="button" data-value="${goal.value}">${goal.label}</button>
     `).join("");
-    document.getElementById("accountStatusCopy").textContent = appState.isSignedIn
+    if (accountStatusCopy) accountStatusCopy.textContent = appState.isSignedIn
       ? "You are signed in. Your state, plan, notes, and saved items stay with your account."
       : "You are browsing as a guest. Your state and plan only stay for this session unless you sign in.";
-    document.getElementById("profileSignupCard").classList.toggle("hidden", appState.isSignedIn);
-    document.getElementById("profileToolsTitle").textContent = appState.isSignedIn ? "App tools" : "Guest tools";
-    document.getElementById("profileTabLabel").textContent = "Profile";
+    if (profileSignupCard) profileSignupCard.classList.toggle("hidden", appState.isSignedIn);
+    if (profileToolsTitle) profileToolsTitle.textContent = appState.isSignedIn ? "App tools" : "Guest tools";
     document.getElementById("topPlannerButton").textContent = "Founder File";
     document.getElementById("topPlannerButton").setAttribute("aria-label", "Open Founder File");
   }
@@ -1455,10 +1459,10 @@
           <div class="card-header">
             <div>
               <p class="section-kicker">File</p>
-              <h2>Sign up to access your plan</h2>
+              <h2>Sign up to access your Founder File</h2>
             </div>
           </div>
-          <p>Sign up to keep your Founder File, notes, and saved items together in one place.</p>
+          <p>Create a Founder account to keep your Founder File, notes, saved items, and progress together in one place.</p>
           <div class="stack-actions">
             <button class="app-btn app-btn--primary" data-action="start-setup-signup">Sign Up to Access Features</button>
           </div>
@@ -1475,6 +1479,52 @@
     const planSummary = buildPlanSnapshot();
     const noteEntries = buildNoteCardsMarkup();
     const savedCollections = buildSavedCollectionsMarkup();
+    const currentFocus = buildPathSnapshot();
+    const goalLabel = setupGoals.find((goal) => goal.value === appState.goal)?.label || "Explore Options";
+    const founderIdentityItems = [
+      `<div class="mini-card"><strong>Account Status</strong><p>Founder account active</p></div>`,
+      `<div class="mini-card"><strong>Selected State</strong><p>${appState.selectedState}</p></div>`,
+      `<div class="mini-card"><strong>Starting Goal</strong><p>${goalLabel}</p></div>`
+    ].join("");
+    const currentFocusMarkup = `
+      <div class="mini-card">
+        <strong>${currentFocus.label}</strong>
+        <p>${planDraft.understanding || "Use the quiz and the app library to clarify what people are paying for and where you want your Founder File to focus."}</p>
+      </div>
+      <div class="mini-card">
+        <strong>Culture</strong>
+        <p>${planDraft.culture || "Describe the shared cost and the shared relief, access, improvement, protection, or result being sought."}</p>
+      </div>
+      <div class="mini-card">
+        <strong>Opportunity Reading</strong>
+        <p>${planDraft.opportunity || "Note where opportunity may be forming based on cost, value, and what people are repeatedly trying to attain, protect, improve, or resolve."}</p>
+      </div>
+    `;
+    const ideasMarkup = `
+      ${renderFounderFileField("Ideas", "incomeIdea", planDraft.incomeIdea || "", "Capture the income opportunity, business idea, or possible direction you want to keep exploring.")}
+      ${buildSavedGroupMarkup("income", "Saved Income Opportunities")}
+    `;
+    const knowledgeMarkup = `
+      ${renderFounderFileField("Knowledge", "knowledge", planDraft.knowledge || "", "Record what you already know and what you may need to learn next.")}
+      ${buildSavedGroupMarkup("training", "Saved Knowledge Resources")}
+    `;
+    const supportMarkup = `
+      ${renderFounderFileField("Support", "support", planDraft.support || "", "Note supportive services you may need now, later, or want to compare.")}
+      ${buildSavedGroupMarkup("services", "Saved Supportive Services")}
+    `;
+    const officialMarkup = `
+      ${renderFounderFileField("Official Needs", "official", planDraft.official || "", "Track state and federal requirements, pages, and official items relevant to your Founder goals.")}
+      ${buildSavedGroupMarkup("official", "Saved Official Information")}
+    `;
+    const goalsMarkup = `
+      <div class="mini-card">
+        <strong>Founder Goals</strong>
+        <p>${planDraft.proof || "Describe what progress, traction, or proof would matter most to you right now."}</p>
+      </div>
+    `;
+    const nextMovesMarkup = `
+      ${renderFounderFileField("Next Moves", "nextMoves", planDraft.nextMoves || "", "List the next actions you want to take inside or outside the app.")}
+    `;
 
     planHubHeader.innerHTML = `
       <section class="card">
@@ -1495,19 +1545,34 @@
     savedSectionsNode.className = "plan-page-grid";
     savedSectionsNode.innerHTML = `
       <section class="saved-block plan-page-block plan-page-block--template">
-        <h4>Living File Template</h4>
-        <p>The quiz fills the first draft. You can revise any part of it as needed.</p>
-        <div class="plan-template-grid">
-          ${renderPlanField("Current Starting Point", "startingPoint", planDraft.startingPoint || "")}
-          ${renderPlanField("What You Are Understanding", "understanding", planDraft.understanding || "")}
-          ${renderPlanField("Culture", "culture", planDraft.culture || "")}
-          ${renderPlanField("Opportunity Reading", "opportunity", planDraft.opportunity || "")}
-          ${renderPlanField("Income Idea", "incomeIdea", planDraft.incomeIdea || "")}
-          ${renderPlanField("Knowledge", "knowledge", planDraft.knowledge || "")}
-          ${renderPlanField("Supportive Services", "support", planDraft.support || "")}
-          ${renderPlanField("Official Needs", "official", planDraft.official || "")}
-          ${renderPlanField("Next Moves", "nextMoves", planDraft.nextMoves || "")}
-          ${renderPlanField("What Counts as Proof", "proof", planDraft.proof || "")}
+        <h4>Founder Identity</h4>
+        <p>The identity, account context, and starting conditions attached to your Founder File.</p>
+        <div class="plain-list">${founderIdentityItems}</div>
+      </section>
+      <section class="saved-block plan-page-block">
+        <h4>Current Focus</h4>
+        <div class="plain-list">${currentFocusMarkup}</div>
+      </section>
+      <section class="saved-block plan-page-block">
+        <h4>Ideas</h4>
+        <div class="plain-list">${ideasMarkup}</div>
+      </section>
+      <section class="saved-block plan-page-block">
+        <h4>Knowledge</h4>
+        <div class="plain-list">${knowledgeMarkup}</div>
+      </section>
+      <section class="saved-block plan-page-block">
+        <h4>Support</h4>
+        <div class="plain-list">${supportMarkup}</div>
+      </section>
+      <section class="saved-block plan-page-block">
+        <h4>Official Needs</h4>
+        <div class="plain-list">${officialMarkup}</div>
+      </section>
+      <section class="saved-block plan-page-block">
+        <h4>Saved Items</h4>
+        <div class="saved-groups">
+          ${savedCollections}
         </div>
       </section>
       <section class="saved-block plan-page-block">
@@ -1517,9 +1582,38 @@
         </div>
       </section>
       <section class="saved-block plan-page-block">
-        <h4>Saved Items</h4>
-        <div class="saved-groups">
-          ${savedCollections}
+        <h4>Goals</h4>
+        <div class="plain-list">${goalsMarkup}</div>
+      </section>
+      <section class="saved-block plan-page-block">
+        <h4>Next Moves</h4>
+        <div class="plain-list">${nextMovesMarkup}</div>
+      </section>
+    `;
+  }
+
+  function renderFounderFileField(label, field, value, helper) {
+    return `
+      <label class="field plan-draft-field">
+        <span>${label}</span>
+        <textarea data-plan-field="${field}" placeholder="${helper}">${value}</textarea>
+      </label>
+    `;
+  }
+
+  function buildSavedGroupMarkup(type, heading) {
+    const items = appState.savedIds
+      .map((id) => findItem(id))
+      .filter(Boolean)
+      .filter((item) => detectItemType(item.id) === type);
+    if (!items.length) {
+      return `<div class="empty-state">No saved items here yet.</div>`;
+    }
+    return `
+      <section class="plan-saved-group">
+        <h5>${heading}</h5>
+        <div class="plain-list">
+          ${items.map((item) => renderSavedItem(item, type)).join("")}
         </div>
       </section>
     `;

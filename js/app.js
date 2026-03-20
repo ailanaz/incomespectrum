@@ -730,6 +730,9 @@
         quizIndex = 0;
         renderQuiz();
         openOverlay("quizOverlay");
+      } else if (action === "open-articles") {
+        renderArticleDirectory();
+        openOverlay("detailOverlay");
       } else if (action === "close-overlay") {
         closeOverlay(actionNode.dataset.target);
       } else if (action === "open-item") {
@@ -1506,6 +1509,31 @@
       return;
     }
     node.innerHTML = renderQuizResult(appState.quizResult, false);
+  }
+
+  function renderArticleDirectory() {
+    const detailType = document.getElementById("detailType");
+    const detailTitle = document.getElementById("detailTitle");
+    const detailBody = document.getElementById("detailBody");
+    detailType.textContent = "Articles";
+    detailTitle.textContent = "All Articles";
+    detailBody.innerHTML = `
+      <div class="detail-section article-directory-shell">
+        <p class="article-directory-copy">Browse every article available inside the app and open any one without leaving the app experience.</p>
+        <div class="plain-list article-directory-list">
+          ${data.articles.map((item) => `
+            <div class="mini-card">
+              <strong>${item.title}</strong>
+              <p>${item.description || ""}</p>
+              <div class="inline-actions">
+                <button class="utility-link" data-action="open-item" data-id="${item.id}" data-type="article">Open Article</button>
+                <button class="utility-link ${isSaved(item.id) ? "utility-link--active" : ""}" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    `;
   }
 
   async function openDetail(id, type) {

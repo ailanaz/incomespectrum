@@ -1194,6 +1194,22 @@ a {
   border-top: 1px solid rgba(20, 37, 61, 0.12);
 }
 
+.article-directory-shell {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.article-directory-copy {
+  margin: 0 0 18px;
+  color: var(--app-text-soft);
+  line-height: 1.7;
+}
+
+.article-directory-list {
+  display: grid;
+  gap: 14px;
+}
+
 .article-live-content blockquote {
   margin: 22px 0;
   padding: 0 0 0 18px;

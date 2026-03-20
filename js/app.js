@@ -1123,7 +1123,6 @@
     const lastViewed = appState.recentlyViewed[0] ? findItem(appState.recentlyViewed[0]) : null;
     const currentPath = buildPathSnapshot();
     const currentPlan = buildPlanSnapshot();
-    document.getElementById("guestUpgradeCard").classList.toggle("hidden", appState.isSignedIn);
     document.getElementById("continueTitle").textContent = lastViewed ? `Continue with ${lastViewed.title}` : "Start building your pathway plan.";
     document.getElementById("continueCopy").textContent = lastViewed
       ? `You last opened ${lastViewed.title}. Keep shaping your path and move the right items into your PBPP.`

@@ -2376,7 +2376,7 @@
           <div class="mini-card">
             <strong>Entrepreneur</strong>
             <p>An entrepreneur is a person building a business with the intent to innovate, scale, and create something that can eventually operate beyond the founder’s direct labor.</p>
-            <p><strong>Workforce:</strong> can be solo, but is often intended to grow into a team.</p>
+            <p><strong>Workforce:</strong> may start solo, but may grow into a team.</p>
           </div>
           <div class="mini-card">
             <strong>Solopreneur</strong>

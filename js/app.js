@@ -793,14 +793,6 @@
       appState.planDraft[planField.dataset.planField] = planField.value;
       saveState();
     }
-    const founderNoteField = event.target.closest("[data-founder-note-field]");
-    if (founderNoteField && appState.isSignedIn) {
-      updateFounderNoteField(
-        founderNoteField.dataset.noteId,
-        founderNoteField.dataset.founderNoteField,
-        founderNoteField.value
-      );
-    }
     if (["signupName", "signupEmail", "signupPassword"].includes(event.target.id)) {
       updateSignupButtonState();
     }
@@ -921,6 +913,8 @@
           renderSaveSignupPrompt();
           openOverlay("progressOverlay", { kind: "save-signup" });
         }
+      } else if (action === "save-founder-note") {
+        saveFounderNote(actionNode.dataset.id);
       } else if (action === "delete-founder-note") {
         deleteFounderNote(actionNode.dataset.id);
       } else if (action === "scroll-founder-file-section") {
@@ -2034,6 +2028,16 @@
     renderProgress();
   }
 
+  function saveFounderNote(noteId) {
+    const subjectInput = document.querySelector(`[data-founder-note-field="subject"][data-note-id="${noteId}"]`);
+    const bodyInput = document.querySelector(`[data-founder-note-field="body"][data-note-id="${noteId}"]`);
+    if (!subjectInput || !bodyInput) return;
+    updateFounderNoteField(noteId, "subject", subjectInput.value);
+    updateFounderNoteField(noteId, "body", bodyInput.value);
+    renderNotes(noteId);
+    openOverlay("notesOverlay", { kind: "notes", itemId: noteId });
+  }
+
   function deleteFounderNote(noteId) {
     const entries = getFounderNotesEntries().filter((entry) => entry.id !== noteId);
     saveFounderNotesEntries(entries);
@@ -2131,8 +2135,9 @@
             <span>Note</span>
             <textarea data-founder-note-field="body" data-note-id="${activeFounderNote.id}" placeholder="Add notes, reminders, observations, or anything else you want to keep here.">${escapeHtml(activeFounderNote.body)}</textarea>
           </label>
-          <div class="inline-actions">
-            <button class="utility-link utility-link--danger" data-action="delete-founder-note" data-id="${activeFounderNote.id}">Delete Note</button>
+          <div class="inline-actions founder-note-actions">
+            <button class="app-btn app-btn--primary" data-action="save-founder-note" data-id="${activeFounderNote.id}">Save Note</button>
+            <button class="app-btn app-btn--danger" data-action="delete-founder-note" data-id="${activeFounderNote.id}">Delete Note</button>
           </div>
         ` : `<div class="empty-state">Start a Founder note to keep free-form thoughts, reminders, and ideas in one place.</div>`}
       </section>

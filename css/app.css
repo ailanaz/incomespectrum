@@ -383,6 +383,19 @@ button.field-toggle::after {
   border-color: #1c2736;
 }
 
+.app-btn--danger {
+  background: #b91c1c;
+  color: #fffdf6;
+  border-color: #b91c1c;
+}
+
+.app-btn--danger:hover,
+.app-btn--danger:active,
+.app-btn--danger:focus-visible {
+  background: #991b1b;
+  border-color: #991b1b;
+}
+
 .app-btn--ghost,
 .text-link,
 .app-icon-btn,
@@ -952,6 +965,11 @@ button.field-toggle::after {
 .quick-links-row__label {
   margin: 0;
   white-space: nowrap;
+}
+
+.founder-note-actions {
+  justify-content: space-between;
+  align-items: center;
 }
 
 .utility-link::after,

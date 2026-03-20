@@ -1150,6 +1150,11 @@
 
     let items = [...data[appState.activeExploreSection]];
     items = items.filter((item) => matchesFilter(item, filter));
+    if (!items.length && appState.activeExploreSection !== "official" && filter !== "all") {
+      exploreFilter = "all";
+      renderFilterSelector(appState.activeExploreSection, "all");
+      items = [...data[appState.activeExploreSection]];
+    }
     if (appState.sortMode === "title") {
       items.sort((a, b) => a.title.localeCompare(b.title));
     }

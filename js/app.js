@@ -663,6 +663,18 @@
           { value: "Need Official Clarity", label: "A direction is forming, but I need clarity on rules, registration, or compliance" },
           { value: "Still Early", label: "I am still early and need a starting point more than a fixed idea" }
         ]
+      },
+      {
+        id: "founderType",
+        prompt: "Based on what you are observing and the kind of work you may be moving toward, which founder type feels closest right now?",
+        options: [
+          { value: "Entrepreneur", label: "Entrepreneur: building from a new idea, opportunity, or broader business concept" },
+          { value: "Solopreneur", label: "Solopreneur: building something you expect to run mainly on your own" },
+          { value: "Small Business Owner", label: "Small Business Owner: building or formalizing an operating business with staying power" },
+          { value: "Self-Employed Professional", label: "Self-Employed Professional: building around your own skill, service, or expertise" },
+          { value: "Owner-Operator", label: "Owner-Operator: building around a direct service, route, local operation, or hands-on business" },
+          { value: "Founder", label: "Founder: still sorting this out and not ready to narrow it yet" }
+        ]
       }
     ]
   };
@@ -2585,6 +2597,11 @@
         <h3>${result.planTitle}</h3>
         <p>${result.explanation}</p>
         <div class="detail-section">
+          <h4>Founder Identity</h4>
+          <p><strong>${result.founderIdentity}</strong></p>
+          <p>${result.founderIdentityDescription}</p>
+        </div>
+        <div class="detail-section">
           <h4>State</h4>
           <p>${appState.selectedState}</p>
         </div>
@@ -2671,9 +2688,11 @@
     };
     appState.savedIds = unique(appState.savedIds);
     saveState();
+    closeOverlay("quizOverlay");
     renderProgress();
     renderSavedQuizResult();
     renderSaved();
+    showView("saved");
   }
 
   function buildPlanDraft(result) {
@@ -2786,7 +2805,7 @@
     const action = appState.quizAnswers.action || "Get It Done";
     const value = appState.quizAnswers.value || "Lower the cost";
     const startingMaterial = appState.quizAnswers.startingMaterial || "Still Early";
-    const founderIdentity = founderIdentitySuggestions[startingMaterial] || "Founder";
+    const founderIdentity = appState.quizAnswers.founderType || founderIdentitySuggestions[startingMaterial] || "Founder";
 
     const resultMap = {
       "Survival and Stability": {

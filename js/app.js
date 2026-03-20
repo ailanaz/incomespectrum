@@ -1846,7 +1846,7 @@
       <div class="detail-section">
         <div class="inline-actions">
           <button class="app-btn app-btn--ghost" data-action="open-all-states">Back to All States</button>
-          ${stateName !== appState.selectedState ? `<button class="app-btn app-btn--ghost" data-action="open-state-detail" data-state="${appState.selectedState}">Open Saved State</button>` : ""}
+          ${appState.isSignedIn && stateName !== appState.selectedState ? `<button class="app-btn app-btn--ghost" data-action="open-state-detail" data-state="${appState.selectedState}">Open Saved State</button>` : ""}
         </div>
       </div>
       <div class="card-grid card-grid--two">

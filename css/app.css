@@ -596,8 +596,7 @@ a {
 .home-panel--pbpp {
   grid-area: pbpp;
   min-height: 486px;
-  align-self: start;
-  margin-top: 2px;
+  padding-top: 26px;
 }
 
 .home-panel--quiz {

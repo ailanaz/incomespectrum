@@ -797,6 +797,9 @@
     if (sectionTab) {
       appState.activeExploreSection = sectionTab.dataset.section;
       exploreFilter = sectionTab.dataset.section === "official" ? "state" : "all";
+      if (sectionTab.dataset.section === "income") {
+        appState.activeExploreSection = "income";
+      }
       if (sectionTab.dataset.section === "official" && !appState.browseOfficialState) {
         appState.browseOfficialState = appState.selectedState;
       }

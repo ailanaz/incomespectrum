@@ -1678,16 +1678,17 @@
 
   function renderSavedItem(item, type) {
     const id = item.id;
+    const savedNote = appState.notes[id];
     return `
       <div class="mini-card">
         <strong>${item.title}</strong>
         <p>${item.description || item.explanation || ""}</p>
+        ${savedNote ? `<p><strong>Saved note:</strong> ${savedNote}</p>` : ""}
         <div class="inline-actions inline-actions--saved">
           ${type === "quiz"
             ? `<button class="app-btn app-btn--secondary" data-action="open-quiz">Open Quiz</button>`
             : `<button class="app-btn ${openButtonClass(type)}" data-action="open-item" data-id="${id}" data-type="${type}">Open</button>`
           }
-          ${type !== "quiz" ? `<button class="utility-link" data-action="open-notes">Open Notes</button>` : ""}
           ${type !== "quiz" ? `<button class="utility-link utility-link--danger" data-action="remove-saved" data-id="${id}">Remove</button>` : ""}
         </div>
       </div>

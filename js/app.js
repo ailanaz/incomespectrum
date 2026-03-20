@@ -1180,7 +1180,13 @@
         { value: "certification, trade skills, licensing & exam prep", label: "Certification, Trade Skills, Licensing & Exam Prep" },
         { value: "asl education and training", label: "ASL Education" }
       ],
-      services: ["all", "legal", "bookkeeping", "accounting", "branding", "websites", "marketing", "operations", "advisory", "communication access", "interpreting services"],
+      services: [
+        { value: "all", label: "All" },
+        { value: "legal, compliance & protection services", label: "Legal, Compliance & Protection Services" },
+        { value: "communication access services", label: "Communication Access Services" },
+        { value: "finance, funding & transaction services", label: "Finance, Funding & Transaction Services" },
+        { value: "operations, marketing & advisory", label: "Operations, Marketing & Advisory" }
+      ],
       official: ["state", "federal"]
     };
     const filters = filtersBySection[section];

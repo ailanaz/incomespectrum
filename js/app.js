@@ -1506,6 +1506,10 @@
   async function openDetail(id, type) {
     const item = findItem(id);
     if (!item) return;
+    if (type === "official" && item.statePage && item.stateName) {
+      await openStateDetail(item.stateName);
+      return;
+    }
     registerViewed(id);
     const detailType = document.getElementById("detailType");
     const detailTitle = document.getElementById("detailTitle");
@@ -1885,6 +1889,7 @@
     detailType.textContent = "State Detail";
     detailTitle.textContent = `${stateName} Official Business Information`;
     detailBody.innerHTML = `<div class="empty-state">Loading ${stateName} official information...</div>`;
+    const statePageSaveItem = ensureOfficialStatePageItem(stateName);
     const stateItems = data.official.filter((item) => item.stateLinks && item.stateLinks[stateName]?.length);
     const statePageItems = await loadStateSpecificOfficialItems(stateName);
     const combinedStateItems = [
@@ -1895,13 +1900,15 @@
       <div class="detail-section">
         <p>Official business registration, tax, licensing, agency, and state contracting links for ${stateName}.</p>
       </div>
+      <div class="detail-section">
+        <div class="inline-actions">
+          <button class="app-btn app-btn--ghost" data-action="open-all-states">Back to All States</button>
+          <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${statePageSaveItem.id}">${isSaved(statePageSaveItem.id) ? "Saved" : "Save"}</button>
+        </div>
+      </div>
       <div class="card-grid card-grid--two">
         ${combinedStateItems.map((item) => `
           <section class="saved-block">
-            <div class="inline-actions">
-              <button class="app-btn app-btn--ghost" data-action="open-all-states">Back to All States</button>
-              <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>
-            </div>
             <h3>${item.title}</h3>
             <p>${item.description}</p>
             <ul class="detail-links">
@@ -1912,6 +1919,24 @@
       </div>
       ${!combinedStateItems.length ? `<div class="empty-state">No direct official items are available for ${stateName} yet.</div>` : ""}
     `;
+  }
+
+  function ensureOfficialStatePageItem(stateName) {
+    const id = `official-state-page-${slugify(stateName)}`;
+    let item = data.official.find((entry) => entry.id === id);
+    if (item) return item;
+    item = {
+      id,
+      title: `${stateName} Official Business Information`,
+      description: `Official business registration, tax, licensing, agency, and state contracting information for ${stateName}.`,
+      type: "State Information",
+      categories: ["State Information"],
+      statePage: true,
+      stateName,
+      tags: ["state information", normalizeTag(stateName)]
+    };
+    data.official.push(item);
+    return item;
   }
 
   function buildQuizResult() {

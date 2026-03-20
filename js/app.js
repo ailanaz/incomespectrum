@@ -558,7 +558,7 @@
   const quiz = {
     title: "What People Will Pay For",
     intro: "This quiz is designed to help you understand what people are paying for and turn that understanding into a living Personal Business Pathway Plan.",
-    frameworkNote: "You will be building understanding of The Six, the six motivators that drive spending; The Cost of Living, the costs people keep paying in time, energy, attention, comfort, and risk; Niche as Culture, where culture is defined by shared cost and shared relief sought; and how The Cost of Living drives opportunity.",
+    frameworkNote: "You will be building understanding of The Six, the six motivators that drive spending; The Cost of Living, the costs people keep paying in time, energy, attention, comfort, and risk; Niche as Culture, where culture is defined by shared cost and what is being sought; and how The Cost of Living drives opportunity.",
     questions: [
       {
         id: "block",
@@ -596,14 +596,14 @@
       },
       {
         id: "culture",
-        prompt: "How would you describe the culture in terms of the shared cost being carried and the shared relief being sought?",
+        prompt: "How would you describe the culture in terms of the shared cost being carried and what is being sought?",
         options: [
-          { value: "Instability to order", label: "A shared cost around instability, disorder, or lack of access, with relief sought through order, access, or savings" },
-          { value: "Exposure to protection", label: "A shared cost around exposure, uncertainty, or loss, with relief sought through protection or prevention" },
-          { value: "Friction to relief", label: "A shared cost around pain, friction, strain, or confusion, with relief sought through solution or improvement" },
-          { value: "Discomfort to ease", label: "A shared cost around discomfort or inconvenience, with relief sought through comfort, simplicity, or enjoyment" },
-          { value: "Disconnection to connection", label: "A shared cost around disconnection or not feeling understood, with relief sought through connection and support" },
-          { value: "Uncertainty to proof", label: "A shared cost around uncertainty, stalled growth, or lack of proof, with relief sought through understanding, decision, growth, or proof" }
+          { value: "Instability to order", label: "A shared cost around instability, disorder, or lack of access, with order, access, or savings being sought" },
+          { value: "Exposure to protection", label: "A shared cost around exposure, uncertainty, or loss, with protection or prevention being sought" },
+          { value: "Friction to solution", label: "A shared cost around pain, friction, strain, or confusion, with solution, improvement, or relief being sought" },
+          { value: "Discomfort to ease", label: "A shared cost around discomfort or inconvenience, with comfort, simplicity, or enjoyment being sought" },
+          { value: "Disconnection to connection", label: "A shared cost around disconnection or not feeling understood, with connection and support being sought" },
+          { value: "Uncertainty to proof", label: "A shared cost around uncertainty, stalled growth, or lack of proof, with understanding, decision, growth, or proof being sought" }
         ]
       },
       {
@@ -2228,7 +2228,7 @@
     const planTitle = "Personal Business Pathway Plan";
     const startingPointSummary = `${blockMap[block]} ${startingMaterialMap[startingMaterial]}`;
     const understandingSummary = `The pattern you are observing points most strongly to ${motivator.toLowerCase()}. People are paying with ${payment.toLowerCase()}, which means the cost of living is showing up there most heavily. The repeated pressure is not random; it is one of the ways opportunity starts to form.`;
-    const cultureSummary = `In this framework, culture is not a niche label. It is the shared cost being carried and the shared relief being sought. Here, the culture pattern looks like ${culture.toLowerCase()}, and people are trying to ${action.toLowerCase()}.`;
+    const cultureSummary = `In this framework, culture is not a niche label. It is the shared cost being carried and what is being sought in response to that cost. Here, the culture pattern looks like ${culture.toLowerCase()}, and people are trying to ${action.toLowerCase()}.`;
     const opportunitySummary = `${directionText} This is how the cost of living drives opportunity: when people keep paying in ${payment.toLowerCase()}, opportunity forms around lowering that cost or increasing the value of the relief or result they are seeking.`;
     const knowledgeSummary = startingMaterial === "Usable Skill"
       ? "You may not need a large new training stack to begin. Start by tightening what you already know, then add knowledge where it strengthens the offer."

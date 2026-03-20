@@ -748,7 +748,13 @@
       } else if (action === "set-stage") {
         setStage(actionNode.dataset.id, actionNode.dataset.stage);
       } else if (action === "save-note") {
-        saveNote(actionNode.dataset.id);
+        if (appState.isSignedIn) {
+          saveNote(actionNode.dataset.id);
+        } else {
+          closeOverlay("notesOverlay");
+          renderSaveSignupPrompt();
+          openOverlay("progressOverlay");
+        }
       } else if (action === "delete-note") {
         deleteNote(actionNode.dataset.id);
       } else if (action === "toggle-sort") {
@@ -1632,7 +1638,7 @@
           <h3>Keep this connected</h3>
           <p>You can save this article in the app, add notes to it, and use it alongside related income options, training, services, and official information.</p>
         </div>
-        ${item.href ? `<div class="detail-section"><a class="app-btn app-btn--secondary" href="${item.href}" target="_blank" rel="noopener noreferrer">Open Website Article</a></div>` : ""}
+        ${item.href ? `<div class="detail-section"><a class="utility-link" href="${item.href}" target="_blank" rel="noopener noreferrer">Open Website Article</a></div>` : ""}
         ${renderDetailActions(item.id, type)}
         ${renderNoteEditor(item.id)}
       `;
@@ -1656,6 +1662,16 @@
   }
 
   function renderDetailActions(id, type) {
+    if (type === "article") {
+      return `
+        <div class="detail-section">
+          <div class="inline-actions">
+            <button class="utility-link ${isSaved(id) ? "utility-link--active" : ""}" data-action="save-item" data-id="${id}">${isSaved(id) ? "Saved" : "Save"}</button>
+            <button class="utility-link" data-action="open-notes">Open Notes</button>
+          </div>
+        </div>
+      `;
+    }
     return `
       <div class="detail-section">
         <div class="inline-actions">

@@ -1823,7 +1823,6 @@
         <div class="card-header">
           <div>
             <p class="section-kicker">Founder File</p>
-            <h2>Founder File</h2>
           </div>
         </div>
         <div class="quick-links-row">

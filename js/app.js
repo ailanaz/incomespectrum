@@ -2376,32 +2376,32 @@
           <div class="mini-card">
             <strong>Entrepreneur</strong>
             <p>An entrepreneur is a person building a business with the intent to innovate, scale, and create something that can eventually operate beyond the founder’s direct labor.</p>
-            <p><strong>Workforce:</strong> may start solo, but often grows into a team.</p>
+            <p><strong>Workforce:</strong> can be solo, but is often intended to grow into a team.</p>
           </div>
           <div class="mini-card">
             <strong>Solopreneur</strong>
             <p>A solopreneur is a person who independently owns and operates a business without partners or employees. They are both the founder and the workforce.</p>
-            <p><strong>Workforce:</strong> usually solo.</p>
+            <p><strong>Workforce:</strong> solo.</p>
           </div>
           <div class="mini-card">
             <strong>Small Business Owner</strong>
             <p>A small business owner is a person who operates a business to serve a local, specific, or defined market, often through a storefront, direct service, or specialized offer. Unlike entrepreneurs focused on scaling quickly, small business owners often build around a more established model and make it their own.</p>
-            <p><strong>Workforce:</strong> usually a small team or a few employees.</p>
+            <p><strong>Workforce:</strong> a small team, a few employees, or the owner alone.</p>
           </div>
           <div class="mini-card">
             <strong>Freelancer</strong>
             <p>A freelancer is a self-employed person who provides services to clients on a project, contract, or hourly basis.</p>
-            <p><strong>Workforce:</strong> usually solo.</p>
+            <p><strong>Workforce:</strong> solo.</p>
           </div>
           <div class="mini-card">
             <strong>Independent Contractor</strong>
             <p>An independent contractor is a self-employed person hired to perform work under contract rather than as an employee.</p>
-            <p><strong>Workforce:</strong> usually solo.</p>
+            <p><strong>Workforce:</strong> solo.</p>
           </div>
           <div class="mini-card">
             <strong>Owner-Operator</strong>
             <p>An owner-operator is a person who owns the business and also actively performs the day-to-day work or core service of that business. While all owner-operators are small business owners, not all small business owners are owner-operators.</p>
-            <p><strong>Workforce:</strong> usually solo or a very small team.</p>
+            <p><strong>Workforce:</strong> the owner as the primary operator, sometimes with a very small team.</p>
           </div>
           <div class="mini-card">
             <strong>Service Business Owner</strong>
@@ -2421,7 +2421,7 @@
           <div class="mini-card">
             <strong>Home-Based Business Owner</strong>
             <p>A home-based business owner is a person who operates a business from home rather than from a separate commercial location.</p>
-            <p><strong>Workforce:</strong> often solo or a very small team.</p>
+            <p><strong>Workforce:</strong> solo or a very small team.</p>
           </div>
           <div class="mini-card">
             <strong>Business Buyer</strong>
@@ -2441,7 +2441,7 @@
           <div class="mini-card">
             <strong>Part-Time Business Owner</strong>
             <p>A part-time business owner is a person who owns and runs a business while also balancing another major job, role, or responsibility.</p>
-            <p><strong>Workforce:</strong> usually solo or a very small team.</p>
+            <p><strong>Workforce:</strong> solo or a very small team.</p>
           </div>
         </div>
       </div>

@@ -1783,7 +1783,6 @@
       : appState.planDraft;
     const planSummary = buildPlanSnapshot();
     const noteEntries = buildFounderNoteLinksMarkup();
-    const savedCollections = buildSavedCollectionsMarkup();
     const currentFocus = buildPathSnapshot();
     const goalLabel = setupGoals.find((goal) => goal.value === appState.goal)?.label || "Explore Options";
     const founderIdentity = planDraft.founderIdentity || "Founder";
@@ -1867,16 +1866,10 @@
           <p class="section-kicker">Goals</p>
           <div class="plain-list">${goalsMarkup}</div>
         </section>
-        <section class="saved-block plan-page-block">
-          <p class="section-kicker">Saved Items</p>
-          <div class="saved-groups">
-            ${savedCollections}
-          </div>
-        </section>
-        <section class="saved-block plan-page-block" id="founderFileNextStepsSection">
-          <p class="section-kicker">Next Steps</p>
-          <div class="plain-list">${nextMovesMarkup}</div>
-        </section>
+      <section class="saved-block plan-page-block" id="founderFileNextStepsSection">
+        <p class="section-kicker">Next Steps</p>
+        <div class="plain-list">${nextMovesMarkup}</div>
+      </section>
         <section class="saved-block plan-page-block" id="founderFileNotesSection">
           <p class="section-kicker">Notes</p>
           <div class="plain-list">

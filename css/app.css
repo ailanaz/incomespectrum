@@ -426,6 +426,38 @@ a {
   min-height: 360px;
 }
 
+#planHubHeader {
+  margin-top: 18px;
+}
+
+.plan-page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.plan-page-block--template {
+  grid-column: 1 / -1;
+}
+
+.plan-page-block .plain-list,
+.plan-page-block .saved-groups {
+  margin-top: 12px;
+}
+
+.plan-saved-group + .plan-saved-group {
+  margin-top: 14px;
+}
+
+.plan-saved-group h5 {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--app-text-soft);
+}
+
 .hero-card {
   display: flex;
   justify-content: space-between;
@@ -1566,6 +1598,14 @@ a {
 
   .plan-template-grid {
     grid-template-columns: 1fr;
+  }
+
+  .plan-page-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .plan-page-block--template {
+    grid-column: auto;
   }
 
   .hero-card,

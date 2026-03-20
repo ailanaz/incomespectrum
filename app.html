@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/app.css?v=20260319az">
+  <link rel="stylesheet" href="css/app.css?v=20260319ba">
 </head>
 <body>
   <div class="app-shell">
@@ -182,12 +182,12 @@
           <section class="card card--stacked home-panel home-panel--saved">
             <div class="card-header">
               <div>
-                <p class="section-kicker">Saved and Notes</p>
+                <p class="section-kicker">Plan</p>
               </div>
             </div>
             <div id="savedPreview"></div>
             <div class="inline-actions inline-actions--home">
-              <button class="utility-link" data-action="show-view" data-view="saved">Open</button>
+              <button class="utility-link" data-action="show-view" data-view="saved">Open Plan</button>
             </div>
           </section>
 
@@ -226,12 +226,7 @@
       </section>
 
       <section class="view" id="view-saved" data-view="saved">
-        <div class="toolbar">
-          <div class="toolbar__chips" id="savedTypeFilters"></div>
-          <div class="toolbar__actions">
-            <button class="app-btn app-btn--ghost" data-action="saved-sort">Sort by date saved</button>
-          </div>
-        </div>
+        <div id="planHubHeader"></div>
         <div id="savedSections"></div>
       </section>
 
@@ -304,8 +299,8 @@
       <nav class="app-bottom-nav" aria-label="App navigation">
         <button class="bottom-tab active" data-view="home">Home</button>
         <button class="bottom-tab" data-view="explore">Explore</button>
-        <button class="bottom-tab" data-view="saved">Saved</button>
         <button class="bottom-tab" data-view="profile" id="profileTabLabel">Profile</button>
+        <button class="bottom-tab" data-view="saved">Plan</button>
       </nav>
     </main>
   </div>
@@ -366,6 +361,6 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=20260319az"></script>
+  <script src="js/app.js?v=20260319ba"></script>
 </body>
 </html>

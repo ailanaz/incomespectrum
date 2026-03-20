@@ -7,6 +7,7 @@
     training: "Education & Training",
     services: "Supportive Services",
     official: "Official Information",
+    saved: "Plan",
     article: "Article / Resource",
     quiz: "Quiz Result"
   };
@@ -1185,7 +1186,7 @@
     document.getElementById("nextStepsList").innerHTML = nextSteps.map((step) => `<li>${step}</li>`).join("");
 
     const savedPreview = appState.savedIds.slice(0, 4).map((id) => renderMiniCard(findItem(id))).join("");
-    document.getElementById("savedPreview").innerHTML = savedPreview || `<div class="empty-state">No saved items yet. Save anything you want to revisit later.</div>`;
+    document.getElementById("savedPreview").innerHTML = savedPreview || `<div class="empty-state">Your plan, notes, and saved items will show up here once you start building them.</div>`;
 
     const recentMarkup = appState.recentlyViewed.slice(0, 4).map((id) => renderMiniCard(findItem(id))).join("");
     document.getElementById("recentlyViewed").innerHTML = recentMarkup || `<div class="empty-state">Recently viewed items will show up here.</div>`;
@@ -1342,36 +1343,131 @@
   }
 
   function renderSaved() {
-    const filters = ["all", "income", "training", "services", "official", "article", "quiz"];
-    document.getElementById("savedTypeFilters").innerHTML = filters.map((filter) => `
-      <button class="filter-pill ${filter === savedFilter ? "active" : ""}" data-action="filter-saved" data-filter="${filter}">${titleCase(filter)}</button>
-    `).join("");
+    const planHubHeader = document.getElementById("planHubHeader");
+    const savedSectionsNode = document.getElementById("savedSections");
+    if (!appState.isSignedIn) {
+      planHubHeader.innerHTML = `
+        <section class="card guest-upgrade">
+          <div class="card-header">
+            <div>
+              <p class="section-kicker">Plan</p>
+              <h2>Sign up to access your plan</h2>
+            </div>
+          </div>
+          <p>Sign up to keep your personal business pathway plan, notes, and saved items together in one place.</p>
+          <div class="stack-actions">
+            <button class="app-btn app-btn--primary" data-action="start-setup-signup">Sign Up to Access Features</button>
+          </div>
+        </section>
+      `;
+      savedSectionsNode.className = "";
+      savedSectionsNode.innerHTML = "";
+      return;
+    }
 
+    const planDraft = appState.quizResult
+      ? { ...buildPlanDraft(appState.quizResult), ...appState.planDraft }
+      : appState.planDraft;
+    const planSummary = buildPlanSnapshot();
+    const noteEntries = buildNoteCardsMarkup();
+    const savedCollections = buildSavedCollectionsMarkup();
+
+    planHubHeader.innerHTML = `
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <p class="section-kicker">Plan</p>
+            <h2>Personal Business Pathway Plan</h2>
+          </div>
+        </div>
+        <p>${planSummary.summary}</p>
+        <div class="inline-actions">
+          <button class="utility-link" data-action="open-quiz">Open Quiz</button>
+          <button class="utility-link" data-action="open-notes">Open Notes</button>
+        </div>
+      </section>
+    `;
+
+    savedSectionsNode.className = "plan-page-grid";
+    savedSectionsNode.innerHTML = `
+      <section class="saved-block plan-page-block plan-page-block--template">
+        <h4>Living Plan Template</h4>
+        <p>The quiz fills the first draft. You can revise any part of it as needed.</p>
+        <div class="plan-template-grid">
+          ${renderPlanField("Current Starting Point", "startingPoint", planDraft.startingPoint || "")}
+          ${renderPlanField("What You Are Understanding", "understanding", planDraft.understanding || "")}
+          ${renderPlanField("Culture", "culture", planDraft.culture || "")}
+          ${renderPlanField("Opportunity Reading", "opportunity", planDraft.opportunity || "")}
+          ${renderPlanField("Income Idea", "incomeIdea", planDraft.incomeIdea || "")}
+          ${renderPlanField("Knowledge", "knowledge", planDraft.knowledge || "")}
+          ${renderPlanField("Supportive Services", "support", planDraft.support || "")}
+          ${renderPlanField("Official Needs", "official", planDraft.official || "")}
+          ${renderPlanField("Next Moves", "nextMoves", planDraft.nextMoves || "")}
+          ${renderPlanField("What Counts as Proof", "proof", planDraft.proof || "")}
+        </div>
+      </section>
+      <section class="saved-block plan-page-block">
+        <h4>Notes</h4>
+        <div class="plain-list">
+          ${noteEntries}
+        </div>
+      </section>
+      <section class="saved-block plan-page-block">
+        <h4>Saved Items</h4>
+        <div class="saved-groups">
+          ${savedCollections}
+        </div>
+      </section>
+    `;
+  }
+
+  function buildNoteCardsMarkup() {
+    const noteEntries = Object.entries(appState.notes);
+    if (!noteEntries.length) {
+      return `<div class="empty-state">Notes you add to items in the app will show up here.</div>`;
+    }
+    return noteEntries.map(([id, note]) => {
+      const item = findItem(id);
+      if (!item) return "";
+      const type = detectItemType(id);
+      return `
+        <div class="mini-card">
+          <strong>${item.title}</strong>
+          <p>${note}</p>
+          <div class="inline-actions">
+            <button class="utility-link" data-action="open-item" data-id="${id}" data-type="${type}">Open</button>
+            <button class="utility-link utility-link--danger" data-action="delete-note" data-id="${id}">Delete</button>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function buildSavedCollectionsMarkup() {
     const grouped = {};
     appState.savedIds.forEach((id) => {
       const item = findItem(id);
       if (!item) return;
       const type = detectItemType(id);
-      if (savedFilter !== "all" && savedFilter !== type) return;
       grouped[type] = grouped[type] || [];
       grouped[type].push(item);
     });
 
-    if (appState.quizResult && (savedFilter === "all" || savedFilter === "quiz")) {
+    if (appState.quizResult) {
       grouped.quiz = grouped.quiz || [];
-      grouped.quiz.push({ ...appState.quizResult, id: "saved-quiz-result", title: appState.quizResult.planTitle || "Saved PBPP Draft" });
+      grouped.quiz.push({ ...appState.quizResult, id: "saved-quiz-result", title: appState.quizResult.planTitle || "Saved Plan Draft" });
     }
 
-    const markup = Object.entries(grouped).map(([type, items]) => `
-      <section class="saved-block">
-        <h4>${sectionLabels[type] || titleCase(type)}</h4>
+    const groups = Object.entries(grouped).map(([type, items]) => `
+      <section class="plan-saved-group">
+        <h5>${sectionLabels[type] || titleCase(type)}</h5>
         <div class="plain-list">
           ${items.map((item) => renderSavedItem(item, type)).join("")}
         </div>
       </section>
     `).join("");
 
-    document.getElementById("savedSections").innerHTML = markup || `<div class="empty-state">Nothing saved yet. Save any option, resource, service, official page, article, or quiz result you want to come back to.</div>`;
+    return groups || `<div class="empty-state">Save any option, resource, official page, article, or quiz result you want to keep inside your plan.</div>`;
   }
 
   function renderSavedItem(item, type) {
@@ -1385,7 +1481,7 @@
             ? `<button class="app-btn app-btn--secondary" data-action="open-quiz">Open Quiz</button>`
             : `<button class="app-btn ${openButtonClass(type)}" data-action="open-item" data-id="${id}" data-type="${type}">Open</button>`
           }
-          ${type !== "quiz" ? `<button class="utility-link" data-action="open-notes">Notes</button>` : ""}
+          ${type !== "quiz" ? `<button class="utility-link" data-action="open-notes">Open Notes</button>` : ""}
           ${type !== "quiz" ? `<button class="utility-link utility-link--danger" data-action="remove-saved" data-id="${id}">Remove</button>` : ""}
         </div>
       </div>

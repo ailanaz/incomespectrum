@@ -844,7 +844,7 @@
       choicePill.classList.add("active");
       if (group.id === "setupGoal") {
         appState.goal = choicePill.dataset.value;
-        completeSetup(false);
+        saveState();
         return;
       } else if (group.id === "profileGoal") {
         appState.goal = choicePill.dataset.value;
@@ -1264,7 +1264,7 @@
         <div class="state-browser-grid">
           ${allStates.map((state) => `
             <button class="state-browser-card ${state === selectedState ? "state-browser-card--current" : ""}" type="button" data-action="open-state-detail" data-state="${state}">
-              <span class="state-browser-card__eyebrow">${state === appState.selectedState ? "Saved State" : "State"}</span>
+              <span class="state-browser-card__eyebrow">${appState.isSignedIn && state === appState.selectedState ? "Saved State" : "State"}</span>
               <strong>${state}</strong>
               <span class="state-browser-card__meta">Open state information</span>
             </button>
@@ -1824,12 +1824,17 @@
           <h4>PBPP inputs: Official Information</h4>
           ${renderRelatedLinks(result.suggestedOfficialIds, "official")}
         </div>
-        ${includeSaveButton ? `<div class="inline-actions"><button class="app-btn app-btn--primary" data-action="save-quiz-result">Build Plan</button></div>` : ""}
+        ${includeSaveButton ? `<div class="inline-actions"><button class="app-btn app-btn--primary" data-action="save-quiz-result">${appState.isSignedIn ? "Build Plan" : "Sign Up to Build Plan"}</button></div>` : ""}
       </div>
     `;
   }
 
   function saveQuizResult() {
+    if (!appState.isSignedIn) {
+      renderPlannerSignupPrompt();
+      openOverlay("progressOverlay");
+      return;
+    }
     appState.quizResult = buildQuizResult();
     applyQuizResultToPlan(appState.quizResult);
     appState.savedIds = unique(appState.savedIds);
@@ -1848,12 +1853,14 @@
     detailTitle.textContent = "Browse Official Information by State";
     detailBody.innerHTML = `
       <div class="detail-section">
-        <p>Your saved state is <strong>${appState.selectedState}</strong>. Opening another state here will not change your default state in the app.</p>
+        <p>${appState.isSignedIn
+          ? `Your saved state is <strong>${appState.selectedState}</strong>. Opening another state here will not change your default state in the app.`
+          : "Browse official business information by state without changing anything in your account."}</p>
       </div>
       <div class="state-browser-grid">
         ${allStates.map((state) => `
           <button class="state-browser-card ${state === appState.selectedState ? "state-browser-card--current" : ""}" type="button" data-action="open-state-detail" data-state="${state}">
-            <span class="state-browser-card__eyebrow">${state === appState.selectedState ? "Saved State" : "State"}</span>
+            <span class="state-browser-card__eyebrow">${appState.isSignedIn && state === appState.selectedState ? "Saved State" : "State"}</span>
             <strong>${state}</strong>
             <span class="state-browser-card__meta">Open official information</span>
           </button>

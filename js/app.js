@@ -680,11 +680,17 @@
     populateStateSelects();
     renderSetupChoices();
     bindEvents();
-    showGate("opening");
-    document.getElementById("mainApp").classList.add("hidden");
     renderAll();
+    syncGateState();
+    if (appState.setupComplete) {
+      showView(appState.activeView || "home");
+    }
     await hydrateCatalogFromSite();
     renderAll();
+    syncGateState();
+    if (appState.setupComplete) {
+      showView(appState.activeView || "home");
+    }
   }
 
   function bindEvents() {
@@ -2586,7 +2592,11 @@
         const parsed = JSON.parse(localRaw);
         if (parsed.isSignedIn) return { ...structuredClone(defaultState), ...parsed };
       }
-      sessionStorage.removeItem(STORAGE_KEY_SESSION);
+      const sessionRaw = sessionStorage.getItem(STORAGE_KEY_SESSION);
+      if (sessionRaw) {
+        const parsed = JSON.parse(sessionRaw);
+        if (!parsed.isSignedIn) return { ...structuredClone(defaultState), ...parsed };
+      }
       return structuredClone(defaultState);
     } catch (error) {
       return structuredClone(defaultState);

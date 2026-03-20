@@ -1997,13 +1997,7 @@
   }
 
   function renderDetailActions(id, type) {
-    return `
-        <div class="detail-section">
-          <div class="inline-actions">
-            <button class="utility-link ${isSaved(id) ? "utility-link--active" : ""}" data-action="save-item" data-id="${id}">${isSaved(id) ? "Saved" : "Save"}</button>
-          </div>
-        </div>
-    `;
+    return "";
   }
 
   function renderNoteEditor(id) {
@@ -2012,7 +2006,7 @@
         <h3>Add Note</h3>
         <textarea id="note-${id}" placeholder="Add a note about this item...">${appState.notes[id] || ""}</textarea>
         <div class="inline-actions">
-          <button class="app-btn app-btn--secondary" data-action="save-note" data-id="${id}">Save Note</button>
+          <button class="utility-link utility-link--detail-save ${isSaved(id) ? "utility-link--active" : ""}" data-action="save-note" data-id="${id}">${isSaved(id) ? "Saved" : "Save"}</button>
         </div>
       </div>
     `;

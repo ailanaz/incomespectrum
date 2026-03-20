@@ -846,6 +846,11 @@ a {
   color: #8b3a3a;
 }
 
+.utility-link--detail-save {
+  font-size: 15px;
+  font-weight: 800;
+}
+
 .tag {
   display: inline-flex;
   align-items: center;

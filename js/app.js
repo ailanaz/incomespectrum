@@ -1826,42 +1826,42 @@
 
     savedSectionsNode.className = "plan-page-grid";
     savedSectionsNode.innerHTML = `
-      <section class="saved-block plan-page-block">
+      <section class="saved-block plan-page-block plan-page-block--left plan-page-block--identity">
+        <div class="plain-list">${founderIdentityItems}</div>
+      </section>
+      <section class="saved-block plan-page-block plan-page-block--right">
         <h4>Ideas</h4>
         <div class="plain-list">${ideasMarkup}</div>
       </section>
-      <section class="saved-block plan-page-block plan-page-block--identity">
-        <div class="plain-list">${founderIdentityItems}</div>
-      </section>
-      <section class="saved-block plan-page-block">
-        <h4>Knowledge</h4>
-        <div class="plain-list">${knowledgeMarkup}</div>
-      </section>
-      <section class="saved-block plan-page-block">
+      <section class="saved-block plan-page-block plan-page-block--left">
         <h4>Goals</h4>
         <div class="plain-list">${goalsMarkup}</div>
       </section>
-      <section class="saved-block plan-page-block">
-        <h4>Support</h4>
-        <div class="plain-list">${supportMarkup}</div>
+      <section class="saved-block plan-page-block plan-page-block--right">
+        <h4>Knowledge</h4>
+        <div class="plain-list">${knowledgeMarkup}</div>
       </section>
-      <section class="saved-block plan-page-block">
+      <section class="saved-block plan-page-block plan-page-block--left">
         <h4>Saved Items</h4>
         <div class="saved-groups">
           ${savedCollections}
         </div>
       </section>
-      <section class="saved-block plan-page-block">
-        <h4>Official Needs</h4>
-        <div class="plain-list">${officialMarkup}</div>
+      <section class="saved-block plan-page-block plan-page-block--right">
+        <h4>Support</h4>
+        <div class="plain-list">${supportMarkup}</div>
       </section>
-      <section class="saved-block plan-page-block" id="founderFileNotesSection">
+      <section class="saved-block plan-page-block plan-page-block--left" id="founderFileNotesSection">
         <h4>Notes</h4>
         <div class="plain-list">
           ${noteEntries}
         </div>
       </section>
-      <section class="saved-block plan-page-block" id="founderFileNextStepsSection">
+      <section class="saved-block plan-page-block plan-page-block--right">
+        <h4>Official Needs</h4>
+        <div class="plain-list">${officialMarkup}</div>
+      </section>
+      <section class="saved-block plan-page-block plan-page-block--right" id="founderFileNextStepsSection">
         <h4>Next Steps</h4>
         <div class="plain-list">${nextMovesMarkup}</div>
       </section>

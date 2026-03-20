@@ -509,6 +509,14 @@ button.field-toggle::after {
   grid-column: 1 / -1;
 }
 
+.plan-page-block--left {
+  grid-column: 1;
+}
+
+.plan-page-block--right {
+  grid-column: 2;
+}
+
 .plan-page-block .plain-list,
 .plan-page-block .saved-groups {
   margin-top: 12px;

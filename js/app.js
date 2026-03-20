@@ -1153,7 +1153,7 @@
     document.getElementById("continueTitle").textContent = lastViewed ? `Continue with ${lastViewed.title}` : "Explore the Income Spectrum app.";
     document.getElementById("continueCopy").textContent = lastViewed
       ? `You last opened ${lastViewed.title}. Keep exploring the spectrum and place the right items into your PBPP.`
-      : "The Income Spectrum App is an interactive companion for exploring income opportunities, knowledge resources, support services, official information, articles, and building a Personal Business Pathway Plan in one place.";
+      : "The Income Spectrum App is an interactive companion for exploring income opportunities, knowledge resources, support services, official information, and articles while building your personal Founder File in one place.";
     document.getElementById("heroStateValue").textContent = appState.selectedState;
     document.getElementById("heroPathValue").textContent = currentPath.label;
     document.getElementById("heroPlanValue").textContent = currentPlan.label;

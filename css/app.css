@@ -577,13 +577,14 @@ a {
 .home-dashboard-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-areas:
-    "pbpp quiz"
-    "pbpp articles"
-    "pbpp recent";
-  grid-template-rows: minmax(150px, auto) minmax(150px, auto) minmax(180px, auto);
   gap: 18px;
-  align-items: stretch;
+  align-items: start;
+}
+
+.home-dashboard-stack {
+  display: grid;
+  gap: 18px;
+  align-content: start;
 }
 
 .home-panel {
@@ -594,25 +595,21 @@ a {
 }
 
 .home-panel--pbpp {
-  grid-area: pbpp;
   min-height: 486px;
-  padding-top: 26px;
+  align-self: stretch;
 }
 
 .home-panel--quiz {
-  grid-area: quiz;
   min-height: 150px;
   justify-content: space-between;
   gap: 14px;
 }
 
 .home-panel--articles {
-  grid-area: articles;
   min-height: 150px;
 }
 
 .home-panel--recent {
-  grid-area: recent;
   min-height: 180px;
 }
 
@@ -1721,19 +1718,16 @@ a {
   }
 
   .home-dashboard-grid {
-    grid-template-areas:
-      "pbpp"
-      "quiz"
-      "articles"
-      "saved"
-      "recent";
-    grid-auto-rows: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .home-dashboard-stack {
+    gap: 18px;
   }
 
   .home-panel--pbpp,
   .home-panel--quiz,
   .home-panel--articles,
-  .home-panel--saved,
   .home-panel--recent {
     min-height: auto;
   }

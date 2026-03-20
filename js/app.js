@@ -2013,9 +2013,6 @@
           <strong>Starting goal</strong>
           <p>${goalLabel}</p>
         </div>
-        <div class="inline-actions">
-          <button class="utility-link" data-action="show-view" data-view="saved">Change in Founder File</button>
-        </div>
       </section>
       <section class="progress-stage">
         <h4>Next Steps</h4>

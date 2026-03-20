@@ -896,6 +896,19 @@ button.field-toggle::after {
   text-decoration: none;
 }
 
+.quick-links-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.quick-links-row__label {
+  margin: 0;
+  white-space: nowrap;
+}
+
 .utility-link::after,
 .text-link::after,
 .detail-links a::after {

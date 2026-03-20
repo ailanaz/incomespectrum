@@ -1826,8 +1826,8 @@
             <h2>Founder File</h2>
           </div>
         </div>
-        <p class="helper-copy">Quick Links:</p>
-        <div class="inline-actions">
+        <div class="quick-links-row">
+          <p class="helper-copy quick-links-row__label">Quick Links:</p>
           <button class="utility-link-pill" data-action="open-notes">Notes</button>
           <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileNextStepsSection">Next Steps</button>
         </div>

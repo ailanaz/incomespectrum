@@ -2937,7 +2937,7 @@
       ? `Official information should be handled early in this plan. Use ${appState.selectedState} and federal resources to clarify registration, tax, licensing, contracting, or other requirements that shape the work.`
       : `Official information still matters because it anchors the business in real rules. Use ${appState.selectedState} and federal resources to confirm the registrations, tax steps, and requirements that apply.`;
     const planSteps = [
-      "Start with the pressure people are already carrying, not with a business format.",
+      "Start with what people are already paying for, seeking, carrying, trying to solve, improve, protect, attain, or enjoy, not with a business format.",
       `Use this ${path.pathLabel.toLowerCase()} as a working reference, not a fixed identity.`,
       startingMaterialMap[startingMaterial],
       "Browse app ideas that fit this pressure pattern, then generate your own ideas too, even if they seem common.",

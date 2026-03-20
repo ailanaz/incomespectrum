@@ -1849,17 +1849,22 @@
           ${stateName !== appState.selectedState ? `<button class="app-btn app-btn--ghost" data-action="open-state-detail" data-state="${appState.selectedState}">Open Saved State</button>` : ""}
         </div>
       </div>
-      ${stateItems.map((item) => `
-        <div class="detail-section">
-          <h3>${item.title}</h3>
-          <ul class="detail-links">
-            ${resolveOfficialLinks(item, stateName).map((link) => `<li><a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a></li>`).join("")}
-          </ul>
-          <div class="inline-actions">
-            <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>
-          </div>
-        </div>
-      `).join("")}
+      <div class="card-grid card-grid--two">
+        ${stateItems.map((item) => `
+          <section class="saved-block">
+            <h3>${item.title}</h3>
+            <p>${item.description}</p>
+            <ul class="detail-links">
+              ${resolveOfficialLinks(item, stateName).map((link) => `<li><a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a></li>`).join("")}
+            </ul>
+            ${appState.isSignedIn ? `
+              <div class="inline-actions">
+                <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>
+              </div>
+            ` : ""}
+          </section>
+        `).join("")}
+      </div>
       ${statePageItems.length ? `
         <div class="detail-section">
           <h3>From the ${stateName} state page</h3>

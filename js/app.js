@@ -544,6 +544,12 @@
         title: "Government Contracting Resources",
         description: "An article on federal contracting basics, registrations, and why some small businesses should not write it off too early.",
         href: "blog/government-contracting-resources/"
+      },
+      {
+        id: "article-best-ai-tools",
+        title: "Best AI Tools for People Trying to Make Money on Their Own",
+        description: "A breakdown of AI tools that can support people building income on their own, depending on what they are trying to do.",
+        href: "blog/best-ai-tools-for-people-trying-to-make-money-on-their-own/"
       }
     ]
   };

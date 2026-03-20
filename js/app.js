@@ -1837,45 +1837,49 @@
 
     savedSectionsNode.className = "plan-page-grid";
     savedSectionsNode.innerHTML = `
-      <section class="saved-block plan-page-block plan-page-block--left plan-page-block--identity">
-        <div class="plain-list">${founderIdentityItems}</div>
-      </section>
-      <section class="saved-block plan-page-block plan-page-block--right">
-        <p class="section-kicker">Ideas</p>
-        <div class="plain-list">${ideasMarkup}</div>
-      </section>
-      <section class="saved-block plan-page-block plan-page-block--left">
-        <p class="section-kicker">Goals</p>
-        <div class="plain-list">${goalsMarkup}</div>
-      </section>
-      <section class="saved-block plan-page-block plan-page-block--right">
-        <p class="section-kicker">Knowledge</p>
-        <div class="plain-list">${knowledgeMarkup}</div>
-      </section>
-      <section class="saved-block plan-page-block plan-page-block--left">
-        <p class="section-kicker">Saved Items</p>
-        <div class="saved-groups">
-          ${savedCollections}
-        </div>
-      </section>
-      <section class="saved-block plan-page-block plan-page-block--right">
-        <p class="section-kicker">Support</p>
-        <div class="plain-list">${supportMarkup}</div>
-      </section>
-      <section class="saved-block plan-page-block plan-page-block--left" id="founderFileNextStepsSection">
-        <p class="section-kicker">Next Steps</p>
-        <div class="plain-list">${nextMovesMarkup}</div>
-      </section>
-      <section class="saved-block plan-page-block plan-page-block--left" id="founderFileNotesSection">
-        <p class="section-kicker">Notes</p>
-        <div class="plain-list">
-          ${noteEntries}
-        </div>
-      </section>
-      <section class="saved-block plan-page-block plan-page-block--right">
-        <p class="section-kicker">Official Needs</p>
-        <div class="plain-list">${officialMarkup}</div>
-      </section>
+      <div class="plan-page-column plan-page-column--left">
+        <section class="saved-block plan-page-block plan-page-block--identity">
+          <div class="plain-list">${founderIdentityItems}</div>
+        </section>
+        <section class="saved-block plan-page-block">
+          <p class="section-kicker">Goals</p>
+          <div class="plain-list">${goalsMarkup}</div>
+        </section>
+        <section class="saved-block plan-page-block">
+          <p class="section-kicker">Saved Items</p>
+          <div class="saved-groups">
+            ${savedCollections}
+          </div>
+        </section>
+        <section class="saved-block plan-page-block" id="founderFileNextStepsSection">
+          <p class="section-kicker">Next Steps</p>
+          <div class="plain-list">${nextMovesMarkup}</div>
+        </section>
+        <section class="saved-block plan-page-block" id="founderFileNotesSection">
+          <p class="section-kicker">Notes</p>
+          <div class="plain-list">
+            ${noteEntries}
+          </div>
+        </section>
+      </div>
+      <div class="plan-page-column plan-page-column--right">
+        <section class="saved-block plan-page-block">
+          <p class="section-kicker">Ideas</p>
+          <div class="plain-list">${ideasMarkup}</div>
+        </section>
+        <section class="saved-block plan-page-block">
+          <p class="section-kicker">Knowledge</p>
+          <div class="plain-list">${knowledgeMarkup}</div>
+        </section>
+        <section class="saved-block plan-page-block">
+          <p class="section-kicker">Support</p>
+          <div class="plain-list">${supportMarkup}</div>
+        </section>
+        <section class="saved-block plan-page-block">
+          <p class="section-kicker">Official Needs</p>
+          <div class="plain-list">${officialMarkup}</div>
+        </section>
+      </div>
       <section class="saved-block plan-page-block plan-page-block--fullwidth">
         <p class="section-kicker">Quiz Results Summary</p>
         <div class="plain-list">${currentFocusMarkup}</div>

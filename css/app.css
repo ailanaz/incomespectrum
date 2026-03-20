@@ -512,6 +512,20 @@ button.field-toggle::after {
   align-items: start;
 }
 
+.plan-page-column {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+}
+
+.plan-page-column--left {
+  grid-column: 1;
+}
+
+.plan-page-column--right {
+  grid-column: 2;
+}
+
 .plan-page-block--template,
 .plan-page-block--fullwidth {
   grid-column: 1 / -1;
@@ -521,14 +535,6 @@ button.field-toggle::after {
   display: grid;
   align-content: start;
   gap: 12px;
-}
-
-.plan-page-block--left {
-  grid-column: 1;
-}
-
-.plan-page-block--right {
-  grid-column: 2;
 }
 
 .plan-page-block .plain-list,

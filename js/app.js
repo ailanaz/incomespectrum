@@ -2356,15 +2356,11 @@
     const detailBody = document.getElementById("detailBody");
     const path = buildPathSnapshot();
 
-    detailType.textContent = "Path";
-    detailTitle.textContent = "Current Path";
+    detailType.textContent = "Quiz";
+    detailTitle.textContent = "Take the Quiz";
     detailBody.innerHTML = `
       <div class="detail-section">
         <p>${path.summary}</p>
-      </div>
-      <div class="detail-section">
-        <h3>Where this path starts</h3>
-        <p>${appState.quizResult ? `Your current PBPP starts in ${appState.quizResult.pathway} and uses the What People Will Pay For framework as its base.` : "Take the quiz or explore the four categories to choose where you want to start on the spectrum."}</p>
       </div>
       <div class="detail-section">
         <div class="inline-actions">

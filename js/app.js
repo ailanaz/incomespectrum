@@ -1252,14 +1252,11 @@
         ${stateContext}
         <div class="state-browser-grid">
           ${allStates.map((state) => `
-            <div class="state-browser-card ${state === selectedState ? "state-browser-card--current" : ""}">
+            <button class="state-browser-card ${state === selectedState ? "state-browser-card--current" : ""}" type="button" data-action="open-state-detail" data-state="${state}">
               <span class="state-browser-card__eyebrow">${state === appState.selectedState ? "Saved State" : "State"}</span>
               <strong>${state}</strong>
               <span class="state-browser-card__meta">Open state information</span>
-              <div class="inline-actions inline-actions--state-browser">
-                <button class="app-btn app-btn--secondary" type="button" data-action="open-state-detail" data-state="${state}">Open</button>
-              </div>
-            </div>
+            </button>
           `).join("")}
         </div>
         <div class="card-grid card-grid--two">

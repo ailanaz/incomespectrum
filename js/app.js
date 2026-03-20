@@ -536,7 +536,7 @@
     articles: [
       {
         id: "article-what-people-pay-for",
-        title: "What People Will Pay For",
+        title: "What People Pay For",
         description: "Use the six motivators, the cost of living, and cultural motivation to see where opportunity starts.",
         href: "blog/what-people-will-pay-for/"
       },
@@ -556,36 +556,36 @@
   };
 
   const quiz = {
-    title: "What People Will Pay For",
+    title: "What People Pay For",
     intro: "This quiz is designed to help you understand what people are paying for and turn that understanding into a living Personal Business Pathway Plan.",
-    frameworkNote: "You will be building understanding of The Six, the six motivators that drive spending; The Cost of Living, the costs people keep paying in time, energy, attention, comfort, and risk; Niche as Culture, where culture is defined by shared cost and what people are trying to attain, gain, protect, replace, improve, prove, enjoy, or make easier; and how The Cost of Living drives opportunity.",
+    frameworkNote: "You will be building understanding of The Six, the six motivators that drive spending; The Cost of Living, the costs people keep paying in time, energy, attention, comfort, and risk; Niche as Culture, where culture is shaped by shared cost and shared outcomes sought; and how The Cost of Living drives opportunity.",
     questions: [
       {
         id: "block",
-        prompt: "What have you been noticing most when business ideas do not come together easily?",
+        prompt: "When you try to understand what people pay for, what has been making that hardest to see?",
         options: [
           { value: "Overload", label: "Too much information, too many ideas, and too much noise" },
-          { value: "NoStartingPoint", label: "I do not know where to start or what to look at" },
-          { value: "TooManyDirections", label: "Too many possible directions and no clear way to sort them" },
-          { value: "NeedProof", label: "I do not know what counts as a real opportunity versus a guess" },
-          { value: "RulesConcern", label: "I worry about rules, registration, licensing, or doing it wrong" }
+          { value: "NoStartingPoint", label: "I do not know where to start observing" },
+          { value: "TooManyDirections", label: "I notice too many possible directions and no clear way to sort them" },
+          { value: "NeedProof", label: "I do not know what counts as a real signal versus a guess" },
+          { value: "RulesConcern", label: "I keep worrying about rules, registration, licensing, or doing it wrong" }
         ]
       },
       {
         id: "problem",
-        prompt: "If you pause and observe, what kind of cost, relief, or result do people seem to keep circling around?",
+        prompt: "If you pause and observe, which of these seems closest to what people keep spending around, returning to, or trying to secure, change, avoid, gain, improve, or enjoy?",
         options: [
-          { value: "Relief and Health", label: "Relief, solution, or improvement keeps showing up" },
-          { value: "Safety and Protection", label: "Prevention, protection, or reducing risk keeps showing up" },
-          { value: "Survival and Stability", label: "Access, order, simplicity, or savings keeps showing up" },
-          { value: "Status, Meaning, and Legacy", label: "Growth, decision, understanding, or proof keeps showing up" },
-          { value: "Belonging and Love", label: "Connection, support, or feeling understood keeps showing up" },
-          { value: "Pleasure and Comfort", label: "Comfort, enjoyment, or ease keeps showing up" }
+          { value: "Relief and Health", label: "Relief, solution, repair, replacement, or improvement keeps showing up" },
+          { value: "Safety and Protection", label: "Protection, prevention, preservation, or reducing exposure keeps showing up" },
+          { value: "Survival and Stability", label: "Access, stability, order, simplicity, or savings keeps showing up" },
+          { value: "Status, Meaning, and Legacy", label: "Growth, proof, understanding, advancement, or stronger decisions keeps showing up" },
+          { value: "Belonging and Love", label: "Connection, support, inclusion, trust, or feeling understood keeps showing up" },
+          { value: "Pleasure and Comfort", label: "Comfort, ease, enjoyment, or a better experience keeps showing up" }
         ]
       },
       {
         id: "payment",
-        prompt: "What do people seem to be spending most heavily right now?",
+        prompt: "Which part of the Cost of Living seems to be spent most heavily here?",
         options: [
           { value: "Time", label: "Time" },
           { value: "Energy", label: "Energy" },
@@ -596,26 +596,26 @@
       },
       {
         id: "culture",
-        prompt: "How would you describe the culture in terms of the shared cost being carried and what people are trying to attain, gain, protect, replace, improve, prove, enjoy, or make easier?",
+        prompt: "When you look at the shared cost being carried and the shared result being sought, which pattern feels closest to the culture you are observing?",
         options: [
-          { value: "Instability to order", label: "A shared cost around instability, disorder, or lack of access, with order, access, or savings being sought" },
-          { value: "Exposure to protection", label: "A shared cost around exposure, uncertainty, or loss, with protection or prevention being sought" },
-          { value: "Friction to solution", label: "A shared cost around pain, friction, strain, or confusion, with solution, improvement, or relief being sought" },
-          { value: "Discomfort to ease", label: "A shared cost around discomfort or inconvenience, with comfort, simplicity, or enjoyment being sought" },
-          { value: "Disconnection to connection", label: "A shared cost around disconnection or not feeling understood, with connection and support being sought" },
-          { value: "Uncertainty to proof", label: "A shared cost around uncertainty, stalled growth, or lack of proof, with understanding, decision, growth, or proof being sought" }
+          { value: "Instability to order", label: "A shared cost around instability, disorder, or lack of access, with order, access, savings, or stronger footing being sought" },
+          { value: "Exposure to protection", label: "A shared cost around exposure, uncertainty, or possible loss, with protection, prevention, preservation, or more certainty being sought" },
+          { value: "Friction to solution", label: "A shared cost around pain, friction, strain, confusion, or breakdown, with solution, repair, replacement, improvement, or relief being sought" },
+          { value: "Discomfort to ease", label: "A shared cost around discomfort or inconvenience, with comfort, ease, simplicity, enjoyment, or a better experience being sought" },
+          { value: "Disconnection to connection", label: "A shared cost around disconnection, exclusion, or not feeling understood, with connection, support, trust, inclusion, or understanding being sought" },
+          { value: "Uncertainty to proof", label: "A shared cost around uncertainty, stalled growth, weak decisions, or lack of proof, with understanding, proof, direction, advancement, or stronger decisions being sought" }
         ]
       },
       {
         id: "action",
-        prompt: "When people pay around this pattern, what do they seem to be trying to attain, gain, protect, replace, improve, prove, enjoy, or make easier?",
+        prompt: "Looking at that pattern, what does the spending seem to be helping people secure, change, avoid, gain, improve, understand, or enjoy most?",
         options: [
-          { value: "Attain Or Gain", label: "Attain, gain, or get access to something" },
-          { value: "Protect Or Prevent", label: "Protect something, prevent loss, or reduce exposure" },
-          { value: "Improve Or Replace", label: "Improve something, replace something, or make a result better" },
-          { value: "Simplify Or Order", label: "Make something simpler, more orderly, or easier to manage" },
-          { value: "Prove Or Understand", label: "Get proof, understanding, clarity, or decision support" },
-          { value: "Connect Or Enjoy", label: "Feel connected, supported, understood, or enjoy something more" }
+          { value: "Attain Or Gain", label: "Get access, attain something, gain something, or bring something into reach" },
+          { value: "Protect Or Prevent", label: "Protect something, preserve something, prevent loss, or reduce exposure" },
+          { value: "Improve Or Replace", label: "Improve something, repair something, replace something, or strengthen a result" },
+          { value: "Simplify Or Order", label: "Make something simpler, more orderly, easier, steadier, or less costly to manage" },
+          { value: "Prove Or Understand", label: "Get proof, understanding, clarity, confidence, or better decisions" },
+          { value: "Connect Or Enjoy", label: "Feel connected, supported, included, understood, or enjoy something more" }
         ]
       },
       {
@@ -629,13 +629,13 @@
       },
       {
         id: "startingMaterial",
-        prompt: "Based on your understanding of what people are seeking, trying to relieve, or trying to improve, what seems most usable as a starting point?",
+        prompt: "Based on what you are understanding about what people are paying for, what seems most usable as a starting point if you wanted to respond to that pattern?",
         options: [
-          { value: "Own Idea", label: "An idea of my own that I want to test" },
+          { value: "Own Idea", label: "An idea of my own that may fit what I am observing" },
           { value: "Usable Skill", label: "A usable skill, service, or experience I can work from" },
-          { value: "Need Knowledge", label: "A rough direction, but I still need knowledge or training" },
-          { value: "Need Support", label: "A direction, but I will need support services to help me operate well" },
-          { value: "Need Official Clarity", label: "A direction, but I need clarity on rules, registration, or compliance" },
+          { value: "Need Knowledge", label: "A direction is forming, but I still need knowledge or training" },
+          { value: "Need Support", label: "A direction is forming, but I will likely need support services" },
+          { value: "Need Official Clarity", label: "A direction is forming, but I need clarity on rules, registration, or compliance" },
           { value: "Still Early", label: "I am still early and need a starting path more than a fixed idea" }
         ]
       }
@@ -2223,8 +2223,16 @@
       Overload: "You have been sorting through too much information. The plan should reduce noise and keep attention on the pressure, the cost, and what people are actually seeking.",
       NoStartingPoint: "You have been missing a starting point. The plan should start from what you are seeing, not from trying to force a perfect idea too early.",
       TooManyDirections: "You have been pulled in too many directions. The plan should narrow the field by tying ideas back to a real pressure pattern.",
-      NeedProof: "You have been unsure what counts as proof. The plan should move toward signals of demand, not just interesting possibilities.",
+      NeedProof: "You have been unsure what counts as proof. The plan should look for signals of demand, not just interesting possibilities.",
       RulesConcern: "Rules and compliance have been part of the blockage. The plan should surface official needs early so uncertainty does not sit in the background."
+    };
+    const actionMap = {
+      "Attain Or Gain": "attain, gain, or bring something into reach",
+      "Protect Or Prevent": "protect something, preserve it, or prevent loss",
+      "Improve Or Replace": "improve, repair, replace, or strengthen something",
+      "Simplify Or Order": "make something simpler, steadier, easier, or more manageable",
+      "Prove Or Understand": "get proof, understanding, clarity, confidence, or better decisions",
+      "Connect Or Enjoy": "feel connected, supported, included, understood, or enjoy something more"
     };
     const directionText = value === "A mix of both"
       ? "The best opening may come from lowering cost in one area while increasing value in another."
@@ -2234,9 +2242,9 @@
     const path = pathMap[action];
     const planTitle = "Personal Business Pathway Plan";
     const startingPointSummary = `${blockMap[block]} ${startingMaterialMap[startingMaterial]}`;
-    const understandingSummary = `The pattern you are observing points most strongly to ${motivator.toLowerCase()}. People are paying with ${payment.toLowerCase()}, which means the cost of living is showing up there most heavily. The repeated pressure is not random; it is one of the ways opportunity starts to form.`;
-    const cultureSummary = `In this framework, culture is not a niche label. It is the shared cost being carried and what people are trying to attain, gain, protect, replace, improve, prove, enjoy, or make easier in response to that cost. Here, the culture pattern looks like ${culture.toLowerCase()}, and people are trying to ${action.toLowerCase()}.`;
-    const opportunitySummary = `${directionText} This is how the cost of living drives opportunity: when people keep paying in ${payment.toLowerCase()}, opportunity forms around lowering that cost or increasing the value of the relief or result they are seeking.`;
+    const understandingSummary = `The pattern you are observing points most strongly to ${motivator.toLowerCase()}. People are paying with ${payment.toLowerCase()}, which means the cost of living is showing up there most heavily. When the same cost keeps showing up and the same sought result keeps showing up with it, opportunity starts to become visible.`;
+    const cultureSummary = `In this framework, culture is not a niche label. It is the shared cost being carried and the shared outcome being sought around that cost. Here, the culture pattern looks like ${culture.toLowerCase()}, and the spending seems to be helping people ${actionMap[action]}.`;
+    const opportunitySummary = `${directionText} This is how the cost of living drives opportunity: when people keep paying in ${payment.toLowerCase()}, opportunity forms around lowering that cost or increasing the value of what they are trying to attain, preserve, improve, understand, enjoy, or make easier.`;
     const knowledgeSummary = startingMaterial === "Usable Skill"
       ? "You may not need a large new training stack to begin. Start by tightening what you already know, then add knowledge where it strengthens the offer."
       : startingMaterial === "Need Official Clarity"
@@ -2245,7 +2253,7 @@
     const supportSummary = startingMaterial === "Need Support"
       ? "Support services are likely part of the operating model from the start. Choose only the ones that reduce friction, protect the business, or help you deliver consistently."
       : "Support services are optional at first, but they can strengthen delivery, reduce risk, and help the path run more smoothly as it grows.";
-    const officialSummary = action === "Get Organized" || startingMaterial === "Need Official Clarity" || block === "RulesConcern"
+    const officialSummary = action === "Simplify Or Order" || startingMaterial === "Need Official Clarity" || block === "RulesConcern"
       ? `Official information should be handled early in this plan. Use ${appState.selectedState} and federal resources to clarify registration, tax, licensing, contracting, or other requirements that shape the path.`
       : `Official information still matters because it anchors the business in real rules. Use ${appState.selectedState} and federal resources to confirm the registrations, tax steps, and requirements that apply.`;
     const planSteps = [
@@ -2260,7 +2268,7 @@
       id: "quiz-result",
       title: result.title,
       planTitle,
-      explanation: `This result is not trying to tell you what to choose. It is helping you understand what you are seeing. The strongest pattern here is ${motivator.toLowerCase()}, the cost of living shows up most in ${payment.toLowerCase()}, and the culture is forming around ${culture.toLowerCase()}.`,
+      explanation: `This result is not trying to force a business idea on you. It is helping you understand what you are seeing. The strongest pattern here is ${motivator.toLowerCase()}, the cost of living shows up most in ${payment.toLowerCase()}, and the culture is forming around ${culture.toLowerCase()}.`,
       motivator,
       payment,
       culture,
@@ -2270,7 +2278,7 @@
       startingMaterial,
       primarySection: path.primarySection,
       pathLabel: path.pathLabel,
-      pathSummary: `Build around the six, the cost of living, and the shared pressure inside this culture. Here, that means ${motivator.toLowerCase()}, ${payment.toLowerCase()}, and a path that stays flexible while your understanding gets stronger.`,
+      pathSummary: `Build around The Six, The Cost of Living, and the shared cost and sought outcome inside this culture. Here, that means ${motivator.toLowerCase()}, ${payment.toLowerCase()}, and a path that stays flexible while your understanding gets stronger.`,
       planSummary: "This plan is not a formal business-plan document. It is a living pathway plan meant to help you nurture an idea you already have or develop one you discovered in the app.",
       startingPointSummary,
       understandingSummary,

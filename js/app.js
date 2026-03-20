@@ -1279,7 +1279,7 @@
       delete founderSpaceLink.dataset.view;
     }
 
-    const recentMarkup = appState.recentlyViewed.slice(0, 1).map((id) => renderMiniCard(findItem(id))).join("");
+    const recentMarkup = appState.recentlyViewed.slice(0, 1).map((id) => renderMiniCard(findItem(id), "Revisit")).join("");
     document.getElementById("recentlyViewed").innerHTML = recentMarkup || `<div class="empty-state">Recently viewed items will show up here.</div>`;
   }
 
@@ -2612,14 +2612,14 @@
     `;
   }
 
-  function renderMiniCard(item) {
+  function renderMiniCard(item, actionLabel = "Open") {
     if (!item) return "";
     return `
       <div class="mini-card">
         <strong>${item.title}</strong>
         <p>${item.description || item.explanation || ""}</p>
         <div class="inline-actions">
-          <button class="app-btn ${openButtonClass(detectItemType(item.id))}" data-action="open-item" data-id="${item.id}" data-type="${detectItemType(item.id)}">Open</button>
+          <button class="app-btn ${openButtonClass(detectItemType(item.id))}" data-action="open-item" data-id="${item.id}" data-type="${detectItemType(item.id)}">${actionLabel}</button>
         </div>
       </div>
     `;

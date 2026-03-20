@@ -1288,10 +1288,7 @@
   function buildFounderSpaceStatusMarkup() {
     if (!appState.isSignedIn) {
       return `
-        <div class="mini-card">
-          <strong>Founder access required</strong>
-          <p>Founder Space becomes your saved place for ideas, notes, official information, and progress once you create your Founder account.</p>
-        </div>
+        <p class="helper-copy">Founder Space becomes your saved place for ideas, notes, official information, and progress once you create your Founder account.</p>
       `;
     }
     const savedCount = appState.savedIds.length;

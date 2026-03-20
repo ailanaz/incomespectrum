@@ -1830,47 +1830,47 @@
         <div class="plain-list">${founderIdentityItems}</div>
       </section>
       <section class="saved-block plan-page-block plan-page-block--right">
-        <h4>Ideas</h4>
+        <p class="section-kicker">Ideas</p>
         <div class="plain-list">${ideasMarkup}</div>
       </section>
       <section class="saved-block plan-page-block plan-page-block--left">
-        <h4>Goals</h4>
+        <p class="section-kicker">Goals</p>
         <div class="plain-list">${goalsMarkup}</div>
       </section>
       <section class="saved-block plan-page-block plan-page-block--right">
-        <h4>Knowledge</h4>
+        <p class="section-kicker">Knowledge</p>
         <div class="plain-list">${knowledgeMarkup}</div>
       </section>
       <section class="saved-block plan-page-block plan-page-block--left">
-        <h4>Saved Items</h4>
+        <p class="section-kicker">Saved Items</p>
         <div class="saved-groups">
           ${savedCollections}
         </div>
       </section>
       <section class="saved-block plan-page-block plan-page-block--right">
-        <h4>Support</h4>
+        <p class="section-kicker">Support</p>
         <div class="plain-list">${supportMarkup}</div>
       </section>
       <section class="saved-block plan-page-block plan-page-block--left" id="founderFileNextStepsSection">
-        <h4>Next Steps</h4>
+        <p class="section-kicker">Next Steps</p>
         <div class="plain-list">${nextMovesMarkup}</div>
       </section>
       <section class="saved-block plan-page-block plan-page-block--left" id="founderFileNotesSection">
-        <h4>Notes</h4>
+        <p class="section-kicker">Notes</p>
         <div class="plain-list">
           ${noteEntries}
         </div>
       </section>
       <section class="saved-block plan-page-block plan-page-block--right">
-        <h4>Official Needs</h4>
+        <p class="section-kicker">Official Needs</p>
         <div class="plain-list">${officialMarkup}</div>
       </section>
       <section class="saved-block plan-page-block plan-page-block--fullwidth">
-        <h4>Current Focus</h4>
+        <p class="section-kicker">Current Focus</p>
         <div class="plain-list">${currentFocusMarkup}</div>
       </section>
       <section class="saved-block plan-page-block plan-page-block--fullwidth">
-        <h4>Explore Another Set of Ideas</h4>
+        <p class="section-kicker">Explore Another Set of Ideas</p>
         <p>If you are feeling different, seeing a different opportunity pattern, or want to test another set of ideas, you can revisit the quiz.</p>
         <div class="inline-actions">
           <button class="utility-link" data-action="open-quiz">Revisit the Quiz</button>

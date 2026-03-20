@@ -750,8 +750,6 @@
           renderSaveSignupPrompt();
           openOverlay("progressOverlay");
         }
-      } else if (action === "compare-item") {
-        toggleCompare(actionNode.dataset.id);
       } else if (action === "remove-saved") {
         removeSaved(actionNode.dataset.id);
       } else if (action === "set-stage") {
@@ -1127,7 +1125,6 @@
     renderHome();
     renderExplore(exploreFilter);
     renderSaved();
-    renderCompare();
     renderProgress();
     renderNotes();
     renderSearchResults();
@@ -1353,56 +1350,10 @@
             ? `<button class="app-btn app-btn--secondary" data-action="open-quiz">Open Quiz</button>`
             : `<button class="app-btn ${openButtonClass(type)}" data-action="open-item" data-id="${id}" data-type="${type}">Open</button>`
           }
-          ${type === "income" ? `<button class="utility-link ${appState.compareIds.includes(id) ? "utility-link--active" : ""}" data-action="compare-item" data-id="${id}">${appState.compareIds.includes(id) ? "Comparing" : "Compare"}</button>` : ""}
           ${type !== "quiz" ? `<button class="utility-link" data-action="open-notes">Notes</button>` : ""}
           ${type !== "quiz" ? `<button class="utility-link utility-link--danger" data-action="remove-saved" data-id="${id}">Remove</button>` : ""}
         </div>
       </div>
-    `;
-  }
-
-  function renderCompare() {
-    const compareSelection = document.getElementById("compareSelection");
-    const compareItems = appState.compareIds.map((id) => findItem(id)).filter(Boolean);
-    compareSelection.innerHTML = compareItems.length
-      ? compareItems.map((item) => `
-          <span class="tag">${item.title}</span>
-        `).join("")
-      : `<div class="empty-state">Save and compare two to four income options to see them side by side.</div>`;
-
-    const wrap = document.getElementById("compareTableWrap");
-    if (compareItems.length < 2) {
-      wrap.innerHTML = "";
-      return;
-    }
-
-    const rows = [
-      ["Startup cost", "startupCost"],
-      ["Speed to start", "speed"],
-      ["Skill needed", "skill"],
-      ["Online or local", "location"],
-      ["Repeat income potential", "repeatIncome"],
-      ["Customer interaction", "customerInteraction"],
-      ["Complexity", "complexity"]
-    ];
-
-    wrap.innerHTML = `
-      <table class="compare-table">
-        <thead>
-          <tr>
-            <th>Compare by</th>
-            ${compareItems.map((item) => `<th>${item.title}</th>`).join("")}
-          </tr>
-        </thead>
-        <tbody>
-          ${rows.map(([label, key]) => `
-            <tr>
-              <th>${label}</th>
-              ${compareItems.map((item) => `<td>${item[key] || "Varies"}</td>`).join("")}
-            </tr>
-          `).join("")}
-        </tbody>
-      </table>
     `;
   }
 
@@ -1433,7 +1384,6 @@
       ...appState.savedIds
     ]);
     const planItems = planIds.map((id) => findItem(id)).filter(Boolean);
-    const compareItems = appState.compareIds.map((id) => findItem(id)).filter(Boolean);
     const overview = appState.quizResult ? `
       <section class="progress-stage progress-stage--overview">
         <h4>${appState.quizResult.planTitle}</h4>
@@ -1462,24 +1412,7 @@
         }
       </section>
     `;
-    const compareSection = `
-      <section class="progress-stage">
-        <h4>Compare</h4>
-        <p>Income options you are weighing side by side.</p>
-        ${compareItems.length
-          ? compareItems.map((item) => `
-              <div class="mini-card">
-                <strong>${item.title}</strong>
-                <div class="inline-actions">
-                  <button class="app-btn ${openButtonClass(detectItemType(item.id))}" data-action="open-item" data-id="${item.id}" data-type="${detectItemType(item.id)}">Open</button>
-                </div>
-              </div>
-            `).join("")
-          : `<div class="empty-state">No compare items yet.</div>`
-        }
-      </section>
-    `;
-    document.getElementById("progressStages").innerHTML = overview + planSection + compareSection;
+    document.getElementById("progressStages").innerHTML = overview + planSection;
   }
 
   function renderPlannerSignupPrompt() {
@@ -1707,10 +1640,9 @@
       `;
     }
     return `
-      <div class="detail-section">
-        <div class="inline-actions">
-          <button class="app-btn app-btn--primary" data-action="save-item" data-id="${id}">${isSaved(id) ? "Saved" : "Save"}</button>
-          ${type === "income" ? `<button class="app-btn app-btn--secondary" data-action="compare-item" data-id="${id}">${appState.compareIds.includes(id) ? "Comparing" : "Compare"}</button>` : ""}
+        <div class="detail-section">
+          <div class="inline-actions">
+            <button class="app-btn app-btn--primary" data-action="save-item" data-id="${id}">${isSaved(id) ? "Saved" : "Save"}</button>
           <button class="app-btn app-btn--ghost" data-action="open-notes">Open Notes</button>
         </div>
       </div>
@@ -2186,7 +2118,6 @@
         <div class="inline-actions">
           <button class="app-btn ${openButtonClass(type)}" data-action="open-item" data-id="${item.id}" data-type="${type}">Open</button>
           <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>
-          ${type === "income" ? `<button class="app-btn app-btn--ghost" data-action="compare-item" data-id="${item.id}">${appState.compareIds.includes(item.id) ? "Comparing" : "Compare"}</button>` : ""}
         </div>
       </article>
     `;
@@ -2225,9 +2156,6 @@
     if (!Object.keys(appState.notes).length) {
       steps.push("Add a note to one saved item so your plan reflects what matters to you.");
     }
-    if (path.primarySection === "income" && appState.compareIds.length < 2) {
-      steps.push("Compare at least two income options so your path is based on a real choice, not a guess.");
-    }
     steps.push(`Use ${appState.selectedState} official information to anchor your plan in the rules that apply where you are.`);
     return steps.slice(0, 4);
   }
@@ -2265,19 +2193,6 @@
     Object.keys(appState.progress).forEach((stage) => {
       appState.progress[stage] = appState.progress[stage].filter((stageId) => stageId !== id);
     });
-    saveState();
-    renderAll();
-  }
-
-  function toggleCompare(id) {
-    if (appState.compareIds.includes(id)) {
-      appState.compareIds = appState.compareIds.filter((itemId) => itemId !== id);
-    } else if (appState.compareIds.length < 4) {
-      appState.compareIds.push(id);
-      if (!isSaved(id)) {
-        appState.savedIds.unshift(id);
-      }
-    }
     saveState();
     renderAll();
   }

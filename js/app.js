@@ -914,7 +914,13 @@
           openOverlay("progressOverlay", { kind: "save-signup" });
         }
       } else if (action === "save-founder-note") {
-        saveFounderNote(actionNode.dataset.id);
+        if (appState.isSignedIn) {
+          saveFounderNote(actionNode.dataset.id);
+        } else {
+          closeOverlay("notesOverlay");
+          renderSaveSignupPrompt();
+          openOverlay("progressOverlay", { kind: "save-signup" });
+        }
       } else if (action === "delete-founder-note") {
         deleteFounderNote(actionNode.dataset.id);
       } else if (action === "scroll-founder-file-section") {
@@ -997,7 +1003,13 @@
       } else if (action === "quiz-back") {
         previousQuizStep();
       } else if (action === "save-quiz-result") {
-        saveQuizResult();
+        if (appState.isSignedIn) {
+          saveQuizResult();
+        } else {
+          closeOverlay("quizOverlay");
+          renderPlannerSignupPrompt();
+          openOverlay("progressOverlay", { kind: "planner-signup" });
+        }
       } else if (action === "open-state-detail") {
         appState.browseOfficialState = actionNode.dataset.state || appState.selectedState;
         saveState();

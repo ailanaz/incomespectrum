@@ -1893,8 +1893,8 @@
           ${renderRelatedLinks(item.officialIds, "official", item, "income")}
         </div>
         ${item.externalHref ? `<div class="detail-section"><a class="app-btn app-btn--secondary" href="${item.externalHref}" target="_blank" rel="noopener noreferrer">Open Source Listing</a></div>` : ""}
-        ${renderDetailActions(item.id, type)}
         ${renderNoteEditor(item.id)}
+        ${renderDetailActions(item.id, type)}
       `;
     }
 
@@ -1973,8 +1973,8 @@
           <p>You can save this article in the app, add notes to it, and use it alongside related income options, training, services, and official information.</p>
         </div>
         ${item.href ? `<div class="detail-section"><a class="utility-link" href="${item.href}" target="_blank" rel="noopener noreferrer">Open Website Article</a></div>` : ""}
-        ${renderDetailActions(item.id, type)}
         ${renderNoteEditor(item.id)}
+        ${renderDetailActions(item.id, type)}
       `;
     }
 
@@ -1996,21 +1996,12 @@
   }
 
   function renderDetailActions(id, type) {
-    if (type === "article") {
-      return `
+    return `
         <div class="detail-section">
           <div class="inline-actions">
             <button class="utility-link ${isSaved(id) ? "utility-link--active" : ""}" data-action="save-item" data-id="${id}">${isSaved(id) ? "Saved" : "Save"}</button>
           </div>
         </div>
-      `;
-    }
-    return `
-        <div class="detail-section">
-          <div class="inline-actions">
-            <button class="app-btn app-btn--primary" data-action="save-item" data-id="${id}">${isSaved(id) ? "Saved" : "Save"}</button>
-        </div>
-      </div>
     `;
   }
 

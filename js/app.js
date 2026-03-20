@@ -558,6 +558,7 @@
   const quiz = {
     title: "What People Will Pay For",
     intro: "This quiz is designed to help you understand what people are paying for and turn that understanding into a living Personal Business Pathway Plan.",
+    cultureNote: "In this concept, culture is not just who people are. Culture is the shared cost people are carrying and the shared relief, protection, access, improvement, or result they are seeking.",
     questions: [
       {
         id: "block",
@@ -1870,7 +1871,7 @@
     progressBar.style.width = `${((quizIndex + 1) / quiz.questions.length) * 100}%`;
     body.innerHTML = `
       <div class="quiz-question">
-        ${quizIndex === 0 ? `<p>${quiz.intro}</p>` : ""}
+        ${quizIndex === 0 ? `<p>${quiz.intro}</p><p>${quiz.cultureNote}</p>` : ""}
         <h3>${question.prompt}</h3>
         <div class="quiz-options">
           ${question.options.map((option) => `

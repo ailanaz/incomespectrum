@@ -1244,7 +1244,6 @@
   function renderHome() {
     const lastViewed = appState.recentlyViewed[0] ? findItem(appState.recentlyViewed[0]) : null;
     const currentPath = buildPathSnapshot();
-    const currentPlan = buildPlanSnapshot();
     document.getElementById("continueTitle").textContent = lastViewed ? `Continue with ${lastViewed.title}` : "Explore the Income Spectrum app.";
     document.getElementById("continueCopy").textContent = lastViewed
       ? `You last opened ${lastViewed.title}. Keep exploring the spectrum and place the right items into your Founder File.`
@@ -1264,8 +1263,7 @@
       }
     }
     document.getElementById("heroPathValue").textContent = currentPath.label;
-    document.getElementById("heroPlanValue").textContent = currentPlan.label;
-    document.getElementById("homeSecondaryAction").textContent = appState.isSignedIn ? "Open File" : "Sign Up to Save Your File";
+    document.getElementById("heroPlanValue").textContent = buildPlanSnapshot().label;
     document.getElementById("topPlannerButton").textContent = "Founder File";
     document.getElementById("topPlannerButton").setAttribute("aria-label", "Open Founder File");
 

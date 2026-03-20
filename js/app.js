@@ -1,6 +1,7 @@
 (function () {
   const STORAGE_KEY_LOCAL = "income-spectrum-app-state-v2-local";
   const STORAGE_KEY_SESSION = "income-spectrum-app-state-v2-session";
+  const ACCOUNT_KEY_LOCAL = "income-spectrum-founder-account-v1";
   const sections = ["income", "training", "services", "official"];
   const sectionLabels = {
     income: "Income Options",
@@ -755,7 +756,12 @@
         openApp("explore");
       } else if (action === "start-setup-signup") {
         captureSignupReturn();
+        clearAuthMessages();
         showGate("signup");
+      } else if (action === "start-setup-signin") {
+        captureSignupReturn();
+        clearAuthMessages();
+        showGate("signin");
       } else if (action === "sign-in-demo") {
         appState.isSignedIn = true;
         appState.setupComplete = true;
@@ -768,6 +774,8 @@
         openApp("home");
       } else if (action === "complete-signup") {
         completeSignup();
+      } else if (action === "complete-signin") {
+        completeSignin();
       } else if (action === "back-to-opening") {
         returnFromSignup();
       } else if (action === "skip-setup") {
@@ -1141,6 +1149,37 @@
   }
 
   function completeSignup() {
+    const name = (document.getElementById("signupName")?.value || "").trim();
+    const email = (document.getElementById("signupEmail")?.value || "").trim().toLowerCase();
+    const password = (document.getElementById("signupPassword")?.value || "").trim();
+    if (!name || !email || !password) {
+      setAuthMessage("signupMessage", "Enter your name, email, and password to create your Founder account.");
+      return;
+    }
+    saveFounderAccount({ name, email, password });
+    appState.isSignedIn = true;
+    appState.setupComplete = true;
+    clearSignupReturn();
+    saveState();
+    openApp("home");
+  }
+
+  function completeSignin() {
+    const email = (document.getElementById("signinEmail")?.value || "").trim().toLowerCase();
+    const password = (document.getElementById("signinPassword")?.value || "").trim();
+    const founderAccount = loadFounderAccount();
+    if (!email || !password) {
+      setAuthMessage("signinMessage", "Enter your email and password to sign in.");
+      return;
+    }
+    if (!founderAccount) {
+      setAuthMessage("signinMessage", "No Founder account is saved on this device yet. Create one first.");
+      return;
+    }
+    if (founderAccount.email !== email || founderAccount.password !== password) {
+      setAuthMessage("signinMessage", "That email or password does not match the saved Founder account on this device.");
+      return;
+    }
     appState.isSignedIn = true;
     appState.setupComplete = true;
     clearSignupReturn();
@@ -1166,6 +1205,30 @@
 
   function clearSignupReturn() {
     appState.signupReturn = structuredClone(defaultState.signupReturn);
+  }
+
+  function clearAuthMessages() {
+    setAuthMessage("signupMessage", "");
+    setAuthMessage("signinMessage", "");
+  }
+
+  function setAuthMessage(id, message) {
+    const node = document.getElementById(id);
+    if (!node) return;
+    node.textContent = message;
+  }
+
+  function saveFounderAccount(account) {
+    localStorage.setItem(ACCOUNT_KEY_LOCAL, JSON.stringify(account));
+  }
+
+  function loadFounderAccount() {
+    try {
+      const raw = localStorage.getItem(ACCOUNT_KEY_LOCAL);
+      return raw ? JSON.parse(raw) : null;
+    } catch (error) {
+      return null;
+    }
   }
 
   function returnFromSignup() {

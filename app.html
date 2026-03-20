@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/app.css?v=20260320ba">
+  <link rel="stylesheet" href="css/app.css?v=20260320bb">
 </head>
 <body>
   <div class="app-shell">
@@ -23,6 +23,7 @@
         <p class="gate-copy">Sign up to access features that support starting, running, or rebuilding your entrepreneurial venture.</p>
         <div class="gate-links">
           <button class="text-link gate-link" data-action="start-setup-signup">Sign Up Here</button>
+          <button class="text-link gate-link" data-action="start-setup-signin">Sign In</button>
           <button class="text-link gate-link" data-action="continue-guest">Guest Access</button>
         </div>
       </div>
@@ -48,9 +49,40 @@
             <input id="signupPassword" type="password" placeholder="Create a password">
           </label>
         </div>
+        <p class="helper-copy" id="signupMessage"></p>
         <div class="gate-actions">
           <button class="app-btn app-btn--primary" data-action="complete-signup">Create Account</button>
           <button class="app-btn app-btn--ghost" data-action="back-to-opening">Back</button>
+        </div>
+        <div class="gate-links">
+          <button class="text-link gate-link" data-action="start-setup-signin">Already have a Founder account? Sign In</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="gate-screen" id="signinScreen" data-screen="signin">
+      <div class="gate-panel gate-panel--wide">
+        <p class="gate-kicker">Sign In</p>
+        <h2>Access Your Founder Account.</h2>
+        <p class="gate-copy">Open your Founder File.</p>
+        <p class="gate-copy">Continue building from where you left off.</p>
+        <div class="setup-grid">
+          <label class="field">
+            <span>Email</span>
+            <input id="signinEmail" type="email" placeholder="you@example.com">
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input id="signinPassword" type="password" placeholder="Enter your password">
+          </label>
+        </div>
+        <p class="helper-copy" id="signinMessage"></p>
+        <div class="gate-actions">
+          <button class="app-btn app-btn--primary" data-action="complete-signin">Sign In</button>
+          <button class="app-btn app-btn--ghost" data-action="back-to-opening">Back</button>
+        </div>
+        <div class="gate-links">
+          <button class="text-link gate-link" data-action="start-setup-signup">Need a Founder account? Sign Up</button>
         </div>
       </div>
     </section>
@@ -329,6 +361,6 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=20260320ba"></script>
+  <script src="js/app.js?v=20260320bb"></script>
 </body>
 </html>

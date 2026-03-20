@@ -868,6 +868,14 @@
           renderPlannerSignupPrompt();
           openOverlay("progressOverlay", { kind: "planner-signup" });
         }
+      } else if (action === "post-signup-quiz") {
+        closeOverlay("progressOverlay");
+        quizIndex = 0;
+        renderQuiz();
+        openOverlay("quizOverlay", { kind: "quiz" });
+      } else if (action === "post-signup-explore") {
+        closeOverlay("progressOverlay");
+        showView("explore");
       } else if (action === "open-founder-file") {
         if (appState.isSignedIn) {
           closeAllOverlays();
@@ -1317,6 +1325,8 @@
     clearSignupReturn();
     saveState();
     openApp("home");
+    renderPostSignupPrompt();
+    openOverlay("progressOverlay", { kind: "post-signup" });
   }
 
   function completeSignin() {
@@ -2235,6 +2245,19 @@
         <div class="inline-actions">
           <button class="app-btn app-btn--secondary" data-action="start-setup-signup">Sign Up to Save</button>
           <button class="app-btn app-btn--ghost" data-action="go-explore">Keep Exploring</button>
+        </div>
+      </section>
+    `;
+  }
+
+  function renderPostSignupPrompt() {
+    document.getElementById("progressStages").innerHTML = `
+      <section class="progress-stage progress-stage--overview">
+        <h4>Founder access unlocked</h4>
+        <p>You can go straight to the quiz to build understanding of what people pay for, or start by exploring opportunities, resources, and official information.</p>
+        <div class="inline-actions">
+          <button class="app-btn app-btn--secondary" data-action="post-signup-quiz">Go to Quiz</button>
+          <button class="app-btn app-btn--ghost" data-action="post-signup-explore">Explore First</button>
         </div>
       </section>
     `;
@@ -3269,6 +3292,13 @@
       if (appState.isSignedIn) {
         renderProgress();
         openOverlay("progressOverlay", { kind: "progress" });
+      }
+      return;
+    }
+    if (overlayState.kind === "post-signup") {
+      if (appState.isSignedIn) {
+        renderPostSignupPrompt();
+        openOverlay("progressOverlay", { kind: "post-signup" });
       }
       return;
     }

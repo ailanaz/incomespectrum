@@ -875,7 +875,7 @@ button.field-toggle::after {
   border: 0;
   background: transparent;
   color: var(--app-text-soft);
-  font-size: 13px;
+  font-size: inherit;
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -891,7 +891,7 @@ button.field-toggle::after {
   border-radius: 999px;
   background: transparent;
   color: var(--app-text-soft);
-  font-size: 13px;
+  font-size: inherit;
   font-weight: 700;
   text-decoration: none;
 }
@@ -906,6 +906,7 @@ button.field-toggle::after {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  font-size: inherit;
 }
 
 .utility-link--active {

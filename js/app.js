@@ -1772,18 +1772,29 @@
       `<div class="mini-card"><strong>Selected State</strong><p>${appState.selectedState}</p></div>`,
       `<div class="mini-card"><strong>Starting Goal</strong><p>${goalLabel}</p></div>`
     ].join("");
+    const quizResultSummary = appState.quizResult
+      ? {
+          understanding: appState.quizResult.understandingSummary,
+          culture: appState.quizResult.cultureSummary,
+          opportunity: appState.quizResult.opportunitySummary
+        }
+      : {
+          understanding: "Your quiz results will summarize what people pay for here once you complete the quiz.",
+          culture: "Your quiz results will summarize how niche is culture here once you complete the quiz.",
+          opportunity: "Your quiz results will summarize how the Cost of Living drives opportunity here once you complete the quiz."
+        };
     const currentFocusMarkup = `
       <div class="mini-card">
         <strong>What People Pay For</strong>
-        <p>${planDraft.understanding || "Use the quiz and the app library to clarify what people are paying for and where you want your Founder File to focus."}</p>
+        <p>${quizResultSummary.understanding}</p>
       </div>
       <div class="mini-card">
         <strong>Niche as Culture</strong>
-        <p>${planDraft.culture || "Describe the shared cost and the shared relief, access, improvement, protection, or result being sought."}</p>
+        <p>${quizResultSummary.culture}</p>
       </div>
       <div class="mini-card">
         <strong>The Cost of Living Drives Opportunity</strong>
-        <p>${planDraft.opportunity || "Note where opportunity may be forming based on cost, value, and what people are repeatedly trying to attain, protect, improve, or resolve."}</p>
+        <p>${quizResultSummary.opportunity}</p>
       </div>
     `;
     const ideasMarkup = `

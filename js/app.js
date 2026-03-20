@@ -802,6 +802,13 @@
         completeSignup();
       } else if (action === "complete-signin") {
         completeSignin();
+      } else if (action === "toggle-password") {
+        const target = document.getElementById(actionNode.dataset.target);
+        if (target) {
+          const isPassword = target.type === "password";
+          target.type = isPassword ? "text" : "password";
+          actionNode.textContent = isPassword ? "Hide Password" : "Show Password";
+        }
       } else if (action === "back-to-opening") {
         returnFromSignup();
       } else if (action === "skip-setup") {

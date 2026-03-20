@@ -229,6 +229,12 @@ a {
   resize: vertical;
 }
 
+.field-toggle {
+  justify-self: start;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
 .choice-group,
 .pill-row,
 .toolbar__chips,

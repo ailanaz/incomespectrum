@@ -2806,7 +2806,7 @@
       <div class="detail-section">
         <div class="inline-actions">
           <button class="app-btn app-btn--ghost" data-action="open-all-states">Back to All States</button>
-          <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${statePageSaveItem.id}">${isSaved(statePageSaveItem.id) ? "Saved" : "Save"}</button>
+          <button class="utility-link ${isSaved(statePageSaveItem.id) ? "utility-link--active" : ""}" data-action="save-item" data-id="${statePageSaveItem.id}">${isSaved(statePageSaveItem.id) ? "Saved to File" : "Save to File"}</button>
         </div>
       </div>
       <div class="card-grid card-grid--two">
@@ -2817,6 +2817,7 @@
             <ul class="detail-links">
               ${resolveOfficialLinks(item, stateName).map((link) => `<li><a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a></li>`).join("")}
             </ul>
+            <button class="utility-link ${isSaved(item.id) ? "utility-link--active" : ""}" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved to File" : "Save to File"}</button>
           </section>
         `).join("")}
       </div>

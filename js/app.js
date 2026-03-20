@@ -572,14 +572,14 @@
       },
       {
         id: "problem",
-        prompt: "What do people seem to keep trying to fix, solve, protect, or improve?",
+        prompt: "What kind of cost, relief, or result seems to keep showing up?",
         options: [
-          { value: "Survival and Stability", label: "Getting stable, organized, fed, paid, or back on solid ground" },
-          { value: "Safety and Protection", label: "Protecting what they have, lowering exposure, or avoiding loss" },
-          { value: "Relief and Health", label: "Reducing pain, strain, confusion, or health-related friction" },
-          { value: "Pleasure and Comfort", label: "Making life easier, more enjoyable, or more comfortable" },
-          { value: "Belonging and Love", label: "Feeling connected, supported, included, or understood" },
-          { value: "Status, Meaning, and Legacy", label: "Advancing, proving something, building standing, or leaving a mark" }
+          { value: "Relief and Health", label: "Relief, solution, or improvement" },
+          { value: "Safety and Protection", label: "Prevention, protection, or risk reduction" },
+          { value: "Survival and Stability", label: "Access, order, simplicity, or savings" },
+          { value: "Status, Meaning, and Legacy", label: "Growth, decision-making, understanding, or proof" },
+          { value: "Belonging and Love", label: "Connection, support, or feeling understood" },
+          { value: "Pleasure and Comfort", label: "Comfort, enjoyment, or making life feel easier" }
         ]
       },
       {

@@ -2001,7 +2001,6 @@
         <div class="detail-section">
           <div class="inline-actions">
             <button class="utility-link ${isSaved(id) ? "utility-link--active" : ""}" data-action="save-item" data-id="${id}">${isSaved(id) ? "Saved" : "Save"}</button>
-            <button class="utility-link" data-action="open-notes">Open Notes</button>
           </div>
         </div>
       `;
@@ -2010,7 +2009,6 @@
         <div class="detail-section">
           <div class="inline-actions">
             <button class="app-btn app-btn--primary" data-action="save-item" data-id="${id}">${isSaved(id) ? "Saved" : "Save"}</button>
-          <button class="app-btn app-btn--ghost" data-action="open-notes">Open Notes</button>
         </div>
       </div>
     `;
@@ -2623,7 +2621,6 @@
         <div class="item-tags">${(item.tags || []).map(renderTag).join("")}</div>
         <div class="inline-actions">
           <button class="app-btn ${openButtonClass(type)}" data-action="open-item" data-id="${item.id}" data-type="${type}">Open</button>
-          <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>
         </div>
       </article>
     `;

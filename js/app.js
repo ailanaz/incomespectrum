@@ -1589,7 +1589,7 @@
     document.getElementById("progressStages").innerHTML = `
       <section class="progress-stage progress-stage--overview">
         <h4>Sign Up to Access Planner</h4>
-        <p>Create an account to keep your personal business pathway plan, return to it later, and keep your state, notes, and saved path items together.</p>
+        <p>Create an account to save your progress, return to it later, and keep your state, notes, and saved items together.</p>
         <div class="inline-actions">
           <button class="app-btn app-btn--secondary" data-action="start-setup-signup">Sign Up to Use Planner</button>
           <button class="app-btn app-btn--ghost" data-action="go-explore">Keep Exploring</button>
@@ -2328,7 +2328,7 @@
     if (!appState.isSignedIn) {
       return {
         label: "Sign up to Access Features",
-        summary: "Create an account to keep your personal business pathway plan."
+        summary: "Create an account to save your progress."
       };
     }
     if (!appState.quizResult) {

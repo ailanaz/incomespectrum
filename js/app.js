@@ -557,7 +557,7 @@
 
   const quiz = {
     title: "What People Will Pay For",
-    intro: "This quiz is designed to help you understand what people are paying for and turn that understanding into a living plan.",
+    intro: "This quiz is designed to help you understand what people are paying for and turn that understanding into a living Personal Business Pathway Plan.",
     questions: [
       {
         id: "block",

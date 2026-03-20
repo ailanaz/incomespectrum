@@ -1905,11 +1905,9 @@
             <ul class="detail-links">
               ${resolveOfficialLinks(item, stateName).map((link) => `<li><a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a></li>`).join("")}
             </ul>
-            ${appState.isSignedIn ? `
-              <div class="inline-actions">
-                <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>
-              </div>
-            ` : ""}
+            <div class="inline-actions">
+              <button class="app-btn app-btn--ghost" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>
+            </div>
           </section>
         `).join("")}
       </div>

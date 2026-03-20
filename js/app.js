@@ -735,7 +735,12 @@
       } else if (action === "open-item") {
         openDetail(actionNode.dataset.id, actionNode.dataset.type);
       } else if (action === "save-item") {
-        toggleSaved(actionNode.dataset.id);
+        if (appState.isSignedIn) {
+          toggleSaved(actionNode.dataset.id);
+        } else {
+          renderSaveSignupPrompt();
+          openOverlay("progressOverlay");
+        }
       } else if (action === "compare-item") {
         toggleCompare(actionNode.dataset.id);
       } else if (action === "remove-saved") {
@@ -1470,6 +1475,19 @@
         <p>Create an account to keep your personal business pathway plan, return to it later, and keep your state, notes, and saved path items together.</p>
         <div class="inline-actions">
           <button class="app-btn app-btn--secondary" data-action="start-setup-signup">Sign Up to Use Planner</button>
+          <button class="app-btn app-btn--ghost" data-action="go-explore">Keep Exploring</button>
+        </div>
+      </section>
+    `;
+  }
+
+  function renderSaveSignupPrompt() {
+    document.getElementById("progressStages").innerHTML = `
+      <section class="progress-stage progress-stage--overview">
+        <h4>Sign Up to Use Save Features</h4>
+        <p>Create an account to save options, resources, notes, and plan items so you can return to them later.</p>
+        <div class="inline-actions">
+          <button class="app-btn app-btn--secondary" data-action="start-setup-signup">Sign Up to Save</button>
           <button class="app-btn app-btn--ghost" data-action="go-explore">Keep Exploring</button>
         </div>
       </section>

@@ -7,7 +7,7 @@
     training: "Education & Training",
     services: "Supportive Services",
     official: "Official Information",
-    saved: "Plan",
+    saved: "File",
     article: "Article / Resource",
     quiz: "Quiz Result"
   };
@@ -557,7 +557,7 @@
 
   const quiz = {
     title: "What People Pay For",
-    intro: "This quiz is designed to help you understand what people are paying for and turn that understanding into a living Personal Business Pathway Plan.",
+    intro: "This quiz is designed to help you understand what people are paying for and turn that understanding into a living Founder File.",
     frameworkNote: "You will be building understanding of The Six, the six motivators that drive spending; The Cost of Living, the costs people keep paying in time, energy, attention, comfort, and risk; Niche as Culture, where culture is shaped by shared cost and shared outcomes sought; and how The Cost of Living drives opportunity.",
     questions: [
       {
@@ -1243,12 +1243,12 @@
     const currentPlan = buildPlanSnapshot();
     document.getElementById("continueTitle").textContent = lastViewed ? `Continue with ${lastViewed.title}` : "Explore the Income Spectrum app.";
     document.getElementById("continueCopy").textContent = lastViewed
-      ? `You last opened ${lastViewed.title}. Keep exploring the spectrum and place the right items into your PBPP.`
+      ? `You last opened ${lastViewed.title}. Keep exploring the spectrum and place the right items into your Founder File.`
       : "The Income Spectrum App is an interactive companion for exploring income opportunities, knowledge resources, support services, official information, and articles while building your personal Founder File in one place.";
     document.getElementById("heroStateValue").textContent = appState.selectedState;
     document.getElementById("heroPathValue").textContent = currentPath.label;
     document.getElementById("heroPlanValue").textContent = currentPlan.label;
-    document.getElementById("homeSecondaryAction").textContent = appState.isSignedIn ? "Open Plan" : "Sign Up to Save Your Plan";
+    document.getElementById("homeSecondaryAction").textContent = appState.isSignedIn ? "Open File" : "Sign Up to Save Your File";
     document.getElementById("topPlannerButton").textContent = "Founder File";
     document.getElementById("topPlannerButton").setAttribute("aria-label", "Open Founder File");
 
@@ -1454,11 +1454,11 @@
         <section class="card guest-upgrade">
           <div class="card-header">
             <div>
-              <p class="section-kicker">Plan</p>
+              <p class="section-kicker">File</p>
               <h2>Sign up to access your plan</h2>
             </div>
           </div>
-          <p>Sign up to keep your Personal Business Pathway Plan, notes, and saved items together in one place.</p>
+          <p>Sign up to keep your Founder File, notes, and saved items together in one place.</p>
           <div class="stack-actions">
             <button class="app-btn app-btn--primary" data-action="start-setup-signup">Sign Up to Access Features</button>
           </div>
@@ -1480,8 +1480,8 @@
       <section class="card">
         <div class="card-header">
           <div>
-            <p class="section-kicker">Plan</p>
-            <h2>Personal Business Pathway Plan</h2>
+            <p class="section-kicker">Founder File</p>
+            <h2>Founder File</h2>
           </div>
         </div>
         <p>${planSummary.summary}</p>
@@ -1495,7 +1495,7 @@
     savedSectionsNode.className = "plan-page-grid";
     savedSectionsNode.innerHTML = `
       <section class="saved-block plan-page-block plan-page-block--template">
-        <h4>Living Plan Template</h4>
+        <h4>Living File Template</h4>
         <p>The quiz fills the first draft. You can revise any part of it as needed.</p>
         <div class="plan-template-grid">
           ${renderPlanField("Current Starting Point", "startingPoint", planDraft.startingPoint || "")}
@@ -1559,7 +1559,7 @@
 
     if (appState.quizResult) {
       grouped.quiz = grouped.quiz || [];
-      grouped.quiz.push({ ...appState.quizResult, id: "saved-quiz-result", title: appState.quizResult.planTitle || "Saved Plan Draft" });
+      grouped.quiz.push({ ...appState.quizResult, id: "saved-quiz-result", title: appState.quizResult.planTitle || "Saved Founder File Draft" });
     }
 
     const groups = Object.entries(grouped).map(([type, items]) => `
@@ -1629,13 +1629,13 @@
       </section>
     ` : `
       <section class="progress-stage progress-stage--overview">
-        <h4>Build Your Personal Business Pathway Plan</h4>
-        <p>Use the quiz to generate a first-draft Personal Business Pathway Plan, then adjust it from there.</p>
+        <h4>Build Your Founder File</h4>
+        <p>Use the quiz to generate a first-draft Founder File, then adjust it from there.</p>
       </section>
     `;
     const templateSection = appState.quizResult ? `
       <section class="progress-stage">
-        <h4>Living Plan Template</h4>
+        <h4>Living File Template</h4>
         <p>This plan is meant to be adjusted. The quiz fills the first draft. You can revise any part of it as needed.</p>
         <div class="plan-template-grid">
           ${renderPlanField("Current Starting Point", "startingPoint", planDraft.startingPoint || "")}
@@ -1653,7 +1653,7 @@
     ` : "";
     const planSection = `
       <section class="progress-stage">
-        <h4>Plan Items</h4>
+        <h4>File Items</h4>
         <p>The items currently shaping your plan.</p>
         ${planItems.length
           ? planItems.map((item) => `
@@ -1709,7 +1709,7 @@
   function renderSavedQuizResult() {
     const node = document.getElementById("savedQuizResult");
     if (!appState.quizResult) {
-      node.innerHTML = `<div class="empty-state">Take the quiz to generate a first-draft Personal Business Pathway Plan based on what people pay for and where opportunity may be forming.</div>`;
+      node.innerHTML = `<div class="empty-state">Take the quiz to generate a first-draft Founder File based on what people pay for and where opportunity may be forming.</div>`;
       return;
     }
     node.innerHTML = renderQuizResult(appState.quizResult, false);
@@ -2055,7 +2055,7 @@
           <p>${result.pathSummary}</p>
         </div>
         <div class="detail-section">
-          <h4>Plan</h4>
+          <h4>File</h4>
           <p>${result.planSummary}</p>
         </div>
         <div class="detail-section">
@@ -2098,22 +2098,22 @@
           </ul>
         </div>
         <div class="detail-section">
-          <h4>Plan Inputs: Income Options</h4>
+          <h4>File Inputs: Income Opportunities</h4>
           ${renderRelatedLinks(result.suggestedIncomeIds, "income")}
         </div>
         <div class="detail-section">
-          <h4>Plan Inputs: Knowledge</h4>
+          <h4>File Inputs: Knowledge Resources</h4>
           ${renderRelatedLinks(result.suggestedTrainingIds, "training")}
         </div>
         <div class="detail-section">
-          <h4>Plan Inputs: Support</h4>
+          <h4>File Inputs: Supportive Services</h4>
           ${renderRelatedLinks(result.suggestedServiceIds, "services")}
         </div>
         <div class="detail-section">
-          <h4>Plan Inputs: Official Information</h4>
+          <h4>File Inputs: Official Information</h4>
           ${renderRelatedLinks(result.suggestedOfficialIds, "official")}
         </div>
-        ${includeSaveButton ? `<div class="inline-actions"><button class="app-btn app-btn--primary" data-action="save-quiz-result">${appState.isSignedIn ? "Build Plan" : "Sign Up to Build Plan"}</button></div>` : ""}
+        ${includeSaveButton ? `<div class="inline-actions"><button class="app-btn app-btn--primary" data-action="save-quiz-result">${appState.isSignedIn ? "Build File" : "Sign Up to Build File"}</button></div>` : ""}
       </div>
     `;
   }
@@ -2359,7 +2359,7 @@
         ? "Look for ways to reduce what this group is spending in time, energy, attention, comfort, or risk."
         : "Look for ways to make the result more valuable inside the culture you are looking at.";
     const path = pathMap[action];
-    const planTitle = "Personal Business Pathway Plan";
+    const planTitle = "Founder File";
     const startingPointSummary = `${blockMap[block]} ${startingMaterialMap[startingMaterial]}`;
     const understandingSummary = `The pattern you are observing points most strongly to ${motivator.toLowerCase()}. People are paying with ${payment.toLowerCase()}, which means the cost of living is showing up there most heavily. When the same cost keeps showing up and the same sought result keeps showing up with it, opportunity starts to become visible.`;
     const cultureSummary = `In this framework, culture is not a niche label. It is the shared cost being carried and the shared outcome being sought around that cost. Here, the culture pattern looks like ${culture.toLowerCase()}, and the spending seems to be helping people ${actionMap[action]}.`;
@@ -2398,7 +2398,7 @@
       primarySection: path.primarySection,
       pathLabel: path.pathLabel,
       pathSummary: `Build around The Six, The Cost of Living, and the shared cost and sought outcome inside this culture. Here, that means ${motivator.toLowerCase()}, ${payment.toLowerCase()}, and a flexible understanding you can keep refining.`,
-      planSummary: "This plan is not a formal business-plan document. It is a living Personal Business Pathway Plan meant to help you nurture an idea you already have or develop one you discovered in the app.",
+      planSummary: "This file is not a formal business-plan document. It is a living Founder File meant to help you nurture an idea you already have or develop one you discovered in the app.",
       startingPointSummary,
       understandingSummary,
       cultureSummary,
@@ -2443,12 +2443,12 @@
     }
     if (!appState.quizResult) {
       return {
-        label: "Build Your Personal Business Pathway Plan",
+        label: "Build Your Founder File",
         summary: "Take the quiz to generate a living plan built around idea, knowledge, support, and official needs."
       };
     }
     return {
-      label: totalPlanned ? `${totalPlanned} items in plan` : "Draft ready",
+      label: totalPlanned ? `${totalPlanned} items in file` : "Draft ready",
       summary: appState.quizResult.planSummary
     };
   }

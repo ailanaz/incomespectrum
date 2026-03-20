@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/app.css?v=20260320bb">
+  <link rel="stylesheet" href="css/app.css?v=20260320bo">
 </head>
 <body>
   <div class="app-shell">
@@ -38,20 +38,28 @@
         <div class="setup-grid">
           <label class="field">
             <span>Name</span>
-            <input id="signupName" type="text" placeholder="Your name">
+            <input id="signupName" type="text" placeholder="Your name" autocomplete="off">
           </label>
           <label class="field">
             <span>Email</span>
-            <input id="signupEmail" type="email" placeholder="you@example.com">
+            <input id="signupEmail" type="email" placeholder="you@example.com" autocomplete="off">
           </label>
           <label class="field">
             <span>Password</span>
-            <input id="signupPassword" type="password" placeholder="Create a password">
+            <input id="signupPassword" type="password" placeholder="Create a password" autocomplete="new-password">
           </label>
+          <label class="field">
+            <span>State</span>
+            <select id="signupState"></select>
+          </label>
+        </div>
+        <div class="field">
+          <span>Initial goal</span>
+          <div class="pill-row" id="signupGoal"></div>
         </div>
         <p class="helper-copy" id="signupMessage"></p>
         <div class="gate-actions">
-          <button class="app-btn app-btn--primary" data-action="complete-signup">Create Account</button>
+          <button class="app-btn app-btn--primary" data-action="complete-signup" id="completeSignupButton" disabled>Create Account</button>
           <button class="app-btn app-btn--ghost" data-action="back-to-opening">Back</button>
         </div>
         <div class="gate-links">
@@ -69,11 +77,11 @@
         <div class="setup-grid">
           <label class="field">
             <span>Email</span>
-            <input id="signinEmail" type="email" placeholder="you@example.com">
+            <input id="signinEmail" type="email" placeholder="you@example.com" autocomplete="off">
           </label>
           <label class="field">
             <span>Password</span>
-            <input id="signinPassword" type="password" placeholder="Enter your password">
+            <input id="signinPassword" type="password" placeholder="Enter your password" autocomplete="current-password">
           </label>
         </div>
         <p class="helper-copy" id="signinMessage"></p>
@@ -97,8 +105,11 @@
           <h1 class="app-topbar__title" id="viewTitle">Home</h1>
         </div>
         <div class="app-topbar__actions">
+          <span class="app-mode-badge" id="accountModeBadge">Guest Mode</span>
           <a class="app-icon-btn" href="/" aria-label="Open website">Website</a>
-          <button class="app-icon-btn" data-action="open-progress" aria-label="Open Founder File" id="topPlannerButton">Founder File</button>
+          <button class="app-icon-btn" data-action="open-progress" aria-label="Open Founder File Overview" id="topPlannerButton">Founder File Overview</button>
+          <button class="app-icon-btn hidden" data-action="sign-out" id="topSignOutButton">Sign Out</button>
+          <button class="app-icon-btn" data-action="reset-founder-test" id="topResetFounderTestButton">Start Fresh Test</button>
         </div>
       </header>
 
@@ -121,10 +132,24 @@
               <span class="hero-stat__label">Focus</span>
               <strong id="heroPathValue">Find your focus</strong>
             </button>
-            <button class="hero-stat" type="button" data-action="open-progress">
+            <button class="hero-stat" type="button" data-action="open-founder-file">
               <span class="hero-stat__label">File</span>
-              <strong id="heroPlanValue">Build Your Founder File</strong>
+              <strong id="heroPlanValue">Access Your Founder File</strong>
             </button>
+          </div>
+        </section>
+
+        <section class="card test-controls" id="testControlsCard">
+          <div class="card-header">
+            <div>
+              <p class="section-kicker">Testing</p>
+              <h3>Test Controls</h3>
+            </div>
+          </div>
+          <p class="helper-copy" id="testControlsModeCopy">You are browsing in Guest Mode.</p>
+          <div class="inline-actions">
+            <button class="app-btn app-btn--ghost" data-action="reset-founder-test">Start Fresh Test</button>
+            <button class="app-btn app-btn--ghost hidden" data-action="sign-out" id="homeSignOutButton">Sign Out</button>
           </div>
         </section>
 
@@ -282,7 +307,8 @@
               <button class="app-btn app-btn--secondary" data-action="open-progress">Open File</button>
               <button class="app-btn app-btn--secondary" data-action="open-quiz">Open Quiz</button>
               <button class="app-btn app-btn--ghost" data-action="start-setup-signup">Sign Up to Keep Your File</button>
-              <button class="app-btn app-btn--ghost" data-action="reset-app">Reset App Data</button>
+              <button class="app-btn app-btn--ghost hidden" data-action="sign-out" id="signOutButton">Sign Out</button>
+              <button class="app-btn app-btn--ghost" data-action="reset-founder-test" id="resetFounderTestButton">Start Fresh Test</button>
             </div>
           </section>
         </div>
@@ -336,7 +362,8 @@
     <div class="overlay-panel">
       <div class="overlay-header">
         <div>
-          <p class="section-kicker">Founder File</p>
+          <p class="section-kicker">Founder File Overview</p>
+          <h2>Founder File Overview</h2>
         </div>
         <button class="close-btn" data-action="close-overlay" data-target="progressOverlay">Close</button>
       </div>
@@ -361,6 +388,6 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=20260320bb"></script>
+  <script src="js/app.js?v=20260320bo"></script>
 </body>
 </html>

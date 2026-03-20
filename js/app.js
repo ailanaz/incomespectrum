@@ -18,6 +18,14 @@
     { value: "get support", label: "Get Support" },
     { value: "find official information", label: "Find Official Information" }
   ];
+  const founderIdentityOptions = [
+    "Founder",
+    "Entrepreneur",
+    "Small Business Owner",
+    "Self-Employed",
+    "Solopreneur",
+    "Business Owner"
+  ];
   const workPreferences = [
     { value: "online", label: "Online" },
     { value: "local", label: "Local" },
@@ -733,16 +741,32 @@
     });
     document.getElementById("profileState").addEventListener("change", (event) => {
       appState.selectedState = event.target.value;
+      appState.browseOfficialState = event.target.value;
+      syncFounderAccountProfile();
       saveState();
       renderAll();
     });
+    const signupState = document.getElementById("signupState");
+    if (signupState) {
+      signupState.addEventListener("change", (event) => {
+        appState.selectedState = event.target.value;
+        appState.browseOfficialState = event.target.value;
+        renderSetupChoices();
+        updateSignupButtonState();
+      });
+    }
+    updateSignupButtonState();
   }
 
   function handleInput(event) {
     const planField = event.target.closest("[data-plan-field]");
-    if (!planField || !appState.isSignedIn) return;
-    appState.planDraft[planField.dataset.planField] = planField.value;
-    saveState();
+    if (planField && appState.isSignedIn) {
+      appState.planDraft[planField.dataset.planField] = planField.value;
+      saveState();
+    }
+    if (["signupName", "signupEmail", "signupPassword"].includes(event.target.id)) {
+      updateSignupButtonState();
+    }
   }
 
   function handleClick(event) {
@@ -757,10 +781,12 @@
       } else if (action === "start-setup-signup") {
         captureSignupReturn();
         clearAuthMessages();
+        resetSignupForm();
         showGate("signup");
       } else if (action === "start-setup-signin") {
         captureSignupReturn();
         clearAuthMessages();
+        resetSigninForm();
         showGate("signin");
       } else if (action === "sign-in-demo") {
         appState.isSignedIn = true;
@@ -806,6 +832,14 @@
         if (appState.isSignedIn) {
           renderProgress();
           openOverlay("progressOverlay", { kind: "progress" });
+        } else {
+          renderPlannerSignupPrompt();
+          openOverlay("progressOverlay", { kind: "planner-signup" });
+        }
+      } else if (action === "open-founder-file") {
+        if (appState.isSignedIn) {
+          closeAllOverlays();
+          showView("saved");
         } else {
           renderPlannerSignupPrompt();
           openOverlay("progressOverlay", { kind: "planner-signup" });
@@ -865,10 +899,20 @@
           globalSearchInput.value = actionNode.dataset.query;
           renderSearchResults();
         }
-      } else if (action === "reset-app") {
+      } else if (action === "reset-app" || action === "reset-founder-test") {
+        appState = structuredClone(defaultState);
+        localStorage.removeItem(STORAGE_KEY_LOCAL);
+        localStorage.removeItem(ACCOUNT_KEY_LOCAL);
+        sessionStorage.removeItem(STORAGE_KEY_SESSION);
+        clearAuthMessages();
+        saveState();
+        syncGateState();
+        renderAll();
+      } else if (action === "sign-out") {
         appState = structuredClone(defaultState);
         localStorage.removeItem(STORAGE_KEY_LOCAL);
         sessionStorage.removeItem(STORAGE_KEY_SESSION);
+        clearAuthMessages();
         saveState();
         syncGateState();
         renderAll();
@@ -934,7 +978,12 @@
       choicePill.classList.add("active");
       if (group.id === "profileGoal") {
         appState.goal = choicePill.dataset.value;
+        syncFounderAccountProfile();
         saveState();
+      } else if (group.id === "signupGoal") {
+        appState.goal = choicePill.dataset.value;
+        renderSetupChoices();
+        updateSignupButtonState();
       } else if (group.id === "profileWorkPref") {
         appState.workPreference = choicePill.dataset.value;
         saveState();
@@ -944,8 +993,13 @@
   }
 
   function populateStateSelects() {
+    const signupSelect = document.getElementById("signupState");
     const profileSelect = document.getElementById("profileState");
     const options = allStates.map((state) => `<option value="${state}">${state}</option>`).join("");
+    if (signupSelect) {
+      signupSelect.innerHTML = options;
+      signupSelect.value = appState.selectedState;
+    }
     if (profileSelect) {
       profileSelect.innerHTML = options;
       profileSelect.value = appState.selectedState;
@@ -957,22 +1011,46 @@
   }
 
   function renderProfilePrefs() {
+    const signupState = document.getElementById("signupState");
+    const signupGoal = document.getElementById("signupGoal");
     const profileState = document.getElementById("profileState");
     const profileGoal = document.getElementById("profileGoal");
     const accountStatusCopy = document.getElementById("accountStatusCopy");
     const profileSignupCard = document.getElementById("profileSignupCard");
     const profileToolsTitle = document.getElementById("profileToolsTitle");
+    const accountModeBadge = document.getElementById("accountModeBadge");
+    const signOutButton = document.getElementById("signOutButton");
+    const topSignOutButton = document.getElementById("topSignOutButton");
+    const homeSignOutButton = document.getElementById("homeSignOutButton");
+    const testControlsModeCopy = document.getElementById("testControlsModeCopy");
+    if (signupState) signupState.value = appState.selectedState;
+    if (signupGoal) signupGoal.innerHTML = setupGoals.map((goal) => `
+      <button class="choice-pill ${goal.value === appState.goal ? "active" : ""}" type="button" data-value="${goal.value}">${goal.label}</button>
+    `).join("");
     if (profileState) profileState.value = appState.selectedState;
     if (profileGoal) profileGoal.innerHTML = setupGoals.map((goal) => `
       <button class="choice-pill ${goal.value === appState.goal ? "active" : ""}" type="button" data-value="${goal.value}">${goal.label}</button>
     `).join("");
     if (accountStatusCopy) accountStatusCopy.textContent = appState.isSignedIn
-      ? "You are signed in. Your state, plan, notes, and saved items stay with your account."
-      : "You are browsing as a guest. Your state and plan only stay for this session unless you sign in.";
+      ? "You are signed in as a Founder. Your state, file, notes, and saved items stay with your account on this device."
+      : "You are browsing in Guest Mode. Founder File access and saved progress require a Founder sign-in.";
     if (profileSignupCard) profileSignupCard.classList.toggle("hidden", appState.isSignedIn);
     if (profileToolsTitle) profileToolsTitle.textContent = appState.isSignedIn ? "App tools" : "Guest tools";
-    document.getElementById("topPlannerButton").textContent = "Founder File";
-    document.getElementById("topPlannerButton").setAttribute("aria-label", "Open Founder File");
+    if (signOutButton) signOutButton.classList.toggle("hidden", !appState.isSignedIn);
+    if (topSignOutButton) topSignOutButton.classList.toggle("hidden", !appState.isSignedIn);
+    if (homeSignOutButton) homeSignOutButton.classList.toggle("hidden", !appState.isSignedIn);
+    if (accountModeBadge) {
+      accountModeBadge.textContent = appState.isSignedIn ? "Founder Mode" : "Guest Mode";
+      accountModeBadge.classList.toggle("app-mode-badge--founder", appState.isSignedIn);
+      accountModeBadge.classList.toggle("app-mode-badge--guest", !appState.isSignedIn);
+    }
+    if (testControlsModeCopy) {
+      testControlsModeCopy.textContent = appState.isSignedIn
+        ? "You are testing in Founder Mode on this device."
+        : "You are testing in Guest Mode on this device.";
+    }
+    document.getElementById("topPlannerButton").textContent = "Founder File Overview";
+    document.getElementById("topPlannerButton").setAttribute("aria-label", "Open Founder File Overview");
   }
 
   async function hydrateCatalogFromSite() {
@@ -1152,11 +1230,22 @@
     const name = (document.getElementById("signupName")?.value || "").trim();
     const email = (document.getElementById("signupEmail")?.value || "").trim().toLowerCase();
     const password = (document.getElementById("signupPassword")?.value || "").trim();
-    if (!name || !email || !password) {
-      setAuthMessage("signupMessage", "Enter your name, email, and password to create your Founder account.");
+    const selectedState = document.getElementById("signupState")?.value || appState.selectedState;
+    const initialGoal = getActiveChoiceValue(document.getElementById("signupGoal")) || appState.goal;
+    if (!name || !email || !password || !selectedState || !initialGoal) {
+      setAuthMessage("signupMessage", "Enter your name, email, password, state, and initial goal to create your Founder account.");
       return;
     }
-    saveFounderAccount({ name, email, password });
+    appState.selectedState = selectedState;
+    appState.browseOfficialState = selectedState;
+    appState.goal = initialGoal;
+    saveFounderAccount({
+      name,
+      email,
+      password,
+      selectedState,
+      goal: initialGoal
+    });
     appState.isSignedIn = true;
     appState.setupComplete = true;
     clearSignupReturn();
@@ -1180,6 +1269,7 @@
       setAuthMessage("signinMessage", "That email or password does not match the saved Founder account on this device.");
       return;
     }
+    applyFounderAccountToState(founderAccount);
     appState.isSignedIn = true;
     appState.setupComplete = true;
     clearSignupReturn();
@@ -1212,6 +1302,36 @@
     setAuthMessage("signinMessage", "");
   }
 
+  function resetSignupForm() {
+    const signupName = document.getElementById("signupName");
+    const signupEmail = document.getElementById("signupEmail");
+    const signupPassword = document.getElementById("signupPassword");
+    if (signupName) signupName.value = "";
+    if (signupEmail) signupEmail.value = "";
+    if (signupPassword) signupPassword.value = "";
+    populateStateSelects();
+    renderSetupChoices();
+    updateSignupButtonState();
+  }
+
+  function resetSigninForm() {
+    const signinEmail = document.getElementById("signinEmail");
+    const signinPassword = document.getElementById("signinPassword");
+    if (signinEmail) signinEmail.value = "";
+    if (signinPassword) signinPassword.value = "";
+  }
+
+  function updateSignupButtonState() {
+    const button = document.getElementById("completeSignupButton");
+    if (!button) return;
+    const name = (document.getElementById("signupName")?.value || "").trim();
+    const email = (document.getElementById("signupEmail")?.value || "").trim();
+    const password = (document.getElementById("signupPassword")?.value || "").trim();
+    const selectedState = document.getElementById("signupState")?.value || "";
+    const initialGoal = getActiveChoiceValue(document.getElementById("signupGoal"));
+    button.disabled = !(name && email && password && selectedState && initialGoal);
+  }
+
   function setAuthMessage(id, message) {
     const node = document.getElementById(id);
     if (!node) return;
@@ -1229,6 +1349,28 @@
     } catch (error) {
       return null;
     }
+  }
+
+  function applyFounderAccountToState(founderAccount) {
+    if (!founderAccount) return;
+    if (founderAccount.selectedState) {
+      appState.selectedState = founderAccount.selectedState;
+      appState.browseOfficialState = founderAccount.selectedState;
+    }
+    if (founderAccount.goal) {
+      appState.goal = founderAccount.goal;
+    }
+  }
+
+  function syncFounderAccountProfile() {
+    if (!appState.isSignedIn) return;
+    const founderAccount = loadFounderAccount();
+    if (!founderAccount) return;
+    saveFounderAccount({
+      ...founderAccount,
+      selectedState: appState.selectedState,
+      goal: appState.goal
+    });
   }
 
   function returnFromSignup() {
@@ -1254,6 +1396,7 @@
   }
 
   function getActiveChoiceValue(node) {
+    if (!node) return "";
     return node.querySelector(".choice-pill.active")?.dataset.value || "";
   }
 
@@ -1327,8 +1470,8 @@
     }
     document.getElementById("heroPathValue").textContent = currentPath.label;
     document.getElementById("heroPlanValue").textContent = buildPlanSnapshot().label;
-    document.getElementById("topPlannerButton").textContent = "Founder File";
-    document.getElementById("topPlannerButton").setAttribute("aria-label", "Open Founder File");
+    document.getElementById("topPlannerButton").textContent = "Founder File Overview";
+    document.getElementById("topPlannerButton").setAttribute("aria-label", "Open Founder File Overview");
 
     const founderSpaceLink = document.getElementById("founderSpaceLink");
     document.getElementById("founderSpaceStatus").innerHTML = buildFounderSpaceStatusMarkup();
@@ -1609,6 +1752,7 @@
         <div class="inline-actions">
           <button class="utility-link" data-action="open-quiz">Open Quiz</button>
           <button class="utility-link" data-action="open-notes">Open Notes</button>
+          <button class="utility-link utility-link--danger" data-action="sign-out">Sign Out</button>
         </div>
       </section>
     `;
@@ -1788,41 +1932,65 @@
     const planDraft = appState.quizResult
       ? { ...buildPlanDraft(appState.quizResult), ...appState.planDraft }
       : appState.planDraft;
-    const overview = appState.quizResult ? `
-      <section class="progress-stage progress-stage--overview">
-        <h4>${appState.quizResult.planTitle}</h4>
-        <p>${plan.summary}</p>
-      </section>
-    ` : `
-      <section class="progress-stage progress-stage--overview">
-        <h4>Build Your Founder File</h4>
-        <p>Use the quiz to generate a first-draft Founder File, then adjust it from there.</p>
-      </section>
-    `;
-    const templateSection = appState.quizResult ? `
+    const goalLabel = setupGoals.find((goal) => goal.value === appState.goal)?.label || "Explore Options";
+    const officialSavedCount = appState.savedIds.filter((id) => detectItemType(id) === "official").length;
+    const noteCount = Object.keys(appState.notes).length;
+    const recentFileItems = planItems.slice(0, 4);
+    document.getElementById("progressStages").innerHTML = `
       <section class="progress-stage">
-        <h4>Living File Template</h4>
-        <p>This plan is meant to be adjusted. The quiz fills the first draft. You can revise any part of it as needed.</p>
-        <div class="plan-template-grid">
-          ${renderPlanField("Current Starting Point", "startingPoint", planDraft.startingPoint || "")}
-          ${renderPlanField("What You Are Understanding", "understanding", planDraft.understanding || "")}
-          ${renderPlanField("Culture", "culture", planDraft.culture || "")}
-          ${renderPlanField("Opportunity Reading", "opportunity", planDraft.opportunity || "")}
-          ${renderPlanField("Income Idea", "incomeIdea", planDraft.incomeIdea || "")}
-          ${renderPlanField("Knowledge", "knowledge", planDraft.knowledge || "")}
-          ${renderPlanField("Supportive Services", "support", planDraft.support || "")}
-          ${renderPlanField("Official Needs", "official", planDraft.official || "")}
-          ${renderPlanField("Next Moves", "nextMoves", planDraft.nextMoves || "")}
-          ${renderPlanField("What Counts as Proof", "proof", planDraft.proof || "")}
+        <h4>Founder Snapshot</h4>
+        <div class="mini-card">
+          <strong>Founder account active</strong>
+          <p>Your Founder File is attached to this account on this device.</p>
+        </div>
+        <div class="mini-card">
+          <strong>Selected state</strong>
+          <p>${appState.selectedState}</p>
+        </div>
+        <div class="mini-card">
+          <strong>Initial goal</strong>
+          <p>${goalLabel}</p>
         </div>
       </section>
-    ` : "";
-    const planSection = `
       <section class="progress-stage">
-        <h4>File Items</h4>
-        <p>The items currently shaping your plan.</p>
-        ${planItems.length
-          ? planItems.map((item) => `
+        <h4>Focus Snapshot</h4>
+        <div class="mini-card">
+          <strong>${buildPathSnapshot().label}</strong>
+          <p>${planDraft.understanding || "Use the quiz and the app to clarify what people pay for and what belongs in your Founder File."}</p>
+        </div>
+        <div class="mini-card">
+          <strong>Culture</strong>
+          <p>${planDraft.culture || "Describe the shared cost and the shared result, relief, access, protection, improvement, or gain being sought."}</p>
+        </div>
+        <div class="mini-card">
+          <strong>Opportunity</strong>
+          <p>${planDraft.opportunity || "Note where opportunity seems to be forming from the cost of living and what people are paying for."}</p>
+        </div>
+      </section>
+      <section class="progress-stage">
+        <h4>Founder File Activity</h4>
+        <div class="mini-card">
+          <strong>Quiz</strong>
+          <p>${appState.quizResult ? "Completed and added to your Founder File." : "Not completed yet."}</p>
+        </div>
+        <div class="mini-card">
+          <strong>Saved items</strong>
+          <p>${appState.savedIds.length} item${appState.savedIds.length === 1 ? "" : "s"} saved.</p>
+        </div>
+        <div class="mini-card">
+          <strong>Notes</strong>
+          <p>${noteCount} note${noteCount === 1 ? "" : "s"} saved.</p>
+        </div>
+        <div class="mini-card">
+          <strong>Official information</strong>
+          <p>${officialSavedCount} official item${officialSavedCount === 1 ? "" : "s"} saved.</p>
+        </div>
+      </section>
+      <section class="progress-stage">
+        <h4>Recent File Items</h4>
+        <p>${plan.summary}</p>
+        ${recentFileItems.length
+          ? recentFileItems.map((item) => `
               <div class="mini-card">
                 <strong>${item.title}</strong>
                 <div class="inline-actions">
@@ -1830,11 +1998,10 @@
                 </div>
               </div>
             `).join("")
-          : `<div class="empty-state">No plan items yet. Explore, save, or take the quiz to start building your plan.</div>`
+          : `<div class="empty-state">No file items yet. Explore, save, or take the quiz to start building your Founder File.</div>`
         }
       </section>
     `;
-    document.getElementById("progressStages").innerHTML = overview + templateSection + planSection;
   }
 
   function renderPlanField(label, field, value) {
@@ -1849,7 +2016,7 @@
   function renderPlannerSignupPrompt() {
     document.getElementById("progressStages").innerHTML = `
       <section class="progress-stage progress-stage--overview">
-        <h4>Sign Up to Access Founder File</h4>
+        <h4>Sign Up to Access Founder File Overview</h4>
         <p>Create a Founder account to build your Founder File and save your notes, relevant information, and Founder progress.</p>
         <div class="inline-actions">
           <button class="app-btn app-btn--secondary" data-action="start-setup-signup">Founder Sign Up</button>
@@ -2582,21 +2749,20 @@
   }
 
   function buildPlanSnapshot() {
-    const totalPlanned = Object.values(appState.progress).reduce((count, ids) => count + ids.length, 0);
     if (!appState.isSignedIn) {
       return {
-        label: "Sign up to Access Features",
-        summary: "Create an account to save your progress."
+        label: "Access Your Founder File",
+        summary: "Sign up to access your Founder File."
       };
     }
     if (!appState.quizResult) {
       return {
-        label: "Build Your Founder File",
-        summary: "Take the quiz to generate a living plan built around idea, knowledge, support, and official needs."
+        label: "Access Your Founder File",
+        summary: "Open your Founder File to review identity, notes, saved items, and progress."
       };
     }
     return {
-      label: totalPlanned ? `${totalPlanned} items in file` : "Draft ready",
+      label: "Access Your Founder File",
       summary: appState.quizResult.planSummary
     };
   }

@@ -1139,6 +1139,22 @@ a {
   margin-top: 0;
 }
 
+.plan-template-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.plan-draft-field {
+  gap: 8px;
+}
+
+.plan-draft-field textarea {
+  min-height: 132px;
+  border-radius: 8px;
+  background: rgba(255, 253, 246, 0.98);
+}
+
 .overlay {
   position: fixed;
   inset: 0;
@@ -1546,6 +1562,10 @@ a {
 
   #progressStages {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .plan-template-grid {
+    grid-template-columns: 1fr;
   }
 
   .hero-card,

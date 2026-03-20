@@ -556,18 +556,29 @@
 
   const quiz = {
     title: "What People Will Pay For",
-    intro: "This is not a personality quiz. It helps you understand what people pay for, where opportunity may be forming, and how to turn that into a living plan you can adjust as your idea develops.",
+    intro: "This is not a personality quiz. It is a way to understand what you are seeing, understand what people are paying for, and turn that into a living plan you can change as needed.",
     questions: [
       {
-        id: "motivator",
-        prompt: "Which motivator seems most active in the situation you are observing?",
+        id: "block",
+        prompt: "What has been getting in the way most when you try to think about business ideas?",
         options: [
-          { value: "Survival and Stability", label: "Survival and Stability" },
-          { value: "Safety and Protection", label: "Safety and Protection" },
-          { value: "Relief and Health", label: "Relief and Health" },
-          { value: "Pleasure and Comfort", label: "Pleasure and Comfort" },
-          { value: "Belonging and Love", label: "Belonging and Love" },
-          { value: "Status, Meaning, and Legacy", label: "Status, Meaning, and Legacy" }
+          { value: "Overload", label: "Too much information, too many ideas, and too much noise" },
+          { value: "NoStartingPoint", label: "I do not know where to start or what to look at" },
+          { value: "TooManyDirections", label: "Too many possible directions and no clear way to sort them" },
+          { value: "NeedProof", label: "I do not know what counts as a real opportunity versus a guess" },
+          { value: "RulesConcern", label: "I worry about rules, registration, licensing, or doing it wrong" }
+        ]
+      },
+      {
+        id: "problem",
+        prompt: "What do people seem to keep trying to fix, solve, protect, or improve?",
+        options: [
+          { value: "Survival and Stability", label: "Getting stable, organized, fed, paid, or back on solid ground" },
+          { value: "Safety and Protection", label: "Protecting what they have, lowering exposure, or avoiding loss" },
+          { value: "Relief and Health", label: "Reducing pain, strain, confusion, or health-related friction" },
+          { value: "Pleasure and Comfort", label: "Making life easier, more enjoyable, or more comfortable" },
+          { value: "Belonging and Love", label: "Feeling connected, supported, included, or understood" },
+          { value: "Status, Meaning, and Legacy", label: "Advancing, proving something, building standing, or leaving a mark" }
         ]
       },
       {
@@ -583,44 +594,46 @@
       },
       {
         id: "culture",
-        prompt: "Which culture pattern best fits the group you are observing?",
+        prompt: "What kind of people seem to share this pressure or pattern?",
         options: [
-          { value: "People trying to get organized and stable", label: "People trying to get organized and stable" },
-          { value: "People trying to protect what they have", label: "People trying to protect what they have" },
-          { value: "People trying to reduce strain or pain", label: "People trying to reduce strain or pain" },
-          { value: "People trying to make life easier or more enjoyable", label: "People trying to make life easier or more enjoyable" },
-          { value: "People trying to stay connected or understood", label: "People trying to stay connected or understood" },
-          { value: "People trying to advance, prove something, or leave a mark", label: "People trying to advance, prove something, or leave a mark" }
+          { value: "People trying to get organized and stable", label: "People in a similar day-to-day situation trying to get organized and stable" },
+          { value: "People trying to protect what they have", label: "People in a similar situation trying to protect what they have" },
+          { value: "People trying to reduce strain or pain", label: "People dealing with similar strain, pain, or friction" },
+          { value: "People trying to make life easier or more enjoyable", label: "People trying to make life easier or more enjoyable in the same context" },
+          { value: "People trying to stay connected or understood", label: "People trying to feel connected, included, or understood in the same context" },
+          { value: "People trying to advance, prove something, or leave a mark", label: "People trying to advance, prove something, or leave a mark in the same context" }
         ]
       },
       {
-        id: "delivery",
-        prompt: "Where does the clearest opening seem to be?",
+        id: "action",
+        prompt: "What are people actually trying to do when they pay to deal with this?",
         options: [
-          { value: "Service-led", label: "Doing the work, solving the problem, or delivering the service directly" },
-          { value: "Product-led", label: "Giving people something to buy, use, or keep using" },
-          { value: "Ownership-led", label: "Owning or operating a business, asset, or acquired opportunity" },
-          { value: "Process-led", label: "Helping people move through systems, requirements, or structured opportunities" }
+          { value: "Get It Done", label: "Get something done for them" },
+          { value: "Get Relief", label: "Get relief, clarity, or peace of mind" },
+          { value: "Get Access", label: "Get access to something they cannot easily do on their own" },
+          { value: "Get Organized", label: "Get organized, compliant, or on track" },
+          { value: "Get A Better Result", label: "Get a better result than what they are getting now" }
         ]
       },
       {
-        id: "readiness",
-        prompt: "What do you have most of right now?",
-        options: [
-          { value: "Usable Skill", label: "A usable skill, service, or experience I can work from" },
-          { value: "Need Knowledge", label: "A rough direction, but I still need knowledge or training" },
-          { value: "Need Support", label: "A direction, but I will need support services to operate well" },
-          { value: "Need Official Clarity", label: "A direction, but I need clarity on rules, registration, or compliance" },
-          { value: "Still Early", label: "I am still early and need a starting path more than a fixed idea" }
-        ]
-      },
-      {
-        id: "direction",
-        prompt: "Where is the strongest value likely to come from?",
+        id: "value",
+        prompt: "Where does the clearest opportunity seem to come from?",
         options: [
           { value: "Lower the cost", label: "Lowering the cost people are already carrying" },
           { value: "Increase the value", label: "Increasing the value or result people receive" },
           { value: "A mix of both", label: "A mix of lowering cost and increasing value" }
+        ]
+      },
+      {
+        id: "startingMaterial",
+        prompt: "Which starting material do you have most of right now?",
+        options: [
+          { value: "Own Idea", label: "An idea of my own that I want to test" },
+          { value: "Usable Skill", label: "A usable skill, service, or experience I can work from" },
+          { value: "Need Knowledge", label: "A rough direction, but I still need knowledge or training" },
+          { value: "Need Support", label: "A direction, but I will need support services to help me operate well" },
+          { value: "Need Official Clarity", label: "A direction, but I need clarity on rules, registration, or compliance" },
+          { value: "Still Early", label: "I am still early and need a starting path more than a fixed idea" }
         ]
       }
     ]
@@ -640,6 +653,7 @@
     savedMeta: {},
     compareIds: [],
     notes: {},
+    planDraft: {},
     recentlyViewed: [],
     recentSearches: [],
     progress: {
@@ -672,6 +686,7 @@
 
   function bindEvents() {
     document.body.addEventListener("click", handleClick);
+    document.body.addEventListener("input", handleInput);
     const globalSearchInput = document.getElementById("globalSearchInput");
     if (globalSearchInput) globalSearchInput.addEventListener("input", renderSearchResults);
     document.getElementById("filterSelect").addEventListener("change", (event) => {
@@ -683,6 +698,13 @@
       saveState();
       renderAll();
     });
+  }
+
+  function handleInput(event) {
+    const planField = event.target.closest("[data-plan-field]");
+    if (!planField || !appState.isSignedIn) return;
+    appState.planDraft[planField.dataset.planField] = planField.value;
+    saveState();
   }
 
   function handleClick(event) {
@@ -1397,6 +1419,9 @@
       ...appState.savedIds
     ]);
     const planItems = planIds.map((id) => findItem(id)).filter(Boolean);
+    const planDraft = appState.quizResult
+      ? { ...buildPlanDraft(appState.quizResult), ...appState.planDraft }
+      : appState.planDraft;
     const overview = appState.quizResult ? `
       <section class="progress-stage progress-stage--overview">
         <h4>${appState.quizResult.planTitle}</h4>
@@ -1408,6 +1433,24 @@
         <p>Use the quiz to generate a first-draft personal business pathway plan, then adjust it from there.</p>
       </section>
     `;
+    const templateSection = appState.quizResult ? `
+      <section class="progress-stage">
+        <h4>Living Plan Template</h4>
+        <p>This plan is meant to be adjusted. The quiz fills the first draft. You can revise any part of it as needed.</p>
+        <div class="plan-template-grid">
+          ${renderPlanField("Current Starting Point", "startingPoint", planDraft.startingPoint || "")}
+          ${renderPlanField("What You Are Understanding", "understanding", planDraft.understanding || "")}
+          ${renderPlanField("Culture", "culture", planDraft.culture || "")}
+          ${renderPlanField("Opportunity Reading", "opportunity", planDraft.opportunity || "")}
+          ${renderPlanField("Income Idea", "incomeIdea", planDraft.incomeIdea || "")}
+          ${renderPlanField("Knowledge", "knowledge", planDraft.knowledge || "")}
+          ${renderPlanField("Supportive Services", "support", planDraft.support || "")}
+          ${renderPlanField("Official Needs", "official", planDraft.official || "")}
+          ${renderPlanField("Next Moves", "nextMoves", planDraft.nextMoves || "")}
+          ${renderPlanField("What Counts as Proof", "proof", planDraft.proof || "")}
+        </div>
+      </section>
+    ` : "";
     const planSection = `
       <section class="progress-stage">
         <h4>Plan Items</h4>
@@ -1425,7 +1468,16 @@
         }
       </section>
     `;
-    document.getElementById("progressStages").innerHTML = overview + planSection;
+    document.getElementById("progressStages").innerHTML = overview + templateSection + planSection;
+  }
+
+  function renderPlanField(label, field, value) {
+    return `
+      <label class="field plan-draft-field">
+        <span>${label}</span>
+        <textarea data-plan-field="${field}" placeholder="${label}">${value}</textarea>
+      </label>
+    `;
   }
 
   function renderPlannerSignupPrompt() {
@@ -1873,11 +1925,30 @@
     }
     appState.quizResult = buildQuizResult();
     applyQuizResultToPlan(appState.quizResult);
+    appState.planDraft = {
+      ...buildPlanDraft(appState.quizResult),
+      ...appState.planDraft
+    };
     appState.savedIds = unique(appState.savedIds);
     saveState();
     renderProgress();
     renderSavedQuizResult();
     renderSaved();
+  }
+
+  function buildPlanDraft(result) {
+    return {
+      startingPoint: result.startingPointSummary,
+      understanding: result.understandingSummary,
+      culture: result.cultureSummary,
+      opportunity: result.opportunitySummary,
+      incomeIdea: result.incomeIdeaSummary,
+      knowledge: result.knowledgeSummary,
+      support: result.supportSummary,
+      official: result.officialSummary,
+      nextMoves: result.planSteps.join("\n"),
+      proof: result.proofSummary
+    };
   }
 
   function openAllStatesBrowser() {
@@ -1966,12 +2037,13 @@
   }
 
   function buildQuizResult() {
-    const motivator = appState.quizAnswers.motivator || "Survival and Stability";
+    const block = appState.quizAnswers.block || "NoStartingPoint";
+    const motivator = appState.quizAnswers.problem || "Survival and Stability";
     const payment = appState.quizAnswers.payment || "Time";
     const culture = appState.quizAnswers.culture || "People trying to get organized and stable";
-    const delivery = appState.quizAnswers.delivery || "Service-led";
-    const readiness = appState.quizAnswers.readiness || "Still Early";
-    const direction = appState.quizAnswers.direction || "Lower the cost";
+    const action = appState.quizAnswers.action || "Get It Done";
+    const value = appState.quizAnswers.value || "Lower the cost";
+    const startingMaterial = appState.quizAnswers.startingMaterial || "Still Early";
 
     const resultMap = {
       "Survival and Stability": {
@@ -2019,84 +2091,110 @@
     };
 
     const result = resultMap[motivator];
-    const deliveryMap = {
-      "Service-led": {
+    const pathMap = {
+      "Get It Done": {
         pathLabel: "Service-led path",
         primarySection: "income",
         incomeIdeaTitle: "A service-based income direction is the clearest starting point.",
         incomeIdeaSummary: "This pattern suggests people are most likely to pay for direct help, done-for-you work, or expert delivery. If you already have your own idea, keep it if it solves this pressure clearly. If you do not, start with one of the service options surfaced below."
       },
-      "Product-led": {
+      "Get Relief": {
+        pathLabel: "Relief-led path",
+        primarySection: "income",
+        incomeIdeaTitle: "A relief-oriented service or support direction is the clearest starting point.",
+        incomeIdeaSummary: "This pattern suggests people are paying to reduce friction, strain, confusion, or discomfort. If you already have an idea, keep it only if it clearly helps relieve that pressure. If you do not, use the app suggestions below as working options."
+      },
+      "Get Access": {
+        pathLabel: "Access path",
+        primarySection: "services",
+        incomeIdeaTitle: "An access-oriented service direction is the clearest starting point.",
+        incomeIdeaSummary: "This pattern suggests people are paying to get access to something they cannot easily reach, navigate, or do on their own. That can point toward interpreting, support, advisory, or structured services."
+      },
+      "Get Organized": {
+        pathLabel: "Clarity path",
+        primarySection: "official",
+        incomeIdeaTitle: "A process, compliance, or organization-based direction is the clearest starting point.",
+        incomeIdeaSummary: "This pattern suggests value may come from helping people get organized, compliant, registered, or on track. If you already came in with an idea, test whether it fits that pressure. If not, let the official and support inputs shape a starting path."
+      },
+      "Get A Better Result": {
         pathLabel: "Product-led path",
         primarySection: "income",
         incomeIdeaTitle: "A product-based income direction is the clearest starting point.",
         incomeIdeaSummary: "This pattern suggests people may pay for something they can buy, use, or keep using without needing constant direct labor from you. If you already have a product idea, shape it around this pressure. If not, use the app options below as starting points."
-      },
-      "Ownership-led": {
-        pathLabel: "Ownership-led path",
-        primarySection: "income",
-        incomeIdeaTitle: "An ownership or acquisition direction may be the clearest starting point.",
-        incomeIdeaSummary: "This pattern points toward operating a business, asset, or structured opportunity rather than only selling your hours. If you already have a business idea, test whether it fits this ownership pattern. If not, use the surfaced options to identify something you could operate or acquire."
-      },
-      "Process-led": {
-        pathLabel: "Process-led path",
-        primarySection: "official",
-        incomeIdeaTitle: "A process, compliance, or structured-opportunity direction may be the clearest starting point.",
-        incomeIdeaSummary: "This pattern suggests value may come from helping people move through systems, requirements, registrations, or formal opportunities. If you already have an idea, anchor it in the process people need help navigating. If not, use the official and service inputs below to find a workable direction."
       }
     };
-    const readinessMap = {
+    const startingMaterialMap = {
+      "Own Idea": "You already have an idea to work with. The plan should not replace it. It should test whether the idea really fits the pressure, cost, and relief pattern you are seeing.",
       "Usable Skill": "You already have something usable to work from, so the plan should start by shaping and testing that skill against real demand.",
       "Need Knowledge": "Knowledge is the first gap, so this plan should place more weight on training, clarity, and skill-building before expansion.",
       "Need Support": "Support structure is part of the plan, not an afterthought. This path should include outside help where it reduces friction or strengthens delivery.",
       "Need Official Clarity": "Rules, registration, licensing, or formal requirements are part of the pathway. Official information should be treated as an early step, not a later detail.",
       "Still Early": "You do not need a fixed idea yet. The plan should help you identify a starting point, test it, and keep adjusting as the signal gets clearer."
     };
-    const directionText = direction === "A mix of both"
+    const blockMap = {
+      Overload: "You have been sorting through too much information. The plan should reduce noise and keep attention on the pressure, the cost, and the relief people are actually seeking.",
+      NoStartingPoint: "You have been missing a starting point. The plan should start from what you are seeing, not from trying to force a perfect idea too early.",
+      TooManyDirections: "You have been pulled in too many directions. The plan should narrow the field by tying ideas back to a real pressure pattern.",
+      NeedProof: "You have been unsure what counts as proof. The plan should move toward signals of demand, not just interesting possibilities.",
+      RulesConcern: "Rules and compliance have been part of the blockage. The plan should surface official needs early so uncertainty does not sit in the background."
+    };
+    const directionText = value === "A mix of both"
       ? "The best opening may come from lowering cost in one area while increasing value in another."
-      : direction === "Lower the cost"
+      : value === "Lower the cost"
         ? "Look for ways to reduce what this group is spending in time, energy, attention, comfort, or risk."
         : "Look for ways to make the result more valuable inside the culture you are looking at.";
-    const path = deliveryMap[delivery];
+    const path = pathMap[action];
     const planTitle = "Personal Business Pathway Plan";
-    const knowledgeSummary = readiness === "Usable Skill"
+    const startingPointSummary = `${blockMap[block]} ${startingMaterialMap[startingMaterial]}`;
+    const understandingSummary = `The pattern you are observing points most strongly to ${motivator.toLowerCase()}. People are paying with ${payment.toLowerCase()}, and the pressure is showing up inside a repeated situation rather than a random one-off problem.`;
+    const cultureSummary = `In this framework, culture is the shared cost being carried and the shared relief or result being sought. Here, the culture pattern looks like ${culture.toLowerCase()}, and people are trying to ${action.toLowerCase()}.`;
+    const opportunitySummary = `${directionText} That makes the opportunity less about picking a favorite business model and more about finding a direction that reduces this cost or improves this result in a repeatable way.`;
+    const knowledgeSummary = startingMaterial === "Usable Skill"
       ? "You may not need a large new training stack to begin. Start by tightening what you already know, then add knowledge where it strengthens the offer."
-      : readiness === "Need Official Clarity"
+      : startingMaterial === "Need Official Clarity"
         ? "Knowledge should focus on understanding the rules, registrations, and steps that affect whether this idea can operate cleanly."
         : "This path should include targeted knowledge, not random learning. Use the suggested training items to close the exact gaps between your current position and a workable offer.";
-    const supportSummary = readiness === "Need Support"
+    const supportSummary = startingMaterial === "Need Support"
       ? "Support services are likely part of the operating model from the start. Choose only the ones that reduce friction, protect the business, or help you deliver consistently."
       : "Support services are optional at first, but they can strengthen delivery, reduce risk, and help the path run more smoothly as it grows.";
-    const officialSummary = delivery === "Process-led" || readiness === "Need Official Clarity"
+    const officialSummary = action === "Get Organized" || startingMaterial === "Need Official Clarity" || block === "RulesConcern"
       ? `Official information should be handled early in this plan. Use ${appState.selectedState} and federal resources to clarify registration, tax, licensing, contracting, or other requirements that shape the path.`
       : `Official information still matters because it anchors the business in real rules. Use ${appState.selectedState} and federal resources to confirm the registrations, tax steps, and requirements that apply.`;
     const planSteps = [
       "Start with the pressure people are already carrying, not with a business format.",
       `Use this ${path.pathLabel.toLowerCase()} as a working direction, not a fixed identity.`,
-      readinessMap[readiness],
-      directionText,
+      startingMaterialMap[startingMaterial],
+      "Browse app ideas that fit this pressure pattern, then generate your own ideas too, even if they seem common.",
       "Treat this as a living plan. Keep what fits, revise what does not, and let the app help you keep the parts together."
     ];
+    const proofSummary = "Proof can be simple at first: the pattern keeps showing up, the idea clearly reduces a cost or increases a valued result, and the path feels workable enough to test with real people or real next steps.";
     return {
       id: "quiz-result",
       title: result.title,
       planTitle,
-      explanation: `The strongest pattern here is ${motivator}. People are not just paying money. They are paying with ${payment.toLowerCase()}, and the culture pattern suggests ${culture.toLowerCase()}. That gives you a starting read on where opportunity may sit and how to turn it into a living business pathway plan.`,
+      explanation: `This result is not trying to tell you what you want. It is helping you understand what you are seeing. The strongest pattern here is ${motivator.toLowerCase()}, the shared cost shows up most in ${payment.toLowerCase()}, and the culture is forming around ${culture.toLowerCase()}.`,
       motivator,
       payment,
       culture,
-      delivery,
-      readiness,
+      action,
+      value,
+      block,
+      startingMaterial,
       primarySection: path.primarySection,
       pathLabel: path.pathLabel,
-      pathSummary: `Build around ${motivator.toLowerCase()}, ${payment.toLowerCase()}, and the shared pressure inside this culture. Let the path stay flexible while the signal becomes clearer.`,
+      pathSummary: `Build around ${motivator.toLowerCase()}, ${payment.toLowerCase()}, and the shared pressure inside this culture. Let the path stay flexible while your understanding gets stronger.`,
       planSummary: "This plan is not a formal business-plan document. It is a living pathway plan meant to help you nurture an idea you already have or develop one you discovered in the app.",
+      startingPointSummary,
+      understandingSummary,
+      cultureSummary,
+      opportunitySummary,
       incomeIdeaTitle: path.incomeIdeaTitle,
       incomeIdeaSummary: path.incomeIdeaSummary,
       knowledgeSummary,
       supportSummary,
       officialSummary,
       planSteps,
+      proofSummary,
       direction: directionText,
       suggestedIncomeIds: result.income,
       suggestedTrainingIds: result.training,

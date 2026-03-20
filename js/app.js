@@ -574,12 +574,12 @@
         id: "problem",
         prompt: "What kind of cost, relief, or result do you keep noticing people circling around?",
         options: [
-          { value: "Relief and Health", label: "Relief, solution, or improvement" },
-          { value: "Safety and Protection", label: "Prevention, protection, or risk reduction" },
-          { value: "Survival and Stability", label: "Access, order, simplicity, or savings" },
-          { value: "Status, Meaning, and Legacy", label: "Growth, decision-making, understanding, or proof" },
-          { value: "Belonging and Love", label: "Connection, support, or feeling understood" },
-          { value: "Pleasure and Comfort", label: "Comfort, enjoyment, or making life feel easier" }
+          { value: "Relief and Health", label: "Relief, solution, or improvement keeps showing up" },
+          { value: "Safety and Protection", label: "Prevention, protection, or reducing risk keeps showing up" },
+          { value: "Survival and Stability", label: "Access, order, simplicity, or savings keeps showing up" },
+          { value: "Status, Meaning, and Legacy", label: "Growth, decision, understanding, or proof keeps showing up" },
+          { value: "Belonging and Love", label: "Connection, support, or feeling understood keeps showing up" },
+          { value: "Pleasure and Comfort", label: "Comfort, enjoyment, or ease keeps showing up" }
         ]
       },
       {
@@ -597,12 +597,12 @@
         id: "culture",
         prompt: "What shared cost and shared relief seem to define the culture here?",
         options: [
-          { value: "People trying to get organized and stable", label: "A repeated pressure around instability, disorder, or access, with relief sought through stability or order" },
-          { value: "People trying to protect what they have", label: "A repeated pressure around exposure or loss, with relief sought through protection or prevention" },
-          { value: "People trying to reduce strain or pain", label: "A repeated pressure around strain, pain, or friction, with relief sought through solution or reduction" },
-          { value: "People trying to make life easier or more enjoyable", label: "A repeated pressure around inconvenience or discomfort, with relief sought through ease or enjoyment" },
-          { value: "People trying to stay connected or understood", label: "A repeated pressure around disconnection, exclusion, or misunderstanding, with relief sought through connection" },
-          { value: "People trying to advance, prove something, or leave a mark", label: "A repeated pressure around uncertainty, growth, or proving value, with relief sought through progress or proof" }
+          { value: "Instability to order", label: "A shared cost around instability, disorder, or lack of access, with relief sought through order, access, or savings" },
+          { value: "Exposure to protection", label: "A shared cost around exposure, uncertainty, or loss, with relief sought through protection or prevention" },
+          { value: "Friction to relief", label: "A shared cost around pain, friction, strain, or confusion, with relief sought through solution or improvement" },
+          { value: "Discomfort to ease", label: "A shared cost around discomfort or inconvenience, with relief sought through comfort, simplicity, or enjoyment" },
+          { value: "Disconnection to connection", label: "A shared cost around disconnection or not feeling understood, with relief sought through connection and support" },
+          { value: "Uncertainty to proof", label: "A shared cost around uncertainty, stalled growth, or lack of proof, with relief sought through understanding, decision, growth, or proof" }
         ]
       },
       {
@@ -2120,7 +2120,7 @@
     const block = appState.quizAnswers.block || "NoStartingPoint";
     const motivator = appState.quizAnswers.problem || "Survival and Stability";
     const payment = appState.quizAnswers.payment || "Time";
-    const culture = appState.quizAnswers.culture || "People trying to get organized and stable";
+    const culture = appState.quizAnswers.culture || "Instability to order";
     const action = appState.quizAnswers.action || "Get It Done";
     const value = appState.quizAnswers.value || "Lower the cost";
     const startingMaterial = appState.quizAnswers.startingMaterial || "Still Early";
@@ -2226,9 +2226,9 @@
     const path = pathMap[action];
     const planTitle = "Personal Business Pathway Plan";
     const startingPointSummary = `${blockMap[block]} ${startingMaterialMap[startingMaterial]}`;
-    const understandingSummary = `The pattern you are observing points most strongly to ${motivator.toLowerCase()}. People are paying with ${payment.toLowerCase()}, and the pressure is showing up inside a repeated situation rather than a random one-off problem.`;
-    const cultureSummary = `In this framework, culture is the shared cost being carried and the shared relief or result being sought. Here, the culture pattern looks like ${culture.toLowerCase()}, and people are trying to ${action.toLowerCase()}.`;
-    const opportunitySummary = `${directionText} That makes the opportunity less about picking a favorite business model and more about finding a direction that reduces this cost or improves this result in a repeatable way.`;
+    const understandingSummary = `The pattern you are observing points most strongly to ${motivator.toLowerCase()}. People are paying with ${payment.toLowerCase()}, which means the cost of living is showing up there most heavily. The repeated pressure is not random; it is one of the ways opportunity starts to form.`;
+    const cultureSummary = `In this framework, culture is not a niche label. It is the shared cost being carried and the shared relief being sought. Here, the culture pattern looks like ${culture.toLowerCase()}, and people are trying to ${action.toLowerCase()}.`;
+    const opportunitySummary = `${directionText} This is how the cost of living drives opportunity: when people keep paying in ${payment.toLowerCase()}, opportunity forms around lowering that cost or increasing the value of the relief or result they are seeking.`;
     const knowledgeSummary = startingMaterial === "Usable Skill"
       ? "You may not need a large new training stack to begin. Start by tightening what you already know, then add knowledge where it strengthens the offer."
       : startingMaterial === "Need Official Clarity"
@@ -2252,7 +2252,7 @@
       id: "quiz-result",
       title: result.title,
       planTitle,
-      explanation: `This result is not trying to tell you what you want. It is helping you understand what you are seeing. The strongest pattern here is ${motivator.toLowerCase()}, the shared cost shows up most in ${payment.toLowerCase()}, and the culture is forming around ${culture.toLowerCase()}.`,
+      explanation: `This result is not trying to tell you what to choose. It is helping you understand what you are seeing. The strongest pattern here is ${motivator.toLowerCase()}, the cost of living shows up most in ${payment.toLowerCase()}, and the culture is forming around ${culture.toLowerCase()}.`,
       motivator,
       payment,
       culture,
@@ -2262,7 +2262,7 @@
       startingMaterial,
       primarySection: path.primarySection,
       pathLabel: path.pathLabel,
-      pathSummary: `Build around ${motivator.toLowerCase()}, ${payment.toLowerCase()}, and the shared pressure inside this culture. Let the path stay flexible while your understanding gets stronger.`,
+      pathSummary: `Build around the six, the cost of living, and the shared pressure inside this culture. Here, that means ${motivator.toLowerCase()}, ${payment.toLowerCase()}, and a path that stays flexible while your understanding gets stronger.`,
       planSummary: "This plan is not a formal business-plan document. It is a living pathway plan meant to help you nurture an idea you already have or develop one you discovered in the app.",
       startingPointSummary,
       understandingSummary,

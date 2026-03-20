@@ -41,6 +41,9 @@
   <link rel="stylesheet" href="css/app.css?v=20260320ea">
 </head>
 <body>
+  <div id="offlineBanner" class="offline-banner" role="status" aria-live="polite">
+    You are offline. Browsing and your Founder File are available. Sign-in and outbound links require a connection.
+  </div>
   <div class="app-shell">
     <section class="gate-screen active" id="openingScreen" data-screen="opening">
       <div class="gate-panel">
@@ -412,6 +415,17 @@
         navigator.serviceWorker.register('/sw.js').catch(() => {});
       });
     }
+  </script>
+  <script>
+    (function () {
+      const banner = document.getElementById('offlineBanner');
+      function update() {
+        banner.classList.toggle('visible', !navigator.onLine);
+      }
+      window.addEventListener('online', update);
+      window.addEventListener('offline', update);
+      update();
+    })();
   </script>
 </body>
 </html>

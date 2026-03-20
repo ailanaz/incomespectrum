@@ -1560,8 +1560,8 @@
 
     const founderSpaceLink = document.getElementById("founderSpaceLink");
     document.getElementById("founderSpaceStatus").innerHTML = buildFounderSpaceStatusMarkup();
-    const nextSteps = buildNextSteps();
-    document.getElementById("nextStepsList").innerHTML = nextSteps.map((step) => `<li>${step}</li>`).join("");
+    const founderSpaceHighlights = buildFounderSpaceHighlights();
+    document.getElementById("nextStepsList").innerHTML = founderSpaceHighlights.map((step) => `<li>${step}</li>`).join("");
     founderSpaceLink.textContent = appState.isSignedIn ? "Open Founder File" : "Sign Up to Access Founder Space";
     founderSpaceLink.dataset.action = appState.isSignedIn ? "show-view" : "start-setup-signup";
     if (appState.isSignedIn) {
@@ -1580,16 +1580,54 @@
         <p class="helper-copy founder-space-copy">Founder Space becomes your saved place for ideas, notes, official information, and progress once you create your Founder account.</p>
       `;
     }
-    const savedCount = appState.savedIds.length;
-    const noteCount = Object.keys(appState.notes).length;
-    const officialSavedCount = appState.savedIds.filter((id) => detectItemType(id) === "official").length;
+    const planDraft = appState.quizResult
+      ? { ...buildPlanDraft(appState.quizResult), ...appState.planDraft }
+      : appState.planDraft;
+    const founderIdentity = planDraft.founderIdentity || "Founder";
+    const goalSummary = (planDraft.goals || planDraft.proof || "").trim();
     const quizStatus = appState.quizResult ? "Quiz complete" : "Quiz not started";
     return `
       <div class="mini-card">
-        <strong>${quizStatus}</strong>
-        <p>${savedCount} saved item${savedCount === 1 ? "" : "s"} · ${noteCount} note${noteCount === 1 ? "" : "s"} · ${officialSavedCount} official item${officialSavedCount === 1 ? "" : "s"}</p>
+        <strong>${founderIdentity}</strong>
+        <p>${goalSummary || quizStatus}</p>
       </div>
     `;
+  }
+
+  function buildFounderSpaceHighlights() {
+    if (!appState.isSignedIn) {
+      return buildNextSteps();
+    }
+    const planDraft = appState.quizResult
+      ? { ...buildPlanDraft(appState.quizResult), ...appState.planDraft }
+      : appState.planDraft;
+    const notes = getFounderNotesEntries();
+    const itemNotes = buildSortedNoteEntries(1);
+    const nextStep = (planDraft.nextMoves || "")
+      .split("\n")
+      .map((step) => step.trim())
+      .filter(Boolean)[0];
+    const goal = (planDraft.goals || planDraft.proof || "").trim();
+    const officialSavedCount = appState.savedIds.filter((id) => detectItemType(id) === "official").length;
+    const highlights = [];
+    if (appState.quizResult?.founderIdentity) {
+      highlights.push(`Identity: ${appState.quizResult.founderIdentity}`);
+    }
+    if (goal) {
+      highlights.push(`Goal: ${goal}`);
+    }
+    if (nextStep) {
+      highlights.push(`Next: ${nextStep}`);
+    }
+    if (notes[0]?.subject) {
+      highlights.push(`Note: ${notes[0].subject}`);
+    } else if (itemNotes[0]?.item?.title) {
+      highlights.push(`Saved note: ${itemNotes[0].item.title}`);
+    }
+    if (officialSavedCount) {
+      highlights.push(`Official items saved: ${officialSavedCount}`);
+    }
+    return highlights.slice(0, 4);
   }
 
   function renderExplore(filter = exploreFilter || "all") {

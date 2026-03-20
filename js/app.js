@@ -96,7 +96,7 @@
         id: "income-asl-interpreting",
         title: "ASL Interpreting",
         description: "Work as an independent interpreter or build an interpreting business around language access needs.",
-        overview: "An opportunity path tied to communication access, certification, and service-based client work for public and private settings.",
+        overview: "An opportunity tied to communication access, certification, and service-based client work for public and private settings.",
         whyChoose: "This may fit someone who wants to build an independent service rooted in communication access and specialized skill.",
         fit: "Useful for someone willing to pursue certification, state-specific requirements, and relationship-based service work.",
         tags: ["service-based", "skill-based", "local", "online", "ownership-based", "service roles"],
@@ -208,13 +208,13 @@
       },
       {
         id: "training-asl-pathways",
-        title: "ASL Education and Interpreter Pathways",
+        title: "ASL Education and Interpreter Options",
         provider: "RID and interpreter education resources",
         format: "Program and continuing education",
         cost: "Varies",
         description: "State-based interpreter education and continuing education paths.",
-        covers: "ASL learning, interpreter pathways, and formal program options.",
-        fit: "Useful for someone exploring interpreter work and the training side of that path.",
+        covers: "ASL learning, interpreter options, and formal program options.",
+        fit: "Useful for someone exploring interpreter work and the training side of that option.",
         tags: ["beginner", "advanced", "online", "in-person", "full program"],
         relatedIncomeIds: ["income-asl-interpreting"]
       },
@@ -224,7 +224,7 @@
         provider: "Professional certification resources",
         format: "Online and in-person",
         cost: "Varies",
-        description: "Prep resources for certification-related pathways that support specific service roles.",
+        description: "Prep resources for certification-related options that support specific service roles.",
         covers: "Exam prep, skill-building, and readiness for formal certification steps.",
         fit: "Useful for people moving from interest into qualification-dependent work.",
         tags: ["advanced", "certification", "online", "in-person"],
@@ -348,7 +348,7 @@
         description: "Strategic help with direction, decision-making, and structuring the next move.",
         category: "advisory",
         helpsWith: "Choosing direction, prioritizing decisions, and reducing confusion around next steps.",
-        examples: "Assessing an opportunity path, clarifying service structure, or mapping next actions.",
+        examples: "Assessing an opportunity, clarifying service structure, or mapping next actions.",
         providerLinks: [],
         relatedIncomeIds: ["income-government-contracting", "income-commercial-cleaning"],
         tags: ["advisory"]
@@ -636,7 +636,7 @@
           { value: "Need Knowledge", label: "A direction is forming, but I still need knowledge or training" },
           { value: "Need Support", label: "A direction is forming, but I will likely need support services" },
           { value: "Need Official Clarity", label: "A direction is forming, but I need clarity on rules, registration, or compliance" },
-          { value: "Still Early", label: "I am still early and need a starting path more than a fixed idea" }
+          { value: "Still Early", label: "I am still early and need a starting point more than a fixed idea" }
         ]
       }
     ]
@@ -906,8 +906,8 @@
       <button class="choice-pill ${goal.value === appState.goal ? "active" : ""}" type="button" data-value="${goal.value}">${goal.label}</button>
     `).join("");
     document.getElementById("accountStatusCopy").textContent = appState.isSignedIn
-      ? "You are signed in. Your state, path, plan, notes, and saved items stay with your account."
-      : "You are browsing as a guest. Your state, path, and plan only stay for this session unless you sign in.";
+      ? "You are signed in. Your state, plan, notes, and saved items stay with your account."
+      : "You are browsing as a guest. Your state and plan only stay for this session unless you sign in.";
     document.getElementById("profileSignupCard").classList.toggle("hidden", appState.isSignedIn);
     document.getElementById("profileToolsTitle").textContent = appState.isSignedIn ? "App tools" : "Guest tools";
     document.getElementById("profileTabLabel").textContent = "Profile";
@@ -1150,10 +1150,10 @@
     const lastViewed = appState.recentlyViewed[0] ? findItem(appState.recentlyViewed[0]) : null;
     const currentPath = buildPathSnapshot();
     const currentPlan = buildPlanSnapshot();
-    document.getElementById("continueTitle").textContent = lastViewed ? `Continue with ${lastViewed.title}` : "Start building your pathway plan.";
+    document.getElementById("continueTitle").textContent = lastViewed ? `Continue with ${lastViewed.title}` : "Explore the Income Spectrum app.";
     document.getElementById("continueCopy").textContent = lastViewed
-      ? `You last opened ${lastViewed.title}. Keep shaping your path and move the right items into your PBPP.`
-      : "Set your state, explore the spectrum, and build a path from what people pay for to where you want to go.";
+      ? `You last opened ${lastViewed.title}. Keep exploring the spectrum and place the right items into your PBPP.`
+      : "Income Spectrum is a companion app for exploring income options, business education, support services, official information, and articles in one place.";
     document.getElementById("heroStateValue").textContent = appState.selectedState;
     document.getElementById("heroPathValue").textContent = currentPath.label;
     document.getElementById("heroPlanValue").textContent = currentPlan.label;
@@ -1340,7 +1340,7 @@
               <h2>Sign up to access your plan</h2>
             </div>
           </div>
-          <p>Sign up to keep your personal business pathway plan, notes, and saved items together in one place.</p>
+          <p>Sign up to keep your Personal Business Pathway Plan, notes, and saved items together in one place.</p>
           <div class="stack-actions">
             <button class="app-btn app-btn--primary" data-action="start-setup-signup">Sign Up to Access Features</button>
           </div>
@@ -1512,7 +1512,7 @@
     ` : `
       <section class="progress-stage progress-stage--overview">
         <h4>Build Your Personal Business Pathway Plan</h4>
-        <p>Use the quiz to generate a first-draft personal business pathway plan, then adjust it from there.</p>
+        <p>Use the quiz to generate a first-draft Personal Business Pathway Plan, then adjust it from there.</p>
       </section>
     `;
     const templateSection = appState.quizResult ? `
@@ -1536,7 +1536,7 @@
     const planSection = `
       <section class="progress-stage">
         <h4>Plan Items</h4>
-        <p>The items currently shaping your path and plan.</p>
+        <p>The items currently shaping your plan.</p>
         ${planItems.length
           ? planItems.map((item) => `
               <div class="mini-card">
@@ -1591,7 +1591,7 @@
   function renderSavedQuizResult() {
     const node = document.getElementById("savedQuizResult");
     if (!appState.quizResult) {
-      node.innerHTML = `<div class="empty-state">Take the quiz to generate a first-draft personal business pathway plan based on what people pay for and where opportunity may be forming.</div>`;
+      node.innerHTML = `<div class="empty-state">Take the quiz to generate a first-draft Personal Business Pathway Plan based on what people pay for and where opportunity may be forming.</div>`;
       return;
     }
     node.innerHTML = renderQuizResult(appState.quizResult, false);
@@ -1658,7 +1658,7 @@
         </div>
         <div class="detail-section">
           <h3>What kind of person or situation it may fit</h3>
-          <p>${item.fit || `Useful when ${item.groupTitle ? item.groupTitle.toLowerCase() : "this path"} fits what you are trying to build.`}</p>
+          <p>${item.fit || `Useful when ${item.groupTitle ? item.groupTitle.toLowerCase() : "this option"} fits what you are trying to build.`}</p>
         </div>
         <div class="detail-section">
           <h3>Related training</h3>
@@ -1688,7 +1688,7 @@
         </div>
         <div class="detail-section">
           <h3>Who it may fit</h3>
-          <p>${item.fit || `Useful when you are building skills around ${item.groupTitle ? item.groupTitle.toLowerCase() : "this path"}.`}</p>
+          <p>${item.fit || `Useful when you are building skills around ${item.groupTitle ? item.groupTitle.toLowerCase() : "this option"}.`}</p>
         </div>
         <div class="detail-section">
           <h3>Related income options</h3>
@@ -1931,7 +1931,7 @@
           <p>${appState.selectedState}</p>
         </div>
         <div class="detail-section">
-          <h4>Path</h4>
+          <h4>Focus</h4>
           <p><strong>${result.pathLabel}</strong></p>
           <p>${result.pathSummary}</p>
         </div>
@@ -2175,37 +2175,37 @@
     const result = resultMap[motivator];
     const pathMap = {
       "Attain Or Gain": {
-        pathLabel: "Access and gain path",
+        pathLabel: "Access and gain focus",
         primarySection: "income",
         incomeIdeaTitle: "A direction that helps people attain, gain, or access something is the clearest starting point.",
         incomeIdeaSummary: "This pattern suggests people are paying to get something they do not yet have, reach something more easily, or gain a better position. That can point toward services, products, or structured offers that open access or move them forward."
       },
       "Protect Or Prevent": {
-        pathLabel: "Protection path",
+        pathLabel: "Protection focus",
         primarySection: "services",
         incomeIdeaTitle: "A protection or prevention direction is the clearest starting point.",
         incomeIdeaSummary: "This pattern suggests people are paying to lower exposure, avoid loss, protect what they have, or prevent a worse outcome. That can point toward legal, compliance, advisory, support, or process-based offers."
       },
       "Improve Or Replace": {
-        pathLabel: "Improvement path",
+        pathLabel: "Improvement focus",
         primarySection: "income",
         incomeIdeaTitle: "An improvement or replacement direction is the clearest starting point.",
         incomeIdeaSummary: "This pattern suggests people are paying to make something work better, change what is not working, or replace a weaker result with a stronger one. That can point toward service, product, or ownership directions."
       },
       "Simplify Or Order": {
-        pathLabel: "Simplicity path",
+        pathLabel: "Simplicity focus",
         primarySection: "services",
         incomeIdeaTitle: "A simplicity or order-based direction is the clearest starting point.",
         incomeIdeaSummary: "This pattern suggests people are paying to make something easier, more orderly, less confusing, or less costly to manage. That can point toward organization, systems, support, compliance, or service-based offers."
       },
       "Prove Or Understand": {
-        pathLabel: "Clarity path",
+        pathLabel: "Clarity focus",
         primarySection: "training",
         incomeIdeaTitle: "A proof, understanding, or decision-support direction is the clearest starting point.",
         incomeIdeaSummary: "This pattern suggests people are paying to understand better, make decisions with more confidence, or get proof that something will work. That can point toward education, advisory, certification, support, or information-based offers."
       },
       "Connect Or Enjoy": {
-        pathLabel: "Connection and enjoyment path",
+        pathLabel: "Connection and enjoyment focus",
         primarySection: "income",
         incomeIdeaTitle: "A connection, support, or enjoyment-oriented direction is the clearest starting point.",
         incomeIdeaSummary: "This pattern suggests people are paying to feel connected, supported, understood, or to enjoy life more fully and easily. That can point toward communication access, support services, products, or experience-based offers."
@@ -2215,8 +2215,8 @@
       "Own Idea": "You already have an idea to work with. The plan should not replace it. It should test whether the idea really fits the pressure, cost, and sought result pattern you are seeing.",
       "Usable Skill": "You already have something usable to work from, so the plan should start by shaping and testing that skill against real demand.",
       "Need Knowledge": "Knowledge is the first gap, so this plan should place more weight on training, clarity, and skill-building before expansion.",
-      "Need Support": "Support structure is part of the plan, not an afterthought. This path should include outside help where it reduces friction or strengthens delivery.",
-      "Need Official Clarity": "Rules, registration, licensing, or formal requirements are part of the pathway. Official information should be treated as an early step, not a later detail.",
+      "Need Support": "Support structure is part of the plan, not an afterthought. This plan should include outside help where it reduces friction or strengthens delivery.",
+      "Need Official Clarity": "Rules, registration, licensing, or formal requirements are part of the plan. Official information should be treated as an early step, not a later detail.",
       "Still Early": "You do not need a fixed idea yet. The plan should help you identify a starting point, test it, and keep adjusting as the signal gets clearer."
     };
     const blockMap = {
@@ -2249,21 +2249,21 @@
       ? "You may not need a large new training stack to begin. Start by tightening what you already know, then add knowledge where it strengthens the offer."
       : startingMaterial === "Need Official Clarity"
         ? "Knowledge should focus on understanding the rules, registrations, and steps that affect whether this idea can operate cleanly."
-        : "This path should include targeted knowledge, not random learning. Use the suggested training items to close the exact gaps between your current position and a workable offer.";
+        : "This should include targeted knowledge, not random learning. Use the suggested training items to close the exact gaps between your current position and a workable offer.";
     const supportSummary = startingMaterial === "Need Support"
       ? "Support services are likely part of the operating model from the start. Choose only the ones that reduce friction, protect the business, or help you deliver consistently."
-      : "Support services are optional at first, but they can strengthen delivery, reduce risk, and help the path run more smoothly as it grows.";
+      : "Support services are optional at first, but they can strengthen delivery, reduce risk, and help the plan run more smoothly as it grows.";
     const officialSummary = action === "Simplify Or Order" || startingMaterial === "Need Official Clarity" || block === "RulesConcern"
-      ? `Official information should be handled early in this plan. Use ${appState.selectedState} and federal resources to clarify registration, tax, licensing, contracting, or other requirements that shape the path.`
+      ? `Official information should be handled early in this plan. Use ${appState.selectedState} and federal resources to clarify registration, tax, licensing, contracting, or other requirements that shape the work.`
       : `Official information still matters because it anchors the business in real rules. Use ${appState.selectedState} and federal resources to confirm the registrations, tax steps, and requirements that apply.`;
     const planSteps = [
       "Start with the pressure people are already carrying, not with a business format.",
-      `Use this ${path.pathLabel.toLowerCase()} as a working direction, not a fixed identity.`,
+      `Use this ${path.pathLabel.toLowerCase()} as a working reference, not a fixed identity.`,
       startingMaterialMap[startingMaterial],
       "Browse app ideas that fit this pressure pattern, then generate your own ideas too, even if they seem common.",
       "Treat this as a living plan. Keep what fits, revise what does not, and let the app help you keep the parts together."
     ];
-    const proofSummary = "Proof can be simple at first: the pattern keeps showing up, the idea clearly reduces a cost or increases a valued result, and the path feels workable enough to test with real people or real next steps.";
+    const proofSummary = "Proof can be simple at first: the pattern keeps showing up, the idea clearly reduces a cost or increases a valued result, and the plan feels workable enough to test with real people or real next steps.";
     return {
       id: "quiz-result",
       title: result.title,
@@ -2278,8 +2278,8 @@
       startingMaterial,
       primarySection: path.primarySection,
       pathLabel: path.pathLabel,
-      pathSummary: `Build around The Six, The Cost of Living, and the shared cost and sought outcome inside this culture. Here, that means ${motivator.toLowerCase()}, ${payment.toLowerCase()}, and a path that stays flexible while your understanding gets stronger.`,
-      planSummary: "This plan is not a formal business-plan document. It is a living pathway plan meant to help you nurture an idea you already have or develop one you discovered in the app.",
+      pathSummary: `Build around The Six, The Cost of Living, and the shared cost and sought outcome inside this culture. Here, that means ${motivator.toLowerCase()}, ${payment.toLowerCase()}, and a flexible understanding you can keep refining.`,
+      planSummary: "This plan is not a formal business-plan document. It is a living Personal Business Pathway Plan meant to help you nurture an idea you already have or develop one you discovered in the app.",
       startingPointSummary,
       understandingSummary,
       cultureSummary,
@@ -2302,8 +2302,8 @@
   function buildPathSnapshot() {
     if (!appState.quizResult) {
       return {
-        label: "Choose a direction",
-        summary: "Use the quiz to understand what people pay for and turn that into a starting path.",
+        label: "Choose a focus",
+        summary: "Use the quiz to understand what people pay for and turn that into a starting point.",
         primarySection: "income"
       };
     }
@@ -2325,7 +2325,7 @@
     if (!appState.quizResult) {
       return {
         label: "Build Your Personal Business Pathway Plan",
-        summary: "Take the quiz to generate a living pathway plan built around idea, knowledge, support, and official needs."
+        summary: "Take the quiz to generate a living plan built around idea, knowledge, support, and official needs."
       };
     }
     return {
@@ -2431,13 +2431,12 @@
   }
 
   function buildNextSteps() {
-    const path = buildPathSnapshot();
     const steps = [];
     if (!appState.quizResult) {
-      steps.push("Take the quiz to turn what people pay for into a first-draft personal business pathway plan.");
+      steps.push("Take the quiz to turn what people pay for into a first-draft Personal Business Pathway Plan.");
     }
     if (!appState.savedIds.length) {
-      steps.push("Save the items that belong in your path so they can be used in your PBPP.");
+      steps.push("Save the items that belong in your plan so they can be used in your PBPP.");
     }
     if (!Object.keys(appState.notes).length) {
       steps.push("Add a note to one saved item so your plan reflects what matters to you.");
@@ -2623,8 +2622,8 @@
   }
 
   function stageDescription(stage) {
-    if (stage === "just exploring") return "The starting point for the path you are building.";
-    if (stage === "interested") return "Items that support or strengthen the path.";
+    if (stage === "just exploring") return "The starting point for the plan you are building.";
+    if (stage === "interested") return "Items that support or strengthen the plan.";
     if (stage === "comparing") return "Options you are weighing before you commit.";
     return "Items that move the plan toward launch.";
   }

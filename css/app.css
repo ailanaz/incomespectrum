@@ -788,6 +788,12 @@ a {
   text-underline-offset: 2px;
 }
 
+.utility-link::after,
+.text-link::after,
+.detail-links a::after {
+  content: " \2192";
+}
+
 .utility-link--active {
   color: var(--app-blue);
 }

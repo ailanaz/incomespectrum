@@ -804,7 +804,7 @@
         appState.browseOfficialState = appState.selectedState;
       }
       saveState();
-      renderExplore();
+      renderAll();
       return;
     }
 

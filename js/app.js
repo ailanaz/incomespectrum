@@ -1890,12 +1890,16 @@
     detailBody.innerHTML = `<div class="empty-state">Loading ${stateName} official information...</div>`;
     const stateItems = data.official.filter((item) => item.stateLinks && item.stateLinks[stateName]?.length);
     const statePageItems = await loadStateSpecificOfficialItems(stateName);
+    const combinedStateItems = [
+      ...stateItems,
+      ...statePageItems.filter((item) => !stateItems.some((existing) => normalizeKey(existing.title) === normalizeKey(item.title)))
+    ];
     detailBody.innerHTML = `
       <div class="detail-section">
         <p>Official business registration, tax, licensing, agency, and state contracting links for ${stateName}.</p>
       </div>
       <div class="card-grid card-grid--two">
-        ${stateItems.map((item) => `
+        ${combinedStateItems.map((item) => `
           <section class="saved-block">
             <div class="inline-actions">
               <button class="app-btn app-btn--ghost" data-action="open-all-states">Back to All States</button>
@@ -1909,14 +1913,7 @@
           </section>
         `).join("")}
       </div>
-      ${statePageItems.length ? `
-        <div class="detail-section">
-          <h3>From the ${stateName} state page</h3>
-          <ul class="detail-links">
-            ${statePageItems.map((item) => `<li><a href="${item.externalHref}" target="_blank" rel="noopener noreferrer">${item.title}</a> ${item.description ? `- ${item.description}` : ""}</li>`).join("")}
-          </ul>
-        </div>
-      ` : ""}
+      ${!combinedStateItems.length ? `<div class="empty-state">No direct official items are available for ${stateName} yet.</div>` : ""}
     `;
   }
 

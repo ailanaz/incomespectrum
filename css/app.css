@@ -151,7 +151,7 @@ a {
 }
 
 .gate-panel h1 {
-  font-size: clamp(1.95rem, 4.2vw, 3.35rem);
+  font-size: clamp(2.15rem, 4.6vw, 3.65rem);
   max-width: 16ch;
 }
 
@@ -1694,7 +1694,7 @@ a {
   }
 
   .gate-panel h1 {
-    font-size: clamp(1.8rem, 8vw, 2.5rem);
+    font-size: clamp(2rem, 8.6vw, 2.8rem);
     max-width: 15ch;
   }
 

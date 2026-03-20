@@ -778,6 +778,9 @@ a {
 }
 
 .utility-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -792,6 +795,12 @@ a {
 .text-link::after,
 .detail-links a::after {
   content: " \2192";
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .utility-link--active {

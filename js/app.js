@@ -34,6 +34,14 @@
     Solopreneur: "Usually someone building and running a business mostly on their own without a larger team structure yet.",
     "Business Owner": "Usually someone operating a business that may already have systems, customers, and room to grow or change."
   };
+  const founderIdentitySuggestions = {
+    "Own Idea": "Entrepreneur",
+    "Usable Skill": "Self-Employed",
+    "Need Knowledge": "Founder",
+    "Need Support": "Solopreneur",
+    "Need Official Clarity": "Small Business Owner",
+    "Still Early": "Founder"
+  };
   const workPreferences = [
     { value: "online", label: "Online" },
     { value: "local", label: "Local" },
@@ -897,6 +905,8 @@
           renderSaveSignupPrompt();
           openOverlay("progressOverlay", { kind: "save-signup" });
         }
+      } else if (action === "toggle-note-star") {
+        toggleNoteStar(actionNode.dataset.id);
       } else if (action === "delete-note") {
         deleteNote(actionNode.dataset.id);
       } else if (action === "toggle-sort") {
@@ -1762,10 +1772,7 @@
       ${buildSavedGroupMarkup("official", "Saved Official Information")}
     `;
     const goalsMarkup = `
-      <div class="mini-card">
-        <strong>Founder Goals</strong>
-        <p>${planDraft.proof || "Describe what progress, traction, or proof would matter most to you right now."}</p>
-      </div>
+      ${renderFounderFileField("Goals", "goals", planDraft.goals || planDraft.proof || "", "Describe the goals that matter most to you, in your own words.")}
     `;
     const nextMovesMarkup = `
       ${renderFounderFileField("Next Moves", "nextMoves", planDraft.nextMoves || "", "List the next actions you want to take inside or outside the app.")}
@@ -1865,20 +1872,44 @@
     `;
   }
 
+  function normalizeNoteEntry(entry) {
+    if (!entry) return { text: "", starred: false };
+    if (typeof entry === "string") return { text: entry, starred: false };
+    return {
+      text: entry.text || "",
+      starred: Boolean(entry.starred)
+    };
+  }
+
+  function getNoteText(id) {
+    return normalizeNoteEntry(appState.notes[id]).text;
+  }
+
+  function isNoteStarred(id) {
+    return normalizeNoteEntry(appState.notes[id]).starred;
+  }
+
+  function buildSortedNoteEntries(limit = null) {
+    const entries = Object.entries(appState.notes)
+      .map(([id, note]) => ({ id, note: normalizeNoteEntry(note), item: findItem(id) }))
+      .filter((entry) => entry.item && entry.note.text);
+    entries.sort((a, b) => Number(b.note.starred) - Number(a.note.starred));
+    return limit ? entries.slice(0, limit) : entries;
+  }
+
   function buildNoteCardsMarkup() {
-    const noteEntries = Object.entries(appState.notes);
+    const noteEntries = buildSortedNoteEntries();
     if (!noteEntries.length) {
       return `<div class="empty-state">Notes you add to items in the app will show up here.</div>`;
     }
-    return noteEntries.map(([id, note]) => {
-      const item = findItem(id);
-      if (!item) return "";
+    return noteEntries.map(({ id, note, item }) => {
       const type = detectItemType(id);
       return `
         <div class="mini-card">
           <strong>${item.title}</strong>
-          <p>${note}</p>
+          <p>${note.text}</p>
           <div class="inline-actions">
+            <button class="utility-link" data-action="toggle-note-star" data-id="${id}">${note.starred ? "Starred" : "Star"}</button>
             <button class="utility-link" data-action="open-item" data-id="${id}" data-type="${type}">Open</button>
             <button class="utility-link utility-link--danger" data-action="delete-note" data-id="${id}">Delete</button>
           </div>
@@ -1916,7 +1947,7 @@
 
   function renderSavedItem(item, type) {
     const id = item.id;
-    const savedNote = appState.notes[id];
+    const savedNote = getNoteText(id);
     return `
       <div class="mini-card">
         <strong>${item.title}</strong>
@@ -1934,16 +1965,15 @@
   }
 
   function renderNotes() {
-    const noteEntries = Object.entries(appState.notes);
+    const noteEntries = buildSortedNoteEntries();
     document.getElementById("notesList").innerHTML = noteEntries.length
-      ? noteEntries.map(([id, note]) => {
-          const item = findItem(id);
-          if (!item) return "";
+      ? noteEntries.map(({ id, note, item }) => {
           return `
             <div class="note-card">
               <h4>${item.title}</h4>
-              <p>${note}</p>
+              <p>${note.text}</p>
               <div class="inline-actions">
+                <button class="utility-link" data-action="toggle-note-star" data-id="${id}">${note.starred ? "Starred" : "Star"}</button>
                 <button class="app-btn ${openButtonClass(detectItemType(id))}" data-action="open-item" data-id="${id}" data-type="${detectItemType(id)}">Open</button>
                 <button class="app-btn app-btn--ghost" data-action="delete-note" data-id="${id}">Delete Note</button>
               </div>
@@ -1960,17 +1990,14 @@
     const founderIdentity = planDraft.founderIdentity || "Founder";
     const founderIdentityDescription = founderIdentityDescriptions[founderIdentity] || founderIdentityDescriptions.Founder;
     const goalLabel = setupGoals.find((goal) => goal.value === appState.goal)?.label || "Explore Options";
-    const noteEntries = Object.entries(appState.notes)
-      .map(([id, note]) => ({ item: findItem(id), note }))
-      .filter((entry) => entry.item)
-      .slice(0, 3);
+    const noteEntries = buildSortedNoteEntries(3);
     const nextMoves = (planDraft.nextMoves || "")
       .split("\n")
       .map((step) => step.trim())
       .filter(Boolean)
       .slice(0, 4);
     const overviewNextSteps = nextMoves.length ? nextMoves : buildNextSteps().slice(0, 4);
-    const goalSummary = planDraft.proof || "Clarify what progress, traction, or proof would matter most right now.";
+    const goalSummary = planDraft.goals || planDraft.proof || "Clarify what progress, traction, or proof would matter most right now.";
     document.getElementById("progressStages").innerHTML = `
       <section class="progress-stage">
         <h4>Founder Identity</h4>
@@ -1992,11 +2019,9 @@
       </section>
       <section class="progress-stage">
         <h4>Next Steps</h4>
-        ${overviewNextSteps.map((step) => `
-          <div class="mini-card">
-            <p>${step}</p>
-          </div>
-        `).join("")}
+        <ul class="overview-list">
+          ${overviewNextSteps.map((step) => `<li>${step}</li>`).join("")}
+        </ul>
       </section>
       <section class="progress-stage">
         <h4>Notes Highlights</h4>
@@ -2004,7 +2029,7 @@
           ? noteEntries.map(({ item, note }) => `
               <div class="mini-card">
                 <strong>${item.title}</strong>
-                <p>${note}</p>
+                <p>${note.text}</p>
               </div>
             `).join("")
           : `<div class="empty-state">Notes you save in the app will surface here as highlights.</div>`
@@ -2254,7 +2279,7 @@
     return `
       <div class="detail-section note-editor">
         <h3>Add Note</h3>
-        <textarea id="note-${id}" placeholder="Add a note about this item...">${appState.notes[id] || ""}</textarea>
+        <textarea id="note-${id}" placeholder="Add a note about this item...">${getNoteText(id)}</textarea>
         <div class="inline-actions">
           <button class="utility-link utility-link--detail-save ${isSaved(id) ? "utility-link--active" : ""}" data-action="save-note" data-id="${id}">${isSaved(id) ? "Saved" : "Save"}</button>
         </div>
@@ -2474,6 +2499,7 @@
 
   function buildPlanDraft(result) {
     return {
+      founderIdentity: result.founderIdentity || "Founder",
       startingPoint: result.startingPointSummary,
       understanding: result.understandingSummary,
       culture: result.cultureSummary,
@@ -2483,6 +2509,7 @@
       support: result.supportSummary,
       official: result.officialSummary,
       nextMoves: result.planSteps.join("\n"),
+      goals: result.proofSummary,
       proof: result.proofSummary
     };
   }
@@ -2580,6 +2607,7 @@
     const action = appState.quizAnswers.action || "Get It Done";
     const value = appState.quizAnswers.value || "Lower the cost";
     const startingMaterial = appState.quizAnswers.startingMaterial || "Still Early";
+    const founderIdentity = founderIdentitySuggestions[startingMaterial] || "Founder";
 
     const resultMap = {
       "Survival and Stability": {
@@ -2734,6 +2762,8 @@
       pathLabel: path.pathLabel,
       pathSummary: `Build around The Six, The Cost of Living, and the shared cost and sought outcome inside this culture. Here, that means ${motivator.toLowerCase()}, ${payment.toLowerCase()}, and a flexible understanding you can keep refining.`,
       planSummary: "This file is not a formal business-plan document. It is a living Founder File meant to help you nurture an idea you already have or develop one you discovered in the app.",
+      founderIdentity,
+      founderIdentityDescription: founderIdentityDescriptions[founderIdentity] || founderIdentityDescriptions.Founder,
       startingPointSummary,
       understandingSummary,
       cultureSummary,
@@ -2932,10 +2962,14 @@
     const input = document.getElementById(`note-${id}`);
     if (!input) return;
     const value = input.value.trim();
+    const existing = normalizeNoteEntry(appState.notes[id]);
     if (!value) {
       delete appState.notes[id];
     } else {
-      appState.notes[id] = value;
+      appState.notes[id] = {
+        text: value,
+        starred: existing.starred
+      };
     }
     if (!isSaved(id)) {
       appState.savedIds.unshift(id);
@@ -2949,6 +2983,19 @@
     delete appState.notes[id];
     saveState();
     renderNotes();
+  }
+
+  function toggleNoteStar(id) {
+    const existing = normalizeNoteEntry(appState.notes[id]);
+    if (!existing.text) return;
+    appState.notes[id] = {
+      text: existing.text,
+      starred: !existing.starred
+    };
+    saveState();
+    renderNotes();
+    renderSaved();
+    renderProgress();
   }
 
   function setStage(id, stage) {

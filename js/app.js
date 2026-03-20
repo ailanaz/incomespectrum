@@ -1988,7 +1988,6 @@
       ? { ...buildPlanDraft(appState.quizResult), ...appState.planDraft }
       : appState.planDraft;
     const founderIdentity = planDraft.founderIdentity || "Founder";
-    const founderIdentityDescription = founderIdentityDescriptions[founderIdentity] || founderIdentityDescriptions.Founder;
     const noteEntries = buildSortedNoteEntries(3);
     const nextMoves = (planDraft.nextMoves || "")
       .split("\n")
@@ -1999,10 +1998,10 @@
     const goalSummary = planDraft.goals || planDraft.proof || "Clarify what progress, traction, or proof would matter most right now.";
     document.getElementById("progressStages").innerHTML = `
       <section class="progress-stage">
-        <h4>Founder Identity</h4>
+        <h4>Identity</h4>
         <div class="mini-card">
           <strong>${founderIdentity}</strong>
-          <p>${founderIdentityDescription}</p>
+          <p>Your current founder type.</p>
         </div>
       </section>
       <section class="progress-stage">
@@ -2026,12 +2025,8 @@
       <section class="progress-stage">
         <h4>Goals</h4>
         <div class="mini-card">
-          <strong>Current goal state</strong>
+          <strong>Current goals</strong>
           <p>${goalSummary}</p>
-        </div>
-        <div class="mini-card">
-          <strong>Founder File direction</strong>
-          <p>${planDraft.understanding || "Use the quiz and your saved items to clarify what belongs in your Founder File next."}</p>
         </div>
       </section>
     `;

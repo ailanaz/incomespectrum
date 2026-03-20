@@ -608,13 +608,14 @@
       },
       {
         id: "action",
-        prompt: "When people pay around this pattern, what do they seem to be trying to move toward?",
+        prompt: "When people pay around this pattern, what do they seem to be trying to attain, gain, protect, replace, improve, prove, enjoy, or make easier?",
         options: [
-          { value: "Get It Done", label: "Get something done for them" },
-          { value: "Get Relief", label: "Get relief, clarity, or peace of mind" },
-          { value: "Get Access", label: "Get access to something they cannot easily do on their own" },
-          { value: "Get Organized", label: "Get organized, compliant, or on track" },
-          { value: "Get A Better Result", label: "Get a better result than what they are getting now" }
+          { value: "Attain Or Gain", label: "Attain, gain, or get access to something" },
+          { value: "Protect Or Prevent", label: "Protect something, prevent loss, or reduce exposure" },
+          { value: "Improve Or Replace", label: "Improve something, replace something, or make a result better" },
+          { value: "Simplify Or Order", label: "Make something simpler, more orderly, or easier to manage" },
+          { value: "Prove Or Understand", label: "Get proof, understanding, clarity, or decision support" },
+          { value: "Connect Or Enjoy", label: "Feel connected, supported, understood, or enjoy something more" }
         ]
       },
       {
@@ -2173,39 +2174,45 @@
 
     const result = resultMap[motivator];
     const pathMap = {
-      "Get It Done": {
-        pathLabel: "Service-led path",
+      "Attain Or Gain": {
+        pathLabel: "Access and gain path",
         primarySection: "income",
-        incomeIdeaTitle: "A service-based income direction is the clearest starting point.",
-        incomeIdeaSummary: "This pattern suggests people are most likely to pay for direct help, done-for-you work, or expert delivery. If you already have your own idea, keep it if it solves this pressure clearly. If you do not, start with one of the service options surfaced below."
+        incomeIdeaTitle: "A direction that helps people attain, gain, or access something is the clearest starting point.",
+        incomeIdeaSummary: "This pattern suggests people are paying to get something they do not yet have, reach something more easily, or gain a better position. That can point toward services, products, or structured offers that open access or move them forward."
       },
-      "Get Relief": {
-        pathLabel: "Relief-led path",
-        primarySection: "income",
-        incomeIdeaTitle: "A relief-oriented service or support direction is the clearest starting point.",
-        incomeIdeaSummary: "This pattern suggests people are paying to reduce friction, strain, confusion, or discomfort. If you already have an idea, keep it only if it clearly helps relieve that pressure. If you do not, use the app suggestions below as working options."
-      },
-      "Get Access": {
-        pathLabel: "Access path",
+      "Protect Or Prevent": {
+        pathLabel: "Protection path",
         primarySection: "services",
-        incomeIdeaTitle: "An access-oriented service direction is the clearest starting point.",
-        incomeIdeaSummary: "This pattern suggests people are paying to get access to something they cannot easily reach, navigate, or do on their own. That can point toward interpreting, support, advisory, or structured services."
+        incomeIdeaTitle: "A protection or prevention direction is the clearest starting point.",
+        incomeIdeaSummary: "This pattern suggests people are paying to lower exposure, avoid loss, protect what they have, or prevent a worse outcome. That can point toward legal, compliance, advisory, support, or process-based offers."
       },
-      "Get Organized": {
-        pathLabel: "Clarity path",
-        primarySection: "official",
-        incomeIdeaTitle: "A process, compliance, or organization-based direction is the clearest starting point.",
-        incomeIdeaSummary: "This pattern suggests value may come from helping people get organized, compliant, registered, or on track. If you already came in with an idea, test whether it fits that pressure. If not, let the official and support inputs shape a starting path."
-      },
-      "Get A Better Result": {
-        pathLabel: "Product-led path",
+      "Improve Or Replace": {
+        pathLabel: "Improvement path",
         primarySection: "income",
-        incomeIdeaTitle: "A product-based income direction is the clearest starting point.",
-        incomeIdeaSummary: "This pattern suggests people may pay for something they can buy, use, or keep using without needing constant direct labor from you. If you already have a product idea, shape it around this pressure. If not, use the app options below as starting points."
+        incomeIdeaTitle: "An improvement or replacement direction is the clearest starting point.",
+        incomeIdeaSummary: "This pattern suggests people are paying to make something work better, change what is not working, or replace a weaker result with a stronger one. That can point toward service, product, or ownership directions."
+      },
+      "Simplify Or Order": {
+        pathLabel: "Simplicity path",
+        primarySection: "services",
+        incomeIdeaTitle: "A simplicity or order-based direction is the clearest starting point.",
+        incomeIdeaSummary: "This pattern suggests people are paying to make something easier, more orderly, less confusing, or less costly to manage. That can point toward organization, systems, support, compliance, or service-based offers."
+      },
+      "Prove Or Understand": {
+        pathLabel: "Clarity path",
+        primarySection: "training",
+        incomeIdeaTitle: "A proof, understanding, or decision-support direction is the clearest starting point.",
+        incomeIdeaSummary: "This pattern suggests people are paying to understand better, make decisions with more confidence, or get proof that something will work. That can point toward education, advisory, certification, support, or information-based offers."
+      },
+      "Connect Or Enjoy": {
+        pathLabel: "Connection and enjoyment path",
+        primarySection: "income",
+        incomeIdeaTitle: "A connection, support, or enjoyment-oriented direction is the clearest starting point.",
+        incomeIdeaSummary: "This pattern suggests people are paying to feel connected, supported, understood, or to enjoy life more fully and easily. That can point toward communication access, support services, products, or experience-based offers."
       }
     };
     const startingMaterialMap = {
-      "Own Idea": "You already have an idea to work with. The plan should not replace it. It should test whether the idea really fits the pressure, cost, and relief pattern you are seeing.",
+      "Own Idea": "You already have an idea to work with. The plan should not replace it. It should test whether the idea really fits the pressure, cost, and sought result pattern you are seeing.",
       "Usable Skill": "You already have something usable to work from, so the plan should start by shaping and testing that skill against real demand.",
       "Need Knowledge": "Knowledge is the first gap, so this plan should place more weight on training, clarity, and skill-building before expansion.",
       "Need Support": "Support structure is part of the plan, not an afterthought. This path should include outside help where it reduces friction or strengthens delivery.",
@@ -2213,7 +2220,7 @@
       "Still Early": "You do not need a fixed idea yet. The plan should help you identify a starting point, test it, and keep adjusting as the signal gets clearer."
     };
     const blockMap = {
-      Overload: "You have been sorting through too much information. The plan should reduce noise and keep attention on the pressure, the cost, and the relief people are actually seeking.",
+      Overload: "You have been sorting through too much information. The plan should reduce noise and keep attention on the pressure, the cost, and what people are actually seeking.",
       NoStartingPoint: "You have been missing a starting point. The plan should start from what you are seeing, not from trying to force a perfect idea too early.",
       TooManyDirections: "You have been pulled in too many directions. The plan should narrow the field by tying ideas back to a real pressure pattern.",
       NeedProof: "You have been unsure what counts as proof. The plan should move toward signals of demand, not just interesting possibilities.",

@@ -26,6 +26,14 @@
     "Solopreneur",
     "Business Owner"
   ];
+  const founderIdentityDescriptions = {
+    Founder: "A broad identity for someone building, shaping, or formalizing something of their own.",
+    Entrepreneur: "Usually someone creating, testing, or growing a business idea, offer, or operating model.",
+    "Small Business Owner": "Usually someone running or building an established business with ongoing operations, customers, and responsibilities.",
+    "Self-Employed": "Usually someone earning through their own direct work, services, or independent operation.",
+    Solopreneur: "Usually someone building and running a business mostly on their own without a larger team structure yet.",
+    "Business Owner": "Usually someone operating a business that may already have systems, customers, and room to grow or change."
+  };
   const workPreferences = [
     { value: "online", label: "Online" },
     { value: "local", label: "Local" },
@@ -998,6 +1006,14 @@
       }
     }
 
+    const founderIdentitySelect = event.target.closest("[data-founder-identity-select]");
+    if (founderIdentitySelect && appState.isSignedIn) {
+      appState.planDraft.founderIdentity = founderIdentitySelect.value;
+      saveState();
+      renderSaved();
+      renderProgress();
+    }
+
   }
 
   function populateStateSelects() {
@@ -1706,8 +1722,12 @@
     const savedCollections = buildSavedCollectionsMarkup();
     const currentFocus = buildPathSnapshot();
     const goalLabel = setupGoals.find((goal) => goal.value === appState.goal)?.label || "Explore Options";
+    const founderIdentity = planDraft.founderIdentity || "Founder";
+    const founderIdentityDescription = founderIdentityDescriptions[founderIdentity] || founderIdentityDescriptions.Founder;
     const founderIdentityItems = [
       `<div class="mini-card"><strong>Account Status</strong><p>Founder account active</p></div>`,
+      `<label class="field"><span>Founder Identity</span><select data-founder-identity-select>${founderIdentityOptions.map((option) => `<option value="${option}" ${option === founderIdentity ? "selected" : ""}>${option}</option>`).join("")}</select></label>`,
+      `<div class="mini-card"><strong>What this identity means</strong><p>${founderIdentityDescription}</p></div>`,
       `<div class="mini-card"><strong>Selected State</strong><p>${appState.selectedState}</p></div>`,
       `<div class="mini-card"><strong>Starting Goal</strong><p>${goalLabel}</p></div>`
     ].join("");
@@ -1934,83 +1954,72 @@
   }
 
   function renderProgress() {
-    const plan = buildPlanSnapshot();
-    const planIds = unique([
-      ...Object.values(appState.progress).flat(),
-      ...appState.savedIds
-    ]);
-    const planItems = planIds.map((id) => findItem(id)).filter(Boolean);
     const planDraft = appState.quizResult
       ? { ...buildPlanDraft(appState.quizResult), ...appState.planDraft }
       : appState.planDraft;
+    const founderIdentity = planDraft.founderIdentity || "Founder";
+    const founderIdentityDescription = founderIdentityDescriptions[founderIdentity] || founderIdentityDescriptions.Founder;
     const goalLabel = setupGoals.find((goal) => goal.value === appState.goal)?.label || "Explore Options";
-    const officialSavedCount = appState.savedIds.filter((id) => detectItemType(id) === "official").length;
-    const noteCount = Object.keys(appState.notes).length;
-    const recentFileItems = planItems.slice(0, 4);
+    const noteEntries = Object.entries(appState.notes)
+      .map(([id, note]) => ({ item: findItem(id), note }))
+      .filter((entry) => entry.item)
+      .slice(0, 3);
+    const nextMoves = (planDraft.nextMoves || "")
+      .split("\n")
+      .map((step) => step.trim())
+      .filter(Boolean)
+      .slice(0, 4);
+    const overviewNextSteps = nextMoves.length ? nextMoves : buildNextSteps().slice(0, 4);
+    const goalSummary = planDraft.proof || "Clarify what progress, traction, or proof would matter most right now.";
     document.getElementById("progressStages").innerHTML = `
       <section class="progress-stage">
-        <h4>Founder Snapshot</h4>
+        <h4>Founder Identity</h4>
         <div class="mini-card">
-          <strong>Founder account active</strong>
-          <p>Your Founder File is attached to this account on this device.</p>
+          <strong>${founderIdentity}</strong>
+          <p>${founderIdentityDescription}</p>
         </div>
         <div class="mini-card">
           <strong>Selected state</strong>
           <p>${appState.selectedState}</p>
         </div>
         <div class="mini-card">
-          <strong>Initial goal</strong>
+          <strong>Starting goal</strong>
           <p>${goalLabel}</p>
         </div>
-      </section>
-      <section class="progress-stage">
-        <h4>Focus Snapshot</h4>
-        <div class="mini-card">
-          <strong>${buildPathSnapshot().label}</strong>
-          <p>${planDraft.understanding || "Use the quiz and the app to clarify what people pay for and what belongs in your Founder File."}</p>
-        </div>
-        <div class="mini-card">
-          <strong>Culture</strong>
-          <p>${planDraft.culture || "Describe the shared cost and the shared result, relief, access, protection, improvement, or gain being sought."}</p>
-        </div>
-        <div class="mini-card">
-          <strong>Opportunity</strong>
-          <p>${planDraft.opportunity || "Note where opportunity seems to be forming from the cost of living and what people are paying for."}</p>
+        <div class="inline-actions">
+          <button class="utility-link" data-action="show-view" data-view="saved">Change in Founder File</button>
         </div>
       </section>
       <section class="progress-stage">
-        <h4>Founder File Activity</h4>
-        <div class="mini-card">
-          <strong>Quiz</strong>
-          <p>${appState.quizResult ? "Completed and added to your Founder File." : "Not completed yet."}</p>
-        </div>
-        <div class="mini-card">
-          <strong>Saved items</strong>
-          <p>${appState.savedIds.length} item${appState.savedIds.length === 1 ? "" : "s"} saved.</p>
-        </div>
-        <div class="mini-card">
-          <strong>Notes</strong>
-          <p>${noteCount} note${noteCount === 1 ? "" : "s"} saved.</p>
-        </div>
-        <div class="mini-card">
-          <strong>Official information</strong>
-          <p>${officialSavedCount} official item${officialSavedCount === 1 ? "" : "s"} saved.</p>
-        </div>
+        <h4>Next Steps</h4>
+        ${overviewNextSteps.map((step) => `
+          <div class="mini-card">
+            <p>${step}</p>
+          </div>
+        `).join("")}
       </section>
       <section class="progress-stage">
-        <h4>Recent File Items</h4>
-        <p>${plan.summary}</p>
-        ${recentFileItems.length
-          ? recentFileItems.map((item) => `
+        <h4>Notes Highlights</h4>
+        ${noteEntries.length
+          ? noteEntries.map(({ item, note }) => `
               <div class="mini-card">
                 <strong>${item.title}</strong>
-                <div class="inline-actions">
-                  <button class="app-btn ${openButtonClass(detectItemType(item.id))}" data-action="open-item" data-id="${item.id}" data-type="${detectItemType(item.id)}">Open</button>
-                </div>
+                <p>${note}</p>
               </div>
             `).join("")
-          : `<div class="empty-state">No file items yet. Explore, save, or take the quiz to start building your Founder File.</div>`
+          : `<div class="empty-state">Notes you save in the app will surface here as highlights.</div>`
         }
+      </section>
+      <section class="progress-stage">
+        <h4>Goals</h4>
+        <div class="mini-card">
+          <strong>Current goal state</strong>
+          <p>${goalSummary}</p>
+        </div>
+        <div class="mini-card">
+          <strong>Founder File direction</strong>
+          <p>${planDraft.understanding || "Use the quiz and your saved items to clarify what belongs in your Founder File next."}</p>
+        </div>
       </section>
     `;
   }

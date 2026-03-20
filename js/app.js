@@ -1851,6 +1851,10 @@
         <h4>Support</h4>
         <div class="plain-list">${supportMarkup}</div>
       </section>
+      <section class="saved-block plan-page-block plan-page-block--left" id="founderFileNextStepsSection">
+        <h4>Next Steps</h4>
+        <div class="plain-list">${nextMovesMarkup}</div>
+      </section>
       <section class="saved-block plan-page-block plan-page-block--left" id="founderFileNotesSection">
         <h4>Notes</h4>
         <div class="plain-list">
@@ -1860,10 +1864,6 @@
       <section class="saved-block plan-page-block plan-page-block--right">
         <h4>Official Needs</h4>
         <div class="plain-list">${officialMarkup}</div>
-      </section>
-      <section class="saved-block plan-page-block plan-page-block--right" id="founderFileNextStepsSection">
-        <h4>Next Steps</h4>
-        <div class="plain-list">${nextMovesMarkup}</div>
       </section>
       <section class="saved-block plan-page-block plan-page-block--fullwidth">
         <h4>Current Focus</h4>

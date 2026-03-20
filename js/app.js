@@ -1083,7 +1083,7 @@
     appState.isSignedIn = signIn;
     appState.setupComplete = true;
     saveState();
-    openApp(getStartDestinationFromGoal());
+    openApp(signIn ? getStartDestinationFromGoal() : "home");
   }
 
   function completeSignup() {

@@ -2362,7 +2362,7 @@
           </div>
           <div class="mini-card">
             <strong>The Cost of Living</strong>
-            <p>The costs people keep paying in time, energy, attention, comfort, and risk as they try to live, work, solve problems, improve things, or get what they want.</p>
+            <p>The costs people pay to get results, get what they want, solve problems, or just live. These costs show up in time, energy, attention, comfort, and risk.</p>
           </div>
           <div class="mini-card">
             <strong>Niche as Culture</strong>

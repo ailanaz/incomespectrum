@@ -2507,7 +2507,7 @@
     if (!appState.quizResult) {
       return {
         label: "Find your focus",
-        summary: "Use the quiz to understand what people pay for and how the Cost of Living drives Opportunity.",
+        summary: "Take the quiz / Understand what people pay for and how the Cost of Living drives Opportunity.",
         primarySection: "income"
       };
     }
@@ -2635,7 +2635,7 @@
 
   function buildNextSteps() {
     const steps = [];
-    steps.push("Take the quiz to understand what people pay for and how the Cost of Living drives Opportunity.");
+    steps.push("Take the quiz / Understand what people pay for and how the Cost of Living drives Opportunity.");
     steps.push("Save the items you reviewed in your personal Founder File.");
     steps.push("Add notes about what matters to you.");
     steps.push("Find and save opportunities, resources, Official Information, and more that are relevant to your Founder goals.");

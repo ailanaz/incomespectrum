@@ -1585,6 +1585,7 @@
     const quizStatus = appState.quizResult ? "Quiz complete" : "Quiz not started";
     return `
       <div class="mini-card">
+        <span class="section-kicker">Identity</span>
         <strong>${founderIdentity}</strong>
         <p>${goalSummary || quizStatus}</p>
       </div>
@@ -1607,9 +1608,6 @@
     const goal = (planDraft.goals || planDraft.proof || "").trim();
     const officialSavedCount = appState.savedIds.filter((id) => detectItemType(id) === "official").length;
     const highlights = [];
-    if (appState.quizResult?.founderIdentity) {
-      highlights.push(`Identity: ${appState.quizResult.founderIdentity}`);
-    }
     if (goal) {
       highlights.push(`Goal: ${goal}`);
     }

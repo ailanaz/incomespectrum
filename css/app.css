@@ -173,6 +173,18 @@ a {
   margin-top: 28px;
 }
 
+.gate-links {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.gate-link {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
 .setup-grid,
 .profile-list {
   display: grid;

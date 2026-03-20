@@ -1989,7 +1989,6 @@
       : appState.planDraft;
     const founderIdentity = planDraft.founderIdentity || "Founder";
     const founderIdentityDescription = founderIdentityDescriptions[founderIdentity] || founderIdentityDescriptions.Founder;
-    const goalLabel = setupGoals.find((goal) => goal.value === appState.goal)?.label || "Explore Options";
     const noteEntries = buildSortedNoteEntries(3);
     const nextMoves = (planDraft.nextMoves || "")
       .split("\n")
@@ -2004,14 +2003,6 @@
         <div class="mini-card">
           <strong>${founderIdentity}</strong>
           <p>${founderIdentityDescription}</p>
-        </div>
-        <div class="mini-card">
-          <strong>Selected state</strong>
-          <p>${appState.selectedState}</p>
-        </div>
-        <div class="mini-card">
-          <strong>Starting goal</strong>
-          <p>${goalLabel}</p>
         </div>
       </section>
       <section class="progress-stage">

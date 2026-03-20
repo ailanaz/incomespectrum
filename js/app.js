@@ -1343,8 +1343,15 @@
   }
 
   function renderSaved() {
-    const planHubHeader = document.getElementById("planHubHeader");
+    let planHubHeader = document.getElementById("planHubHeader");
     const savedSectionsNode = document.getElementById("savedSections");
+    const savedView = document.getElementById("view-saved");
+    if (!savedSectionsNode || !savedView) return;
+    if (!planHubHeader) {
+      planHubHeader = document.createElement("div");
+      planHubHeader.id = "planHubHeader";
+      savedView.insertBefore(planHubHeader, savedSectionsNode);
+    }
     if (!appState.isSignedIn) {
       planHubHeader.innerHTML = `
         <section class="card guest-upgrade">

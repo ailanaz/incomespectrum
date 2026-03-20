@@ -928,6 +928,8 @@
         openOverlay("quizOverlay", { kind: "quiz" });
       } else if (action === "open-articles") {
         renderArticleDirectory();
+      } else if (action === "open-terms") {
+        renderTermsDirectory();
       } else if (action === "close-overlay") {
         closeOverlay(actionNode.dataset.target);
       } else if (action === "open-item") {
@@ -2338,6 +2340,62 @@
       </div>
     `;
     openOverlay("detailOverlay", { kind: "article-directory" });
+  }
+
+  function renderTermsDirectory() {
+    const detailType = document.getElementById("detailType");
+    const detailTitle = document.getElementById("detailTitle");
+    const detailBody = document.getElementById("detailBody");
+    detailType.textContent = "Terms";
+    detailTitle.textContent = "Terms & Definitions";
+    detailBody.innerHTML = `
+      <div class="detail-section article-directory-shell">
+        <p class="article-directory-copy">Use this glossary to understand the core concepts behind the app and the founder identity terms used throughout the Founder File.</p>
+        <div class="plain-list article-directory-list">
+          <div class="mini-card">
+            <strong>What People Pay For</strong>
+            <p>The full range of what people pay for across need, want, desire, protection, access, improvement, proof, enjoyment, and more.</p>
+          </div>
+          <div class="mini-card">
+            <strong>The Six</strong>
+            <p>The six motivators that drive spending: Survival and Stability, Safety and Protection, Relief and Health, Pleasure and Comfort, Belonging and Love, and Status, Meaning, and Legacy.</p>
+          </div>
+          <div class="mini-card">
+            <strong>The Cost of Living</strong>
+            <p>The costs people keep paying in time, energy, attention, comfort, and risk as they try to live, work, solve problems, improve things, or get what they want.</p>
+          </div>
+          <div class="mini-card">
+            <strong>Niche as Culture</strong>
+            <p>In this concept, culture is shared cost and shared relief sought. It is not only who people are, but what they are carrying and what they are trying to move toward.</p>
+          </div>
+          <div class="mini-card">
+            <strong>Founder</strong>
+            <p>The umbrella term used in the app for people building, shaping, formalizing, or running something of their own.</p>
+          </div>
+          <div class="mini-card">
+            <strong>Entrepreneur</strong>
+            <p>Someone building a new venture, offer, or business opportunity. This often involves creating, testing, or growing something beyond a single task or job.</p>
+          </div>
+          <div class="mini-card">
+            <strong>Solopreneur</strong>
+            <p>Someone building and running a business largely on their own, usually without a larger team structure. The business is often closely tied to their direct effort and decisions.</p>
+          </div>
+          <div class="mini-card">
+            <strong>Small Business Owner</strong>
+            <p>A person responsible for the ownership, strategy, and overall success of a business. They may hire others to handle daily operations, allowing the business to function independently of their physical presence.</p>
+          </div>
+          <div class="mini-card">
+            <strong>Owner-Operator</strong>
+            <p>A business owner who also serves as the primary operator or doer for the company’s core services. While all owner-operators are considered small business owners, not all small business owners are owner-operators.</p>
+          </div>
+          <div class="mini-card">
+            <strong>Self-Employed Professional</strong>
+            <p>Someone working independently through their own expertise, credentials, or direct client service. Their income usually depends on their professional practice or service delivery.</p>
+          </div>
+        </div>
+      </div>
+    `;
+    openOverlay("detailOverlay", { kind: "terms-directory" });
   }
 
   async function openDetail(id, type) {

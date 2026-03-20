@@ -574,9 +574,11 @@
         id: "payment",
         prompt: "What are people paying with most heavily right now?",
         options: [
-          { value: "Money and Time", label: "Money and Time" },
-          { value: "Energy and Attention", label: "Energy and Attention" },
-          { value: "Comfort and Risk", label: "Comfort and Risk" }
+          { value: "Time", label: "Time" },
+          { value: "Energy", label: "Energy" },
+          { value: "Attention", label: "Attention" },
+          { value: "Comfort", label: "Comfort" },
+          { value: "Risk", label: "Risk" }
         ]
       },
       {
@@ -1965,7 +1967,7 @@
 
   function buildQuizResult() {
     const motivator = appState.quizAnswers.motivator || "Survival and Stability";
-    const payment = appState.quizAnswers.payment || "Money and Time";
+    const payment = appState.quizAnswers.payment || "Time";
     const culture = appState.quizAnswers.culture || "People trying to get organized and stable";
     const delivery = appState.quizAnswers.delivery || "Service-led";
     const readiness = appState.quizAnswers.readiness || "Still Early";

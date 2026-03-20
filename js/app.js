@@ -876,6 +876,11 @@
           renderSaveSignupPrompt();
           openOverlay("progressOverlay", { kind: "save-signup" });
         }
+      } else if (action === "scroll-founder-file-section") {
+        const target = document.getElementById(actionNode.dataset.target);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       } else if (action === "open-quiz") {
         quizIndex = 0;
         renderQuiz();
@@ -1775,7 +1780,7 @@
       ${renderFounderFileField("Goals", "goals", planDraft.goals || planDraft.proof || "", "Describe the goals that matter most to you, in your own words.")}
     `;
     const nextMovesMarkup = `
-      ${renderFounderFileField("Next Moves", "nextMoves", planDraft.nextMoves || "", "List the next actions you want to take inside or outside the app.")}
+      ${renderFounderFileField("Next Steps", "nextMoves", planDraft.nextMoves || "", "List the next actions you want to take inside or outside the app.")}
     `;
 
     planHubHeader.innerHTML = `
@@ -1788,9 +1793,8 @@
         </div>
         <p>${planSummary.summary}</p>
         <div class="inline-actions">
-          <button class="utility-link" data-action="open-quiz">Open Quiz</button>
-          <button class="utility-link" data-action="open-notes">Open Notes</button>
-          <button class="utility-link utility-link--danger" data-action="sign-out">Sign Out</button>
+          <button class="utility-link" data-action="scroll-founder-file-section" data-target="founderFileNotesSection">Notes</button>
+          <button class="utility-link" data-action="scroll-founder-file-section" data-target="founderFileNextStepsSection">Next Steps</button>
         </div>
       </section>
     `;
@@ -1828,7 +1832,7 @@
           ${savedCollections}
         </div>
       </section>
-      <section class="saved-block plan-page-block">
+      <section class="saved-block plan-page-block" id="founderFileNotesSection">
         <h4>Notes</h4>
         <div class="plain-list">
           ${noteEntries}
@@ -1838,8 +1842,8 @@
         <h4>Goals</h4>
         <div class="plain-list">${goalsMarkup}</div>
       </section>
-      <section class="saved-block plan-page-block">
-        <h4>Next Moves</h4>
+      <section class="saved-block plan-page-block" id="founderFileNextStepsSection">
+        <h4>Next Steps</h4>
         <div class="plain-list">${nextMovesMarkup}</div>
       </section>
     `;

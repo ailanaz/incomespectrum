@@ -1172,7 +1172,7 @@
 
   function renderFilterSelector(section, activeFilter) {
     const filtersBySection = {
-      income: ["all", "service roles", "product sales", "ownership & acquisition", "asset, rental & recurring income"],
+      income: ["all", "service roles", "product sales", "ownership & acquisition", "business programs"],
       training: ["all", "free", "paid", "beginner", "advanced", "online", "in-person", "certification", "short-form", "full program"],
       services: ["all", "legal", "bookkeeping", "accounting", "branding", "websites", "marketing", "operations", "advisory", "communication access", "interpreting services"],
       official: ["state", "federal"]

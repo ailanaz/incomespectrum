@@ -2370,91 +2370,63 @@
           </div>
           <div class="mini-card">
             <strong>Founder</strong>
-            <p>The catch-all umbrella term used in the app for people building, shaping, formalizing, buying, or running something of their own.</p>
+            <p>Founder is the catch-all term used in the app for a person building, shaping, formalizing, buying, owning, or running something of their own.</p>
           </div>
           <div class="mini-card">
             <strong>Entrepreneur</strong>
-            <p>An entrepreneur is someone who starts and builds a business with the intention of creating something larger than just a job for themselves.</p>
-            <p><strong>Key focus:</strong> building, growth, opportunity, systems<br><strong>Workforce:</strong> may start alone, but often plans to hire<br><strong>Goal:</strong> create a business that can grow beyond the founder’s direct labor</p>
+            <p>An entrepreneur is a person building a business with the intent to innovate, scale, and create something that can eventually operate beyond the founder’s direct labor.</p>
           </div>
           <div class="mini-card">
             <strong>Solopreneur</strong>
-            <p>A solopreneur is a person who owns and runs a business alone, without employees.</p>
-            <p><strong>Key focus:</strong> independence, control, manageable ownership<br><strong>Workforce:</strong> one person, sometimes with contractor help<br><strong>Goal:</strong> build a business of one that supports income and autonomy</p>
+            <p>A solopreneur is a person who independently owns and operates a business without partners or employees. They are both the founder and the workforce.</p>
           </div>
           <div class="mini-card">
             <strong>Small Business Owner</strong>
-            <p>A small business owner is someone who owns and operates a small-scale business, often serving a local, niche, or defined market.</p>
-            <p><strong>Key focus:</strong> income, stability, serving customers, long-term operation<br><strong>Workforce:</strong> may have a few employees or a small team<br><strong>Goal:</strong> run a sustainable business, not necessarily scale aggressively</p>
+            <p>A small business owner is a person who operates a business to serve a local, specific, or defined market, often through a storefront, direct service, or specialized offer. Unlike entrepreneurs focused on scaling quickly, small business owners often build around a more established model and make it their own.</p>
           </div>
           <div class="mini-card">
             <strong>Freelancer</strong>
             <p>A freelancer is a self-employed person who provides services to clients on a project, contract, or hourly basis.</p>
-            <p><strong>Key focus:</strong> client work, service delivery, flexibility<br><strong>Workforce:</strong> usually one person<br><strong>Goal:</strong> earn income by selling their skill or time</p>
-          </div>
-          <div class="mini-card">
-            <strong>Self-Employed Professional</strong>
-            <p>A self-employed person is someone who works for themselves rather than for an employer.</p>
-            <p><strong>Key focus:</strong> independent income generation<br><strong>Workforce:</strong> may work alone or with help<br><strong>Goal:</strong> earn income through their own work, services, products, or business activity</p>
-            <p>This is a broad umbrella term that can include freelancers, solopreneurs, contractors, and small business owners.</p>
           </div>
           <div class="mini-card">
             <strong>Independent Contractor</strong>
             <p>An independent contractor is a self-employed person hired to perform work under contract rather than as an employee.</p>
-            <p><strong>Key focus:</strong> contracted work<br><strong>Workforce:</strong> usually one person<br><strong>Goal:</strong> provide services under agreed terms without being treated as staff</p>
-          </div>
-          <div class="mini-card">
-            <strong>Founder</strong>
-            <p>A founder is the person who started a business.</p>
-            <p><strong>Key focus:</strong> creating the business<br><strong>Workforce:</strong> can be solo or team-based<br><strong>Goal:</strong> establish and launch a business entity or venture</p>
-            <p>A founder may still run the business, or may no longer be involved in daily operations.</p>
           </div>
           <div class="mini-card">
             <strong>Owner-Operator</strong>
-            <p>An owner-operator is someone who owns the business and also actively runs the day-to-day work.</p>
-            <p><strong>Key focus:</strong> hands-on ownership<br><strong>Workforce:</strong> may be solo or have a small team<br><strong>Goal:</strong> maintain direct control over operations while earning through ownership</p>
-            <p>While all owner-operators are considered small business owners, not all small business owners are owner-operators.</p>
+            <p>An owner-operator is a person who owns the business and also actively performs the day-to-day work or core service of that business. While all owner-operators are small business owners, not all small business owners are owner-operators.</p>
           </div>
           <div class="mini-card">
             <strong>Service Business Owner</strong>
-            <p>A service business owner owns a business that earns money by providing services rather than selling products.</p>
-            <p><strong>Key focus:</strong> service delivery<br><strong>Workforce:</strong> solo or team<br><strong>Goal:</strong> build an income-producing business around completed work or expertise</p>
+            <p>A service business owner is a person whose business earns money by providing services rather than selling products.</p>
           </div>
           <div class="mini-card">
             <strong>Product-Based Business Owner</strong>
-            <p>A product-based business owner owns a business that earns money by selling physical or digital products.</p>
-            <p><strong>Key focus:</strong> product creation, sourcing, marketing, sales<br><strong>Workforce:</strong> solo or team<br><strong>Goal:</strong> generate income through product sales</p>
+            <p>A product-based business owner is a person whose business earns money by selling physical or digital products.</p>
           </div>
           <div class="mini-card">
             <strong>Online Business Owner</strong>
-            <p>An online business owner runs a business primarily through the internet.</p>
-            <p><strong>Key focus:</strong> online operations, digital sales, web-based reach<br><strong>Workforce:</strong> solo or team<br><strong>Goal:</strong> generate income through an internet-based business model</p>
+            <p>An online business owner is a person who runs a business primarily through the internet.</p>
           </div>
           <div class="mini-card">
             <strong>Home-Based Business Owner</strong>
-            <p>A home-based business owner operates a business from home rather than from a separate commercial location.</p>
-            <p><strong>Key focus:</strong> flexibility, low overhead, home-based operation<br><strong>Workforce:</strong> often solo or very small team<br><strong>Goal:</strong> run a business from a residential base</p>
+            <p>A home-based business owner is a person who operates a business from home rather than from a separate commercial location.</p>
           </div>
           <div class="mini-card">
             <strong>Business Buyer</strong>
-            <p>A business buyer is someone who acquires an existing business instead of starting one from scratch.</p>
-            <p><strong>Key focus:</strong> ownership through acquisition<br><strong>Workforce:</strong> depends on business acquired<br><strong>Goal:</strong> take control of an already operating business</p>
+            <p>A business buyer is a person who acquires an existing business instead of creating one from scratch.</p>
           </div>
           <div class="mini-card">
             <strong>Franchise Owner</strong>
-            <p>A franchise owner runs a business using an established brand, system, and operating model licensed from a larger company.</p>
-            <p><strong>Key focus:</strong> ownership within a proven structure<br><strong>Workforce:</strong> varies<br><strong>Goal:</strong> operate a business with the support and constraints of an existing brand system</p>
+            <p>A franchise owner is a person who operates a business using an established brand, system, and operating model licensed from a larger company.</p>
           </div>
           <div class="mini-card">
             <strong>Full-Time Business Owner</strong>
-            <p>A full-time business owner is someone whose primary work and primary earned income come from their business.</p>
-            <p><strong>Key focus:</strong> business as main occupation<br><strong>Workforce:</strong> solo or team<br><strong>Goal:</strong> rely on the business as the person’s main professional and income-producing role</p>
-            <p>This term describes the level of reliance and time commitment, not the business model itself.</p>
+            <p>A full-time business owner is a person whose primary work and primary earned income come from their business.</p>
           </div>
           <div class="mini-card">
             <strong>Part-Time Business Owner</strong>
-            <p>A part-time business owner is someone who owns and runs a business while also balancing another job, caregiving role, school, retirement, or other major responsibilities.</p>
-            <p><strong>Key focus:</strong> flexible ownership alongside other obligations<br><strong>Workforce:</strong> usually solo or very small team<br><strong>Goal:</strong> build or maintain business income without the business being their only full-time role</p>
+            <p>A part-time business owner is a person who owns and runs a business while also balancing another major job, role, or responsibility.</p>
           </div>
         </div>
       </div>

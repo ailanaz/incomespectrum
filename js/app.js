@@ -1100,7 +1100,7 @@
   function renderAll() {
     renderProfilePrefs();
     renderHome();
-    renderExplore();
+    renderExplore(exploreFilter);
     renderSaved();
     renderCompare();
     renderProgress();

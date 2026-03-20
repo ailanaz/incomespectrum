@@ -170,6 +170,10 @@ a {
   line-height: 1.6;
 }
 
+.founder-space-copy {
+  font-size: 1.05rem;
+}
+
 .gate-actions {
   display: flex;
   flex-wrap: wrap;

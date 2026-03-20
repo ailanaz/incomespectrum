@@ -2469,17 +2469,11 @@
 
   function buildNextSteps() {
     const steps = [];
-    if (!appState.quizResult) {
-      steps.push("Take the quiz to turn what people pay for into a first-draft Personal Business Pathway Plan.");
-    }
-    if (!appState.savedIds.length) {
-      steps.push("Save the items that belong in your plan so they can be used in your PBPP.");
-    }
-    if (!Object.keys(appState.notes).length) {
-      steps.push("Add a note to one saved item so your plan reflects what matters to you.");
-    }
-    steps.push(`Use ${appState.selectedState} official information to anchor your plan in the rules that apply where you are.`);
-    return steps.slice(0, 4);
+    steps.push("Take the quiz to understand what people pay for.");
+    steps.push("Save the items you reviewed in your personal Founder File.");
+    steps.push("Add notes about what matters to you.");
+    steps.push("Find and save Official Information relevant to your Founder goals.");
+    return steps;
   }
 
   function matchesFilter(item, filter) {

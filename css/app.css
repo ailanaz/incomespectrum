@@ -1551,6 +1551,7 @@ a {
   min-height: 72px;
   height: 72px;
   white-space: nowrap;
+  text-align: center;
 }
 
 .bottom-tab:last-child {
@@ -1806,9 +1807,14 @@ a {
   .bottom-tab {
     min-height: 64px;
     height: 64px;
-    padding: 12px 4px;
-    font-size: 12px;
-    line-height: 1.15;
+    padding: 10px 3px;
+    font-size: 11px;
+    line-height: 1.1;
     white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .bottom-tab[data-view="saved"] {
+    font-size: 10.5px;
   }
 }

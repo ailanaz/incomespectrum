@@ -753,6 +753,11 @@ button.field-toggle::after {
   padding: 14px;
 }
 
+.founder-space-label {
+  font-size: inherit;
+  font-weight: 700;
+}
+
 .home-panel--articles .text-link {
   margin-top: auto;
 }

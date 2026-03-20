@@ -1560,7 +1560,9 @@
     const founderSpaceLink = document.getElementById("founderSpaceLink");
     document.getElementById("founderSpaceStatus").innerHTML = buildFounderSpaceStatusMarkup();
     const founderSpaceHighlights = buildFounderSpaceHighlights();
-    document.getElementById("nextStepsList").innerHTML = founderSpaceHighlights.map((step) => `<li>${step}</li>`).join("");
+    document.getElementById("nextStepsList").innerHTML = founderSpaceHighlights
+      .map((item) => `<li><strong class="founder-space-label">${item.label}:</strong> ${item.value}</li>`)
+      .join("");
     founderSpaceLink.textContent = appState.isSignedIn ? "Open Founder File" : "Sign Up to Access Founder Space";
     founderSpaceLink.dataset.action = appState.isSignedIn ? "show-view" : "start-setup-signup";
     if (appState.isSignedIn) {
@@ -1611,18 +1613,18 @@
     const officialSavedCount = appState.savedIds.filter((id) => detectItemType(id) === "official").length;
     const highlights = [];
     if (goal) {
-      highlights.push(`Goal: ${goal}`);
+      highlights.push({ label: "Goal", value: goal });
     }
     if (nextStep) {
-      highlights.push(`Next: ${nextStep}`);
+      highlights.push({ label: "Next", value: nextStep });
     }
     if (notes[0]?.subject) {
-      highlights.push(`Note: ${notes[0].subject}`);
+      highlights.push({ label: "Note", value: notes[0].subject });
     } else if (itemNotes[0]?.item?.title) {
-      highlights.push(`Saved note: ${itemNotes[0].item.title}`);
+      highlights.push({ label: "Saved Note", value: itemNotes[0].item.title });
     }
     if (officialSavedCount) {
-      highlights.push(`Official items saved: ${officialSavedCount}`);
+      highlights.push({ label: "Official Items Saved", value: String(officialSavedCount) });
     }
     return highlights.slice(0, 4);
   }

@@ -1173,14 +1173,25 @@
   function renderFilterSelector(section, activeFilter) {
     const filtersBySection = {
       income: ["all", "service roles", "product sales", "ownership & acquisition", "business programs"],
-      training: ["all", "free", "paid", "beginner", "advanced", "online", "in-person", "certification", "short-form", "full program"],
+      training: [
+        { value: "all", label: "All" },
+        { value: "entrepreneurship & ownership", label: "Entrepreneurship & Ownership" },
+        { value: "ai, digital & creative skills", label: "AI, Digital & Creative Skills" },
+        { value: "certification, trade skills, licensing & exam prep", label: "Certification, Trade Skills, Licensing & Exam Prep" },
+        { value: "asl education and training", label: "ASL Education" }
+      ],
       services: ["all", "legal", "bookkeeping", "accounting", "branding", "websites", "marketing", "operations", "advisory", "communication access", "interpreting services"],
       official: ["state", "federal"]
     };
     const filters = filtersBySection[section];
-    document.getElementById("filterSelect").innerHTML = filters.map((filter) => `
-      <option value="${filter}" ${filter === activeFilter ? "selected" : ""}>${titleCase(filter)}</option>
-    `).join("");
+    document.getElementById("filterSelect").innerHTML = filters.map((filter) => {
+      const option = typeof filter === "string"
+        ? { value: filter, label: titleCase(filter) }
+        : filter;
+      return `
+      <option value="${option.value}" ${option.value === activeFilter ? "selected" : ""}>${option.label}</option>
+    `;
+    }).join("");
   }
 
   function renderOfficialList() {

@@ -881,6 +881,21 @@ button.field-toggle::after {
   text-underline-offset: 2px;
 }
 
+.utility-link-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 7px 14px;
+  border: 1.5px solid var(--app-navy);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--app-text-soft);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
 .utility-link::after,
 .text-link::after,
 .detail-links a::after {

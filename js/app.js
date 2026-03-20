@@ -1802,8 +1802,8 @@
         </div>
         <p>${planSummary.summary}</p>
         <div class="inline-actions">
-          <button class="utility-link" data-action="scroll-founder-file-section" data-target="founderFileNotesSection">Notes</button>
-          <button class="utility-link" data-action="scroll-founder-file-section" data-target="founderFileNextStepsSection">Next Steps</button>
+          <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileNotesSection">Notes</button>
+          <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileNextStepsSection">Next Steps</button>
         </div>
       </section>
     `;

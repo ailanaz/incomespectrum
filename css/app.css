@@ -536,6 +536,7 @@ a {
 .home-panel {
   display: flex;
   flex-direction: column;
+  padding: 20px;
 }
 
 .home-panel--pbpp,
@@ -548,13 +549,53 @@ a {
   min-height: 160px;
 }
 
+.home-panel .card-header {
+  margin-bottom: 14px;
+}
+
+.home-panel p {
+  margin: 0;
+}
+
+.home-panel .section-kicker {
+  margin-bottom: 6px;
+}
+
+.home-panel .text-link,
+.home-panel .utility-link {
+  align-self: flex-start;
+}
+
 .home-panel--saved #savedPreview,
 .home-panel--recent #recentlyViewed {
   flex: 1 1 auto;
 }
 
 .inline-actions--home {
-  margin-top: 12px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(20, 37, 61, 0.12);
+}
+
+.home-panel--articles {
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.home-panel--pbpp .stack-list,
+.home-panel--saved #savedPreview,
+.home-panel--recent #recentlyViewed {
+  margin-top: 4px;
+}
+
+.home-panel--pbpp .stack-list li,
+.home-panel--saved .mini-card,
+.home-panel--recent .mini-card {
+  padding: 14px;
+}
+
+.home-panel--articles .text-link {
+  margin-top: auto;
 }
 
 .home-section {

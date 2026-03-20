@@ -572,7 +572,7 @@
       },
       {
         id: "problem",
-        prompt: "What kind of cost, relief, or result do you keep noticing people circling around?",
+        prompt: "If you pause and observe, what kind of cost, relief, or result do people seem to keep circling around?",
         options: [
           { value: "Relief and Health", label: "Relief, solution, or improvement keeps showing up" },
           { value: "Safety and Protection", label: "Prevention, protection, or reducing risk keeps showing up" },
@@ -595,7 +595,7 @@
       },
       {
         id: "culture",
-        prompt: "What shared cost and shared relief seem to define the culture here?",
+        prompt: "How would you describe the culture in terms of the shared cost being carried and the shared relief being sought?",
         options: [
           { value: "Instability to order", label: "A shared cost around instability, disorder, or lack of access, with relief sought through order, access, or savings" },
           { value: "Exposure to protection", label: "A shared cost around exposure, uncertainty, or loss, with relief sought through protection or prevention" },
@@ -627,7 +627,7 @@
       },
       {
         id: "startingMaterial",
-        prompt: "Looking at what you already have, what seems most usable as a starting point?",
+        prompt: "Based on your understanding of what people are seeking, trying to relieve, or trying to improve, what seems most usable as a starting point?",
         options: [
           { value: "Own Idea", label: "An idea of my own that I want to test" },
           { value: "Usable Skill", label: "A usable skill, service, or experience I can work from" },

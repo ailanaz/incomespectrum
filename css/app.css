@@ -963,6 +963,10 @@ button.field-toggle::after {
   text-decoration: none;
 }
 
+.utility-link--save-file {
+  text-decoration: none;
+}
+
 .quick-links-row {
   display: flex;
   align-items: center;

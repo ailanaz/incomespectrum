@@ -529,6 +529,11 @@ a {
 .home-dashboard-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "pbpp quiz"
+    "pbpp articles"
+    "saved recent";
+  grid-auto-rows: minmax(150px, auto);
   gap: 18px;
   align-items: stretch;
 }
@@ -537,16 +542,34 @@ a {
   display: flex;
   flex-direction: column;
   padding: 20px;
+  justify-content: flex-start;
 }
 
-.home-panel--pbpp,
+.home-panel--pbpp {
+  grid-area: pbpp;
+  min-height: 486px;
+}
+
+.home-panel--quiz {
+  grid-area: quiz;
+  min-height: 150px;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.home-panel--articles {
+  grid-area: articles;
+  min-height: 150px;
+}
+
 .home-panel--saved {
-  min-height: 320px;
+  grid-area: saved;
+  min-height: 150px;
 }
 
-.home-panel--articles,
 .home-panel--recent {
-  min-height: 160px;
+  grid-area: recent;
+  min-height: 150px;
 }
 
 .home-panel .card-header {
@@ -1493,6 +1516,16 @@ a {
   .browse-strip,
   .explore-shell {
     grid-template-columns: 1fr;
+  }
+
+  .home-dashboard-grid {
+    grid-template-areas:
+      "pbpp"
+      "quiz"
+      "articles"
+      "saved"
+      "recent";
+    grid-auto-rows: auto;
   }
 
   #progressStages {

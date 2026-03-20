@@ -1162,6 +1162,15 @@ a {
   color: var(--app-text-soft);
 }
 
+.inline-actions--state-browser {
+  margin-top: 4px;
+}
+
+.inline-actions--state-browser .app-btn {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
 .note-editor {
   margin-top: 14px;
   display: grid;

@@ -2044,7 +2044,7 @@
     const totalPlanned = Object.values(appState.progress).reduce((count, ids) => count + ids.length, 0);
     if (!appState.isSignedIn) {
       return {
-        label: "Sign up to keep it",
+        label: "Sign up to Access Features",
         summary: "Create an account to keep your personal business pathway plan."
       };
     }

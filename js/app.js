@@ -1149,7 +1149,9 @@
   function showView(view) {
     appState.activeView = view;
     document.querySelectorAll(".view").forEach((node) => node.classList.remove("active"));
-    document.querySelector(`[data-view="${view}"]`).classList.add("active");
+    const viewNode = document.querySelector(`.view[data-view="${view}"]`);
+    if (!viewNode) return;
+    viewNode.classList.add("active");
     document.querySelectorAll(".bottom-tab").forEach((tab) => tab.classList.toggle("active", tab.dataset.view === view));
     document.getElementById("viewTitle").textContent = sectionLabels[view] || capitalize(view);
     saveState();

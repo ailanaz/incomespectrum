@@ -558,7 +558,7 @@
   const quiz = {
     title: "What People Will Pay For",
     intro: "This quiz is designed to help you understand what people are paying for and turn that understanding into a living Personal Business Pathway Plan.",
-    frameworkNote: "You will be building understanding of The Six (the six motivators that drive spending), The Cost of Living (what the costs are), Niche as Culture (how culture is defined by cost and relief sought), and how the cost of living drives opportunity for you to serve a culture.",
+    frameworkNote: "You will be building understanding of The Six, the six motivators that drive spending; The Cost of Living, the costs people keep paying in time, energy, attention, comfort, and risk; Niche as Culture, where culture is defined by shared cost and shared relief sought; and how The Cost of Living drives opportunity.",
     questions: [
       {
         id: "block",

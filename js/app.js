@@ -1782,6 +1782,15 @@
     const nextMovesMarkup = `
       ${renderFounderFileField("Next Steps", "nextMoves", planDraft.nextMoves || "", "List the next actions you want to take inside or outside the app.")}
     `;
+    const revisitQuizMarkup = `
+      <section class="saved-block plan-page-block">
+        <h4>Explore Another Set of Ideas</h4>
+        <p>If you are feeling different, seeing a different opportunity pattern, or want to test another set of ideas, you can revisit the quiz.</p>
+        <div class="inline-actions">
+          <button class="utility-link" data-action="open-quiz">Revisit the Quiz</button>
+        </div>
+      </section>
+    `;
 
     planHubHeader.innerHTML = `
       <section class="card">
@@ -1846,6 +1855,7 @@
         <h4>Next Steps</h4>
         <div class="plain-list">${nextMovesMarkup}</div>
       </section>
+      ${revisitQuizMarkup}
     `;
   }
 
@@ -1932,11 +1942,6 @@
       grouped[type].push(item);
     });
 
-    if (appState.quizResult) {
-      grouped.quiz = grouped.quiz || [];
-      grouped.quiz.push({ ...appState.quizResult, id: "saved-quiz-result", title: appState.quizResult.planTitle || "Saved Founder File Draft" });
-    }
-
     const groups = Object.entries(grouped).map(([type, items]) => `
       <section class="plan-saved-group">
         <h5>${sectionLabels[type] || titleCase(type)}</h5>
@@ -1946,7 +1951,7 @@
       </section>
     `).join("");
 
-    return groups || `<div class="empty-state">Save any option, resource, official page, article, or quiz result you want to keep inside your plan.</div>`;
+    return groups || `<div class="empty-state">Save any option, resource, official page, or article you want to keep inside your file.</div>`;
   }
 
   function renderSavedItem(item, type) {
@@ -1958,11 +1963,8 @@
         <p>${item.description || item.explanation || ""}</p>
         ${savedNote ? `<p><strong>Saved note:</strong> ${savedNote}</p>` : ""}
         <div class="inline-actions inline-actions--saved">
-          ${type === "quiz"
-            ? `<button class="app-btn app-btn--secondary" data-action="open-quiz">Open Quiz</button>`
-            : `<button class="app-btn ${openButtonClass(type)}" data-action="open-item" data-id="${id}" data-type="${type}">Open</button>`
-          }
-          ${type !== "quiz" ? `<button class="utility-link utility-link--danger" data-action="remove-saved" data-id="${id}">Remove</button>` : ""}
+          <button class="app-btn ${openButtonClass(type)}" data-action="open-item" data-id="${id}" data-type="${type}">Open</button>
+          <button class="utility-link utility-link--danger" data-action="remove-saved" data-id="${id}">Remove</button>
         </div>
       </div>
     `;

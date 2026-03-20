@@ -580,8 +580,8 @@ a {
   grid-template-areas:
     "pbpp quiz"
     "pbpp articles"
-    "saved recent";
-  grid-auto-rows: minmax(150px, auto);
+    "pbpp recent";
+  grid-template-rows: minmax(150px, auto) minmax(150px, auto) minmax(180px, auto);
   gap: 18px;
   align-items: stretch;
 }
@@ -610,14 +610,9 @@ a {
   min-height: 150px;
 }
 
-.home-panel--saved {
-  grid-area: saved;
-  min-height: 150px;
-}
-
 .home-panel--recent {
   grid-area: recent;
-  min-height: 150px;
+  min-height: 180px;
 }
 
 .home-panel .card-header {
@@ -638,30 +633,17 @@ a {
   font-size: 16px;
 }
 
-.home-panel--saved #savedPreview,
-.home-panel--recent #recentlyViewed {
-  flex: 1 1 auto;
-}
-
-.inline-actions--home {
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(20, 37, 61, 0.12);
-}
-
 .home-panel--articles {
   justify-content: space-between;
   gap: 14px;
 }
 
 .home-panel--pbpp .stack-list,
-.home-panel--saved #savedPreview,
 .home-panel--recent #recentlyViewed {
   margin-top: 4px;
 }
 
 .home-panel--pbpp .stack-list li,
-.home-panel--saved .mini-card,
 .home-panel--recent .mini-card {
   padding: 14px;
 }

@@ -509,6 +509,12 @@ button.field-toggle::after {
   grid-column: 1 / -1;
 }
 
+.plan-page-block {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
 .plan-page-block--left {
   grid-column: 1;
 }
@@ -519,7 +525,19 @@ button.field-toggle::after {
 
 .plan-page-block .plain-list,
 .plan-page-block .saved-groups {
-  margin-top: 12px;
+  margin-top: 0;
+}
+
+.plan-page-block .section-kicker {
+  margin: 0;
+}
+
+.plan-page-block .field,
+.plan-page-block .mini-card,
+.plan-page-block .empty-state,
+.plan-page-block .saved-groups,
+.plan-page-block .plain-list {
+  margin-top: 0;
 }
 
 .plan-saved-group + .plan-saved-group {

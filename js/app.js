@@ -1774,15 +1774,15 @@
     ].join("");
     const currentFocusMarkup = `
       <div class="mini-card">
-        <strong>${currentFocus.label}</strong>
+        <strong>What People Pay For</strong>
         <p>${planDraft.understanding || "Use the quiz and the app library to clarify what people are paying for and where you want your Founder File to focus."}</p>
       </div>
       <div class="mini-card">
-        <strong>Culture</strong>
+        <strong>Niche as Culture</strong>
         <p>${planDraft.culture || "Describe the shared cost and the shared relief, access, improvement, protection, or result being sought."}</p>
       </div>
       <div class="mini-card">
-        <strong>Opportunity Reading</strong>
+        <strong>The Cost of Living Drives Opportunity</strong>
         <p>${planDraft.opportunity || "Note where opportunity may be forming based on cost, value, and what people are repeatedly trying to attain, protect, improve, or resolve."}</p>
       </div>
     `;
@@ -1866,7 +1866,7 @@
         <div class="plain-list">${officialMarkup}</div>
       </section>
       <section class="saved-block plan-page-block plan-page-block--fullwidth">
-        <p class="section-kicker">Current Focus</p>
+        <p class="section-kicker">Quiz Results Summary</p>
         <div class="plain-list">${currentFocusMarkup}</div>
       </section>
       <section class="saved-block plan-page-block plan-page-block--fullwidth">

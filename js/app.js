@@ -1882,7 +1882,6 @@
   function renderFounderFileField(label, field, value, helper) {
     return `
       <label class="field plan-draft-field">
-        <span>${label}</span>
         <textarea data-plan-field="${field}" placeholder="${helper}">${value}</textarea>
       </label>
     `;

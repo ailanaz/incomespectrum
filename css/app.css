@@ -217,6 +217,14 @@ a {
   color: var(--app-green);
 }
 
+.plan-page-block .section-kicker {
+  color: var(--app-green);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .field input,
 .field select,
 .field textarea {

@@ -1767,7 +1767,7 @@
     const founderIdentity = planDraft.founderIdentity || "Founder";
     const founderIdentityDescription = founderIdentityDescriptions[founderIdentity] || founderIdentityDescriptions.Founder;
     const founderIdentityItems = [
-      `<label class="field"><span>Founder Identity</span><select data-founder-identity-select>${founderIdentityOptions.map((option) => `<option value="${option}" ${option === founderIdentity ? "selected" : ""}>${option}</option>`).join("")}</select></label>`,
+      `<label class="field founder-identity-field"><span>Founder Identity</span><select data-founder-identity-select>${founderIdentityOptions.map((option) => `<option value="${option}" ${option === founderIdentity ? "selected" : ""}>${option}</option>`).join("")}</select></label>`,
       `<div class="mini-card"><strong>What this identity means</strong><p>${founderIdentityDescription}</p></div>`,
       `<div class="mini-card"><strong>Selected State</strong><p>${appState.selectedState}</p></div>`,
       `<div class="mini-card"><strong>Starting Goal</strong><p>${goalLabel}</p></div>`

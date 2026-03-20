@@ -213,6 +213,10 @@ a {
   letter-spacing: 0.08em;
 }
 
+.founder-identity-field span {
+  color: var(--app-green);
+}
+
 .field input,
 .field select,
 .field textarea {

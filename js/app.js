@@ -1838,7 +1838,6 @@
               <p>${item.description || ""}</p>
               <div class="inline-actions">
                 <button class="utility-link" data-action="open-item" data-id="${item.id}" data-type="article">Open Article</button>
-                <button class="utility-link ${isSaved(item.id) ? "utility-link--active" : ""}" data-action="save-item" data-id="${item.id}">${isSaved(item.id) ? "Saved" : "Save"}</button>
               </div>
             </div>
           `).join("")}

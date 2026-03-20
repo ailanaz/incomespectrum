@@ -2472,7 +2472,7 @@
     steps.push("Take the quiz to understand what people pay for.");
     steps.push("Save the items you reviewed in your personal Founder File.");
     steps.push("Add notes about what matters to you.");
-    steps.push("Find and save Official Information relevant to your Founder goals.");
+    steps.push("Find and save opportunities, resources, Official Information, and more that are relevant to your Founder goals.");
     return steps;
   }
 

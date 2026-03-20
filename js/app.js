@@ -666,14 +666,14 @@
       },
       {
         id: "founderType",
-        prompt: "Based on what you are observing and the kind of work you may be moving toward, which founder type feels closest right now?",
+        prompt: "What type of founder are you?",
         options: [
-          { value: "Entrepreneur", label: "Entrepreneur: building from a new idea, opportunity, or broader business concept" },
-          { value: "Solopreneur", label: "Solopreneur: building something you expect to run mainly on your own" },
-          { value: "Small Business Owner", label: "Small Business Owner: building or formalizing an operating business with staying power" },
-          { value: "Self-Employed Professional", label: "Self-Employed Professional: building around your own skill, service, or expertise" },
-          { value: "Owner-Operator", label: "Owner-Operator: building around a direct service, route, local operation, or hands-on business" },
-          { value: "Founder", label: "Founder: still sorting this out and not ready to narrow it yet" }
+          { value: "Entrepreneur", label: "Entrepreneur: you are building, growing, or shaping a business from an idea, opportunity, or broader vision" },
+          { value: "Solopreneur", label: "Solopreneur: you are building or running something mostly on your own, even if you use tools or outside help" },
+          { value: "Small Business Owner", label: "Small Business Owner: you own or are building a business meant to operate as an established business" },
+          { value: "Self-Employed Professional", label: "Self-Employed Professional: you work for yourself by offering your own skill, service, trade, or expertise" },
+          { value: "Owner-Operator", label: "Owner-Operator: you own and directly run the work, service, route, or operation yourself" },
+          { value: "Founder", label: "Founder: you are still sorting this out, or more than one of these may fit you right now" }
         ]
       }
     ]

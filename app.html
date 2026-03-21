@@ -472,10 +472,10 @@
         const isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
         banner.classList.remove('hidden');
         if (isSafari) {
-          text.textContent = 'iPhone: tap the Share button below, then tap "Add to Home Screen".';
+          text.textContent = 'To save to your Home Screen: tap the Share button, then tap "Add to Home Screen".';
           btn.style.display = 'none';
         } else {
-          text.textContent = 'To save on Home Screen, open app in Safari.';
+          text.textContent = 'Saving to Home Screen requires Safari. Open this app in Safari first, then use Share > Add to Home Screen.';
           btn.textContent = 'Copy Link';
           btn.addEventListener('click', () => {
             navigator.clipboard.writeText(window.location.href).then(() => {

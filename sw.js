@@ -1,4 +1,4 @@
-const CACHE_NAME = 'income-spectrum-v2';
+const CACHE_NAME = 'income-spectrum-v3';
 
 const APP_SHELL = [
   '/app.html',

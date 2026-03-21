@@ -1542,7 +1542,7 @@
         delete heroStateButton.dataset.state;
       }
     } else {
-      document.getElementById("heroStateValue").textContent = "Browse All States";
+      document.getElementById("heroStateValue").textContent = "All States Official Info";
       if (heroStateButton) {
         heroStateButton.dataset.action = "open-all-states";
         delete heroStateButton.dataset.state;

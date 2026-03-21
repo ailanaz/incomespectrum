@@ -468,11 +468,19 @@
 
       // iOS Safari - show manual instructions
       const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-      if (isIOS && isSafari) {
+      if (isIOS) {
+        const isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
         banner.classList.remove('hidden');
-        text.textContent = 'Add to your home screen: tap the Share button then "Add to Home Screen".';
-        btn.style.display = 'none';
+        if (isSafari) {
+          text.textContent = 'Add to your home screen: tap the Share button then "Add to Home Screen".';
+          btn.style.display = 'none';
+        } else {
+          text.textContent = 'To add this app to your home screen, open it in Safari first.';
+          btn.textContent = 'Open in Safari';
+          btn.addEventListener('click', () => {
+            window.location.href = 'x-web-search://' + window.location.href;
+          });
+        }
       }
     })();
   </script>

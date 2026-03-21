@@ -1944,7 +1944,10 @@ button.field-toggle::after {
   }
 
   .app-topbar__actions {
-    display: none;
+    display: none !important;
+  }
+  #topPlannerButton {
+    display: none !important;
   }
 
   .app-mode-badge {

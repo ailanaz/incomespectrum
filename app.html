@@ -475,7 +475,7 @@
           text.textContent = 'iPhone: tap the Share button below, then tap "Add to Home Screen".';
           btn.style.display = 'none';
         } else {
-          text.textContent = 'iPhone only: this must be opened in Safari to add to your home screen. Copy the link and paste it into Safari, then tap Share > Add to Home Screen.';
+          text.textContent = 'To save on Home Screen, open app in Safari.';
           btn.textContent = 'Copy Link';
           btn.addEventListener('click', () => {
             navigator.clipboard.writeText(window.location.href).then(() => {

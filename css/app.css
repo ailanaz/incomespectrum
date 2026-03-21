@@ -1944,20 +1944,12 @@ button.field-toggle::after {
   }
 
   .app-topbar__actions {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: none;
   }
 
   .app-mode-badge {
     width: 100%;
     text-align: center;
-  }
-
-  .app-icon-btn {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
   }
 
   .view {

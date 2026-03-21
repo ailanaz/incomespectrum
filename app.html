@@ -44,6 +44,13 @@
   <div id="offlineBanner" class="offline-banner" role="status" aria-live="polite">
     You are offline. Browsing and your Founder File are available. Sign-in and outbound links require a connection.
   </div>
+  <div id="installBanner" class="install-banner hidden" role="status">
+    <span id="installBannerText">Add Income Spectrum to your home screen for quick access.</span>
+    <div class="install-banner__actions">
+      <button class="install-banner__btn" id="installBtn">Add to Home Screen</button>
+      <button class="install-banner__dismiss" id="installDismiss">&#x2715;</button>
+    </div>
+  </div>
   <div class="app-shell">
     <section class="gate-screen active" id="openingScreen" data-screen="opening">
       <div class="gate-panel">
@@ -425,6 +432,48 @@
       window.addEventListener('online', update);
       window.addEventListener('offline', update);
       update();
+    })();
+  </script>
+  <script>
+    (function () {
+      const banner  = document.getElementById('installBanner');
+      const btn     = document.getElementById('installBtn');
+      const dismiss = document.getElementById('installDismiss');
+      const text    = document.getElementById('installBannerText');
+
+      // Don't show if already installed (standalone mode)
+      if (window.matchMedia('(display-mode: standalone)').matches) return;
+      // Don't show if dismissed this session
+      if (sessionStorage.getItem('installDismissed')) return;
+
+      dismiss.addEventListener('click', () => {
+        banner.classList.add('hidden');
+        sessionStorage.setItem('installDismissed', '1');
+      });
+
+      // Android / Chrome - use native install prompt
+      let deferredPrompt = null;
+      window.addEventListener('beforeinstallprompt', e => {
+        e.preventDefault();
+        deferredPrompt = e;
+        banner.classList.remove('hidden');
+        btn.addEventListener('click', () => {
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then(() => {
+            banner.classList.add('hidden');
+            deferredPrompt = null;
+          });
+        });
+      });
+
+      // iOS Safari - show manual instructions
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+      if (isIOS && isSafari) {
+        banner.classList.remove('hidden');
+        text.textContent = 'Add to your home screen: tap the Share button then "Add to Home Screen".';
+        btn.style.display = 'none';
+      }
     })();
   </script>
 </body>

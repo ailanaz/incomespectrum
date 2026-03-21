@@ -427,6 +427,50 @@ button.field-toggle::after {
   display: block;
 }
 
+.install-banner {
+  width: 100%;
+  background: var(--app-navy);
+  color: #fffdf6;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  z-index: 20;
+}
+.install-banner.hidden {
+  display: none;
+}
+.install-banner__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.install-banner__btn {
+  background: var(--app-gold);
+  color: var(--app-navy);
+  border: 0;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.install-banner__dismiss {
+  background: transparent;
+  border: 0;
+  color: rgba(255,253,246,0.6);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 4px;
+  line-height: 1;
+}
+
 .app-topbar {
   position: relative;
   z-index: 15;
@@ -1739,9 +1783,10 @@ button.field-toggle::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--app-green);
+  background: #3a9e52;
   border: 0;
-  border-right: 1px solid rgba(20, 37, 61, 0.10);
+  border-radius: 0;
+  border-right: 2px solid rgba(255, 253, 246, 0.25);
   color: #fffdf6;
   font-weight: 700;
   padding: 18px 8px;

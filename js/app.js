@@ -2940,91 +2940,72 @@
   function renderQuizResult(result, includeSaveButton) {
     return `
       <div class="result-group">
+
         <h3>${result.planTitle}</h3>
-        <p>${result.explanation}</p>
-        <div class="detail-section">
-          <h4>Founder Identity</h4>
-          <p><strong>${result.founderIdentity}</strong></p>
-          <p>${result.founderIdentityDescription}</p>
+        <p>${result.startingPointSummary}</p>
+
+        <div class="quiz-arc">
+
+          <div class="quiz-arc__step">
+            <p class="quiz-arc__label">What people are paying for and what they are paying with</p>
+            <p>${result.understandingSummary}</p>
+          </div>
+
+          <div class="quiz-arc__step">
+            <p class="quiz-arc__label">What that looks like as culture</p>
+            <p>${result.cultureSummary}</p>
+          </div>
+
+          <div class="quiz-arc__step">
+            <p class="quiz-arc__label">How that translates to opportunity</p>
+            <p>${result.opportunitySummary}</p>
+            <p><strong>${result.incomeIdeaTitle}</strong></p>
+            <p>${result.incomeIdeaSummary}</p>
+          </div>
+
+          <div class="quiz-arc__step">
+            <p class="quiz-arc__label">What that looks like for me</p>
+            <p><strong>${result.founderIdentity}</strong> - ${result.founderIdentityDescription}</p>
+            <p>State: ${appState.selectedState}</p>
+          </div>
+
+          ${result.fieldSuggestion && result.fieldSuggestion.industries && result.fieldSuggestion.industries.length ? `
+          <div class="quiz-arc__step">
+            <p class="quiz-arc__label">What might best fit me</p>
+            <p>Based on what you described about how you work and what you naturally offer, these fields came up as possible starting points.</p>
+            <ul class="quiz-industry-list">
+              ${result.fieldSuggestion.links.map(function (item) {
+                return `<li><a href="${item.href}" class="text-link" target="_blank" rel="noopener noreferrer">${item.label} &rarr;</a></li>`;
+              }).join("")}
+            </ul>
+          </div>` : ""}
+
         </div>
+
         <div class="detail-section">
-          <h4>State</h4>
-          <p>${appState.selectedState}</p>
-        </div>
-        <div class="detail-section">
-          <h4>Focus</h4>
-          <p><strong>${result.pathLabel}</strong></p>
-          <p>${result.pathSummary}</p>
-        </div>
-        <div class="detail-section">
-          <h4>File</h4>
-          <p>${result.planSummary}</p>
-        </div>
-        <div class="detail-section">
-          <h4>What is driving the behavior</h4>
-          <p>${result.motivator}</p>
-        </div>
-        <div class="detail-section">
-          <h4>What people are paying with</h4>
-          <p>${result.payment}</p>
-        </div>
-        <div class="detail-section">
-          <h4>What the culture pattern is</h4>
-          <p>${result.culture}</p>
-        </div>
-        <div class="detail-section">
-          <h4>Where opportunity starts</h4>
-          <p>${result.direction}</p>
-        </div>
-        ${result.fieldSuggestion && result.fieldSuggestion.industries && result.fieldSuggestion.industries.length ? `
-        <div class="detail-section">
-          <h4>Industries that might be a good fit</h4>
-          <p>Based on what you described, these fields came up as possible matches. They are starting points for browsing, not conclusions.</p>
-          <ul class="quiz-industry-list">
-            ${result.fieldSuggestion.links.map(function (item) {
-              return `<li><a href="${item.href}" class="text-link" target="_blank" rel="noopener noreferrer">${item.label} &rarr;</a></li>`;
-            }).join("")}
-          </ul>
-        </div>` : ""}
-        <div class="detail-section">
-          <h4>Income Idea</h4>
-          <p><strong>${result.incomeIdeaTitle}</strong></p>
-          <p>${result.incomeIdeaSummary}</p>
-        </div>
-        <div class="detail-section">
-          <h4>Knowledge</h4>
+          <h4>Building the file from here</h4>
           <p>${result.knowledgeSummary}</p>
-        </div>
-        <div class="detail-section">
-          <h4>Supportive Services</h4>
           <p>${result.supportSummary}</p>
-        </div>
-        <div class="detail-section">
-          <h4>Official Needs</h4>
           <p>${result.officialSummary}</p>
         </div>
+
         <div class="detail-section">
-          <h4>How to use this plan</h4>
-          <ul class="detail-links">
-            ${result.planSteps.map((step) => `<li>${step}</li>`).join("")}
-          </ul>
-        </div>
-        <div class="detail-section">
-          <h4>File Inputs: Income Opportunities</h4>
+          <h4>Income Opportunities</h4>
           ${renderRelatedLinks(result.suggestedIncomeIds, "income")}
         </div>
         <div class="detail-section">
-          <h4>File Inputs: Knowledge Resources</h4>
+          <h4>Knowledge Resources</h4>
           ${renderRelatedLinks(result.suggestedTrainingIds, "training")}
         </div>
         <div class="detail-section">
-          <h4>File Inputs: Supportive Services</h4>
+          <h4>Supportive Services</h4>
           ${renderRelatedLinks(result.suggestedServiceIds, "services")}
         </div>
         <div class="detail-section">
-          <h4>File Inputs: Official Information</h4>
+          <h4>Official Information</h4>
           ${renderRelatedLinks(result.suggestedOfficialIds, "official")}
         </div>
+
         ${includeSaveButton ? `<div class="inline-actions"><button class="app-btn app-btn--primary" data-action="save-quiz-result">${appState.isSignedIn ? "Build File" : "Sign Up to Build File"}</button></div>` : ""}
       </div>
     `;

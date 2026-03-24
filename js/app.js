@@ -1723,7 +1723,7 @@
 
   function renderFilterSelector(section, activeFilter) {
     const filtersBySection = {
-      income: ["all", "service roles", "product sales", "ownership & acquisition", "business programs"],
+      income: ["all", "service roles", "auto trades", "beauty & wellness", "counseling & coaching", "product sales", "ownership & acquisition", "business programs"],
       training: [
         { value: "all", label: "All" },
         { value: "entrepreneurship & ownership", label: "Entrepreneurship & Ownership" },

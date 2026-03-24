@@ -42,6 +42,26 @@
     "Need Official Clarity": "Small Business Owner",
     "Still Early": "Founder"
   };
+  const businessDocTypes = [
+    { id: "businessPlan", label: "Business Plan", helper: "Your self-guided plan, outline, or a link to your document.", category: "Foundation" },
+    { id: "ein", label: "EIN (Employer Identification Number)", helper: "Your IRS-issued EIN. Note the number, filing date, or link to your confirmation letter.", category: "Foundation" },
+    { id: "stateRegistration", label: "State Business Registration", helper: "LLC, corporation, DBA, or sole proprietor filing. Note details or add a link.", category: "Foundation" },
+    { id: "operatingAgreement", label: "Operating Agreement or DBA", helper: "Operating agreement, DBA registration, or partnership agreement if applicable.", category: "Foundation" },
+    { id: "bankAccount", label: "Business Bank Account", helper: "Your business banking institution, account type, and setup status.", category: "Financial" },
+    { id: "bookkeeping", label: "Bookkeeping Records", helper: "Where your books are kept. Link to your spreadsheet, software, or accountant contact.", category: "Financial" },
+    { id: "accountingSoftware", label: "Accounting Software", helper: "The tool you use - QuickBooks, Wave, FreshBooks, etc. Add a link or notes.", category: "Financial" },
+    { id: "contracts", label: "Contracts and Agreements", helper: "Service agreements, client contracts, or templates. Link to where they are stored.", category: "Operations" },
+    { id: "licensesPermits", label: "Licenses and Permits", helper: "Business licenses, local permits, or professional certifications needed to operate.", category: "Operations" },
+    { id: "insurance", label: "Business Insurance", helper: "Liability coverage or other policies. Note provider or link to your policy documents.", category: "Operations" }
+  ];
+  const docStatusOptions = [
+    { value: "", label: "Set status" },
+    { value: "not-started", label: "Not started" },
+    { value: "in-progress", label: "In progress" },
+    { value: "on-file", label: "On file" },
+    { value: "complete", label: "Complete" },
+    { value: "not-applicable", label: "Not applicable" }
+  ];
   const workPreferences = [
     { value: "online", label: "Online" },
     { value: "local", label: "Local" },
@@ -694,6 +714,7 @@
     compareIds: [],
     notes: {},
     planDraft: {},
+    businessDocs: {},
     recentlyViewed: [],
     recentSearches: [],
     progress: {
@@ -762,6 +783,7 @@
   function bindEvents() {
     document.body.addEventListener("click", handleClick);
     document.body.addEventListener("input", handleInput);
+    document.body.addEventListener("change", handleChange);
     const globalSearchInput = document.getElementById("globalSearchInput");
     if (globalSearchInput) globalSearchInput.addEventListener("input", renderSearchResults);
     document.getElementById("filterSelect").addEventListener("change", (event) => {
@@ -793,8 +815,35 @@
       appState.planDraft[planField.dataset.planField] = planField.value;
       saveState();
     }
+    const docField = event.target.closest("[data-doc-id][data-doc-field]");
+    if (docField && appState.isSignedIn) {
+      const docId = docField.dataset.docId;
+      const field = docField.dataset.docField;
+      if (!appState.businessDocs) appState.businessDocs = {};
+      if (!appState.businessDocs[docId]) appState.businessDocs[docId] = {};
+      appState.businessDocs[docId][field] = docField.value;
+      saveState();
+    }
     if (["signupName", "signupEmail", "signupPassword"].includes(event.target.id)) {
       updateSignupButtonState();
+    }
+  }
+
+  function handleChange(event) {
+    const docField = event.target.closest("[data-doc-id][data-doc-field]");
+    if (docField && appState.isSignedIn) {
+      const docId = docField.dataset.docId;
+      const field = docField.dataset.docField;
+      if (!appState.businessDocs) appState.businessDocs = {};
+      if (!appState.businessDocs[docId]) appState.businessDocs[docId] = {};
+      appState.businessDocs[docId][field] = docField.value;
+      saveState();
+      if (field === "status") {
+        const item = docField.closest(".doc-item");
+        if (item) {
+          item.className = "doc-item" + (docField.value ? " doc-item--" + docField.value : "");
+        }
+      }
     }
   }
 
@@ -1877,6 +1926,7 @@
         <div class="quick-links-row">
           <p class="helper-copy quick-links-row__label">Quick Links:</p>
           <button class="utility-link-pill" data-action="open-notes">Notes</button>
+          <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileDocsSection">Documents</button>
           <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileNextStepsSection">Next Steps</button>
         </div>
       </section>
@@ -1921,6 +1971,11 @@
           <div class="plain-list">${officialMarkup}</div>
         </section>
       </div>
+      <section class="saved-block plan-page-block plan-page-block--fullwidth" id="founderFileDocsSection">
+        <p class="section-kicker">Business Documents</p>
+        <p class="helper-copy" style="margin-top:0">Track your key documents from formation to operations. Set a status, add notes, and link to where each one lives.</p>
+        <div class="doc-modules">${renderBusinessDocsModule()}</div>
+      </section>
       <section class="saved-block plan-page-block plan-page-block--fullwidth">
         <p class="section-kicker">Quiz Results Summary</p>
         <div class="plain-list">${currentFocusMarkup}</div>
@@ -1941,6 +1996,40 @@
         <textarea data-plan-field="${field}" placeholder="${helper}">${value}</textarea>
       </label>
     `;
+  }
+
+  function renderBusinessDocsModule() {
+    const docs = appState.businessDocs || {};
+    const categories = ["Foundation", "Financial", "Operations"];
+    return categories.map(function (category) {
+      const items = businessDocTypes.filter(function (d) { return d.category === category; });
+      const itemsMarkup = items.map(function (doc) {
+        const docData = docs[doc.id] || {};
+        const status = docData.status || "";
+        const note = docData.note || "";
+        const statusOptions = docStatusOptions.map(function (opt) {
+          return `<option value="${opt.value}"${opt.value === status ? " selected" : ""}>${opt.label}</option>`;
+        }).join("");
+        const statusClass = status ? " doc-item--" + status : "";
+        return `
+          <div class="doc-item${statusClass}">
+            <div class="doc-item__header">
+              <span class="doc-item__label">${doc.label}</span>
+              <select class="doc-item__status" data-doc-id="${doc.id}" data-doc-field="status">${statusOptions}</select>
+            </div>
+            <label class="field doc-item__note-field">
+              <textarea data-doc-id="${doc.id}" data-doc-field="note" placeholder="${doc.helper}">${note}</textarea>
+            </label>
+          </div>
+        `;
+      }).join("");
+      return `
+        <div class="doc-category">
+          <p class="doc-category__label">${category}</p>
+          <div class="doc-category__items">${itemsMarkup}</div>
+        </div>
+      `;
+    }).join("");
   }
 
   function buildSavedGroupMarkup(type, heading) {

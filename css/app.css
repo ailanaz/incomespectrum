@@ -640,6 +640,116 @@ button.field-toggle::after {
   color: var(--app-text-soft);
 }
 
+/* Business Documents module */
+.doc-modules {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.doc-category__label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--app-green);
+  margin: 0 0 10px;
+}
+
+.doc-category__items {
+  display: grid;
+  gap: 10px;
+}
+
+.doc-item {
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: 10px;
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+  transition: border-color 0.15s;
+}
+
+.doc-item--complete {
+  border-color: rgba(25, 120, 46, 0.4);
+}
+
+.doc-item--on-file {
+  border-color: rgba(27, 72, 216, 0.3);
+}
+
+.doc-item--in-progress {
+  border-color: rgba(180, 100, 0, 0.35);
+}
+
+.doc-item__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.doc-item__label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--app-text);
+}
+
+.doc-item__status {
+  font-size: 0.75rem;
+  padding: 3px 7px;
+  border-radius: 6px;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface-alt);
+  color: var(--app-text-soft);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.doc-item--complete .doc-item__status {
+  background: rgba(25, 120, 46, 0.08);
+  color: var(--app-green);
+  border-color: rgba(25, 120, 46, 0.3);
+}
+
+.doc-item--on-file .doc-item__status {
+  background: rgba(27, 72, 216, 0.07);
+  color: var(--app-blue);
+  border-color: rgba(27, 72, 216, 0.25);
+}
+
+.doc-item--in-progress .doc-item__status {
+  background: rgba(180, 100, 0, 0.08);
+  color: #b46400;
+  border-color: rgba(180, 100, 0, 0.3);
+}
+
+.doc-item__note-field {
+  margin: 0;
+}
+
+.doc-item__note-field textarea {
+  font-size: 0.82rem;
+  min-height: 54px;
+  resize: vertical;
+  background: var(--app-surface-alt);
+}
+
+@media (max-width: 900px) {
+  .doc-modules {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .doc-modules {
+    grid-template-columns: 1fr;
+  }
+}
+
 .hero-card {
   display: flex;
   justify-content: space-between;

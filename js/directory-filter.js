@@ -26,6 +26,17 @@
     input.addEventListener("input", function () {
       runFilter(this.value.trim().toLowerCase());
     });
+
+    // If arriving from homepage search, pre-fill and filter automatically
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var incoming = params.get("q");
+      if (incoming && incoming.trim()) {
+        input.value = incoming.trim();
+        runFilter(incoming.trim().toLowerCase());
+        input.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    } catch (e) {}
   }
 
   function runFilter(query) {

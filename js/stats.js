@@ -4,7 +4,7 @@
 
 (function () {
   var STATS = {
-    resourceCount: 225
+    resourceCount: 336
   };
 
   document.addEventListener('DOMContentLoaded', function () {

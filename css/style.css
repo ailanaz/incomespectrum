@@ -1764,6 +1764,46 @@ body::before {
   display: inline-block;
 }
 
+/* --- Directory search bar --- */
+.dir-search-bar {
+  position: relative;
+  margin-top: 22px;
+  max-width: 480px;
+}
+.dir-search-input {
+  width: 100%;
+  padding: 10px 40px 10px 16px;
+  border: 1.5px solid rgba(0,0,0,0.13);
+  border-radius: var(--r-full);
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text-900);
+  background: rgba(255,255,255,0.92);
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.dir-search-input:focus {
+  border-color: var(--c-income);
+  box-shadow: 0 0 0 3px rgba(22,163,74,0.12);
+}
+.dir-search-input::placeholder { color: var(--text-400); }
+.dir-search-icon {
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-400);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+.dir-no-results {
+  padding: 28px 0 8px;
+  color: var(--text-500);
+  font-size: 15px;
+}
+
 /* --- Page jump nav (directory pages) --- */
 .page-jumpnav {
   display: flex;

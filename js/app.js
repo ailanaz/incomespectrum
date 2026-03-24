@@ -687,6 +687,30 @@
         ]
       },
       {
+        id: "fieldInterest",
+        prompt: "Which of these areas feels most like where you want to work or already have some experience?",
+        options: [
+          { value: "Trades and hands-on services", label: "Trades and hands-on services - auto, home repair, maintenance, or skilled physical work" },
+          { value: "Health, beauty, and personal care", label: "Health, beauty, and personal care - massage, skincare, hair, wellness, or physical care" },
+          { value: "Coaching, counseling, and support", label: "Coaching, counseling, and support - life coaching, business coaching, therapy, or mentorship" },
+          { value: "Creative and digital work", label: "Creative and digital work - content, design, marketing, teaching, or technology" },
+          { value: "Products and resale", label: "Products and resale - physical goods, ecommerce, handmade items, or resale" },
+          { value: "Business and professional services", label: "Business and professional services - consulting, bookkeeping, admin, or professional support" },
+          { value: "No clear direction yet", label: "I have not landed on a direction yet" }
+        ]
+      },
+      {
+        id: "workStyle",
+        prompt: "How do you most want to deliver your work?",
+        options: [
+          { value: "In person with clients", label: "Directly with clients in person or at their location" },
+          { value: "From my own space", label: "From my own space - a shop, studio, salon, or office" },
+          { value: "Mobile or on-site", label: "Mobile or on-site at different client locations" },
+          { value: "Online or remotely", label: "Online or remotely, from wherever I work" },
+          { value: "Through products", label: "Through products I make, source, or resell" }
+        ]
+      },
+      {
         id: "founderType",
         prompt: "What type of founder are you?",
         options: [
@@ -2943,6 +2967,14 @@
           <h4>Where opportunity starts</h4>
           <p>${result.direction}</p>
         </div>
+        ${result.fieldSuggestion && result.fieldSuggestion.label !== "Still exploring" ? `
+        <div class="detail-section">
+          <h4>Possible Field of Interest</h4>
+          <p><strong>${result.fieldSuggestion.label}</strong></p>
+          <p>${result.fieldSuggestion.summary}</p>
+          <p>Delivery preference: ${result.workStyle || "not specified"}</p>
+          <a href="${result.fieldSuggestion.link}" class="text-link" target="_blank" rel="noopener noreferrer">Browse related resources &rarr;</a>
+        </div>` : ""}
         <div class="detail-section">
           <h4>Income Idea</h4>
           <p><strong>${result.incomeIdeaTitle}</strong></p>
@@ -3119,7 +3151,48 @@
     const action = appState.quizAnswers.action || "Get It Done";
     const value = appState.quizAnswers.value || "Lower the cost";
     const startingMaterial = appState.quizAnswers.startingMaterial || "Still Early";
+    const fieldInterest = appState.quizAnswers.fieldInterest || "No clear direction yet";
+    const workStyle = appState.quizAnswers.workStyle || "In person with clients";
     const founderIdentity = appState.quizAnswers.founderType || founderIdentitySuggestions[startingMaterial] || "Founder";
+
+    const fieldSuggestionMap = {
+      "Trades and hands-on services": {
+        label: "Auto trades and home services",
+        summary: "Your interest in trades and hands-on work points toward the auto trades, home services, and skilled repair space. These are fields where technical skill translates directly into a service business.",
+        link: "https://incomespectrum.com/income-options.html?q=auto"
+      },
+      "Health, beauty, and personal care": {
+        label: "Beauty and wellness",
+        summary: "Your interest in health, beauty, and personal care points toward licensed service businesses in massage therapy, esthetics, cosmetology, barber services, and wellness.",
+        link: "https://incomespectrum.com/income-options.html?q=beauty"
+      },
+      "Coaching, counseling, and support": {
+        label: "Coaching and counseling",
+        summary: "Your interest in coaching, counseling, and support points toward private practice, independent coaching, and wellness services built on your knowledge and experience with people.",
+        link: "https://incomespectrum.com/income-options.html?q=coaching"
+      },
+      "Creative and digital work": {
+        label: "Digital and creative services",
+        summary: "Your interest in creative and digital work points toward service-based or product-based income built around content, design, education, and technology.",
+        link: "https://incomespectrum.com/income-options.html?q=digital"
+      },
+      "Products and resale": {
+        label: "Products and ecommerce",
+        summary: "Your interest in products and resale points toward ecommerce, physical goods, print-on-demand, handmade items, and resale models.",
+        link: "https://incomespectrum.com/income-options.html?q=product"
+      },
+      "Business and professional services": {
+        label: "Business and professional services",
+        summary: "Your interest in business and professional services points toward consulting, bookkeeping, administrative support, and other knowledge-based service businesses.",
+        link: "https://incomespectrum.com/income-options.html?q=consulting"
+      },
+      "No clear direction yet": {
+        label: "Still exploring",
+        summary: "You have not landed on a direction yet. The Income Spectrum directory is built for exactly this stage - browse by interest or start with what feels familiar.",
+        link: "https://incomespectrum.com/income-options.html"
+      }
+    };
+    const fieldSuggestion = fieldSuggestionMap[fieldInterest] || fieldSuggestionMap["No clear direction yet"];
 
     const resultMap = {
       "Survival and Stability": {
@@ -3288,6 +3361,8 @@
       planSteps,
       proofSummary,
       direction: directionText,
+      fieldSuggestion,
+      workStyle,
       suggestedIncomeIds: result.income,
       suggestedTrainingIds: result.training,
       suggestedServiceIds: result.services,

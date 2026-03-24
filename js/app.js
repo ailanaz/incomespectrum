@@ -42,12 +42,14 @@
     "Need Official Clarity": "Small Business Owner",
     "Still Early": "Founder"
   };
+  const FOUNDER_FORMS_KEY = "income-spectrum-founder-forms-v1";
+  const FORMS_MAX_BYTES = 1048576; // 1MB per file
   const businessDocTypes = [
     { id: "businessPlan", label: "Business Plan", helper: "Your self-guided plan, outline, or a link to your document.", category: "Foundation" },
     { id: "ein", label: "EIN (Employer Identification Number)", helper: "Your IRS-issued EIN. Note the number, filing date, or link to your confirmation letter.", category: "Foundation" },
     { id: "stateRegistration", label: "State Business Registration", helper: "LLC, corporation, DBA, or sole proprietor filing. Note details or add a link.", category: "Foundation" },
     { id: "operatingAgreement", label: "Operating Agreement or DBA", helper: "Operating agreement, DBA registration, or partnership agreement if applicable.", category: "Foundation" },
-    { id: "bankAccount", label: "Business Bank Account", helper: "Your business banking institution, account type, and setup status.", category: "Financial" },
+    { id: "otherForms", label: "Other Forms", helper: "Upload completed forms, filings, or copies. PDF, Word, or image files up to 1MB each.", category: "Foundation", isUpload: true },
     { id: "bookkeeping", label: "Bookkeeping Records", helper: "Where your books are kept. Link to your spreadsheet, software, or accountant contact.", category: "Financial" },
     { id: "accountingSoftware", label: "Accounting Software", helper: "The tool you use - QuickBooks, Wave, FreshBooks, etc. Add a link or notes.", category: "Financial" },
     { id: "contracts", label: "Contracts and Agreements", helper: "Service agreements, client contracts, or templates. Link to where they are stored.", category: "Operations" },
@@ -845,6 +847,19 @@
         }
       }
     }
+    if (event.target.dataset.action === "attach-founder-form" && appState.isSignedIn) {
+      const files = Array.from(event.target.files || []);
+      const errEl = document.getElementById("docUploadError");
+      if (errEl) { errEl.hidden = true; errEl.textContent = ""; }
+      files.forEach(function (file) {
+        if (file.size > FORMS_MAX_BYTES) {
+          showDocUploadError(file.name + " is too large. Files must be 1MB or under.");
+          return;
+        }
+        addFounderForm(file);
+      });
+      event.target.value = "";
+    }
   }
 
   function handleClick(event) {
@@ -970,6 +985,8 @@
           renderSaveSignupPrompt();
           openOverlay("progressOverlay", { kind: "save-signup" });
         }
+      } else if (action === "remove-founder-form") {
+        removeFounderForm(actionNode.dataset.formId);
       } else if (action === "delete-founder-note") {
         deleteFounderNote(actionNode.dataset.id);
       } else if (action === "scroll-founder-file-section") {
@@ -1998,12 +2015,72 @@
     `;
   }
 
+  function getFounderForms() {
+    try { return JSON.parse(localStorage.getItem(FOUNDER_FORMS_KEY) || "[]"); } catch (e) { return []; }
+  }
+
+  function saveFounderForms(files) {
+    try { localStorage.setItem(FOUNDER_FORMS_KEY, JSON.stringify(files)); } catch (e) {
+      showDocUploadError("Storage limit reached. Remove existing files or use a link instead.");
+    }
+  }
+
+  function showDocUploadError(msg) {
+    const errEl = document.getElementById("docUploadError");
+    if (errEl) { errEl.textContent = msg; errEl.hidden = false; }
+  }
+
+  function addFounderForm(file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const existing = getFounderForms();
+      existing.push({ id: "form-" + Date.now(), name: file.name, type: file.type, size: file.size, data: e.target.result, addedAt: new Date().toISOString() });
+      saveFounderForms(existing);
+      renderSaved();
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function removeFounderForm(formId) {
+    saveFounderForms(getFounderForms().filter(function (f) { return f.id !== formId; }));
+    renderSaved();
+  }
+
+  function buildOtherFormsMarkup() {
+    const files = getFounderForms();
+    const fileListMarkup = files.length
+      ? files.map(function (f) {
+          const kb = Math.round(f.size / 1024);
+          return `<div class="doc-file-row">
+            <a class="doc-file-name" href="${f.data}" download="${f.name}" title="Download ${f.name}">${f.name}</a>
+            <span class="doc-file-size">${kb}KB</span>
+            <button class="doc-file-remove text-link" data-action="remove-founder-form" data-form-id="${f.id}" aria-label="Remove ${f.name}">Remove</button>
+          </div>`;
+        }).join("")
+      : `<p class="doc-file-empty">No files attached yet.</p>`;
+    return `
+      <div class="doc-item doc-item--upload">
+        <div class="doc-item__header">
+          <span class="doc-item__label">Other Forms</span>
+        </div>
+        <p class="doc-item__helper">Upload completed forms, filings, or copies. PDF, Word, or image files up to 1MB each. Files are stored in your browser only.</p>
+        <label class="doc-upload-label">
+          <input type="file" class="doc-file-input" data-action="attach-founder-form" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg" multiple>
+          <span class="doc-upload-btn">Attach files</span>
+        </label>
+        <div id="docUploadError" class="doc-upload-error" hidden></div>
+        <div class="doc-file-list">${fileListMarkup}</div>
+      </div>
+    `;
+  }
+
   function renderBusinessDocsModule() {
     const docs = appState.businessDocs || {};
     const categories = ["Foundation", "Financial", "Operations"];
     return categories.map(function (category) {
       const items = businessDocTypes.filter(function (d) { return d.category === category; });
       const itemsMarkup = items.map(function (doc) {
+        if (doc.isUpload) return buildOtherFormsMarkup();
         const docData = docs[doc.id] || {};
         const status = docData.status || "";
         const note = docData.note || "";

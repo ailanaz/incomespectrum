@@ -738,6 +738,100 @@ button.field-toggle::after {
   background: var(--app-surface-alt);
 }
 
+.doc-item__helper {
+  font-size: 0.8rem;
+  color: var(--app-text-soft);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.doc-upload-label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.doc-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.doc-upload-btn {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--app-green);
+  border: 1px dashed rgba(25, 120, 46, 0.4);
+  border-radius: 6px;
+  padding: 6px 12px;
+  background: rgba(25, 120, 46, 0.05);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.doc-upload-btn:hover {
+  background: rgba(25, 120, 46, 0.1);
+  border-color: rgba(25, 120, 46, 0.65);
+}
+
+.doc-upload-error {
+  font-size: 0.8rem;
+  color: #c0392b;
+  margin: 0;
+}
+
+.doc-file-list {
+  display: grid;
+  gap: 6px;
+}
+
+.doc-file-empty {
+  font-size: 0.8rem;
+  color: var(--app-text-soft);
+  margin: 0;
+}
+
+.doc-file-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+}
+
+.doc-file-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--app-green);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.doc-file-name:hover {
+  text-decoration: underline;
+}
+
+.doc-file-size {
+  font-size: 0.75rem;
+  color: var(--app-text-soft);
+  flex-shrink: 0;
+}
+
+.doc-file-remove {
+  font-size: 0.75rem;
+  color: var(--app-text-soft);
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.doc-file-remove:hover {
+  color: #c0392b;
+}
+
 @media (max-width: 900px) {
   .doc-modules {
     grid-template-columns: 1fr 1fr;

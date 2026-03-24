@@ -1647,12 +1647,13 @@
       ? { ...buildPlanDraft(appState.quizResult), ...appState.planDraft }
       : appState.planDraft;
     const founderIdentity = planDraft.founderIdentity || "Founder";
-    const goalSummary = (planDraft.goals || planDraft.proof || "").trim();
+    const ideaFirstSentence = (planDraft.incomeIdea || "").split(".")[0].trim();
     const quizStatus = appState.quizResult ? "Quiz complete" : "Quiz not started";
+    const businessSummary = ideaFirstSentence ? ideaFirstSentence + "." : quizStatus;
     return `
       <div class="mini-card">
         <p><strong class="founder-space-label">Identity:</strong> <strong>${founderIdentity}</strong></p>
-        <p>${goalSummary || quizStatus}</p>
+        <p>${businessSummary}</p>
       </div>
     `;
   }

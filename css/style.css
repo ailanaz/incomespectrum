@@ -421,8 +421,8 @@ p { margin: 0; }
    ============================================================ */
 /* Trust Bar */
 .trust-bar {
-  background: var(--bg-white);
-  border-bottom: 1px solid var(--border-light, #e8e8e8);
+  background: #f0f7f2;
+  border-bottom: 1px solid #d4eadb;
   padding: 12px 0;
 }
 .trust-badges {

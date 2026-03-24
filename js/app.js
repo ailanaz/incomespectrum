@@ -27,16 +27,16 @@
     "Business Owner"
   ];
   const founderIdentityDescriptions = {
-    Founder: "A broad identity for someone building, shaping, or formalizing something of their own.",
-    Entrepreneur: "Usually someone creating, testing, or growing a business idea, offer, or operating model.",
-    "Small Business Owner": "Usually someone running or building an established business with ongoing operations, customers, and responsibilities.",
-    "Self-Employed": "Usually someone earning through their own direct work, services, or independent operation.",
-    Solopreneur: "Usually someone building and running a business mostly on their own without a larger team structure yet.",
-    "Business Owner": "Usually someone operating a business that may already have systems, customers, and room to grow or change."
+    Entrepreneur: "An individual who identifies a gap in the market and creates a new entity to fill it, characterized by high risk and a focus on innovation and scalability. The goal is to build a system that eventually functions without them, often leading to an acquisition or IPO. \"I am building a machine that solves a problem.\"",
+    Solopreneur: "A business owner who runs their entire operation alone, by choice. While they may use contractors or automation, they have no intention of hiring a traditional full-time staff. The goal is high profitability and personal freedom without the headache of managing people. \"I am the business, and I like it that way.\"",
+    "Small Business Owner": "An individual who owns and manages a business that serves a specific local or niche market, typically with a stable, long-term growth plan and a team of employees. The goal is sustainable income, community impact, and long-term stability. \"I am building a pillar of the local economy.\"",
+    "Self-Employed Professional": "Someone who sells their specific labor, expertise, or craft to multiple clients. They are essentially a business of one where the product is their time and skill. The goal is consistent work and the ability to choose their own projects and hours. \"I am selling my expertise to the highest bidder.\"",
+    "Owner-Operator": "A person who owns a business and is also the primary person performing the core daily labor, common in trucking, franchises, or independent shops. The goal is to own the job and the assets associated with it, rather than working for a boss. \"I own the shop, and I am also behind the counter.\"",
+    Founder: "The person who established the legal entity and original vision of a company. This is a title of origin, not a job description. The goal is to transition from the person with the idea to the leader of the organization. \"I was here on Day One.\""
   };
   const founderIdentitySuggestions = {
     "Own Idea": "Entrepreneur",
-    "Usable Skill": "Self-Employed",
+    "Usable Skill": "Self-Employed Professional",
     "Need Knowledge": "Founder",
     "Need Support": "Solopreneur",
     "Need Official Clarity": "Small Business Owner",
@@ -721,14 +721,14 @@
       },
       {
         id: "founderType",
-        prompt: "What type of founder are you?",
+        prompt: "Which of these best describes how you see yourself?",
         options: [
-          { value: "Entrepreneur", label: "Entrepreneur: you are building, growing, or shaping a business from an idea, opportunity, or broader vision" },
-          { value: "Solopreneur", label: "Solopreneur: you are building or running something mostly on your own, even if you use tools or outside help" },
-          { value: "Small Business Owner", label: "Small Business Owner: you own or are building a business meant to operate as an established business" },
-          { value: "Self-Employed Professional", label: "Self-Employed Professional: you work for yourself by offering your own skill, service, trade, or expertise" },
-          { value: "Owner-Operator", label: "Owner-Operator: you own and directly run the work, service, route, or operation yourself" },
-          { value: "Founder", label: "Founder: you are still sorting this out, or more than one of these may fit you right now" }
+          { value: "Entrepreneur", label: "Entrepreneur - I am building a machine that solves a problem" },
+          { value: "Solopreneur", label: "Solopreneur - I am the business, and I like it that way" },
+          { value: "Small Business Owner", label: "Small Business Owner - I am building a pillar of the local economy" },
+          { value: "Self-Employed Professional", label: "Self-Employed Professional - I am selling my expertise to the highest bidder" },
+          { value: "Owner-Operator", label: "Owner-Operator - I own the shop, and I am also behind the counter" },
+          { value: "Founder", label: "Founder - I was here on Day One" }
         ]
       }
     ]

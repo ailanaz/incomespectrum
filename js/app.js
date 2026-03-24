@@ -687,27 +687,36 @@
         ]
       },
       {
-        id: "fieldInterest",
-        prompt: "Which of these areas feels most like where you want to work or already have some experience?",
+        id: "workFeeling",
+        prompt: "When work feels right to you, what is usually at the center of it?",
         options: [
-          { value: "Trades and hands-on services", label: "Trades and hands-on services - auto, home repair, maintenance, or skilled physical work" },
-          { value: "Health, beauty, and personal care", label: "Health, beauty, and personal care - massage, skincare, hair, wellness, or physical care" },
-          { value: "Coaching, counseling, and support", label: "Coaching, counseling, and support - life coaching, business coaching, therapy, or mentorship" },
-          { value: "Creative and digital work", label: "Creative and digital work - content, design, marketing, teaching, or technology" },
-          { value: "Products and resale", label: "Products and resale - physical goods, ecommerce, handmade items, or resale" },
-          { value: "Business and professional services", label: "Business and professional services - consulting, bookkeeping, admin, or professional support" },
-          { value: "No clear direction yet", label: "I have not landed on a direction yet" }
+          { value: "hands", label: "I am doing something with my hands that makes a visible difference" },
+          { value: "helping", label: "I am helping someone get through something or feel more capable" },
+          { value: "making", label: "I am making or building something that did not exist before" },
+          { value: "organizing", label: "I am organizing, clarifying, or making sense of something messy" },
+          { value: "connecting", label: "I am connecting someone to what they need" }
         ]
       },
       {
-        id: "workStyle",
-        prompt: "How do you most want to deliver your work?",
+        id: "naturalOffer",
+        prompt: "What have people in your life come to you for, or what do you find yourself offering without being asked?",
         options: [
-          { value: "In person with clients", label: "Directly with clients in person or at their location" },
-          { value: "From my own space", label: "From my own space - a shop, studio, salon, or office" },
-          { value: "Mobile or on-site", label: "Mobile or on-site at different client locations" },
-          { value: "Online or remotely", label: "Online or remotely, from wherever I work" },
-          { value: "Through products", label: "Through products I make, source, or resell" }
+          { value: "fix-build", label: "Help with something physical - fixing, building, maintaining, or making something work" },
+          { value: "support-guide", label: "Support or a steady presence when someone is dealing with something difficult" },
+          { value: "creative-eye", label: "A creative eye - taste, presentation, design, or making something look or sound right" },
+          { value: "clarity-plan", label: "Help making sense of something - planning, organizing, or figuring out next steps" },
+          { value: "find-connect", label: "Knowing where to find things, who to call, or how to navigate something" }
+        ]
+      },
+      {
+        id: "workSetting",
+        prompt: "When you picture yourself doing satisfying work, what does the setting look like?",
+        options: [
+          { value: "physical-space", label: "A physical space with tools, materials, or equipment around me" },
+          { value: "with-people", label: "Face to face with one person or a small group at a time" },
+          { value: "on-the-move", label: "Moving between locations - clients, job sites, or different places each day" },
+          { value: "own-place", label: "My own place - a shop, studio, or space I run" },
+          { value: "screen-remote", label: "Behind a screen, working on something digital or from wherever I am" }
         ]
       },
       {
@@ -2967,13 +2976,15 @@
           <h4>Where opportunity starts</h4>
           <p>${result.direction}</p>
         </div>
-        ${result.fieldSuggestion && result.fieldSuggestion.label !== "Still exploring" ? `
+        ${result.fieldSuggestion && result.fieldSuggestion.industries && result.fieldSuggestion.industries.length ? `
         <div class="detail-section">
-          <h4>Possible Field of Interest</h4>
-          <p><strong>${result.fieldSuggestion.label}</strong></p>
-          <p>${result.fieldSuggestion.summary}</p>
-          <p>Delivery preference: ${result.workStyle || "not specified"}</p>
-          <a href="${result.fieldSuggestion.link}" class="text-link" target="_blank" rel="noopener noreferrer">Browse related resources &rarr;</a>
+          <h4>Industries that might be a good fit</h4>
+          <p>Based on what you described, these fields came up as possible matches. They are starting points for browsing, not conclusions.</p>
+          <ul class="quiz-industry-list">
+            ${result.fieldSuggestion.links.map(function (item) {
+              return `<li><a href="${item.href}" class="text-link" target="_blank" rel="noopener noreferrer">${item.label} &rarr;</a></li>`;
+            }).join("")}
+          </ul>
         </div>` : ""}
         <div class="detail-section">
           <h4>Income Idea</h4>
@@ -3151,48 +3162,71 @@
     const action = appState.quizAnswers.action || "Get It Done";
     const value = appState.quizAnswers.value || "Lower the cost";
     const startingMaterial = appState.quizAnswers.startingMaterial || "Still Early";
-    const fieldInterest = appState.quizAnswers.fieldInterest || "No clear direction yet";
-    const workStyle = appState.quizAnswers.workStyle || "In person with clients";
+    const workFeeling  = appState.quizAnswers.workFeeling  || "";
+    const naturalOffer = appState.quizAnswers.naturalOffer || "";
+    const workSetting  = appState.quizAnswers.workSetting  || "";
     const founderIdentity = appState.quizAnswers.founderType || founderIdentitySuggestions[startingMaterial] || "Founder";
 
-    const fieldSuggestionMap = {
-      "Trades and hands-on services": {
-        label: "Auto trades and home services",
-        summary: "Your interest in trades and hands-on work points toward the auto trades, home services, and skilled repair space. These are fields where technical skill translates directly into a service business.",
-        link: "https://incomespectrum.com/income-options.html?q=auto"
-      },
-      "Health, beauty, and personal care": {
-        label: "Beauty and wellness",
-        summary: "Your interest in health, beauty, and personal care points toward licensed service businesses in massage therapy, esthetics, cosmetology, barber services, and wellness.",
-        link: "https://incomespectrum.com/income-options.html?q=beauty"
-      },
-      "Coaching, counseling, and support": {
-        label: "Coaching and counseling",
-        summary: "Your interest in coaching, counseling, and support points toward private practice, independent coaching, and wellness services built on your knowledge and experience with people.",
-        link: "https://incomespectrum.com/income-options.html?q=coaching"
-      },
-      "Creative and digital work": {
-        label: "Digital and creative services",
-        summary: "Your interest in creative and digital work points toward service-based or product-based income built around content, design, education, and technology.",
-        link: "https://incomespectrum.com/income-options.html?q=digital"
-      },
-      "Products and resale": {
-        label: "Products and ecommerce",
-        summary: "Your interest in products and resale points toward ecommerce, physical goods, print-on-demand, handmade items, and resale models.",
-        link: "https://incomespectrum.com/income-options.html?q=product"
-      },
-      "Business and professional services": {
-        label: "Business and professional services",
-        summary: "Your interest in business and professional services points toward consulting, bookkeeping, administrative support, and other knowledge-based service businesses.",
-        link: "https://incomespectrum.com/income-options.html?q=consulting"
-      },
-      "No clear direction yet": {
-        label: "Still exploring",
-        summary: "You have not landed on a direction yet. The Income Spectrum directory is built for exactly this stage - browse by interest or start with what feels familiar.",
-        link: "https://incomespectrum.com/income-options.html"
-      }
+    const industryLinks = {
+      "Auto Trades":                        "income-options.html?q=auto",
+      "Home and Local Services":            "income-options.html?q=home+services",
+      "Beauty and Wellness":                "income-options.html?q=beauty",
+      "Coaching and Counseling":            "income-options.html?q=coaching",
+      "Creative and Digital":               "income-options.html?q=digital",
+      "Products and Sales":                 "income-options.html?q=product",
+      "Business and Professional Services": "income-options.html?q=consulting",
+      "Government Contracting":             "income-options.html?q=contracting"
     };
-    const fieldSuggestion = fieldSuggestionMap[fieldInterest] || fieldSuggestionMap["No clear direction yet"];
+
+    // Score each industry based on all three answers
+    function scoreIndustries(wf, no, ws) {
+      const scores = {
+        "Auto Trades": 0,
+        "Home and Local Services": 0,
+        "Beauty and Wellness": 0,
+        "Coaching and Counseling": 0,
+        "Creative and Digital": 0,
+        "Products and Sales": 0,
+        "Business and Professional Services": 0,
+        "Government Contracting": 0
+      };
+      // workFeeling signals
+      if (wf === "hands")      { scores["Auto Trades"] += 3; scores["Home and Local Services"] += 3; scores["Beauty and Wellness"] += 1; }
+      if (wf === "helping")    { scores["Coaching and Counseling"] += 3; scores["Beauty and Wellness"] += 2; scores["Home and Local Services"] += 1; }
+      if (wf === "making")     { scores["Creative and Digital"] += 3; scores["Products and Sales"] += 3; scores["Auto Trades"] += 1; }
+      if (wf === "organizing") { scores["Business and Professional Services"] += 3; scores["Government Contracting"] += 2; scores["Creative and Digital"] += 1; }
+      if (wf === "connecting") { scores["Coaching and Counseling"] += 2; scores["Business and Professional Services"] += 2; scores["Government Contracting"] += 2; }
+      // naturalOffer signals
+      if (no === "fix-build")     { scores["Auto Trades"] += 3; scores["Home and Local Services"] += 3; }
+      if (no === "support-guide") { scores["Coaching and Counseling"] += 3; scores["Beauty and Wellness"] += 2; }
+      if (no === "creative-eye")  { scores["Creative and Digital"] += 3; scores["Beauty and Wellness"] += 2; scores["Products and Sales"] += 1; }
+      if (no === "clarity-plan")  { scores["Business and Professional Services"] += 3; scores["Coaching and Counseling"] += 1; scores["Government Contracting"] += 1; }
+      if (no === "find-connect")  { scores["Business and Professional Services"] += 2; scores["Government Contracting"] += 2; scores["Coaching and Counseling"] += 1; }
+      // workSetting signals
+      if (ws === "physical-space") { scores["Auto Trades"] += 2; scores["Home and Local Services"] += 1; scores["Beauty and Wellness"] += 1; }
+      if (ws === "with-people")    { scores["Coaching and Counseling"] += 2; scores["Beauty and Wellness"] += 2; scores["Home and Local Services"] += 1; }
+      if (ws === "on-the-move")    { scores["Home and Local Services"] += 3; scores["Auto Trades"] += 2; }
+      if (ws === "own-place")      { scores["Beauty and Wellness"] += 2; scores["Auto Trades"] += 1; scores["Business and Professional Services"] += 1; }
+      if (ws === "screen-remote")  { scores["Creative and Digital"] += 3; scores["Business and Professional Services"] += 2; scores["Products and Sales"] += 2; }
+      // Return top 2-3 industries by score
+      return Object.entries(scores)
+        .filter(function (e) { return e[1] > 0; })
+        .sort(function (a, b) { return b[1] - a[1]; })
+        .slice(0, 3)
+        .map(function (e) { return e[0]; });
+    }
+
+    const suggestedIndustries = (workFeeling || naturalOffer || workSetting)
+      ? scoreIndustries(workFeeling, naturalOffer, workSetting)
+      : [];
+    const fieldSuggestion = suggestedIndustries.length
+      ? {
+          industries: suggestedIndustries,
+          links: suggestedIndustries.map(function (ind) {
+            return { label: ind, href: industryLinks[ind] || "income-options.html" };
+          })
+        }
+      : null;
 
     const resultMap = {
       "Survival and Stability": {
@@ -3362,7 +3396,6 @@
       proofSummary,
       direction: directionText,
       fieldSuggestion,
-      workStyle,
       suggestedIncomeIds: result.income,
       suggestedTrainingIds: result.training,
       suggestedServiceIds: result.services,

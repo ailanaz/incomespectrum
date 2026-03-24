@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "incomespectrum",
-      "runtimeExecutable": "sh",
-      "runtimeArgs": ["-c", "cd /Users/macair/Documents/GitHub/incomespectrum && python3 -m http.server 3000"],
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["/tmp/is_serve.py"],
       "port": 3000
     }
   ]

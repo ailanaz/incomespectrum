@@ -1092,6 +1092,8 @@
       } else if (action === "sign-out") {
         appState = structuredClone(defaultState);
         localStorage.removeItem(STORAGE_KEY_LOCAL);
+        localStorage.removeItem(ACCOUNT_KEY_LOCAL);
+        localStorage.removeItem(FOUNDER_FORMS_KEY);
         sessionStorage.removeItem(STORAGE_KEY_SESSION);
         clearAuthMessages();
         saveState();

@@ -1759,6 +1759,11 @@
       let focusItems = [...(data.focus || [])];
       if (filter !== "all") {
         focusItems = focusItems.filter((item) => matchesFilter(item, filter));
+        if (!focusItems.length) {
+          exploreFilter = "all";
+          renderFilterSelector("focus", "all");
+          focusItems = [...(data.focus || [])];
+        }
       }
       content.innerHTML = focusItems.length
         ? `<div class="list-grid">${focusItems.map((item) => renderListItem(item, "focus")).join("")}</div>`

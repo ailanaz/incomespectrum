@@ -1426,6 +1426,12 @@ button.field-toggle::after {
   background: rgba(36, 50, 68, 0.22);
 }
 
+.section-tabs--explore .section-tab.active {
+  font-weight: 800;
+  transform: none;
+  box-shadow: inset 6px 0 0 var(--app-navy);
+}
+
 .section-tabs--explore .section-tab[data-section="focus"] {
   background: rgba(220, 38, 38, 0.18);
   color: #991b1b;
@@ -1436,12 +1442,6 @@ button.field-toggle::after {
   box-shadow: inset 6px 0 0 #dc2626;
   color: #7f1d1d;
   font-weight: 800;
-}
-
-.section-tabs--explore .section-tab.active {
-  font-weight: 800;
-  transform: none;
-  box-shadow: inset 6px 0 0 var(--app-navy);
 }
 
 .explore-panel {
@@ -1564,6 +1564,23 @@ button.field-toggle::after {
 
 .section-tabs--explore .section-tab.active {
 }
+
+/* Focus tab red overrides — must sit after all general section-tab rules */
+.section-tabs--explore .section-tab[data-section="focus"] {
+  background: rgba(220, 38, 38, 0.18);
+  color: #991b1b;
+}
+.section-tabs--explore .section-tab[data-section="focus"].active {
+  background: rgba(220, 38, 38, 0.32) !important;
+  box-shadow: inset 6px 0 0 #dc2626 !important;
+  color: #7f1d1d !important;
+  font-weight: 800;
+}
+
+#filterPanel[data-section="focus"] {
+  background: rgba(220, 38, 38, 0.08);
+}
+
 .search-chip--wide {
   width: 100%;
   text-align: left;

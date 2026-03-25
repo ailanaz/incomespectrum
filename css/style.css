@@ -2401,8 +2401,8 @@ body::before {
   transform: translateY(-1px);
 }
 
-/* 4-card homepage grid */
-.cat-cards { grid-template-columns: repeat(4, 1fr) !important; }
+/* 5-card homepage grid */
+.cat-cards { grid-template-columns: repeat(5, 1fr) !important; }
 .cat-cards > :last-child { grid-column: auto !important; }
 @media (max-width: 900px) {
   .cat-cards { grid-template-columns: repeat(2, 1fr) !important; }
@@ -2477,7 +2477,7 @@ body::before {
 }
 
 .cat-cards {
-  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
   gap: 18px !important;
 }
 
@@ -3131,4 +3131,31 @@ body::before {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: #6b7280;
+}
+
+/* Focus card - amber */
+.cat-card--focus {
+  border-top-color: #d97706 !important;
+  border-right-color: #fde68a !important;
+  border-bottom-color: #fde68a !important;
+  border-left-color: #fde68a !important;
+}
+.cat-card--focus .cat-card__kicker {
+  color: #92400e;
+  background: #fffbeb;
+}
+.cat-card--focus .cat-card__title {
+  color: var(--text-900) !important;
+}
+.cat-card--focus .cat-card__desc {
+  color: var(--text-500) !important;
+}
+.cat-card--focus .cat-card__cta {
+  color: #d97706 !important;
+}
+.cat-card--focus:hover .cat-card__cta {
+  color: #92400e !important;
+}
+.cat-card--focus:hover {
+  box-shadow: 0 20px 40px rgba(217,119,6,0.15) !important;
 }

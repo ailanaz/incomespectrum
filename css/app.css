@@ -1438,17 +1438,6 @@ button.field-toggle::after {
   box-shadow: inset 6px 0 0 var(--app-navy);
 }
 
-.section-tabs--explore .section-tab[data-section="focus"] {
-  background: rgba(220, 38, 38, 0.18);
-  color: #991b1b;
-}
-
-.section-tabs--explore .section-tab[data-section="focus"].active {
-  background: rgba(220, 38, 38, 0.32);
-  box-shadow: inset 6px 0 0 #dc2626;
-  color: #7f1d1d;
-  font-weight: 800;
-}
 
 .explore-panel {
   padding: 20px;
@@ -1571,15 +1560,15 @@ button.field-toggle::after {
 .section-tabs--explore .section-tab.active {
 }
 
-/* Focus tab red overrides — must sit after all general section-tab rules */
-.section-tabs--explore .section-tab[data-section="focus"] {
+/* Focus tab — ID-based selector guarantees red wins over all general rules */
+#exploreTabs .section-tab[data-section="focus"] {
   background: rgba(220, 38, 38, 0.18);
   color: #991b1b;
 }
-.section-tabs--explore .section-tab[data-section="focus"].active {
-  background: rgba(220, 38, 38, 0.32) !important;
-  box-shadow: inset 6px 0 0 #dc2626 !important;
-  color: #7f1d1d !important;
+#exploreTabs .section-tab[data-section="focus"].active {
+  background: rgba(220, 38, 38, 0.32);
+  box-shadow: inset 6px 0 0 #dc2626;
+  color: #7f1d1d;
   font-weight: 800;
 }
 

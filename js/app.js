@@ -1825,7 +1825,8 @@
         { value: "food, beverage, and presentation", label: "Food and Beverage" },
         { value: "retail, display, and experience", label: "Retail and Display" },
         { value: "b2b and founder support", label: "B2B and Founder Support" },
-        { value: "small-format production and customization", label: "Small-Format Production" }
+        { value: "small-format production and customization", label: "Small-Format Production" },
+        { value: "specialty cleaning and remediation", label: "Specialty Cleaning" }
       ]
     };
     const filters = filtersBySection[section];

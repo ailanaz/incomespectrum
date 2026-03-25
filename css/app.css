@@ -1107,8 +1107,8 @@ button.field-toggle::after {
 }
 
 .browse-card--focus {
-  background: rgba(217, 119, 6, 0.2);
-  color: #b45309;
+  background: rgba(220, 38, 38, 0.2);
+  color: #991b1b;
 }
 
 .stack-list,
@@ -1427,7 +1427,7 @@ button.field-toggle::after {
 }
 
 .section-tabs--explore .section-tab[data-section="focus"] {
-  background: rgba(217, 119, 6, 0.18);
+  background: rgba(220, 38, 38, 0.18);
 }
 
 .section-tabs--explore .section-tab.active {

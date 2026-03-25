@@ -1619,7 +1619,19 @@
     document.querySelectorAll(".bottom-tab").forEach((tab) => tab.classList.toggle("active", tab.dataset.view === view));
     document.getElementById("viewTitle").textContent = sectionLabels[view] || capitalize(view);
     saveState();
+    if (view === "saved" && !appState.isSignedIn) {
+      try {
+        const stored = JSON.parse(localStorage.getItem("income-spectrum-app-state-v2-local") || "{}");
+        if (stored.isSignedIn) {
+          appState.isSignedIn = true;
+          appState.planDraft = stored.planDraft || appState.planDraft;
+          appState.businessDocs = stored.businessDocs || appState.businessDocs;
+          appState.savedIds = stored.savedIds || appState.savedIds;
+        }
+      } catch (e) {}
+    }
     renderAll();
+    if (view === "saved") renderSaved();
   }
 
   function renderAll() {
@@ -1738,6 +1750,19 @@
     const content = document.getElementById("exploreContent");
     if (appState.activeExploreSection === "official") {
       content.innerHTML = renderOfficialList();
+      return;
+    }
+
+    if (appState.activeExploreSection === "focus") {
+      renderFilterSelector("focus", filter);
+      document.getElementById("filterPanel").dataset.section = "focus";
+      let focusItems = [...(data.focus || [])];
+      if (filter !== "all") {
+        focusItems = focusItems.filter((item) => matchesFilter(item, filter));
+      }
+      content.innerHTML = focusItems.length
+        ? `<div class="list-grid">${focusItems.map((item) => renderListItem(item, "focus")).join("")}</div>`
+        : `<div class="explore-empty"><p>Business ideas are loading. If this persists, refresh the page.</p></div>`;
       return;
     }
 
@@ -3481,7 +3506,7 @@
       ? `<p><strong>${item.provider || item.groupTitle || "Training resource"}</strong> · ${item.format || "Resource"}</p>`
       : type === "services"
         ? `<p><strong>${titleCase(item.category || item.groupTitle || "supportive services")}</strong></p>`
-        : type === "income"
+        : type === "income" || type === "focus"
           ? `<p><strong>${item.typeLabel || item.groupTitle || "Income option"}</strong></p>`
           : "";
     return `
@@ -3512,6 +3537,7 @@
 
   function openButtonClass(type) {
     if (type === "income") return "app-btn--income";
+    if (type === "focus") return "app-btn--income";
     if (type === "training") return "app-btn--knowledge";
     if (type === "services") return "app-btn--support";
     if (type === "official") return "app-btn--official";

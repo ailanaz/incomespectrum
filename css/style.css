@@ -3133,16 +3133,16 @@ body::before {
   color: #6b7280;
 }
 
-/* Focus card - amber */
+/* Focus card - red */
 .cat-card--focus {
-  border-top-color: #d97706 !important;
-  border-right-color: #fde68a !important;
-  border-bottom-color: #fde68a !important;
-  border-left-color: #fde68a !important;
+  border-top-color: #dc2626 !important;
+  border-right-color: #fecaca !important;
+  border-bottom-color: #fecaca !important;
+  border-left-color: #fecaca !important;
 }
 .cat-card--focus .cat-card__kicker {
-  color: #92400e;
-  background: #fffbeb;
+  color: #991b1b;
+  background: #fef2f2;
 }
 .cat-card--focus .cat-card__title {
   color: var(--text-900) !important;
@@ -3151,11 +3151,11 @@ body::before {
   color: var(--text-500) !important;
 }
 .cat-card--focus .cat-card__cta {
-  color: #d97706 !important;
+  color: #dc2626 !important;
 }
 .cat-card--focus:hover .cat-card__cta {
-  color: #92400e !important;
+  color: #991b1b !important;
 }
 .cat-card--focus:hover {
-  box-shadow: 0 20px 40px rgba(217,119,6,0.15) !important;
+  box-shadow: 0 20px 40px rgba(220,38,38,0.15) !important;
 }

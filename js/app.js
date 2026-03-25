@@ -90,12 +90,7 @@
     { path: "asl-interpreter-opportunities-by-state.html", section: "income" },
     { path: "asl-education-and-training-by-state.html", section: "training" },
     { path: "asl-communication-access-services-by-state.html", section: "services" },
-    { path: "asl-official-information-by-state.html", section: "official" },
-    { path: "blog/index.html", section: "article", parser: "blog" },
-    { path: "blog/what-people-will-pay-for/index.html", section: "article", parser: "article" },
-    { path: "blog/government-contracting-resources/index.html", section: "article", parser: "article" },
-    { path: "blog/best-ai-tools-for-people-trying-to-make-money-on-their-own/index.html", section: "article", parser: "article" },
-    { path: "blog/what-people-will-pay-for-quiz/index.html", section: "article", parser: "article" }
+    { path: "asl-official-information-by-state.html", section: "official" }
   ];
   const statePageCache = new Map();
   const articleContentCache = new Map();
@@ -582,26 +577,7 @@
       }
     ],
     focus: [],
-    articles: [
-      {
-        id: "article-what-people-pay-for",
-        title: "What People Pay For",
-        description: "Use the six motivators, the cost of living, and cultural motivation to see where opportunity starts.",
-        href: "blog/what-people-will-pay-for/"
-      },
-      {
-        id: "article-government-contracting",
-        title: "Government Contracting Resources",
-        description: "An article on federal contracting basics, registrations, and why some small businesses should not write it off too early.",
-        href: "blog/government-contracting-resources/"
-      },
-      {
-        id: "article-best-ai-tools",
-        title: "Best AI Tools for People Trying to Make Money on Their Own",
-        description: "A breakdown of AI tools that can support people building income on their own, depending on what they are trying to do.",
-        href: "blog/best-ai-tools-for-people-trying-to-make-money-on-their-own/"
-      }
-    ]
+    articles: []
   };
 
   const quiz = {
@@ -1351,7 +1327,7 @@
         id: `article-${slugify(title)}-${index}`,
         title,
         description: textContentOf(card.querySelector(".blog-card__excerpt")) || title,
-        href: href.startsWith("http") ? href : `blog/${href.replace(/^\.?\//, "")}`
+        href
       };
     }).filter(Boolean);
   }

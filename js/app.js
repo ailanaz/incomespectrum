@@ -80,6 +80,7 @@
   ];
   const liveContentSources = [
     { path: "income-options.html", section: "income" },
+    { path: "focus.html", section: "income" },
     { path: "education-training.html", section: "training" },
     { path: "supportive-services.html", section: "services" },
     { path: "state-federal-resources.html", section: "official" },
@@ -1756,7 +1757,7 @@
 
   function renderFilterSelector(section, activeFilter) {
     const filtersBySection = {
-      income: ["all", "service roles", "auto trades", "beauty & wellness", "counseling & coaching", "product sales", "ownership & acquisition", "business programs"],
+      income: ["all", "service roles", "auto trades", "beauty & wellness", "counseling & coaching", "product sales", "ownership & acquisition", "business programs", "business ideas"],
       training: [
         { value: "all", label: "All" },
         { value: "entrepreneurship & ownership", label: "Entrepreneurship & Ownership" },

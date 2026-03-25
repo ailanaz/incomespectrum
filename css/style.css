@@ -1640,6 +1640,11 @@ p { margin: 0; }
   background: linear-gradient(160deg, #fff1f2 0%, #fff5f5 55%, #fef2f2 100%);
   border-bottom: 2px solid var(--c-blog-border);
 }
+.page-header--focus {
+  background: linear-gradient(160deg, #fef2f2 0%, #fff5f5 55%, #fef2f2 100%);
+  border-bottom: 2px solid #fecaca;
+}
+.page-header--focus .page-header__eyebrow { color: #dc2626; }
 .page-header__title {
   font-size: clamp(26px, 3.5vw, 38px);
   font-weight: 800;
@@ -1956,6 +1961,8 @@ body::before {
 .page-jumpnav--edu    .page-jumpnav__link:hover { background: var(--c-edu);    color: #fff; border-color: var(--c-edu); }
 .page-jumpnav--svc    .page-jumpnav__link { color: var(--c-income);    border-color: var(--c-income-border); }
 .page-jumpnav--svc    .page-jumpnav__link:hover { background: var(--c-income);    color: #fff; border-color: var(--c-income); }
+.page-jumpnav--focus  .page-jumpnav__link { color: #dc2626; border-color: #fecaca; }
+.page-jumpnav--focus  .page-jumpnav__link:hover { background: #dc2626; color: #fff; border-color: #dc2626; }
 
 /* --- Cat-block separators (override Phase 1 margin-bottom) --- */
 .cat-block {

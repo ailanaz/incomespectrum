@@ -1801,7 +1801,17 @@
         { value: "operations, marketing & advisory", label: "Operations, Marketing & Advisory" }
       ],
       official: ["state", "federal"],
-      focus: ["all", "business ideas"]
+      focus: [
+        { value: "all", label: "All" },
+        { value: "trades and technical", label: "Trades and Technical" },
+        { value: "beauty and wellness", label: "Beauty and Wellness" },
+        { value: "counseling and coaching", label: "Counseling and Coaching" },
+        { value: "home and property", label: "Home and Property" },
+        { value: "experience and venue", label: "Experience and Venue" },
+        { value: "mobile and route based", label: "Mobile and Route-Based" },
+        { value: "from other markets", label: "From Other Markets" },
+        { value: "food and agriculture", label: "Food and Agriculture" }
+      ]
     };
     const filters = filtersBySection[section];
     document.getElementById("filterSelect").innerHTML = filters.map((filter) => {

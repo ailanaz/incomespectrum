@@ -92,6 +92,7 @@ a {
 .app-brand {
   display: inline-flex;
   align-items: center;
+  gap: 12px;
   margin-bottom: 16px;
   color: var(--app-navy);
   font-size: 1.15rem;
@@ -112,8 +113,6 @@ a {
 .app-brand img {
   flex-shrink: 0;
   display: block;
-  width: auto;
-  height: 56px;
 }
 
 .app-brand--compact {
@@ -121,9 +120,6 @@ a {
   font-size: 1rem;
 }
 
-.app-brand--compact img {
-  height: 40px;
-}
 
 .app-brand__suffix {
   font-size: 0.72em;

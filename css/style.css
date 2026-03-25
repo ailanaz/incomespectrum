@@ -136,15 +136,11 @@ p { margin: 0; }
 .nav-logo {
   display: flex;
   align-items: center;
+  gap: 10px;
   flex-shrink: 0;
   text-decoration: none;
 }
-.nav-logo__image {
-  flex-shrink: 0;
-  display: block;
-  width: auto;
-  height: 44px;
-}
+.nav-logo__gauge { flex-shrink: 0; }
 .nav-logo__text {
   font-size: 17px;
   font-weight: 500;
@@ -1187,15 +1183,15 @@ p { margin: 0; }
 .footer-brand__logo {
   display: flex;
   align-items: center;
+  gap: 8px;
   margin-bottom: var(--gap-md);
 }
 .footer-brand__image {
   display: block;
-  width: auto;
-  height: 40px;
+  flex-shrink: 0;
 }
 .footer-brand__image--state {
-  height: 34px;
+  flex-shrink: 0;
 }
 .footer-brand__text {
   font-size: 16px;

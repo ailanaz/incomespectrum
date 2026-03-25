@@ -1818,7 +1818,14 @@
         { value: "food and agriculture", label: "Food and Agriculture" },
         { value: "digital and tech services", label: "Digital and Tech" },
         { value: "senior and care economy", label: "Senior and Care" },
-        { value: "sustainability and green business", label: "Sustainability and Green" }
+        { value: "sustainability and green business", label: "Sustainability and Green" },
+        { value: "automotive services", label: "Automotive Services" },
+        { value: "surface, finish, and restoration", label: "Surface and Restoration" },
+        { value: "textile, garment, and fabric", label: "Textile and Garment" },
+        { value: "food, beverage, and presentation", label: "Food and Beverage" },
+        { value: "retail, display, and experience", label: "Retail and Display" },
+        { value: "b2b and founder support", label: "B2B and Founder Support" },
+        { value: "small-format production and customization", label: "Small-Format Production" }
       ]
     };
     const filters = filtersBySection[section];

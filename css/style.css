@@ -3031,3 +3031,104 @@ body::before {
   .article-body h3 { font-size: 16px; }
   .blog-listing { padding: 32px 0; }
 }
+
+/* Focus Page - Idea Cards */
+.idea-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.18s;
+}
+.idea-card:hover {
+  box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+}
+.idea-card__body {
+  padding: 1.25rem 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+.idea-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.idea-card__name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  line-height: 1.3;
+}
+.idea-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.idea-card__badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.idea-card__badge--origin {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+.idea-card__badge--category {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+.idea-card__hook {
+  font-size: 0.92rem;
+  color: #374151;
+  line-height: 1.55;
+  margin: 0;
+}
+.idea-card__economics {
+  background: #f9fafb;
+  border-radius: 6px;
+  padding: 0.65rem 0.85rem;
+}
+.idea-card__economics p {
+  font-size: 0.85rem;
+  color: #374151;
+  margin: 0.25rem 0 0;
+  line-height: 1.5;
+}
+.idea-card__resources {
+  border-top: 1px solid #f3f4f6;
+  padding-top: 0.65rem;
+}
+.idea-card__resources ul {
+  margin: 0.3rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.idea-card__resources ul li a {
+  font-size: 0.82rem;
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 500;
+}
+.idea-card__resources ul li a:hover {
+  text-decoration: underline;
+}
+.idea-card__econ-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+}

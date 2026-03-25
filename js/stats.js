@@ -11,7 +11,8 @@
     "state-federal-resources.html",
     "federal-contracting-resources.html",
     "state-contracting-resources.html",
-    "local-government-contracting-resources.html"
+    "local-government-contracting-resources.html",
+    "focus.html"
   ];
 
   var CARD_MARKER = "listing-card__name";

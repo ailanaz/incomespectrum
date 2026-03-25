@@ -1106,6 +1106,11 @@ button.field-toggle::after {
   border-color: #243244;
 }
 
+.browse-card--focus {
+  background: rgba(217, 119, 6, 0.2);
+  color: #b45309;
+}
+
 .stack-list,
 .saved-groups,
 .detail-links,
@@ -1419,6 +1424,10 @@ button.field-toggle::after {
 
 .section-tabs--explore .section-tab[data-section="official"] {
   background: rgba(36, 50, 68, 0.22);
+}
+
+.section-tabs--explore .section-tab[data-section="focus"] {
+  background: rgba(217, 119, 6, 0.18);
 }
 
 .section-tabs--explore .section-tab.active {

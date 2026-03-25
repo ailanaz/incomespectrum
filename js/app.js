@@ -80,7 +80,7 @@
   ];
   const liveContentSources = [
     { path: "income-options.html", section: "income" },
-    { path: "focus.html", section: "income" },
+    { path: "focus.html", section: "focus" },
     { path: "education-training.html", section: "training" },
     { path: "supportive-services.html", section: "services" },
     { path: "state-federal-resources.html", section: "official" },
@@ -581,6 +581,7 @@
         tags: ["state"]
       }
     ],
+    focus: [],
     articles: [
       {
         id: "article-what-people-pay-for",
@@ -1772,7 +1773,8 @@
         { value: "finance, funding & transaction services", label: "Finance, Funding & Transaction Services" },
         { value: "operations, marketing & advisory", label: "Operations, Marketing & Advisory" }
       ],
-      official: ["state", "federal"]
+      official: ["state", "federal"],
+      focus: ["all", "business ideas"]
     };
     const filters = filtersBySection[section];
     document.getElementById("filterSelect").innerHTML = filters.map((filter) => {

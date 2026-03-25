@@ -1815,7 +1815,10 @@
         { value: "experience and venue", label: "Experience and Venue" },
         { value: "mobile and route based", label: "Mobile and Route-Based" },
         { value: "from other markets", label: "From Other Markets" },
-        { value: "food and agriculture", label: "Food and Agriculture" }
+        { value: "food and agriculture", label: "Food and Agriculture" },
+        { value: "digital and tech services", label: "Digital and Tech" },
+        { value: "senior and care economy", label: "Senior and Care" },
+        { value: "sustainability and green business", label: "Sustainability and Green" }
       ]
     };
     const filters = filtersBySection[section];

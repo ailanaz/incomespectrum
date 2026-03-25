@@ -1428,6 +1428,14 @@ button.field-toggle::after {
 
 .section-tabs--explore .section-tab[data-section="focus"] {
   background: rgba(220, 38, 38, 0.18);
+  color: #991b1b;
+}
+
+.section-tabs--explore .section-tab[data-section="focus"].active {
+  background: rgba(220, 38, 38, 0.32);
+  box-shadow: inset 6px 0 0 #dc2626;
+  color: #7f1d1d;
+  font-weight: 800;
 }
 
 .section-tabs--explore .section-tab.active {

@@ -1411,27 +1411,49 @@ button.field-toggle::after {
   border-bottom: 2px solid rgba(20, 37, 61, 0.78);
 }
 
-.section-tabs--explore .section-tab[data-section="income"] {
-  background: rgba(25, 120, 46, 0.34);
+/* Explore rail tabs — each section has its own color for inactive and active states */
+#exploreTabs .section-tab[data-section="income"] {
+  background: rgba(25, 120, 46, 0.15);
+  color: #166534;
 }
-
-.section-tabs--explore .section-tab[data-section="training"] {
-  background: rgba(27, 72, 216, 0.28);
-}
-
-.section-tabs--explore .section-tab[data-section="services"] {
-  background: rgba(253, 210, 21, 0.28);
-  color: var(--app-navy);
-}
-
-.section-tabs--explore .section-tab[data-section="official"] {
-  background: rgba(36, 50, 68, 0.22);
-}
-
-.section-tabs--explore .section-tab.active {
+#exploreTabs .section-tab[data-section="income"].active {
+  background: rgba(25, 120, 46, 0.32);
+  box-shadow: inset 6px 0 0 #19782e;
+  color: #14532d;
   font-weight: 800;
-  transform: none;
-  box-shadow: inset 6px 0 0 var(--app-navy);
+}
+
+#exploreTabs .section-tab[data-section="training"] {
+  background: rgba(27, 72, 216, 0.14);
+  color: #1e3a8a;
+}
+#exploreTabs .section-tab[data-section="training"].active {
+  background: rgba(27, 72, 216, 0.30);
+  box-shadow: inset 6px 0 0 #1b48d8;
+  color: #1e3a8a;
+  font-weight: 800;
+}
+
+#exploreTabs .section-tab[data-section="services"] {
+  background: rgba(253, 210, 21, 0.22);
+  color: #92400e;
+}
+#exploreTabs .section-tab[data-section="services"].active {
+  background: rgba(253, 210, 21, 0.48);
+  box-shadow: inset 6px 0 0 #d97706;
+  color: #78350f;
+  font-weight: 800;
+}
+
+#exploreTabs .section-tab[data-section="official"] {
+  background: rgba(36, 50, 68, 0.14);
+  color: #334155;
+}
+#exploreTabs .section-tab[data-section="official"].active {
+  background: rgba(36, 50, 68, 0.32);
+  box-shadow: inset 6px 0 0 #14253d;
+  color: #0f172a;
+  font-weight: 800;
 }
 
 

@@ -267,8 +267,8 @@
         provider: "Professional certification resources",
         format: "Online and in-person",
         cost: "Varies",
-        description: "Prep resources for certification-related options that support specific service roles.",
-        covers: "Exam prep, skill-building, and readiness for formal certification steps.",
+        description: "Prep resources for certification-related options that support specific service roles. For ASL interpreting, the NIC (National Interpreter Certification) is the nationally recognized credential - issued by RID but registered and tested through CASLI (casli.org).",
+        covers: "Exam prep, skill-building, and readiness for formal certification steps. Includes NIC via CASLI and state programs such as BEI for Texas.",
         fit: "Useful for people moving from interest into qualification-dependent work.",
         tags: ["advanced", "certification", "online", "in-person"],
         relatedIncomeIds: ["income-asl-interpreting"]
@@ -552,12 +552,13 @@
       {
         id: "official-asl-state",
         title: "ASL Official Information by State",
-        description: "State-specific interpreter licensure, regulation, and official interpreter-related information.",
+        description: "State-specific interpreter licensure, regulation, and official interpreter-related information. Includes RID (national certifying body, issues the NIC), CASLI (where candidates register and test for the NIC), and BEI (Texas state program, separate from the NIC, required in Texas court and regulated settings).",
         type: "State Information",
         categories: ["licensing", "state regulation"],
         stateLinks: {
           Texas: [
-            { label: "Texas interpreter licensure information", href: "asl-official-information-by-state.html" }
+            { label: "Texas interpreter licensure information", href: "asl-official-information-by-state.html" },
+            { label: "BEI - Board for Evaluation of Interpreters (Texas)", href: "https://www.hhs.texas.gov/providers/assistive-services-providers/board-evaluation-interpreters-certification-program" }
           ],
           California: [
             { label: "California interpreter-related state information", href: "asl-official-information-by-state.html" }
@@ -572,7 +573,9 @@
             { label: "Illinois interpreter-related state information", href: "asl-official-information-by-state.html" }
           ]
         },
-        federalLinks: [],
+        federalLinks: [
+          { label: "CASLI - NIC Exam Portal (administers exam; RID issues credential)", href: "https://www.casli.org/" }
+        ],
         tags: ["state"]
       }
     ],

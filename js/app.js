@@ -185,6 +185,25 @@
         officialIds: ["official-state-registration", "official-licensing"]
       },
       {
+        id: "income-hydroseeding",
+        title: "Hydroseeding Service",
+        description: "Spray a seed, mulch, and fertilizer slurry to establish grass, control erosion, and prepare sites for residential, commercial, and municipal clients.",
+        overview: "A U.S.-originated outdoor service (invented in the 1940s) that uses specialized spray equipment to seed large areas faster and more effectively than conventional seeding. Demand comes from homebuilders, landscapers, municipalities, DOTs, and homeowners.",
+        whyChoose: "This may fit someone who wants a local service business with equipment-based differentiation, multi-sector client demand, and recurring seasonal work.",
+        fit: "Useful for someone comfortable with equipment operation, outdoor physical work, and client acquisition across residential and commercial markets.",
+        tags: ["local", "service-based", "hands-on", "equipment-based", "ownership-based", "service roles"],
+        startupCost: "High",
+        speed: "Moderate",
+        skill: "Moderate",
+        location: "Local",
+        repeatIncome: "Medium",
+        customerInteraction: "Medium",
+        complexity: "Moderate",
+        trainingIds: ["training-hydroseeding", "training-operations-basics", "training-business-foundations"],
+        serviceIds: ["service-bookkeeping", "service-marketing", "service-legal"],
+        officialIds: ["official-state-registration", "official-licensing"]
+      },
+      {
         id: "income-government-contracting",
         title: "Government Contracting Services",
         description: "Pursue federal, state, or local contracting opportunities for services and structured deliverables.",
@@ -302,6 +321,18 @@
         relatedIncomeIds: ["income-commercial-cleaning"]
       },
       {
+        id: "training-hydroseeding",
+        title: "IAHP - Certified Hydroseeding Professional (CHP)",
+        provider: "International Association of Hydroseeding Professionals",
+        format: "Exam and field experience",
+        cost: "Membership and exam fee",
+        description: "Industry certification and professional association for hydroseeding operators. The CHP credential is the recognized industry standard for the trade.",
+        covers: "Soil science, seed characteristics, machine operation, hydraulic application methods, and business practices.",
+        fit: "Useful for someone building a hydroseeding business who wants industry credentialing, network access, and professional standing.",
+        tags: ["advanced", "certification", "in-person", "short-form"],
+        relatedIncomeIds: ["income-hydroseeding"]
+      },
+      {
         id: "training-government-contracting",
         title: "Government Contracting Basics",
         provider: "SBA and official contracting guidance",
@@ -339,7 +370,7 @@
         providerLinks: [
           { label: "IRS Small Business Resources", href: "https://www.irs.gov/businesses/small-businesses-self-employed" }
         ],
-        relatedIncomeIds: ["income-mobile-notary", "income-virtual-assistant", "income-commercial-cleaning", "income-government-contracting"],
+        relatedIncomeIds: ["income-mobile-notary", "income-virtual-assistant", "income-commercial-cleaning", "income-government-contracting", "income-hydroseeding"],
         tags: ["bookkeeping", "accounting"]
       },
       {
@@ -374,7 +405,7 @@
         helpsWith: "Lead generation, visibility, content planning, and customer acquisition efforts.",
         examples: "Social content, email flows, local outreach, or ads planning.",
         providerLinks: [],
-        relatedIncomeIds: ["income-print-on-demand", "income-commercial-cleaning"],
+        relatedIncomeIds: ["income-print-on-demand", "income-commercial-cleaning", "income-hydroseeding"],
         tags: ["marketing"]
       },
       {
@@ -385,7 +416,7 @@
         helpsWith: "Choosing direction, prioritizing decisions, and reducing confusion around next steps.",
         examples: "Assessing an opportunity, clarifying service structure, or mapping next actions.",
         providerLinks: [],
-        relatedIncomeIds: ["income-government-contracting", "income-commercial-cleaning"],
+        relatedIncomeIds: ["income-government-contracting", "income-commercial-cleaning", "income-hydroseeding"],
         tags: ["advisory"]
       },
       {
@@ -577,9 +608,9 @@
 
   const quiz = {
     title: "What People Pay For",
-    intro: "Your answers will help shape your Founder File as a founder, business owner, or person building a direction.",
-    frameworkNote: "There are no right answers here. Answer from your point of view as the builder, not as the customer. Choose what feels closest to your understanding, your instincts, your style, your direction, or what simply feels right to you.",
-    optionPrompt: "Choose the response that fits best for you.",
+    intro: "This quiz is designed to help you understand what people are paying for and turn that understanding into a working Founder File you can use as an aspiring, new, or existing business owner.",
+    frameworkNote: "You will build understanding of The Six, the core drivers behind spending; The Cost of Living, the costs people pay to fulfill a specific outcome; Niche as Culture, where culture is shaped by shared cost and shared outcomes sought; and how the Cost of Living creates opportunity.",
+    optionPrompt: "Choose the response that feels closest to your understanding, your instincts, your style, your direction, or what simply feels right to you. There are no right or wrong answers, only what is right for you.",
     questions: [
       {
         id: "whatPeoplePayFor",

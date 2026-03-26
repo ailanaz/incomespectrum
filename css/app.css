@@ -1974,11 +1974,20 @@ button.field-toggle::after {
   border-radius: 16px;
   border: 2px solid var(--app-navy);
   background: #fffdf6;
+  display: grid;
+  gap: 6px;
 }
 
 .quiz-option.selected {
   border-color: var(--app-blue);
   background: rgba(27, 72, 216, 0.35);
+}
+
+.quiz-option small {
+  display: block;
+  color: var(--app-text-soft);
+  font-size: 0.88rem;
+  line-height: 1.45;
 }
 .quiz-arc {
   display: flex;

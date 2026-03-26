@@ -577,8 +577,8 @@
 
   const quiz = {
     title: "What People Pay For",
-    intro: "Your answers will help shape your Founder File.",
-    frameworkNote: "There are no right answers here. Choose what feels closest to your understanding, your instincts, your style, your direction, or what simply feels right to you.",
+    intro: "Your answers will help shape your Founder File as a founder, business owner, or person building a direction.",
+    frameworkNote: "There are no right answers here. Answer from your point of view as the builder, not as the customer. Choose what feels closest to your understanding, your instincts, your style, your direction, or what simply feels right to you.",
     optionPrompt: "Choose the response that fits best for you.",
     questions: [
       {
@@ -3245,31 +3245,34 @@
   }
 
   function buildQuizResult() {
-    const block = appState.quizAnswers.block || "NoStartingPoint";
-    const motivator = appState.quizAnswers.problem || "Survival and Stability";
-    const payment = appState.quizAnswers.payment || "Time";
-    const culture = appState.quizAnswers.culture || "Instability to order";
-    const action = appState.quizAnswers.action || "Get It Done";
-    const value = appState.quizAnswers.value || "Lower the cost";
-    const startingMaterial = appState.quizAnswers.startingMaterial || "Still Early";
-    const workFeeling  = appState.quizAnswers.workFeeling  || "";
-    const naturalOffer = appState.quizAnswers.naturalOffer || "";
-    const workSetting  = appState.quizAnswers.workSetting  || "";
-    const founderIdentity = appState.quizAnswers.founderType || founderIdentitySuggestions[startingMaterial] || "Founder";
+    const whatPeoplePayFor = appState.quizAnswers.whatPeoplePayFor || "getting";
+    const pullsSpending = appState.quizAnswers.pullsSpending || "trust";
+    const keepsGettingChosen = appState.quizAnswers.keepsGettingChosen || "works-well";
+    const sixDriver = appState.quizAnswers.sixDriver || "stability";
+    const payment = appState.quizAnswers.costOfLiving || "time";
+    const lowerCost = appState.quizAnswers.lowerCost || payment;
+    const resultSought = appState.quizAnswers.resultSought || "improve";
+    const positivePull = appState.quizAnswers.positivePull || "convenience";
+    const sharedPattern = appState.quizAnswers.sharedPattern || "better";
+    const culture = appState.quizAnswers.culture || sixDriver;
+    const cultureValues = appState.quizAnswers.cultureValues || "quality";
+    const opportunity = appState.quizAnswers.opportunity || "better-result";
+    const direction = appState.quizAnswers.direction || "service";
+    const workStyle = appState.quizAnswers.workStyle || "solving";
+    const founderIdentity = appState.quizAnswers.founderFit || "Founder";
 
     const industryLinks = {
-      "Auto Trades":                        "income-options.html?q=auto",
-      "Home and Local Services":            "income-options.html?q=home+services",
-      "Beauty and Wellness":                "income-options.html?q=beauty",
-      "Coaching and Counseling":            "income-options.html?q=coaching",
-      "Creative and Digital":               "income-options.html?q=digital",
-      "Products and Sales":                 "income-options.html?q=product",
+      "Auto Trades": "income-options.html?q=auto",
+      "Home and Local Services": "income-options.html?q=home+services",
+      "Beauty and Wellness": "income-options.html?q=beauty",
+      "Coaching and Counseling": "income-options.html?q=coaching",
+      "Creative and Digital": "income-options.html?q=digital",
+      "Products and Sales": "income-options.html?q=product",
       "Business and Professional Services": "income-options.html?q=consulting",
-      "Government Contracting":             "income-options.html?q=contracting"
+      "Government Contracting": "income-options.html?q=contracting"
     };
 
-    // Score each industry based on all three answers
-    function scoreIndustries(wf, no, ws) {
+    function scoreIndustries(style, directionChoice, identity) {
       const scores = {
         "Auto Trades": 0,
         "Home and Local Services": 0,
@@ -3280,82 +3283,82 @@
         "Business and Professional Services": 0,
         "Government Contracting": 0
       };
-      // workFeeling signals
-      if (wf === "hands")      { scores["Auto Trades"] += 3; scores["Home and Local Services"] += 3; scores["Beauty and Wellness"] += 1; }
-      if (wf === "helping")    { scores["Coaching and Counseling"] += 3; scores["Beauty and Wellness"] += 2; scores["Home and Local Services"] += 1; }
-      if (wf === "making")     { scores["Creative and Digital"] += 3; scores["Products and Sales"] += 3; scores["Auto Trades"] += 1; }
-      if (wf === "organizing") { scores["Business and Professional Services"] += 3; scores["Government Contracting"] += 2; scores["Creative and Digital"] += 1; }
-      if (wf === "connecting") { scores["Coaching and Counseling"] += 2; scores["Business and Professional Services"] += 2; scores["Government Contracting"] += 2; }
-      // naturalOffer signals
-      if (no === "fix-build")     { scores["Auto Trades"] += 3; scores["Home and Local Services"] += 3; }
-      if (no === "support-guide") { scores["Coaching and Counseling"] += 3; scores["Beauty and Wellness"] += 2; }
-      if (no === "creative-eye")  { scores["Creative and Digital"] += 3; scores["Beauty and Wellness"] += 2; scores["Products and Sales"] += 1; }
-      if (no === "clarity-plan")  { scores["Business and Professional Services"] += 3; scores["Coaching and Counseling"] += 1; scores["Government Contracting"] += 1; }
-      if (no === "find-connect")  { scores["Business and Professional Services"] += 2; scores["Government Contracting"] += 2; scores["Coaching and Counseling"] += 1; }
-      // workSetting signals
-      if (ws === "physical-space") { scores["Auto Trades"] += 2; scores["Home and Local Services"] += 1; scores["Beauty and Wellness"] += 1; }
-      if (ws === "with-people")    { scores["Coaching and Counseling"] += 2; scores["Beauty and Wellness"] += 2; scores["Home and Local Services"] += 1; }
-      if (ws === "on-the-move")    { scores["Home and Local Services"] += 3; scores["Auto Trades"] += 2; }
-      if (ws === "own-place")      { scores["Beauty and Wellness"] += 2; scores["Auto Trades"] += 1; scores["Business and Professional Services"] += 1; }
-      if (ws === "screen-remote")  { scores["Creative and Digital"] += 3; scores["Business and Professional Services"] += 2; scores["Products and Sales"] += 2; }
-      // Return top 2-3 industries by score
+
+      if (style === "solving") { scores["Auto Trades"] += 3; scores["Home and Local Services"] += 2; scores["Business and Professional Services"] += 1; }
+      if (style === "improving") { scores["Beauty and Wellness"] += 2; scores["Business and Professional Services"] += 2; scores["Creative and Digital"] += 2; }
+      if (style === "organizing") { scores["Business and Professional Services"] += 3; scores["Government Contracting"] += 2; scores["Creative and Digital"] += 1; }
+      if (style === "guiding") { scores["Coaching and Counseling"] += 3; scores["Business and Professional Services"] += 1; scores["Beauty and Wellness"] += 1; }
+      if (style === "creating") { scores["Creative and Digital"] += 3; scores["Products and Sales"] += 3; scores["Beauty and Wellness"] += 1; }
+      if (style === "connecting") { scores["Coaching and Counseling"] += 2; scores["Business and Professional Services"] += 2; scores["Government Contracting"] += 1; }
+
+      if (directionChoice === "service") { scores["Home and Local Services"] += 2; scores["Business and Professional Services"] += 2; }
+      if (directionChoice === "product") { scores["Products and Sales"] += 3; scores["Creative and Digital"] += 1; }
+      if (directionChoice === "information") { scores["Business and Professional Services"] += 2; scores["Government Contracting"] += 2; scores["Creative and Digital"] += 1; }
+      if (directionChoice === "process") { scores["Business and Professional Services"] += 3; scores["Government Contracting"] += 1; }
+      if (directionChoice === "guidance") { scores["Coaching and Counseling"] += 3; scores["Business and Professional Services"] += 1; }
+      if (directionChoice === "culture") { scores["Beauty and Wellness"] += 2; scores["Creative and Digital"] += 2; scores["Products and Sales"] += 1; }
+
+      if (identity === "Entrepreneur") { scores["Products and Sales"] += 2; scores["Creative and Digital"] += 1; scores["Government Contracting"] += 1; }
+      if (identity === "Solopreneur") { scores["Business and Professional Services"] += 2; scores["Creative and Digital"] += 2; }
+      if (identity === "Small Business Owner") { scores["Home and Local Services"] += 2; scores["Beauty and Wellness"] += 2; }
+      if (identity === "Freelancer") { scores["Creative and Digital"] += 3; scores["Business and Professional Services"] += 1; }
+      if (identity === "Owner-Operator") { scores["Auto Trades"] += 2; scores["Home and Local Services"] += 2; }
+
       return Object.entries(scores)
-        .filter(function (e) { return e[1] > 0; })
+        .filter(function (entry) { return entry[1] > 0; })
         .sort(function (a, b) { return b[1] - a[1]; })
         .slice(0, 3)
-        .map(function (e) { return e[0]; });
+        .map(function (entry) { return entry[0]; });
     }
 
-    const suggestedIndustries = (workFeeling || naturalOffer || workSetting)
-      ? scoreIndustries(workFeeling, naturalOffer, workSetting)
-      : [];
+    const suggestedIndustries = scoreIndustries(workStyle, direction, founderIdentity);
     const fieldSuggestion = suggestedIndustries.length
       ? {
           industries: suggestedIndustries,
-          links: suggestedIndustries.map(function (ind) {
-            return { label: ind, href: industryLinks[ind] || "income-options.html" };
+          links: suggestedIndustries.map(function (industry) {
+            return { label: industry, href: industryLinks[industry] || "income-options.html" };
           })
         }
       : null;
 
-    const resultMap = {
-      "Survival and Stability": {
-        title: "Stability and support are driving demand.",
+    const driverMap = {
+      relief: {
+        title: "Relief is carrying the strongest signal here.",
         income: ["income-virtual-assistant", "income-commercial-cleaning"],
         training: ["training-business-foundations", "training-operations-basics"],
         services: ["service-bookkeeping", "service-legal"],
         official: ["official-state-registration", "official-ein-irs"]
       },
-      "Safety and Protection": {
-        title: "People are paying to reduce exposure and uncertainty.",
+      stability: {
+        title: "Stability is carrying the strongest signal here.",
         income: ["income-mobile-notary", "income-government-contracting"],
         training: ["training-business-foundations", "training-notary-basics"],
         services: ["service-legal", "service-bookkeeping"],
         official: ["official-state-registration", "official-licensing"]
       },
-      "Relief and Health": {
-        title: "Demand is being driven by strain, friction, and the need for relief.",
+      access: {
+        title: "Access is carrying the strongest signal here.",
         income: ["income-asl-interpreting", "income-commercial-cleaning"],
         training: ["training-asl-pathways", "training-certification-prep"],
         services: ["service-communication-access", "service-advisory"],
         official: ["official-asl-state", "official-licensing"]
       },
-      "Pleasure and Comfort": {
-        title: "People are paying for ease, enjoyment, and a better day-to-day experience.",
+      improvement: {
+        title: "Improvement is carrying the strongest signal here.",
         income: ["income-print-on-demand", "income-virtual-assistant"],
         training: ["training-digital-storefront", "training-brand-basics"],
         services: ["service-branding", "service-marketing"],
         official: ["official-state-registration", "official-state-tax"]
       },
-      "Belonging and Love": {
-        title: "People are paying to feel connected, supported, and understood.",
+      connection: {
+        title: "Connection is carrying the strongest signal here.",
         income: ["income-asl-interpreting", "income-virtual-assistant"],
         training: ["training-asl-pathways", "training-business-foundations"],
         services: ["service-communication-access", "service-branding"],
         official: ["official-asl-state", "official-state-registration"]
       },
-      "Status, Meaning, and Legacy": {
-        title: "People are paying for advancement, recognition, and long-term positioning.",
+      enjoyment: {
+        title: "Enjoyment is carrying the strongest signal here.",
         income: ["income-government-contracting", "income-print-on-demand"],
         training: ["training-government-contracting", "training-brand-basics"],
         services: ["service-advisory", "service-legal"],
@@ -3363,114 +3366,148 @@
       }
     };
 
-    const result = resultMap[motivator];
-    const pathMap = {
-      "Attain Or Gain": {
-        pathLabel: "Access and gain focus",
+    const directionMap = {
+      service: {
+        pathLabel: "Service direction",
         primarySection: "income",
-        incomeIdeaTitle: "A direction that helps people attain, gain, or access something is the clearest starting point.",
-        incomeIdeaSummary: "This pattern suggests people are paying to get something they do not yet have, reach something more easily, or gain a better position. That can point toward services, products, or structured offers that open access or move them forward."
+        incomeIdeaTitle: "A service direction is the clearest fit here.",
+        incomeIdeaSummary: "This pattern points toward helping people directly through work that solves, handles, improves, supports, or makes something easier."
       },
-      "Protect Or Prevent": {
-        pathLabel: "Protection focus",
-        primarySection: "services",
-        incomeIdeaTitle: "A protection or prevention direction is the clearest starting point.",
-        incomeIdeaSummary: "This pattern suggests people are paying to lower exposure, avoid loss, protect what they have, or prevent a worse outcome. That can point toward legal, compliance, advisory, support, or process-based offers."
-      },
-      "Improve Or Replace": {
-        pathLabel: "Improvement focus",
+      product: {
+        pathLabel: "Product direction",
         primarySection: "income",
-        incomeIdeaTitle: "An improvement or replacement direction is the clearest starting point.",
-        incomeIdeaSummary: "This pattern suggests people are paying to make something work better, change what is not working, or replace a weaker result with a stronger one. That can point toward service, product, or ownership directions."
+        incomeIdeaTitle: "A product direction is the clearest fit here.",
+        incomeIdeaSummary: "This pattern points toward making, packaging, curating, or selling something people would choose because it delivers a clear result, fit, or experience."
       },
-      "Simplify Or Order": {
-        pathLabel: "Simplicity focus",
-        primarySection: "services",
-        incomeIdeaTitle: "A simplicity or order-based direction is the clearest starting point.",
-        incomeIdeaSummary: "This pattern suggests people are paying to make something easier, more orderly, less confusing, or less costly to manage. That can point toward organization, systems, support, compliance, or service-based offers."
-      },
-      "Prove Or Understand": {
-        pathLabel: "Clarity focus",
+      information: {
+        pathLabel: "Information direction",
         primarySection: "training",
-        incomeIdeaTitle: "A proof, understanding, or decision-support direction is the clearest starting point.",
-        incomeIdeaSummary: "This pattern suggests people are paying to understand better, make decisions with more confidence, or get proof that something will work. That can point toward education, advisory, certification, support, or information-based offers."
+        incomeIdeaTitle: "An information direction is the clearest fit here.",
+        incomeIdeaSummary: "This pattern points toward organizing what people need to know, clarifying decisions, reducing confusion, or making the next step easier to understand."
       },
-      "Connect Or Enjoy": {
-        pathLabel: "Connection and enjoyment focus",
+      process: {
+        pathLabel: "Process direction",
+        primarySection: "services",
+        incomeIdeaTitle: "A process direction is the clearest fit here.",
+        incomeIdeaSummary: "This pattern points toward making something run better, flow better, or hold together more cleanly for the people involved."
+      },
+      guidance: {
+        pathLabel: "Guidance direction",
+        primarySection: "services",
+        incomeIdeaTitle: "A guidance direction is the clearest fit here.",
+        incomeIdeaSummary: "This pattern points toward helping people think, choose, navigate, or move through something with more clarity and confidence."
+      },
+      culture: {
+        pathLabel: "Culture-based direction",
         primarySection: "income",
-        incomeIdeaTitle: "A connection, support, or enjoyment-oriented direction is the clearest starting point.",
-        incomeIdeaSummary: "This pattern suggests people are paying to feel connected, supported, understood, or to enjoy life more fully and easily. That can point toward communication access, support services, products, or experience-based offers."
+        incomeIdeaTitle: "A culture-based direction is the clearest fit here.",
+        incomeIdeaSummary: "This pattern points toward building around a shared taste, preference, identity, value, or way of living that people keep choosing and paying around."
       }
     };
-    const startingMaterialMap = {
-      "Own Idea": "You already have an idea to work with. The plan should not replace it. It should test whether the idea really fits the pressure, cost, and sought result pattern you are seeing.",
-      "Usable Skill": "You already have something usable to work from, so the plan should start by shaping and testing that skill against real demand.",
-      "Need Knowledge": "Knowledge is the first gap, so this plan should place more weight on training, clarity, and skill-building before expansion.",
-      "Need Support": "Support structure is part of the plan, not an afterthought. This plan should include outside help where it reduces friction or strengthens delivery.",
-      "Need Official Clarity": "Rules, registration, licensing, or formal requirements are part of the plan. Official information should be treated as an early step, not a later detail.",
-      "Still Early": "You do not need a fixed idea yet. The plan should help you identify a starting point, test it, and keep adjusting as the signal gets clearer."
+
+    const whatMap = {
+      getting: "getting something they want",
+      solving: "solving something important",
+      easing: "making life easier",
+      improving: "improving something",
+      enjoying: "enjoying something more",
+      giving: "giving or sharing something meaningful"
     };
-    const blockMap = {
-      Overload: "You have been sorting through too much information. The plan should reduce noise and keep attention on the pressure, the cost, and what people are actually seeking.",
-      NoStartingPoint: "You have been missing a starting point. The plan should start from what you are seeing, not from trying to force a perfect idea too early.",
-      TooManyDirections: "You have been pulled in too many directions. The plan should narrow the field by tying ideas back to a real pressure pattern.",
-      NeedProof: "You have been unsure what counts as proof. The plan should look for signals of demand, not just interesting possibilities.",
-      RulesConcern: "Rules and compliance have been part of the blockage. The plan should surface official needs early so uncertainty does not sit in the background."
+    const keepsChosenMap = {
+      "saves-time": "what saves time",
+      "feels-better": "what feels better",
+      "works-well": "what works well",
+      "looks-right": "what looks right",
+      "feels-meaningful": "what feels meaningful",
+      "feels-worth-having": "what feels worth having"
     };
-    const actionMap = {
-      "Attain Or Gain": "attain, gain, or bring something into reach",
-      "Protect Or Prevent": "protect something, preserve it, or prevent loss",
-      "Improve Or Replace": "improve, repair, replace, or strengthen something",
-      "Simplify Or Order": "make something simpler, steadier, easier, or more manageable",
-      "Prove Or Understand": "get proof, understanding, clarity, confidence, or better decisions",
-      "Connect Or Enjoy": "feel connected, supported, included, understood, or enjoy something more"
+    const resultMap = {
+      attain: "attain something",
+      gain: "gain something",
+      access: "access something",
+      secure: "secure something",
+      improve: "improve something",
+      enjoy: "enjoy something"
     };
-    const directionText = value === "A mix of both"
-      ? "The best opening may come from lowering cost in one area while increasing value in another."
-      : value === "Lower the cost"
-        ? "Look for ways to reduce what this group is spending in time, energy, attention, comfort, or risk."
-        : "Look for ways to make the result more valuable inside the culture you are looking at.";
-    const path = pathMap[action];
+    const positivePullMap = {
+      beauty: "beauty",
+      enjoyment: "enjoyment",
+      convenience: "convenience",
+      identity: "identity",
+      preference: "preference",
+      generosity: "generosity"
+    };
+    const sharedPatternMap = {
+      easier: "people want things to feel easier",
+      better: "people want things to feel better",
+      secure: "people want things to feel more secure",
+      fit: "people want things to fit them better",
+      meaningful: "people want things to feel more meaningful",
+      enjoyable: "people want things to be more enjoyable"
+    };
+    const cultureValueMap = {
+      ease: "ease",
+      quality: "quality",
+      trust: "trust",
+      expression: "expression",
+      belonging: "belonging",
+      satisfaction: "satisfaction"
+    };
+    const opportunityMap = {
+      "save-time": "helping people save time",
+      "use-less-energy": "helping people use less energy",
+      "decide-clearly": "helping people decide more clearly",
+      "feel-better": "helping people feel better or more secure",
+      "better-result": "helping people reach a better result",
+      "enjoy-more": "helping people enjoy the process or outcome more"
+    };
+
+    const result = driverMap[sixDriver] || driverMap.stability;
+    const path = directionMap[direction] || directionMap.service;
+    const paymentText = payment === "mix" ? "a mix of time, energy, attention, comfort, and risk" : payment;
+    const lowerCostText = lowerCost === "effort" ? "effort across too many areas at once" : lowerCost;
+    const directionText = `${opportunityMap[opportunity]} is the clearest opening right now.`;
     const planTitle = "Founder File";
-    const startingPointSummary = `${blockMap[block]} ${startingMaterialMap[startingMaterial]}`;
-    const understandingSummary = `The pattern you are observing points most strongly to ${motivator.toLowerCase()}. People are paying with ${payment.toLowerCase()}, which means the cost of living is showing up there most heavily. When the same cost keeps showing up and the same sought result keeps showing up with it, opportunity starts to become visible.`;
-    const cultureSummary = `In this framework, culture is not a niche label. It is the shared cost being carried and the shared outcome being sought around that cost. Here, the culture pattern looks like ${culture.toLowerCase()}, and the spending seems to be helping people ${actionMap[action]}.`;
-    const opportunitySummary = `${directionText} This is how the cost of living drives opportunity: when people keep paying in ${payment.toLowerCase()}, opportunity forms around lowering that cost or increasing the value of what they are trying to attain, preserve, improve, understand, enjoy, or make easier.`;
-    const knowledgeSummary = startingMaterial === "Usable Skill"
-      ? "You may not need a large new training stack to begin. Start by tightening what you already know, then add knowledge where it strengthens the offer."
-      : startingMaterial === "Need Official Clarity"
-        ? "Knowledge should focus on understanding the rules, registrations, and steps that affect whether this idea can operate cleanly."
-        : "This should include targeted knowledge, not random learning. Use the suggested training items to close the exact gaps between your current position and a workable offer.";
-    const supportSummary = startingMaterial === "Need Support"
-      ? "Support services are likely part of the operating model from the start. Choose only the ones that reduce friction, protect the business, or help you deliver consistently."
-      : "Support services are optional at first, but they can strengthen delivery, reduce risk, and help the plan run more smoothly as it grows.";
-    const officialSummary = action === "Simplify Or Order" || startingMaterial === "Need Official Clarity" || block === "RulesConcern"
-      ? `Official information should be handled early in this plan. Use ${appState.selectedState} and federal resources to clarify registration, tax, licensing, contracting, or other requirements that shape the work.`
-      : `Official information still matters because it anchors the business in real rules. Use ${appState.selectedState} and federal resources to confirm the registrations, tax steps, and requirements that apply.`;
+    const startingPointSummary = `You are reading this pattern through ${whatMap[whatPeoplePayFor]}, with ${pullsSpending} and ${keepsChosenMap[keepsGettingChosen]} standing out as the strongest pull.`;
+    const understandingSummary = `The strongest driver here is ${sixDriver}. The cost of living is showing up most in ${paymentText}, and the cost people would most likely rather lower is ${lowerCostText}. The result at the center of the spending is to ${resultMap[resultSought]}, with ${positivePullMap[positivePull]} still playing a real role in why people choose what they choose.`;
+    const cultureSummary = `The shared pattern here looks most like this: ${sharedPatternMap[sharedPattern]}. That is why the culture reads most clearly as a culture of ${culture}. What it keeps valuing is ${cultureValueMap[cultureValues]}.`;
+    const opportunitySummary = `${directionText} This is how the cost of living creates opportunity here: people keep paying in ${paymentText}, they would rather pay less in ${lowerCostText}, and they still want to ${resultMap[resultSought]}.`;
+    const knowledgeSummary = direction === "information"
+      ? "Knowledge should stay practical here. Focus on the exact information, terms, and structure that make the direction clearer and more usable."
+      : direction === "process"
+        ? "Knowledge should focus on how the work runs, how it holds together, and what makes delivery stronger and more consistent."
+        : "Use knowledge to sharpen the fit, not to bury the direction. Add only what helps you understand the pattern, the offer, or the work more clearly.";
+    const supportSummary = founderIdentity === "Solopreneur" || founderIdentity === "Freelancer"
+      ? "Support should stay lean and useful. Bring in only what saves time, reduces friction, or helps you deliver more cleanly."
+      : founderIdentity === "Small Business Owner" || founderIdentity === "Owner-Operator"
+        ? "Support services can help the work run more steadily. Use them where they strengthen delivery, operations, or consistency."
+        : "Support services should match the direction, not distract from it. Use them where they make the business easier to run or the result stronger to deliver.";
+    const officialSummary = payment === "risk" || lowerCost === "risk" || direction === "process" || direction === "information"
+      ? `Official information should be checked early here. Use ${appState.selectedState} and federal resources to confirm the registrations, tax steps, licensing, contracting, or compliance details that shape the work.`
+      : `Official information still matters here because it anchors the work in real requirements. Use ${appState.selectedState} and federal resources to confirm what applies before you move too far ahead.`;
     const planSteps = [
-      "Start with what people are paying for and the result they are seeking.",
-      `Use ${path.pathLabel.toLowerCase()} as a useful reference, not a fixed label.`,
-      startingMaterialMap[startingMaterial],
-      "Browse app ideas that fit what you are observing, then generate your own ideas too, even if they seem common.",
-      "Keep what fits, revise what does not, and update the file as your understanding changes."
+      "Start with the pattern that keeps showing up.",
+      "Keep the cost, the result, and the culture tied together as you sort through options.",
+      `Use ${path.pathLabel.toLowerCase()} as a working direction, not a fixed identity.`,
+      "Save what fits, ignore what does not, and keep refining the file as the signal gets clearer.",
+      "Let the Founder File stay working, not final."
     ];
-    const proofSummary = "Proof can be simple at first: the pattern keeps showing up, the idea clearly reduces a cost or increases a valued result, and the plan feels workable enough to test with real people or real next steps.";
+    const proofSummary = "The strongest proof at this stage is clarity: the pattern makes sense, the culture feels real, the direction fits you, and the opportunity feels usable enough to keep building around.";
+
     return {
       id: "quiz-result",
       title: result.title,
       planTitle,
-      explanation: `This result is not trying to force a business idea on you. It is helping you understand what you are seeing. The strongest pattern here is ${motivator.toLowerCase()}, the cost of living shows up most in ${payment.toLowerCase()}, and the culture is forming around ${culture.toLowerCase()}.`,
-      motivator,
+      explanation: `This result is not trying to force a business idea on you. It is helping you understand what is standing out. The strongest driver here is ${sixDriver}, the cost of living shows up most in ${paymentText}, and the culture is forming around ${culture}.`,
+      motivator: sixDriver,
       payment,
       culture,
-      action,
-      value,
-      block,
-      startingMaterial,
+      action: resultSought,
+      value: opportunity,
       primarySection: path.primarySection,
       pathLabel: path.pathLabel,
-      pathSummary: `Build around The Six, The Cost of Living, and the shared cost and sought outcome inside this culture. Here, that means ${motivator.toLowerCase()}, ${payment.toLowerCase()}, and a flexible understanding you can keep refining.`,
-      planSummary: "This file is not a formal business-plan document. It is a living Founder File meant to help you nurture an idea you already have or develop one you discovered in the app.",
+      pathSummary: `Build around the shared cost, the sought result, and the culture forming around them. Here, that means ${sixDriver}, ${paymentText}, and a ${path.pathLabel.toLowerCase()} you can keep refining.`,
+      planSummary: "This file is not a formal business-plan document. It is a living Founder File meant to help you shape and keep refining a direction that fits.",
       founderIdentity,
       founderIdentityDescription: founderIdentityDescriptions[founderIdentity] || founderIdentityDescriptions.Founder,
       startingPointSummary,
@@ -3492,6 +3529,7 @@
       suggestedOfficialIds: result.official
     };
   }
+
 
   function buildPathSnapshot() {
     if (!appState.quizResult) {

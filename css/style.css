@@ -3146,6 +3146,18 @@ body::before {
   letter-spacing: 0.06em;
   color: #6b7280;
 }
+.idea-card__note {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 6px;
+  padding: 0.6rem 0.85rem;
+}
+.idea-card__note p {
+  font-size: 0.82rem;
+  color: #78350f;
+  margin: 0.2rem 0 0;
+  line-height: 1.5;
+}
 
 /* Focus card - red */
 .cat-card--focus {

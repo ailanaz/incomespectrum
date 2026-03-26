@@ -22,25 +22,17 @@
     "Founder",
     "Entrepreneur",
     "Small Business Owner",
-    "Self-Employed",
     "Solopreneur",
-    "Business Owner"
+    "Freelancer",
+    "Owner-Operator"
   ];
   const founderIdentityDescriptions = {
-    Entrepreneur: "An individual who identifies a gap in the market and creates a new entity to fill it, characterized by high risk and a focus on innovation and scalability. The goal is to build a system that eventually functions without them, often leading to an acquisition or IPO. \"I am building a machine that solves a problem.\"",
-    Solopreneur: "A business owner who runs their entire operation alone, by choice. While they may use contractors or automation, they have no intention of hiring a traditional full-time staff. The goal is high profitability and personal freedom without the headache of managing people. \"I am the business, and I like it that way.\"",
-    "Small Business Owner": "An individual who owns and manages a business that serves a specific local or niche market, typically with a stable, long-term growth plan and a team of employees. The goal is sustainable income, community impact, and long-term stability. \"I am building a pillar of the local economy.\"",
-    "Self-Employed Professional": "Someone who sells their specific labor, expertise, or craft to multiple clients. They are essentially a business of one where the product is their time and skill. The goal is consistent work and the ability to choose their own projects and hours. \"I am selling my expertise to the highest bidder.\"",
-    "Owner-Operator": "A person who owns a business and is also the primary person performing the core daily labor, common in trucking, franchises, or independent shops. The goal is to own the job and the assets associated with it, rather than working for a boss. \"I own the shop, and I am also behind the counter.\"",
-    Founder: "The person who established the legal entity and original vision of a company. This is a title of origin, not a job description. The goal is to transition from the person with the idea to the leader of the organization. \"I was here on Day One.\""
-  };
-  const founderIdentitySuggestions = {
-    "Own Idea": "Entrepreneur",
-    "Usable Skill": "Self-Employed Professional",
-    "Need Knowledge": "Founder",
-    "Need Support": "Solopreneur",
-    "Need Official Clarity": "Small Business Owner",
-    "Still Early": "Founder"
+    Founder: "A person who starts, owns, builds, buys, or runs a business or venture.",
+    Entrepreneur: "Building something with room to grow beyond your direct labor.",
+    Solopreneur: "Running a business you own and operate yourself.",
+    "Small Business Owner": "Owning and running a business that serves a defined market or community.",
+    Freelancer: "Working independently by offering a skill or service to clients.",
+    "Owner-Operator": "Owning the business and also doing the day-to-day work."
   };
   const FOUNDER_FORMS_KEY = "income-spectrum-founder-forms-v1";
   const FORMS_MAX_BYTES = 1048576; // 1MB per file
@@ -585,131 +577,218 @@
 
   const quiz = {
     title: "What People Pay For",
-    intro: "This quiz is designed to help you understand what people are paying for and turn that understanding into a living Founder File.",
-    frameworkNote: "You will be building understanding of The Six, the six motivators that drive spending; The Cost of Living, the costs people keep paying in time, energy, attention, comfort, and risk; Niche as Culture, where culture is shaped by shared cost and shared outcomes sought; and how The Cost of Living drives opportunity.",
+    intro: "Your answers will help shape your Founder File.",
+    frameworkNote: "There are no right answers here. Choose what feels closest to your understanding, your instincts, your style, your direction, or what simply feels right to you.",
+    optionPrompt: "Choose the response that fits best for you.",
     questions: [
       {
-        id: "block",
-        prompt: "When you try to understand what people pay for, what has been making that hardest to see?",
+        id: "whatPeoplePayFor",
+        title: "What People Pay For",
+        prompt: "People pay for outcomes that matter to them.",
+        question: "Which of these feels closest to what stands out most?",
         options: [
-          { value: "Overload", label: "Too much information, too many ideas, and too much noise" },
-          { value: "NoStartingPoint", label: "I do not know where to start observing" },
-          { value: "TooManyDirections", label: "I notice too many possible directions and no clear way to sort them" },
-          { value: "NeedProof", label: "I do not know what counts as a real signal versus a guess" },
-          { value: "RulesConcern", label: "I keep worrying about rules, registration, licensing, or doing it wrong" }
+          { value: "getting", label: "getting something they want" },
+          { value: "solving", label: "solving something important" },
+          { value: "easing", label: "making life easier" },
+          { value: "improving", label: "improving something" },
+          { value: "enjoying", label: "enjoying something more" },
+          { value: "giving", label: "giving or sharing something meaningful" }
         ]
       },
       {
-        id: "problem",
-        prompt: "If you pause and observe, which of these seems closest to what people keep spending around, returning to, or trying to secure, change, avoid, gain, improve, or enjoy?",
+        id: "pullsSpending",
+        title: "What Pulls Spending",
+        prompt: "Some spending is planned. Some happens fast.",
+        question: "Which of these feels most like what pulls spending forward?",
         options: [
-          { value: "Relief and Health", label: "Relief, solution, repair, replacement, or improvement keeps showing up" },
-          { value: "Safety and Protection", label: "Protection, prevention, preservation, or reducing exposure keeps showing up" },
-          { value: "Survival and Stability", label: "Access, stability, order, simplicity, or savings keeps showing up" },
-          { value: "Status, Meaning, and Legacy", label: "Growth, proof, understanding, advancement, or stronger decisions keeps showing up" },
-          { value: "Belonging and Love", label: "Connection, support, inclusion, trust, or feeling understood keeps showing up" },
-          { value: "Pleasure and Comfort", label: "Comfort, ease, enjoyment, or a better experience keeps showing up" }
+          { value: "urgency", label: "urgency" },
+          { value: "convenience", label: "convenience" },
+          { value: "desire", label: "desire" },
+          { value: "comfort", label: "comfort" },
+          { value: "trust", label: "trust" },
+          { value: "pleasure", label: "pleasure" }
         ]
       },
       {
-        id: "payment",
-        prompt: "Which part of the Cost of Living seems to be spent most heavily here?",
+        id: "keepsGettingChosen",
+        title: "What Keeps Getting Chosen",
+        prompt: "People usually repeat what feels worth it to them.",
+        question: "Which of these feels most like what keeps getting chosen?",
         options: [
-          { value: "Time", label: "Time" },
-          { value: "Energy", label: "Energy" },
-          { value: "Attention", label: "Attention" },
-          { value: "Comfort", label: "Comfort" },
-          { value: "Risk", label: "Risk" }
+          { value: "saves-time", label: "what saves time" },
+          { value: "feels-better", label: "what feels better" },
+          { value: "works-well", label: "what works well" },
+          { value: "looks-right", label: "what looks right" },
+          { value: "feels-meaningful", label: "what feels meaningful" },
+          { value: "feels-worth-having", label: "what feels worth having" }
+        ]
+      },
+      {
+        id: "sixDriver",
+        title: "The Six",
+        prompt: "The Six are core drivers underneath what people pay for.",
+        question: "Which of these feels most active?",
+        options: [
+          { value: "relief", label: "relief" },
+          { value: "stability", label: "stability" },
+          { value: "access", label: "access" },
+          { value: "improvement", label: "improvement" },
+          { value: "connection", label: "connection" },
+          { value: "enjoyment", label: "enjoyment" }
+        ]
+      },
+      {
+        id: "costOfLiving",
+        title: "The Cost of Living",
+        prompt: "The Cost of Living is the cost people pay in time, energy, attention, comfort, and risk.",
+        question: "Which of these feels most heavily spent?",
+        options: [
+          { value: "time", label: "time" },
+          { value: "energy", label: "energy" },
+          { value: "attention", label: "attention" },
+          { value: "comfort", label: "comfort" },
+          { value: "risk", label: "risk" },
+          { value: "mix", label: "a mix of these" }
+        ]
+      },
+      {
+        id: "lowerCost",
+        title: "What People Would Rather Spend Less Of",
+        prompt: "Some costs feel acceptable. Some feel heavier than they should.",
+        question: "Which of these feels most like the cost people would rather lower?",
+        options: [
+          { value: "time", label: "time" },
+          { value: "energy", label: "energy" },
+          { value: "attention", label: "attention" },
+          { value: "comfort", label: "comfort" },
+          { value: "risk", label: "risk" },
+          { value: "effort", label: "effort across too many areas at once" }
+        ]
+      },
+      {
+        id: "resultSought",
+        title: "Result Sought",
+        prompt: "Spending usually points toward a result.",
+        question: "Which kind of result feels most central here?",
+        options: [
+          { value: "attain", label: "to attain something" },
+          { value: "gain", label: "to gain something" },
+          { value: "access", label: "to access something" },
+          { value: "secure", label: "to secure something" },
+          { value: "improve", label: "to improve something" },
+          { value: "enjoy", label: "to enjoy something" }
+        ]
+      },
+      {
+        id: "positivePull",
+        title: "Positive Pull",
+        prompt: "Not all spending comes from pressure. Some comes from attraction.",
+        question: "Which of these feels closest to the positive pull here?",
+        options: [
+          { value: "beauty", label: "beauty" },
+          { value: "enjoyment", label: "enjoyment" },
+          { value: "convenience", label: "convenience" },
+          { value: "identity", label: "identity" },
+          { value: "preference", label: "preference" },
+          { value: "generosity", label: "generosity" }
+        ]
+      },
+      {
+        id: "sharedPattern",
+        title: "Shared Pattern",
+        prompt: "When the same kind of cost and result keep showing up, a pattern forms.",
+        question: "Which of these feels closest to that pattern?",
+        options: [
+          { value: "easier", label: "people want things to feel easier" },
+          { value: "better", label: "people want things to feel better" },
+          { value: "secure", label: "people want things to feel more secure" },
+          { value: "fit", label: "people want things to fit them better" },
+          { value: "meaningful", label: "people want things to feel more meaningful" },
+          { value: "enjoyable", label: "people want things to be more enjoyable" }
         ]
       },
       {
         id: "culture",
-        prompt: "When you look at the shared cost being carried and the shared result being sought, which pattern feels closest to the culture you are observing?",
+        title: "Niche is Culture",
+        prompt: "Culture forms where people keep paying around a shared cost and a shared result.",
+        question: "Which of these feels closest to the culture here?",
         options: [
-          { value: "Instability to order", label: "A shared cost around instability, disorder, or lack of access, with order, access, savings, or stronger footing being sought" },
-          { value: "Exposure to protection", label: "A shared cost around exposure, uncertainty, or possible loss, with protection, prevention, preservation, or more certainty being sought" },
-          { value: "Friction to solution", label: "A shared cost around pain, friction, strain, confusion, or breakdown, with solution, repair, replacement, improvement, or relief being sought" },
-          { value: "Discomfort to ease", label: "A shared cost around discomfort or inconvenience, with comfort, ease, simplicity, enjoyment, or a better experience being sought" },
-          { value: "Disconnection to connection", label: "A shared cost around disconnection, exclusion, or not feeling understood, with connection, support, trust, inclusion, or understanding being sought" },
-          { value: "Uncertainty to proof", label: "A shared cost around uncertainty, stalled growth, weak decisions, or lack of proof, with understanding, proof, direction, advancement, or stronger decisions being sought" }
+          { value: "relief", label: "a culture of relief" },
+          { value: "stability", label: "a culture of stability" },
+          { value: "access", label: "a culture of access" },
+          { value: "improvement", label: "a culture of improvement" },
+          { value: "connection", label: "a culture of connection" },
+          { value: "enjoyment", label: "a culture of enjoyment" }
         ]
       },
       {
-        id: "action",
-        prompt: "Looking at that pattern, what does the spending seem to be helping people secure, change, avoid, gain, improve, understand, or enjoy most?",
+        id: "cultureValues",
+        title: "What the Culture Values",
+        prompt: "Every culture reveals what matters through what it keeps choosing.",
+        question: "Which of these feels most valued here?",
         options: [
-          { value: "Attain Or Gain", label: "Get access, attain something, gain something, or bring something into reach" },
-          { value: "Protect Or Prevent", label: "Protect something, preserve something, prevent loss, or reduce exposure" },
-          { value: "Improve Or Replace", label: "Improve something, repair something, replace something, or strengthen a result" },
-          { value: "Simplify Or Order", label: "Make something simpler, more orderly, easier, steadier, or less costly to manage" },
-          { value: "Prove Or Understand", label: "Get proof, understanding, clarity, confidence, or better decisions" },
-          { value: "Connect Or Enjoy", label: "Feel connected, supported, included, understood, or enjoy something more" }
+          { value: "ease", label: "ease" },
+          { value: "quality", label: "quality" },
+          { value: "trust", label: "trust" },
+          { value: "expression", label: "expression" },
+          { value: "belonging", label: "belonging" },
+          { value: "satisfaction", label: "satisfaction" }
         ]
       },
       {
-        id: "value",
-        prompt: "From what you are observing, where does the clearest opportunity seem to be forming?",
+        id: "opportunity",
+        title: "Cost of Living Creates Opportunity",
+        prompt: "Opportunity forms where people keep paying and still want a better way through, toward, or around something.",
+        question: "Which of these feels closest to where opportunity is forming?",
         options: [
-          { value: "Lower the cost", label: "Lowering the cost people are already carrying" },
-          { value: "Increase the value", label: "Increasing the value or result people receive" },
-          { value: "A mix of both", label: "A mix of lowering cost and increasing value" }
+          { value: "save-time", label: "helping people save time" },
+          { value: "use-less-energy", label: "helping people use less energy" },
+          { value: "decide-clearly", label: "helping people decide more clearly" },
+          { value: "feel-better", label: "helping people feel better or more secure" },
+          { value: "better-result", label: "helping people reach a better result" },
+          { value: "enjoy-more", label: "helping people enjoy the process or outcome more" }
         ]
       },
       {
-        id: "startingMaterial",
-        prompt: "Based on what you are understanding about what people are paying for, what seems most usable as a starting point if you wanted to respond to that pattern?",
+        id: "direction",
+        title: "Direction",
+        prompt: "Direction starts to form when the pattern, the cost, and the result begin to make sense together.",
+        question: "Which of these feels most usable as the best direction for you?",
         options: [
-          { value: "Own Idea", label: "An idea of my own that may fit what I am observing" },
-          { value: "Usable Skill", label: "A usable skill, service, or experience I can work from" },
-          { value: "Need Knowledge", label: "A direction is forming, but I still need knowledge or training" },
-          { value: "Need Support", label: "A direction is forming, but I will likely need support services" },
-          { value: "Need Official Clarity", label: "A direction is forming, but I need clarity on rules, registration, or compliance" },
-          { value: "Still Early", label: "I am still early and need a starting point more than a fixed idea" }
+          { value: "service", label: "offering a service" },
+          { value: "product", label: "creating a product" },
+          { value: "information", label: "organizing information" },
+          { value: "process", label: "improving a process" },
+          { value: "guidance", label: "guiding people through something" },
+          { value: "culture", label: "building around a specific culture" }
         ]
       },
       {
-        id: "workFeeling",
-        prompt: "When work feels right to you, what is usually at the center of it?",
+        id: "workStyle",
+        title: "Your Style",
+        prompt: "The best direction should fit the way you naturally like to work.",
+        question: "Which of these feels most like you?",
         options: [
-          { value: "hands", label: "I am doing something with my hands that makes a visible difference" },
-          { value: "helping", label: "I am helping someone get through something or feel more capable" },
-          { value: "making", label: "I am making or building something that did not exist before" },
-          { value: "organizing", label: "I am organizing, clarifying, or making sense of something messy" },
-          { value: "connecting", label: "I am connecting someone to what they need" }
+          { value: "solving", label: "solving" },
+          { value: "improving", label: "improving" },
+          { value: "organizing", label: "organizing" },
+          { value: "guiding", label: "guiding" },
+          { value: "creating", label: "creating" },
+          { value: "connecting", label: "connecting" }
         ]
       },
       {
-        id: "naturalOffer",
-        prompt: "What have people in your life come to you for, or what do you find yourself offering without being asked?",
+        id: "founderFit",
+        title: "Founder Fit",
+        prompt: "Founder is the catch-all term here, but there are different ways to operate as one.",
+        question: "Which of these feels most like you right now?",
         options: [
-          { value: "fix-build", label: "Help with something physical - fixing, building, maintaining, or making something work" },
-          { value: "support-guide", label: "Support or a steady presence when someone is dealing with something difficult" },
-          { value: "creative-eye", label: "A creative eye - taste, presentation, design, or making something look or sound right" },
-          { value: "clarity-plan", label: "Help making sense of something - planning, organizing, or figuring out next steps" },
-          { value: "find-connect", label: "Knowing where to find things, who to call, or how to navigate something" }
-        ]
-      },
-      {
-        id: "workSetting",
-        prompt: "When you picture yourself doing satisfying work, what does the setting look like?",
-        options: [
-          { value: "physical-space", label: "A physical space with tools, materials, or equipment around me" },
-          { value: "with-people", label: "Face to face with one person or a small group at a time" },
-          { value: "on-the-move", label: "Moving between locations - clients, job sites, or different places each day" },
-          { value: "own-place", label: "My own place - a shop, studio, or space I run" },
-          { value: "screen-remote", label: "Behind a screen, working on something digital or from wherever I am" }
-        ]
-      },
-      {
-        id: "founderType",
-        prompt: "Which of these best describes how you see yourself?",
-        options: [
-          { value: "Entrepreneur", label: "Entrepreneur - I am building a machine that solves a problem" },
-          { value: "Solopreneur", label: "Solopreneur - I am the business, and I like it that way" },
-          { value: "Small Business Owner", label: "Small Business Owner - I am building a pillar of the local economy" },
-          { value: "Self-Employed Professional", label: "Self-Employed Professional - I am selling my expertise to the highest bidder" },
-          { value: "Owner-Operator", label: "Owner-Operator - I own the shop, and I am also behind the counter" },
-          { value: "Founder", label: "Founder - I was here on Day One" }
+          { value: "Entrepreneur", label: "Entrepreneur", detail: "Building something with room to grow beyond your direct labor." },
+          { value: "Solopreneur", label: "Solopreneur", detail: "Running a business you own and operate yourself." },
+          { value: "Small Business Owner", label: "Small Business Owner", detail: "Owning and running a business that serves a defined market or community." },
+          { value: "Freelancer", label: "Freelancer", detail: "Working independently by offering a skill or service to clients." },
+          { value: "Owner-Operator", label: "Owner-Operator", detail: "Owning the business and also doing the day-to-day work." },
+          { value: "Founder", label: "Still defining that", detail: "You are still figuring out what kind of founder fits you best." }
         ]
       }
     ]
@@ -2906,11 +2985,15 @@
     body.innerHTML = `
       <div class="quiz-question">
         ${quizIndex === 0 ? `<p>${quiz.intro}</p><p>${quiz.frameworkNote}</p>` : ""}
-        <h3>${question.prompt}</h3>
+        <h3>${question.title || question.prompt}</h3>
+        ${question.prompt ? `<p>${question.prompt}</p>` : ""}
+        ${question.question ? `<p><strong>${question.question}</strong></p>` : ""}
+        ${quiz.optionPrompt ? `<p>${quiz.optionPrompt}</p>` : ""}
         <div class="quiz-options">
           ${question.options.map((option) => `
             <button class="quiz-option ${selected === option.value ? "selected" : ""}" data-action="quiz-option" data-value="${option.value}">
               ${option.label}
+              ${option.detail ? `<small>${option.detail}</small>` : ""}
             </button>
           `).join("")}
         </div>

@@ -1145,10 +1145,6 @@
         appState.goal = choicePill.dataset.value;
         syncFounderAccountProfile();
         saveState();
-      } else if (group.id === "signupGoal") {
-        appState.goal = choicePill.dataset.value;
-        renderSetupChoices();
-        updateSignupButtonState();
       } else if (group.id === "profileWorkPref") {
         appState.workPreference = choicePill.dataset.value;
         saveState();
@@ -1185,7 +1181,6 @@
 
   function renderProfilePrefs() {
     const signupState = document.getElementById("signupState");
-    const signupGoal = document.getElementById("signupGoal");
     const profileState = document.getElementById("profileState");
     const profileGoal = document.getElementById("profileGoal");
     const accountStatusCopy = document.getElementById("accountStatusCopy");
@@ -1193,9 +1188,6 @@
     const profileToolsTitle = document.getElementById("profileToolsTitle");
     const topSignOutButton = document.getElementById("topSignOutButton");
     if (signupState) signupState.value = appState.selectedState;
-    if (signupGoal) signupGoal.innerHTML = setupGoals.map((goal) => `
-      <button class="choice-pill ${goal.value === appState.goal ? "active" : ""}" type="button" data-value="${goal.value}">${goal.label}</button>
-    `).join("");
     if (profileState) profileState.value = appState.selectedState;
     if (profileGoal) profileGoal.innerHTML = setupGoals.map((goal) => `
       <button class="choice-pill ${goal.value === appState.goal ? "active" : ""}" type="button" data-value="${goal.value}">${goal.label}</button>
@@ -1388,9 +1380,9 @@
     const email = (document.getElementById("signupEmail")?.value || "").trim().toLowerCase();
     const password = (document.getElementById("signupPassword")?.value || "").trim();
     const selectedState = document.getElementById("signupState")?.value || appState.selectedState;
-    const initialGoal = getActiveChoiceValue(document.getElementById("signupGoal")) || appState.goal;
-    if (!name || !email || !password || !selectedState || !initialGoal) {
-      setAuthMessage("signupMessage", "Enter your name, email, password, state, and initial goal to create your Founder account.");
+    const initialGoal = appState.goal;
+    if (!name || !email || !password || !selectedState) {
+      setAuthMessage("signupMessage", "Enter your name, email, password, and state to create your Founder account.");
       return;
     }
     appState.selectedState = selectedState;
@@ -1487,8 +1479,7 @@
     const email = (document.getElementById("signupEmail")?.value || "").trim();
     const password = (document.getElementById("signupPassword")?.value || "").trim();
     const selectedState = document.getElementById("signupState")?.value || "";
-    const initialGoal = getActiveChoiceValue(document.getElementById("signupGoal"));
-    button.disabled = !(name && email && password && selectedState && initialGoal);
+    button.disabled = !(name && email && password && selectedState);
   }
 
   function setAuthMessage(id, message) {

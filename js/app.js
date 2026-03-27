@@ -1189,6 +1189,32 @@
       showView(appState.activeView || "home");
       await restoreOverlayState();
     }
+    // Firebase auth state listener - restores session across devices
+    if (typeof firebase !== "undefined") {
+      firebase.auth().onAuthStateChanged(async (user) => {
+        if (user && !appState.isSignedIn) {
+          const cloudState = await loadStateFromFirestore(user.uid);
+          if (cloudState) {
+            appState = { ...structuredClone(defaultState), ...cloudState, isSignedIn: true, setupComplete: true };
+            saveState();
+            renderAll();
+            syncGateState();
+            if (!appState.isSignedIn && appState.activeView === "saved") {
+              appState.activeView = "home";
+            }
+            showView(appState.activeView || "home");
+          }
+        } else if (!user && appState.isSignedIn) {
+          // Firebase session gone but local state says signed in - clear it
+          appState = structuredClone(defaultState);
+          localStorage.removeItem(STORAGE_KEY_LOCAL);
+          localStorage.removeItem(ACCOUNT_KEY_LOCAL);
+          sessionStorage.removeItem(STORAGE_KEY_SESSION);
+          renderAll();
+          syncGateState();
+        }
+      });
+    }
   }
 
   function bindEvents() {
@@ -1495,6 +1521,9 @@
         syncGateState();
         renderAll();
       } else if (action === "sign-out") {
+        if (typeof firebase !== "undefined") {
+          firebase.auth().signOut().catch(() => {});
+        }
         appState = structuredClone(defaultState);
         localStorage.removeItem(STORAGE_KEY_LOCAL);
         localStorage.removeItem(ACCOUNT_KEY_LOCAL);
@@ -1804,7 +1833,7 @@
     return "explore";
   }
 
-  function completeSignup() {
+  async function completeSignup() {
     const name = (document.getElementById("signupName")?.value || "").trim();
     const email = (document.getElementById("signupEmail")?.value || "").trim().toLowerCase();
     const password = (document.getElementById("signupPassword")?.value || "").trim();
@@ -1814,76 +1843,92 @@
       setAuthMessage("signupMessage", "Enter your name, email, password, and state to create your Founder account.");
       return;
     }
-    appState.selectedState = selectedState;
-    appState.browseOfficialState = selectedState;
-    appState.goal = initialGoal;
-    saveFounderAccount({
-      name,
-      email,
-      password,
-      selectedState,
-      goal: initialGoal
-    });
-    appState.isSignedIn = true;
-    appState.setupComplete = true;
-    clearSignupReturn();
-    saveState();
-    openApp("home");
-    renderPostSignupPrompt();
-    openOverlay("progressOverlay", { kind: "post-signup" });
+    setAuthMessage("signupMessage", "Creating your account...");
+    const btn = document.getElementById("completeSignupButton");
+    if (btn) btn.disabled = true;
+    try {
+      const auth = firebase.auth();
+      const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+      const user = userCredential.user;
+      await user.updateProfile({ displayName: name });
+      appState.selectedState = selectedState;
+      appState.browseOfficialState = selectedState;
+      appState.goal = initialGoal;
+      appState.isSignedIn = true;
+      appState.setupComplete = true;
+      saveFounderAccount({ name, email, selectedState, goal: initialGoal });
+      clearSignupReturn();
+      saveState();
+      await saveStateToFirestore(user.uid);
+      openApp("home");
+      renderPostSignupPrompt();
+      openOverlay("progressOverlay", { kind: "post-signup" });
+    } catch (err) {
+      let msg = "Something went wrong. Try again.";
+      if (err.code === "auth/email-already-in-use") msg = "An account with that email already exists. Sign in instead.";
+      if (err.code === "auth/weak-password") msg = "Password must be at least 6 characters.";
+      if (err.code === "auth/invalid-email") msg = "That doesn't look like a valid email.";
+      setAuthMessage("signupMessage", msg);
+      if (btn) btn.disabled = false;
+    }
   }
 
-  function completeSignin() {
+  async function completeSignin() {
     const email = (document.getElementById("signinEmail")?.value || "").trim().toLowerCase();
     const password = (document.getElementById("signinPassword")?.value || "").trim();
-    const founderAccount = loadFounderAccount();
     if (!email || !password) {
       setAuthMessage("signinMessage", "Enter your email and password to sign in.");
       return;
     }
-    if (!founderAccount) {
-      setAuthMessage("signinMessage", "No Founder account is saved on this device yet. Create one first.");
-      return;
+    setAuthMessage("signinMessage", "Signing in...");
+    const btn = document.getElementById("completeSigninButton");
+    if (btn) btn.disabled = true;
+    try {
+      const auth = firebase.auth();
+      const userCredential = await auth.signInWithEmailAndPassword(email, password);
+      const user = userCredential.user;
+      const cloudState = await loadStateFromFirestore(user.uid);
+      if (cloudState) {
+        appState = { ...structuredClone(defaultState), ...cloudState };
+      }
+      appState.isSignedIn = true;
+      appState.setupComplete = true;
+      clearSignupReturn();
+      saveState();
+      openApp("home");
+    } catch (err) {
+      let msg = "That email or password is incorrect.";
+      if (err.code === "auth/user-not-found") msg = "No account found with that email. Create one first.";
+      if (err.code === "auth/wrong-password" || err.code === "auth/invalid-credential") msg = "That email or password is incorrect.";
+      if (err.code === "auth/invalid-email") msg = "That doesn't look like a valid email.";
+      if (err.code === "auth/too-many-requests") msg = "Too many attempts. Try again in a few minutes.";
+      setAuthMessage("signinMessage", msg);
+      if (btn) btn.disabled = false;
     }
-    if (founderAccount.email !== email || founderAccount.password !== password) {
-      setAuthMessage("signinMessage", "That email or password does not match the saved Founder account on this device.");
-      return;
-    }
-    applyFounderAccountToState(founderAccount);
-    appState.isSignedIn = true;
-    appState.setupComplete = true;
-    clearSignupReturn();
-    saveState();
-    openApp("home");
   }
 
-  function completePasswordReset() {
+  async function completePasswordReset() {
     const email = (document.getElementById("resetEmail")?.value || "").trim().toLowerCase();
-    const newPassword = (document.getElementById("resetNewPassword")?.value || "").trim();
-    if (!email || !newPassword) {
-      setAuthMessage("resetMessage", "Enter both your email and a new password.");
+    if (!email) {
+      setAuthMessage("resetMessage", "Enter your email address.");
       return;
     }
-    const founderAccount = loadFounderAccount();
-    if (!founderAccount) {
-      setAuthMessage("resetMessage", "No Founder account is saved on this device. Create one first.");
-      return;
+    setAuthMessage("resetMessage", "Sending reset email...");
+    try {
+      await firebase.auth().sendPasswordResetEmail(email);
+      setAuthMessage("resetMessage", "Reset email sent. Check your inbox for a link to set a new password.");
+      const resetEmail = document.getElementById("resetEmail");
+      if (resetEmail) resetEmail.value = "";
+      setTimeout(() => {
+        setAuthMessage("resetMessage", "");
+        showGate("signin");
+      }, 3500);
+    } catch (err) {
+      let msg = "Could not send reset email. Check the address and try again.";
+      if (err.code === "auth/user-not-found") msg = "No account found with that email.";
+      if (err.code === "auth/invalid-email") msg = "That doesn't look like a valid email.";
+      setAuthMessage("resetMessage", msg);
     }
-    if (founderAccount.email !== email) {
-      setAuthMessage("resetMessage", "That email does not match the Founder account saved on this device.");
-      return;
-    }
-    founderAccount.password = newPassword;
-    saveFounderAccount(founderAccount);
-    setAuthMessage("resetMessage", "Password updated. Taking you back to sign in.");
-    const resetEmail = document.getElementById("resetEmail");
-    const resetNewPassword = document.getElementById("resetNewPassword");
-    if (resetEmail) resetEmail.value = "";
-    if (resetNewPassword) resetNewPassword.value = "";
-    setTimeout(() => {
-      setAuthMessage("resetMessage", "");
-      showGate("signin");
-    }, 1800);
   }
 
   function captureSignupReturn() {
@@ -1955,6 +2000,32 @@
       const raw = localStorage.getItem(ACCOUNT_KEY_LOCAL);
       return raw ? JSON.parse(raw) : null;
     } catch (error) {
+      return null;
+    }
+  }
+
+  async function saveStateToFirestore(uid) {
+    try {
+      if (!uid || typeof firebase === "undefined") return;
+      const db = firebase.firestore();
+      const payload = { ...appState };
+      delete payload.password;
+      await db.collection("users").doc(uid).set({ state: JSON.stringify(payload) }, { merge: true });
+    } catch (e) {
+      // Firestore save failed silently - localStorage copy is still intact
+    }
+  }
+
+  async function loadStateFromFirestore(uid) {
+    try {
+      if (!uid || typeof firebase === "undefined") return null;
+      const db = firebase.firestore();
+      const doc = await db.collection("users").doc(uid).get();
+      if (doc.exists && doc.data().state) {
+        return JSON.parse(doc.data().state);
+      }
+      return null;
+    } catch (e) {
       return null;
     }
   }
@@ -4218,6 +4289,10 @@
     if (appState.isSignedIn) {
       localStorage.setItem(STORAGE_KEY_LOCAL, payload);
       sessionStorage.removeItem(STORAGE_KEY_SESSION);
+      if (typeof firebase !== "undefined") {
+        const user = firebase.auth().currentUser;
+        if (user) saveStateToFirestore(user.uid);
+      }
       return;
     }
     sessionStorage.setItem(STORAGE_KEY_SESSION, payload);

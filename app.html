@@ -38,7 +38,7 @@
     gtag('js', new Date());
     gtag('config', 'G-E0X0YYVSC4');
   </script>
-  <link rel="stylesheet" href="css/app.css?v=20260320ea">
+  <link rel="stylesheet" href="css/app.css?v=20260327a">
 </head>
 <body>
   <div id="offlineBanner" class="offline-banner" role="status" aria-live="polite">
@@ -157,22 +157,17 @@
     <section class="gate-screen" id="forgotPasswordScreen" data-screen="forgot-password">
       <div class="gate-panel gate-panel--wide">
         <p class="gate-kicker">Reset Password</p>
-        <h2>Set a New Password.</h2>
-        <p class="gate-copy">Enter the email on your Founder account and choose a new password.</p>
+        <h2>Reset Your Password.</h2>
+        <p class="gate-copy">Enter your account email and we'll send you a reset link.</p>
         <div class="setup-grid">
           <label class="field">
             <span>Email</span>
-            <input id="resetEmail" type="email" placeholder="you@example.com" autocomplete="off">
-          </label>
-          <label class="field">
-            <span>New Password</span>
-            <input id="resetNewPassword" type="password" placeholder="Choose a new password">
-            <button class="text-link field-toggle" type="button" data-action="toggle-password" data-target="resetNewPassword">Show Password</button>
+            <input id="resetEmail" type="email" placeholder="you@example.com" autocomplete="email">
           </label>
         </div>
         <p class="helper-copy" id="resetMessage"></p>
         <div class="gate-actions">
-          <button class="app-btn app-btn--primary" data-action="complete-password-reset">Set New Password</button>
+          <button class="app-btn app-btn--primary" data-action="complete-password-reset">Send Reset Email</button>
           <button class="app-btn app-btn--ghost" data-action="back-to-signin">Back to Sign In</button>
         </div>
       </div>
@@ -462,7 +457,22 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=20260320ea"></script>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script>
+    firebase.initializeApp({
+      apiKey: "AIzaSyAmcT3GW4Zd26Aximcz2UiJEjh6Khe7K9s",
+      authDomain: "incomespectrum-app.firebaseapp.com",
+      projectId: "incomespectrum-app",
+      storageBucket: "incomespectrum-app.firebasestorage.app",
+      messagingSenderId: "424035149929",
+      appId: "1:424035149929:web:dfc91b1e41d330c5865af8",
+      measurementId: "G-4LXTYJ8SFD"
+    });
+  </script>
+  <script src="js/app.js?v=20260327a"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {

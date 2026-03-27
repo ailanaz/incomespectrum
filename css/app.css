@@ -430,6 +430,10 @@ button.field-toggle::after {
 }
 
 .install-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   background: var(--app-navy);
   color: #fffdf6;
@@ -440,8 +444,8 @@ button.field-toggle::after {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  position: relative;
-  z-index: 20;
+  z-index: 200;
+  box-sizing: border-box;
 }
 .install-banner.hidden {
   display: none;

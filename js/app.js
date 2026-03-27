@@ -2460,7 +2460,6 @@
           <button class="utility-link-pill" data-action="open-notes">Notes</button>
           <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileDocsSection">Documents</button>
           <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileNextStepsSection">Next Steps</button>
-          <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileReminderSection">Save the Date</button>
         </div>
       </section>
     `;

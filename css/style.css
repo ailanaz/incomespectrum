@@ -2855,8 +2855,18 @@ body::before {
     min-height: 220px !important;
   }
 
+  .page-jumpnav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+  .page-jumpnav__label {
+    grid-column: 1 / -1;
+  }
   .page-jumpnav__link {
     width: 100%;
+    border-radius: 10px;
+    text-align: center;
   }
 
   .footer-grid {

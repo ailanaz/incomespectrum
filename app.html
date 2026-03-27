@@ -53,28 +53,49 @@
   </div>
   <div class="app-shell">
     <section class="gate-screen active" id="openingScreen" data-screen="opening">
-      <div class="gate-panel">
+      <div class="gate-panel gate-panel--opening">
         <div class="app-brand">
           <img src="img/logo.png" width="56" height="56" alt="Income Spectrum logo">
           <span><strong>Income</strong><span class="app-brand__regular">Spectrum</span></span>
         </div>
-        <p class="gate-kicker">Income Spectrum App</p>
-        <h1><span class="gate-title__light">Build your personal </span><strong>Founder File</strong><span class="gate-title__light"> with </span><strong>Income</strong><span class="gate-title__regular">Spectrum.</span></h1>
-        <p class="gate-copy">Use the app to search and browse, save your results, track your progress, and focus in on your independent income goals. Go from the full spectrum to a more focused plan.</p>
+        <p class="gate-kicker">Founder Planning App</p>
+        <h1><span class="gate-title__light">Find your direction. </span><strong>Build your plan.</strong></h1>
+        <p class="gate-copy">A self-service planning tool for self-determined business owners. Search income directions, save what fits, and build a personal Founder File that tracks your path.</p>
+        <div class="opening-features">
+          <div class="opening-feature">
+            <strong class="opening-feature__title">Search 200+ business directions</strong>
+            <p class="opening-feature__desc">Browse income ideas, training options, support services, and official resources filtered to your state.</p>
+          </div>
+          <div class="opening-feature">
+            <strong class="opening-feature__title">Build your Founder File</strong>
+            <p class="opening-feature__desc">Save ideas, write notes, draft next steps, and track your business documents in one personal space.</p>
+          </div>
+          <div class="opening-feature">
+            <strong class="opening-feature__title">Track your progress</strong>
+            <p class="opening-feature__desc">Take the direction quiz, get a personalized result, and save your file to return to at any time.</p>
+          </div>
+        </div>
+        <div class="gate-actions">
+          <button class="app-btn app-btn--primary" data-action="start-setup-signup">Create Free Account</button>
+          <button class="app-btn app-btn--ghost" data-action="continue-guest">Explore the App</button>
+        </div>
         <div class="gate-links">
-          <button class="text-link gate-link" data-action="continue-guest">Guest Access</button>
-          <button class="text-link gate-link" data-action="start-setup-signup">Sign Up Here</button>
-          <button class="text-link gate-link" data-action="start-setup-signin">Sign In</button>
+          <button class="text-link gate-link" data-action="start-setup-signin">Already have an account? Sign In</button>
         </div>
       </div>
     </section>
 
     <section class="gate-screen" id="signupScreen" data-screen="signup">
       <div class="gate-panel gate-panel--wide">
-        <p class="gate-kicker">Sign Up</p>
-        <h2>Create Your Founder Account.</h2>
-        <p class="gate-copy">Build your Founder File.</p>
-        <p class="gate-copy">Save your progress.</p>
+        <p class="gate-kicker">Create Account</p>
+        <h2>Your Founder File starts here.</h2>
+        <p class="gate-copy">Free to create. Your account saves your ideas, plan, notes, and progress in one place.</p>
+        <ul class="account-benefits">
+          <li>Save income options and resources you want to come back to</li>
+          <li>Build a plan with your own notes, next steps, and document tracking</li>
+          <li>Take the direction quiz and keep your personalized results</li>
+          <li>Access official resources filtered to your state</li>
+        </ul>
         <div class="setup-grid">
           <label class="field">
             <span>Name</span>
@@ -107,10 +128,9 @@
 
     <section class="gate-screen" id="signinScreen" data-screen="signin">
       <div class="gate-panel gate-panel--wide">
-        <p class="gate-kicker">Sign In</p>
-        <h2>Access Your Founder Account.</h2>
-        <p class="gate-copy">Open your Founder File.</p>
-        <p class="gate-copy">Continue building from where you left off.</p>
+        <p class="gate-kicker">Welcome Back</p>
+        <h2>Open Your Founder File.</h2>
+        <p class="gate-copy">Your saved ideas, notes, plan, and progress are waiting. Sign in to pick up where you left off.</p>
         <div class="setup-grid">
           <label class="field">
             <span>Email</span>
@@ -138,7 +158,7 @@
       <div class="gate-panel gate-panel--wide">
         <p class="gate-kicker">Reset Password</p>
         <h2>Set a New Password.</h2>
-        <p class="gate-copy">Enter the email on your Founder account and choose a new password. Your account is saved on this device.</p>
+        <p class="gate-copy">Enter the email on your Founder account and choose a new password.</p>
         <div class="setup-grid">
           <label class="field">
             <span>Email</span>

@@ -2481,10 +2481,10 @@
       </section>
         <section class="saved-block plan-page-block" id="founderFileReminderSection">
           <p class="section-kicker">Add a Reminder</p>
-          <p class="helper-copy" style="margin-top:0">Type a reminder, pick a date, and open it directly in Google Calendar to save.</p>
+          <p class="helper-copy" style="margin-top:0">Reminder notes sync directly to Google Calendar.</p>
           <div class="reminder-tool">
             <label class="field plan-draft-field">
-              <input type="text" id="reminderLabel" placeholder="What do you want to remind yourself of?" maxlength="120" style="width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:14px;">
+              <input type="text" id="reminderLabel" placeholder="Subject/Note" maxlength="120" style="width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:14px;">
             </label>
             <label class="field plan-draft-field" style="margin-top:8px">
               <input type="date" id="reminderDate" style="width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:14px;">

@@ -1265,6 +1265,30 @@
         removeFounderForm(actionNode.dataset.formId);
       } else if (action === "delete-founder-note") {
         deleteFounderNote(actionNode.dataset.id);
+      } else if (action === "add-reminder") {
+        const labelInput = document.getElementById("reminderLabel");
+        const dateInput = document.getElementById("reminderDate");
+        const feedback = document.getElementById("reminderFeedback");
+        const label = labelInput ? labelInput.value.trim() : "";
+        const date = dateInput ? dateInput.value : "";
+        if (!label && !date) {
+          if (feedback) feedback.textContent = "Add a reminder and pick a date first.";
+          return;
+        }
+        if (!label) {
+          if (feedback) feedback.textContent = "Add a reminder label first.";
+          return;
+        }
+        if (!date) {
+          if (feedback) feedback.textContent = "Pick a date first.";
+          return;
+        }
+        const d = date.replace(/-/g, "");
+        const url = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(label) + "&dates=" + d + "/" + d + "&details=" + encodeURIComponent("Added from your IncomeSpectrum Founder File");
+        window.open(url, "_blank");
+        if (feedback) feedback.textContent = "Google Calendar opened. Save the event there to confirm.";
+        if (labelInput) labelInput.value = "";
+        if (dateInput) dateInput.value = "";
       } else if (action === "scroll-founder-file-section") {
         const target = document.getElementById(actionNode.dataset.target);
         if (target) {
@@ -2267,6 +2291,7 @@
           <button class="utility-link-pill" data-action="open-notes">Notes</button>
           <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileDocsSection">Documents</button>
           <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileNextStepsSection">Next Steps</button>
+          <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileReminderSection">Add a Reminder</button>
         </div>
       </section>
     `;
@@ -2285,6 +2310,22 @@
         <p class="section-kicker">Next Steps</p>
         <div class="plain-list">${nextMovesMarkup}</div>
       </section>
+        <section class="saved-block plan-page-block" id="founderFileReminderSection">
+          <p class="section-kicker">Add a Reminder</p>
+          <p class="helper-copy" style="margin-top:0">Type a reminder, pick a date, and open it directly in Google Calendar to save.</p>
+          <div class="reminder-tool">
+            <label class="field plan-draft-field">
+              <input type="text" id="reminderLabel" placeholder="What do you want to remind yourself of?" maxlength="120" style="width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:14px;">
+            </label>
+            <label class="field plan-draft-field" style="margin-top:8px">
+              <input type="date" id="reminderDate" style="width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:14px;">
+            </label>
+            <div class="inline-actions" style="margin-top:10px">
+              <button class="utility-link" data-action="add-reminder">Add to Calendar</button>
+            </div>
+            <p id="reminderFeedback" style="font-size:12px;color:#888;margin-top:6px;min-height:16px;"></p>
+          </div>
+        </section>
         <section class="saved-block plan-page-block" id="founderFileNotesSection">
           <p class="section-kicker">Notes</p>
           <div class="plain-list">

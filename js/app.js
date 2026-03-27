@@ -2594,14 +2594,14 @@
         <div class="doc-modules">${renderBusinessDocsModule()}</div>
       </section>
       <section class="saved-block plan-page-block plan-page-block--fullwidth">
-        <p class="section-kicker">Quiz Results Summary</p>
+        <p class="section-kicker">Find Your Focus Results</p>
         <div class="plain-list">${currentFocusMarkup}</div>
       </section>
       <section class="saved-block plan-page-block plan-page-block--fullwidth">
         <p class="section-kicker">Explore Another Set of Ideas</p>
-        <p>If you are feeling different, seeing a different opportunity pattern, or want to test another set of ideas, you can revisit the quiz.</p>
+        <p>If you are feeling different, seeing a different opportunity pattern, or want to test another set of ideas, you can revisit Find Your Focus.</p>
         <div class="inline-actions">
-          <button class="utility-link" data-action="open-quiz">Revisit the Quiz</button>
+          <button class="utility-link" data-action="open-quiz">Revisit Find Your Focus</button>
         </div>
       </section>
     `;
@@ -3062,9 +3062,9 @@
     document.getElementById("progressStages").innerHTML = `
       <section class="progress-stage progress-stage--overview">
         <h4>Founder access unlocked</h4>
-        <p>You can go straight to the quiz to build understanding of what people pay for, or start by exploring opportunities, resources, and official information.</p>
+        <p>You can go straight to Find Your Focus to build understanding of what people pay for, or start by exploring opportunities, resources, and official information.</p>
         <div class="inline-actions">
-          <button class="app-btn app-btn--secondary" data-action="post-signup-quiz">Go to Quiz</button>
+          <button class="app-btn app-btn--secondary" data-action="post-signup-quiz">Find Your Focus</button>
           <button class="app-btn app-btn--ghost" data-action="post-signup-explore">Explore First</button>
         </div>
       </section>
@@ -3074,7 +3074,7 @@
   function renderSavedQuizResult() {
     const node = document.getElementById("savedQuizResult");
     if (!appState.quizResult) {
-      node.innerHTML = `<div class="empty-state">Take the quiz to generate a first-draft Founder File based on what people pay for and where opportunity may be forming.</div>`;
+      node.innerHTML = `<div class="empty-state">Take the Find Your Focus quiz to generate a first-draft Founder File based on what people pay for and where opportunity may be forming.</div>`;
       return;
     }
     node.innerHTML = renderQuizResult(appState.quizResult, false);
@@ -4063,15 +4063,15 @@
     const detailBody = document.getElementById("detailBody");
     const path = buildPathSnapshot();
 
-    detailType.textContent = "Quiz";
-    detailTitle.textContent = "Take the Quiz";
+    detailType.textContent = "Find Your Focus";
+    detailTitle.textContent = "Take Find Your Focus";
     detailBody.innerHTML = `
       <div class="detail-section">
         <p>${path.summary}</p>
       </div>
       <div class="detail-section">
         <div class="inline-actions">
-          <button class="app-btn app-btn--secondary" data-action="open-quiz">Open Quiz</button>
+          <button class="app-btn app-btn--secondary" data-action="open-quiz">Open Find Your Focus</button>
           <button class="app-btn app-btn--ghost" data-action="go-explore">Open Explore</button>
         </div>
       </div>
@@ -4125,7 +4125,7 @@
   function buildNextSteps() {
     return [
       {
-        label: "Quiz",
+        label: "Find Your Focus",
         value: "Understand what people pay for and how the Cost of Living drives Opportunity."
       },
       {

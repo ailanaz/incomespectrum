@@ -2144,7 +2144,7 @@
   function renderHome() {
     const currentPath = buildPathSnapshot();
     document.getElementById("continueTitle").textContent = "Explore the Income Spectrum app.";
-    document.getElementById("continueCopy").textContent = "The Income Spectrum App is an interactive companion for exploring income opportunities, knowledge resources, support services, official information, and articles while building your personal Founder File in one place.";
+    document.getElementById("continueCopy").textContent = "The Income Spectrum App helps you explore income opportunities, knowledge resources, support services, and official information while building your Founder File in one place.";
     const heroStateButton = document.getElementById("heroStateButton");
     if (appState.isSignedIn) {
       document.getElementById("heroStateValue").textContent = appState.selectedState;

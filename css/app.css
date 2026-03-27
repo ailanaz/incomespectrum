@@ -1229,6 +1229,15 @@ button.field-toggle::after {
   margin-top: 12px;
 }
 
+.mini-card__sub {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--app-text-soft);
+  line-height: 1.5;
+  border-top: 1px solid rgba(20, 37, 61, 0.08);
+  padding-top: 6px;
+}
+
 .mini-card__meta,
 .result-meta,
 .item-tags,

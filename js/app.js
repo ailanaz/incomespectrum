@@ -2395,10 +2395,8 @@
     const founderIdentity = planDraft.founderIdentity || "Founder";
     const founderIdentityDescription = founderIdentityDescriptions[founderIdentity] || founderIdentityDescriptions.Founder;
     const founderIdentityItems = [
-      `<div class="mini-card"><strong>Founder Identity</strong><p>${founderIdentity}</p></div>`,
-      `<div class="mini-card"><strong>What this identity means</strong><p>${founderIdentityDescription}</p></div>`,
-      `<div class="mini-card"><strong>Selected State</strong><p>${appState.selectedState}</p></div>`,
-      `<div class="mini-card"><strong>Starting Goal</strong><p>${goalLabel}</p></div>`
+      `<div class="mini-card"><strong>Founder Identity</strong><p>${founderIdentity}</p><p class="mini-card__sub">${founderIdentityDescription}</p></div>`,
+      `<div class="mini-card"><strong>Selected State</strong><p>${appState.selectedState}</p></div>`
     ].join("");
     const quizResultSummary = appState.quizResult
       ? {
@@ -2459,7 +2457,6 @@
           <p class="helper-copy quick-links-row__label">Quick Links:</p>
           <button class="utility-link-pill" data-action="open-notes">Notes</button>
           <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileDocsSection">Documents</button>
-          <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileNextStepsSection">Next Steps</button>
         </div>
       </section>
     `;

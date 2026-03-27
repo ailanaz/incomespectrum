@@ -2322,7 +2322,9 @@
         { value: "retail, display, and experience", label: "Retail and Display" },
         { value: "b2b and founder support", label: "B2B and Founder Support" },
         { value: "small-format production and customization", label: "Small-Format Production" },
-        { value: "specialty cleaning and remediation", label: "Specialty Cleaning" }
+        { value: "specialty cleaning and remediation", label: "Specialty Cleaning" },
+        { value: "community and social services", label: "Community and Social" },
+        { value: "travel and adventure", label: "Travel and Adventure" }
       ]
     };
     const filters = filtersBySection[section];

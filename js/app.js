@@ -2395,7 +2395,7 @@
     const founderIdentity = planDraft.founderIdentity || "Founder";
     const founderIdentityDescription = founderIdentityDescriptions[founderIdentity] || founderIdentityDescriptions.Founder;
     const founderIdentityItems = [
-      `<div class="mini-card"><strong>Founder Identity</strong><p>${founderIdentity}</p><p class="mini-card__sub">${founderIdentityDescription}</p></div>`,
+      `<div class="mini-card identity-card"><strong>${founderIdentity}</strong><p class="mini-card__sub">${founderIdentityDescription}</p></div>`,
       `<div class="mini-card"><strong>Selected State</strong><p>${appState.selectedState}</p></div>`
     ].join("");
     const quizResultSummary = appState.quizResult
@@ -2465,6 +2465,7 @@
     savedSectionsNode.innerHTML = `
       <div class="plan-page-column plan-page-column--left">
         <section class="saved-block plan-page-block plan-page-block--identity">
+          <p class="section-kicker">Founder Identity</p>
           <div class="plain-list">${founderIdentityItems}</div>
         </section>
         <section class="saved-block plan-page-block">

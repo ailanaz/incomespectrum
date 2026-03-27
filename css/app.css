@@ -1238,6 +1238,18 @@ button.field-toggle::after {
   padding-top: 6px;
 }
 
+.plan-page-block .mini-card > p {
+  margin: 4px 0 0;
+}
+
+.identity-card strong {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--app-navy);
+  line-height: 1.2;
+}
+
 .mini-card__meta,
 .result-meta,
 .item-tags,

@@ -373,6 +373,139 @@
         trainingIds: ["training-government-contracting", "training-business-foundations"],
         serviceIds: ["service-advisory", "service-bookkeeping", "service-legal"],
         officialIds: ["official-federal-contracting", "official-state-contracting"]
+      },
+      {
+        id: "income-used-ebike",
+        title: "Used E-Bike Refurbish and Resale",
+        description: "Source, service, and resell used e-bikes through local showrooms, online listings, or fleet and rental company sales.",
+        overview: "US e-bike sales grew 240% between 2019 and 2022 and the used supply is building fast. Broken, abandoned, and estate-sale e-bikes source at $50 to $400. Repair skill requirement is low relative to the margin per unit. Operators can sell retail or pursue fleet and rental company volume orders.",
+        whyChoose: "This may fit someone who likes hands-on mechanical work and wants a product-based business with a clear buy-repair-sell cycle and no manufacturing requirement.",
+        fit: "Useful for someone comfortable with sourcing, basic electrical and mechanical repairs, and managing a small rotating inventory.",
+        tags: ["product-based", "local", "trades", "resale", "circular", "ebike"],
+        startupCost: "Low",
+        speed: "Moderate",
+        skill: "Moderate",
+        location: "Local",
+        repeatIncome: "Low",
+        customerInteraction: "Medium",
+        complexity: "Low",
+        trainingIds: ["training-operations-basics"],
+        serviceIds: ["service-bookkeeping"],
+        officialIds: ["official-state-registration"]
+      },
+      {
+        id: "income-mobile-battery",
+        title: "Mobile Battery Replacement Service",
+        description: "On-demand car battery replacement where the technician comes to the customer with the right battery and installs it on-site.",
+        overview: "No shop, no lift, no waiting. Interstate Battery and AAA run this model. Local independent operators compete on speed and price with lower overhead. Five to eight calls per day is achievable with a stocked van and basic territory routing.",
+        whyChoose: "This may fit someone who wants an automotive service business with a specific, fast, repeatable job type and no facility overhead.",
+        fit: "Useful for someone comfortable with basic automotive service, inventory management, and building referral relationships with roadside assistance services.",
+        tags: ["local", "service-based", "automotive", "mobile", "on-demand"],
+        startupCost: "Low",
+        speed: "Fast",
+        skill: "Low",
+        location: "Local",
+        repeatIncome: "Low",
+        customerInteraction: "High",
+        complexity: "Low",
+        trainingIds: ["training-operations-basics"],
+        serviceIds: ["service-bookkeeping", "service-insurance"],
+        officialIds: ["official-state-registration"]
+      },
+      {
+        id: "income-storefront-setup",
+        title: "Online Storefront Setup Service",
+        description: "Build and configure e-commerce storefronts on Shopify, Etsy, Amazon, WooCommerce, and similar platforms for small business clients.",
+        overview: "Small businesses launching or expanding online need a professional, functional storefront but lack the technical knowledge to build one themselves. Operators work per-project with optional monthly maintenance retainers. A 3 to 5 project monthly cadence with 10 to 15 retainer clients builds a stable mid-five-figure annual practice.",
+        whyChoose: "This may fit someone with e-commerce or web platform experience who wants a freelance or small agency business with recurring revenue potential.",
+        fit: "Useful for someone comfortable with Shopify, WooCommerce, Etsy, or similar platforms and able to manage small business client expectations.",
+        tags: ["online", "service-based", "digital", "ecommerce", "shopify", "b2b"],
+        startupCost: "Low",
+        speed: "Fast",
+        skill: "Moderate",
+        location: "Online",
+        repeatIncome: "Medium",
+        customerInteraction: "Medium",
+        complexity: "Low",
+        trainingIds: ["training-digital-marketing", "training-operations-basics"],
+        serviceIds: ["service-bookkeeping"],
+        officialIds: ["official-state-registration"]
+      },
+      {
+        id: "income-listing-optimization",
+        title: "Product Listing Optimization Service",
+        description: "Improve e-commerce product listings for Amazon, Etsy, Google Shopping, and Faire clients - titles, descriptions, images, and search terms.",
+        overview: "Listing quality directly drives conversion rate and search placement. Operators work per-listing, per-catalog, or on monthly SEO retainers. Clients see measurable results quickly, which drives referrals. A specialist carrying 10 to 20 e-commerce clients can reach full-time income with predictable recurring revenue and no physical overhead.",
+        whyChoose: "This may fit someone with e-commerce SEO knowledge who wants a fully remote, low-overhead business with repeatable work and measurable results.",
+        fit: "Useful for someone comfortable with Amazon, Etsy, or Google Shopping search mechanics and willing to track performance metrics for clients.",
+        tags: ["online", "service-based", "digital", "ecommerce", "seo", "b2b"],
+        startupCost: "Low",
+        speed: "Fast",
+        skill: "Moderate",
+        location: "Online",
+        repeatIncome: "High",
+        customerInteraction: "Low",
+        complexity: "Low",
+        trainingIds: ["training-digital-marketing"],
+        serviceIds: ["service-bookkeeping"],
+        officialIds: ["official-state-registration"]
+      },
+      {
+        id: "income-vertical-content",
+        title: "Vertical Content Capture Service",
+        description: "Visit small business clients with portable equipment, shoot 4 to 8 weeks of short-form video content in one session, and deliver edited clips on a monthly retainer.",
+        overview: "Founders and small business operators need consistent short-form video for Instagram Reels, TikTok, and YouTube Shorts but have no time or setup to produce it. The visit is rare. The output is steady. An operator carrying 8 to 15 retainer clients reaches full-time income without daily shoots or heavy editing overhead.",
+        whyChoose: "This may fit someone with video production or social media skills who wants a client-based business with predictable recurring income and flexible scheduling.",
+        fit: "Useful for someone comfortable with on-site filming, basic editing, and managing a monthly content delivery schedule for multiple small business clients.",
+        tags: ["service-based", "local", "digital", "video", "content", "social-media", "b2b"],
+        startupCost: "Low",
+        speed: "Fast",
+        skill: "Moderate",
+        location: "Local",
+        repeatIncome: "High",
+        customerInteraction: "Medium",
+        complexity: "Low",
+        trainingIds: ["training-digital-marketing", "training-operations-basics"],
+        serviceIds: ["service-bookkeeping"],
+        officialIds: ["official-state-registration"]
+      },
+      {
+        id: "income-driveway-paver",
+        title: "Driveway and Paver Restoration",
+        description: "Clean, restore, and seal concrete driveways, paver patios, and brick walkways for residential and commercial property owners.",
+        overview: "Restoration - cleaning, joint sand replacement, leveling, and sealing - avoids full replacement at a fraction of the cost. Homeowners who receive a replacement quote often turn immediately to restoration. Property management and HOA contracts provide repeat volume across multiple properties.",
+        whyChoose: "This may fit someone who wants a physical outdoor service business with a high close rate driven by clear cost savings over replacement.",
+        fit: "Useful for someone comfortable with pressure washing, hardscape repair, and sealing equipment, and willing to pursue property management and HOA contract relationships.",
+        tags: ["local", "service-based", "outdoor", "hardscape", "restoration", "property"],
+        startupCost: "Low",
+        speed: "Fast",
+        skill: "Low",
+        location: "Local",
+        repeatIncome: "Medium",
+        customerInteraction: "Medium",
+        complexity: "Low",
+        trainingIds: ["training-operations-basics"],
+        serviceIds: ["service-bookkeeping", "service-insurance"],
+        officialIds: ["official-state-registration"]
+      },
+      {
+        id: "income-crawlspace-cleanup",
+        title: "Crawlspace Cleanup and Sanitation",
+        description: "Remove old insulation, treat mold, replace vapor barriers, and clean debris in residential and commercial crawlspaces.",
+        overview: "This work sits between general cleanup and full mold remediation. Homeowners and property managers face steep contractor quotes for work an independent operator can handle at lower rates with proper PPE and equipment. Real estate transactions drive consistent project demand. Property management firms, real estate agents, and home inspectors are reliable referral sources.",
+        whyChoose: "This may fit someone willing to do physical, unpleasant work that most operators avoid - low competition, high demand, and above-average ticket size for the time involved.",
+        fit: "Useful for someone comfortable with confined space work, proper PPE use, and building referral relationships with real estate and property management professionals.",
+        tags: ["local", "service-based", "cleaning", "specialty", "property", "moisture", "remediation"],
+        startupCost: "Low",
+        speed: "Fast",
+        skill: "Low",
+        location: "Local",
+        repeatIncome: "Medium",
+        customerInteraction: "Medium",
+        complexity: "Low",
+        trainingIds: ["training-operations-basics"],
+        serviceIds: ["service-bookkeeping", "service-insurance"],
+        officialIds: ["official-state-registration"]
       }
     ],
     training: [
@@ -1289,6 +1422,13 @@
         if (feedback) feedback.textContent = "Google Calendar opened. Save the event there to confirm.";
         if (labelInput) labelInput.value = "";
         if (dateInput) dateInput.value = "";
+      } else if (action === "show-forgot-password") {
+        showGate("forgot-password");
+      } else if (action === "back-to-signin") {
+        setAuthMessage("resetMessage", "");
+        showGate("signin");
+      } else if (action === "complete-password-reset") {
+        completePasswordReset();
       } else if (action === "scroll-founder-file-section") {
         const target = document.getElementById(actionNode.dataset.target);
         if (target) {
@@ -1715,6 +1855,35 @@
     clearSignupReturn();
     saveState();
     openApp("home");
+  }
+
+  function completePasswordReset() {
+    const email = (document.getElementById("resetEmail")?.value || "").trim().toLowerCase();
+    const newPassword = (document.getElementById("resetNewPassword")?.value || "").trim();
+    if (!email || !newPassword) {
+      setAuthMessage("resetMessage", "Enter both your email and a new password.");
+      return;
+    }
+    const founderAccount = loadFounderAccount();
+    if (!founderAccount) {
+      setAuthMessage("resetMessage", "No Founder account is saved on this device. Create one first.");
+      return;
+    }
+    if (founderAccount.email !== email) {
+      setAuthMessage("resetMessage", "That email does not match the Founder account saved on this device.");
+      return;
+    }
+    founderAccount.password = newPassword;
+    saveFounderAccount(founderAccount);
+    setAuthMessage("resetMessage", "Password updated. Taking you back to sign in.");
+    const resetEmail = document.getElementById("resetEmail");
+    const resetNewPassword = document.getElementById("resetNewPassword");
+    if (resetEmail) resetEmail.value = "";
+    if (resetNewPassword) resetNewPassword.value = "";
+    setTimeout(() => {
+      setAuthMessage("resetMessage", "");
+      showGate("signin");
+    }, 1800);
   }
 
   function captureSignupReturn() {

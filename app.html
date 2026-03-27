@@ -129,6 +129,31 @@
         </div>
         <div class="gate-links">
           <button class="text-link gate-link" data-action="start-setup-signup">Need a Founder account? Sign Up</button>
+          <button class="text-link gate-link" data-action="show-forgot-password">Forgot your password?</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="gate-screen" id="forgotPasswordScreen" data-screen="forgot-password">
+      <div class="gate-panel gate-panel--wide">
+        <p class="gate-kicker">Reset Password</p>
+        <h2>Set a New Password.</h2>
+        <p class="gate-copy">Enter the email on your Founder account and choose a new password. Your account is saved on this device.</p>
+        <div class="setup-grid">
+          <label class="field">
+            <span>Email</span>
+            <input id="resetEmail" type="email" placeholder="you@example.com" autocomplete="off">
+          </label>
+          <label class="field">
+            <span>New Password</span>
+            <input id="resetNewPassword" type="password" placeholder="Choose a new password">
+            <button class="text-link field-toggle" type="button" data-action="toggle-password" data-target="resetNewPassword">Show Password</button>
+          </label>
+        </div>
+        <p class="helper-copy" id="resetMessage"></p>
+        <div class="gate-actions">
+          <button class="app-btn app-btn--primary" data-action="complete-password-reset">Set New Password</button>
+          <button class="app-btn app-btn--ghost" data-action="back-to-signin">Back to Sign In</button>
         </div>
       </div>
     </section>

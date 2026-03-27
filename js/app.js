@@ -1595,8 +1595,8 @@
     const profileSelect = document.getElementById("profileState");
     const options = allStates.map((state) => `<option value="${state}">${state}</option>`).join("");
     if (signupSelect) {
-      signupSelect.innerHTML = options;
-      signupSelect.value = appState.selectedState;
+      signupSelect.innerHTML = `<option value="">Select your state</option>` + options;
+      if (appState.selectedState) signupSelect.value = appState.selectedState;
     }
     if (profileSelect) {
       profileSelect.innerHTML = options;

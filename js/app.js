@@ -2395,7 +2395,7 @@
     const founderIdentity = planDraft.founderIdentity || "Founder";
     const founderIdentityDescription = founderIdentityDescriptions[founderIdentity] || founderIdentityDescriptions.Founder;
     const founderIdentityItems = [
-      `<label class="field founder-identity-field"><span>Founder Identity</span><select data-founder-identity-select>${founderIdentityOptions.map((option) => `<option value="${option}" ${option === founderIdentity ? "selected" : ""}>${option}</option>`).join("")}</select></label>`,
+      `<div class="mini-card"><strong>Founder Identity</strong><p>${founderIdentity}</p></div>`,
       `<div class="mini-card"><strong>What this identity means</strong><p>${founderIdentityDescription}</p></div>`,
       `<div class="mini-card"><strong>Selected State</strong><p>${appState.selectedState}</p></div>`,
       `<div class="mini-card"><strong>Starting Goal</strong><p>${goalLabel}</p></div>`
@@ -2460,7 +2460,7 @@
           <button class="utility-link-pill" data-action="open-notes">Notes</button>
           <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileDocsSection">Documents</button>
           <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileNextStepsSection">Next Steps</button>
-          <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileReminderSection">Add a Reminder</button>
+          <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileReminderSection">Save the Date</button>
         </div>
       </section>
     `;
@@ -2479,8 +2479,16 @@
         <p class="section-kicker">Next Steps</p>
         <div class="plain-list">${nextMovesMarkup}</div>
       </section>
+        <section class="saved-block plan-page-block" id="founderFileNotesSection">
+          <p class="section-kicker">Notes</p>
+          <div class="plain-list">
+            ${noteEntries}
+          </div>
+        </section>
+      </div>
+      <div class="plan-page-column plan-page-column--right">
         <section class="saved-block plan-page-block" id="founderFileReminderSection">
-          <p class="section-kicker">Add a Reminder</p>
+          <p class="section-kicker">Save the Date</p>
           <p class="helper-copy" style="margin-top:0">Reminder notes sync directly to Google Calendar.</p>
           <div class="reminder-tool">
             <label class="field plan-draft-field">
@@ -2495,14 +2503,6 @@
             <p id="reminderFeedback" style="font-size:12px;color:#888;margin-top:6px;min-height:16px;"></p>
           </div>
         </section>
-        <section class="saved-block plan-page-block" id="founderFileNotesSection">
-          <p class="section-kicker">Notes</p>
-          <div class="plain-list">
-            ${noteEntries}
-          </div>
-        </section>
-      </div>
-      <div class="plan-page-column plan-page-column--right">
         <section class="saved-block plan-page-block">
           <p class="section-kicker">Ideas</p>
           <div class="plain-list">${ideasMarkup}</div>

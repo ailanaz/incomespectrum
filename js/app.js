@@ -2532,7 +2532,7 @@
           <p class="helper-copy quick-links-row__label">Quick Links:</p>
           <button class="utility-link-pill" data-action="open-notes">Notes</button>
           <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileDocsSection">Documents</button>
-          <button class="utility-link-pill" data-action="export-founder-file">Export / Save PDF</button>
+          <button class="utility-link-pill" data-action="export-founder-file">Export PDF</button>
         </div>
       </section>
     `;

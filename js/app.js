@@ -1460,6 +1460,8 @@
         if (target) {
           target.scrollIntoView({ behavior: "smooth", block: "start" });
         }
+      } else if (action === "export-founder-file") {
+        exportFounderFile();
       } else if (action === "open-quiz") {
         quizIndex = 0;
         renderQuiz();
@@ -2530,6 +2532,7 @@
           <p class="helper-copy quick-links-row__label">Quick Links:</p>
           <button class="utility-link-pill" data-action="open-notes">Notes</button>
           <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileDocsSection">Documents</button>
+          <button class="utility-link-pill" data-action="export-founder-file">Export / Save PDF</button>
         </div>
       </section>
     `;
@@ -4420,6 +4423,180 @@
 
   function titleCase(value) {
     return value.replace(/\b\w/g, (char) => char.toUpperCase());
+  }
+
+  function exportFounderFile() {
+    const planDraft = appState.quizResult
+      ? { ...buildPlanDraft(appState.quizResult), ...appState.planDraft }
+      : appState.planDraft;
+    const founderIdentity = planDraft.founderIdentity || "Founder";
+    const selectedState = appState.selectedState || "";
+    const goalLabel = setupGoals.find((g) => g.value === appState.goal)?.label || "Explore Options";
+    const exportDate = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+
+    function field(val) {
+      const safe = escapeHtml(val || "").replace(/\n/g, "<br>");
+      return safe ? `<p class="ef-value">${safe}</p>` : `<p class="ef-empty">Not recorded.</p>`;
+    }
+
+    // Founder Notes
+    const founderNotes = getFounderNotesEntries();
+    const founderNotesHTML = founderNotes.length
+      ? founderNotes.map((n) => `
+          <div class="ef-note">
+            <strong>${escapeHtml(n.subject || "Untitled")}</strong>
+            <p>${escapeHtml(n.body || "").replace(/\n/g, "<br>")}</p>
+          </div>`).join("")
+      : `<p class="ef-empty">No notes recorded.</p>`;
+
+    // Item notes
+    const itemNotes = buildSortedNoteEntries();
+    const itemNotesHTML = itemNotes.length
+      ? itemNotes.map(({ note, item }) => `
+          <div class="ef-note">
+            <strong>${escapeHtml(item.title)}</strong>
+            <p>${escapeHtml(note.text || "").replace(/\n/g, "<br>")}</p>
+          </div>`).join("")
+      : `<p class="ef-empty">No item notes recorded.</p>`;
+
+    // Saved items by type
+    const savedTypes = [
+      { type: "income", label: "Income Opportunities" },
+      { type: "training", label: "Knowledge and Training" },
+      { type: "services", label: "Supportive Services" },
+      { type: "official", label: "Official Resources" },
+      { type: "focus", label: "Business Ideas" }
+    ];
+    const savedHTML = savedTypes.map(({ type, label }) => {
+      const items = appState.savedIds
+        .map((id) => findItem(id))
+        .filter(Boolean)
+        .filter((item) => detectItemType(item.id) === type);
+      if (!items.length) return "";
+      return `<div class="ef-group">
+        <h4>${label}</h4>
+        <ul>${items.map((item) => `<li>${escapeHtml(item.title)}${item.url ? ` <span class="ef-url">${escapeHtml(item.url)}</span>` : ""}</li>`).join("")}</ul>
+      </div>`;
+    }).filter(Boolean).join("") || `<p class="ef-empty">No saved items.</p>`;
+
+    // Business docs
+    const docs = appState.businessDocs || {};
+    const docsHTML = ["Foundation", "Financial", "Operations"].map((category) => {
+      const items = businessDocTypes.filter((d) => d.category === category && !d.isUpload);
+      const rows = items.map((doc) => {
+        const docData = docs[doc.id] || {};
+        const statusLabel = docStatusOptions.find((o) => o.value === (docData.status || ""))?.label || "Not set";
+        const note = docData.note || "";
+        return `<div class="ef-doc-row">
+          <span class="ef-doc-label">${escapeHtml(doc.label)}</span>
+          <span class="ef-doc-status">${statusLabel}</span>
+          ${note ? `<span class="ef-doc-note">${escapeHtml(note)}</span>` : ""}
+        </div>`;
+      }).join("");
+      return `<div class="ef-group"><h4>${category}</h4>${rows}</div>`;
+    }).join("");
+
+    // Quiz results
+    const quizHTML = appState.quizResult
+      ? `<div class="ef-group">
+          <div class="ef-quiz-item"><strong>What People Pay For</strong><p>${escapeHtml(appState.quizResult.understandingSummary || "")}</p></div>
+          <div class="ef-quiz-item"><strong>Niche as Culture</strong><p>${escapeHtml(appState.quizResult.cultureSummary || "")}</p></div>
+          <div class="ef-quiz-item"><strong>The Cost of Living Drives Opportunity</strong><p>${escapeHtml(appState.quizResult.opportunitySummary || "")}</p></div>
+        </div>`
+      : `<p class="ef-empty">Find Your Focus not yet completed.</p>`;
+
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Founder File - ${exportDate}</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:13px;color:#1a1a1a;background:#fff;padding:32px 40px;max-width:800px;margin:0 auto}
+  h1{font-size:22px;font-weight:800;margin-bottom:4px}
+  h2{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#666;border-bottom:1px solid #e5e5e5;padding-bottom:6px;margin:28px 0 12px}
+  h4{font-size:12px;font-weight:700;color:#444;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+  p{line-height:1.6;color:#444}
+  .meta{font-size:12px;color:#999;margin-bottom:28px}
+  .ef-identity{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:4px}
+  .ef-id-item{background:#f5f5f5;border-radius:6px;padding:10px 14px;min-width:130px}
+  .ef-id-item strong{display:block;font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+  .ef-id-item span{font-size:14px;font-weight:700;color:#1a1a1a}
+  .ef-value{background:#fafafa;border:1px solid #e5e5e5;border-radius:6px;padding:10px 12px;white-space:pre-wrap;min-height:32px;line-height:1.6}
+  .ef-empty{color:#bbb;font-style:italic;font-size:12px}
+  .ef-note{background:#fafafa;border:1px solid #e5e5e5;border-radius:6px;padding:10px 12px;margin-bottom:8px}
+  .ef-note strong{display:block;margin-bottom:4px}
+  .ef-group{margin-bottom:14px}
+  .ef-group ul{list-style:none;padding:0}
+  .ef-group ul li{padding:5px 0;border-bottom:1px solid #f0f0f0}
+  .ef-url{color:#aaa;font-size:11px;margin-left:6px}
+  .ef-doc-row{display:grid;grid-template-columns:1fr 110px;gap:8px;padding:6px 0;border-bottom:1px solid #f0f0f0;align-items:start}
+  .ef-doc-label{font-size:13px}
+  .ef-doc-status{font-size:11px;color:#666;text-align:right}
+  .ef-doc-note{grid-column:1/-1;font-size:12px;color:#888;padding-left:8px;border-left:2px solid #e5e5e5;margin-top:2px}
+  .ef-quiz-item{margin-bottom:10px}
+  .ef-quiz-item strong{display:block;font-size:12px;font-weight:700;color:#444;margin-bottom:3px}
+  @media print{
+    body{padding:20px}
+    h2{page-break-after:avoid}
+    .ef-note,.ef-group,.ef-value{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+  <h1>Founder File</h1>
+  <p class="meta">Exported ${exportDate} from Income Spectrum App</p>
+
+  <h2>Identity</h2>
+  <div class="ef-identity">
+    <div class="ef-id-item"><strong>Founder Type</strong><span>${escapeHtml(founderIdentity)}</span></div>
+    <div class="ef-id-item"><strong>State</strong><span>${escapeHtml(selectedState)}</span></div>
+    <div class="ef-id-item"><strong>Goal Mode</strong><span>${escapeHtml(goalLabel)}</span></div>
+  </div>
+
+  <h2>Goals</h2>
+  ${field(planDraft.goals || planDraft.proof || "")}
+
+  <h2>Next Steps</h2>
+  ${field(planDraft.nextMoves || "")}
+
+  <h2>Ideas</h2>
+  ${field(planDraft.incomeIdea || "")}
+
+  <h2>Knowledge</h2>
+  ${field(planDraft.knowledge || "")}
+
+  <h2>Support</h2>
+  ${field(planDraft.support || "")}
+
+  <h2>Official Needs</h2>
+  ${field(planDraft.official || "")}
+
+  <h2>Founder Notes</h2>
+  ${founderNotesHTML}
+
+  <h2>Item Notes</h2>
+  ${itemNotesHTML}
+
+  <h2>Saved Resources</h2>
+  ${savedHTML}
+
+  <h2>Business Documents</h2>
+  ${docsHTML}
+
+  <h2>Find Your Focus Results</h2>
+  ${quizHTML}
+</body>
+</html>`;
+
+    const win = window.open("", "_blank");
+    if (!win) {
+      alert("Please allow pop-ups for this site to export your Founder File.");
+      return;
+    }
+    win.document.write(html);
+    win.document.close();
+    setTimeout(() => { win.print(); }, 600);
   }
 
   function escapeHtml(value) {

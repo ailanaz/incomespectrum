@@ -401,6 +401,32 @@
     </div>
   </div>
 
+  <div class="overlay hidden" id="exportOverlay">
+    <div class="overlay-panel">
+      <div class="overlay-header">
+        <div>
+          <p class="section-kicker">Founder File</p>
+          <h2>Export</h2>
+        </div>
+        <button class="close-btn" data-action="close-overlay" data-target="exportOverlay">Close</button>
+      </div>
+      <div style="padding:16px 0 8px">
+        <p style="font-size:14px;color:#444;margin-bottom:16px">Your Founder File core sections are always included. Choose which additional sections to add.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px">
+          <label style="display:flex;align-items:center;gap:10px;font-size:15px;cursor:pointer">
+            <input type="checkbox" id="exportIncludeNotes" checked style="width:18px;height:18px;accent-color:#19782e">
+            Notes
+          </label>
+          <label style="display:flex;align-items:center;gap:10px;font-size:15px;cursor:pointer">
+            <input type="checkbox" id="exportIncludeDocs" checked style="width:18px;height:18px;accent-color:#19782e">
+            Business Documents
+          </label>
+        </div>
+        <button class="app-btn app-btn--primary" id="exportConfirmBtn" style="width:100%">Export PDF</button>
+      </div>
+    </div>
+  </div>
+
   <div class="overlay hidden" id="notesOverlay">
     <div class="overlay-panel">
       <div class="overlay-header">

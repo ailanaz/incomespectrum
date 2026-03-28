@@ -1461,7 +1461,13 @@
           target.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       } else if (action === "export-founder-file") {
-        exportFounderFile();
+        openOverlay("exportOverlay");
+        document.getElementById("exportConfirmBtn").onclick = () => {
+          const includeNotes = document.getElementById("exportIncludeNotes").checked;
+          const includeDocs = document.getElementById("exportIncludeDocs").checked;
+          closeOverlay("exportOverlay");
+          exportFounderFile({ includeNotes, includeDocs });
+        };
       } else if (action === "open-quiz") {
         quizIndex = 0;
         renderQuiz();
@@ -4419,7 +4425,7 @@
     return value.replace(/\b\w/g, (char) => char.toUpperCase());
   }
 
-  function exportFounderFile() {
+  function exportFounderFile({ includeNotes = true, includeDocs = true } = {}) {
     const planDraft = appState.quizResult
       ? { ...buildPlanDraft(appState.quizResult), ...appState.planDraft }
       : appState.planDraft;
@@ -4566,17 +4572,12 @@
   <h2>Official Needs</h2>
   ${field(planDraft.official || "")}
 
-  <h2>Founder Notes</h2>
-  ${founderNotesHTML}
-
-  <h2>Item Notes</h2>
-  ${itemNotesHTML}
+  ${includeNotes ? `<h2>Founder Notes</h2>${founderNotesHTML}<h2>Item Notes</h2>${itemNotesHTML}` : ""}
 
   <h2>Saved Resources</h2>
   ${savedHTML}
 
-  <h2>Business Documents</h2>
-  ${docsHTML}
+  ${includeDocs ? `<h2>Business Documents</h2>${docsHTML}` : ""}
 
   <h2>Find Your Focus Results</h2>
   ${quizHTML}

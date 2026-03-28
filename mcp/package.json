@@ -1,0 +1,13 @@
+{
+  "name": "incomespectrum-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for the Income Spectrum directory - makes all directory data queryable by Claude",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

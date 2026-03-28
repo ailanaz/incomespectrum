@@ -1462,6 +1462,7 @@
         }
       } else if (action === "export-founder-file") {
         openOverlay("exportOverlay");
+        document.getElementById("exportConfirmBtn").textContent = "Export PDF";
         const docChecklist = document.getElementById("exportDocChecklist");
         const categories = ["Foundation", "Financial", "Operations"];
         docChecklist.innerHTML = categories.map((cat) => {
@@ -1480,6 +1481,29 @@
           const selectedDocIds = [...document.querySelectorAll(".export-doc-check:checked")].map((el) => el.dataset.docId);
           closeOverlay("exportOverlay");
           exportFounderFile({ includeNotes, selectedDocIds });
+        };
+      } else if (action === "copy-founder-file-text") {
+        openOverlay("exportOverlay");
+        const docChecklist = document.getElementById("exportDocChecklist");
+        const categories = ["Foundation", "Financial", "Operations"];
+        docChecklist.innerHTML = categories.map((cat) => {
+          const items = businessDocTypes.filter((d) => d.category === cat && !d.isUpload);
+          return `<div style="margin-bottom:4px">
+            <p style="font-size:11px;color:#aaa;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">${cat}</p>
+            ${items.map((d) => `
+              <label style="display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;margin-bottom:6px">
+                <input type="checkbox" class="export-doc-check" data-doc-id="${d.id}" checked style="width:16px;height:16px;accent-color:#19782e">
+                ${d.label}
+              </label>`).join("")}
+          </div>`;
+        }).join("");
+        const confirmBtn = document.getElementById("exportConfirmBtn");
+        confirmBtn.textContent = "Copy to clipboard";
+        confirmBtn.onclick = () => {
+          const includeNotes = document.getElementById("exportIncludeNotes").checked;
+          const selectedDocIds = [...document.querySelectorAll(".export-doc-check:checked")].map((el) => el.dataset.docId);
+          closeOverlay("exportOverlay");
+          copyFounderFileAsText({ includeNotes, selectedDocIds });
         };
       } else if (action === "confirm-delete-account") {
         document.getElementById("deleteAccountMessage").textContent = "";
@@ -2626,10 +2650,13 @@
           <button class="utility-link" data-action="open-quiz">Revisit Find Your Focus</button>
         </div>
       </section>
-      ${appState.isSignedIn ? `
-      <section class="saved-block plan-page-block" style="text-align:center;padding:8px 0 4px;">
-        <button class="utility-link" data-action="confirm-delete-account" style="font-size:12px;color:#aaa;">Delete my account</button>
-      </section>` : ""}
+      <section class="saved-block plan-page-block" style="display:flex;justify-content:space-between;align-items:center;padding:8px 0 4px;gap:12px;">
+        <div style="display:flex;gap:16px;">
+          <button class="utility-link" data-action="export-founder-file" style="font-size:12px;color:#aaa;">Export as PDF</button>
+          <button class="utility-link" data-action="copy-founder-file-text" style="font-size:12px;color:#aaa;" id="copyFounderTextBtn">Copy as text</button>
+        </div>
+        ${appState.isSignedIn ? `<button class="utility-link" data-action="confirm-delete-account" style="font-size:12px;color:#aaa;">Delete my account</button>` : ""}
+      </section>
     `;
   }
 
@@ -4476,6 +4503,124 @@
         messageEl.textContent = "Something went wrong. Please try again.";
       }
     }
+  }
+
+  function copyFounderFileAsText({ includeNotes = true, selectedDocIds = null } = {}) {
+    const s = appState;
+    const lines = [];
+    const exportDate = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+
+    lines.push("INCOME SPECTRUM - FOUNDER FILE");
+    lines.push("Generated: " + exportDate);
+    lines.push("================================");
+
+    if (s.quizResult?.focus?.length) {
+      lines.push("\nFIND YOUR FOCUS RESULTS");
+      lines.push("------------------------");
+      s.quizResult.focus.forEach(f => lines.push("- " + f));
+    }
+
+    const identity = s.founderIdentity || {};
+    const identityFields = [
+      ["Name", identity.name], ["Location", identity.location],
+      ["Business Type", identity.bizType], ["Stage", identity.stage],
+    ];
+    const filledIdentity = identityFields.filter(([, v]) => v);
+    if (filledIdentity.length) {
+      lines.push("\nFOUNDER IDENTITY");
+      lines.push("-----------------");
+      filledIdentity.forEach(([k, v]) => lines.push(k + ": " + v));
+    }
+
+    const goals = (s.goals || []).filter(g => g.trim());
+    if (goals.length) {
+      lines.push("\nGOALS");
+      lines.push("------");
+      goals.forEach(g => lines.push("- " + g));
+    }
+
+    const nextMoves = (s.nextMoves || []).filter(n => n.trim());
+    if (nextMoves.length) {
+      lines.push("\nNEXT STEPS");
+      lines.push("-----------");
+      nextMoves.forEach(n => lines.push("- " + n));
+    }
+
+    if (includeNotes) {
+      const notes = (s.notes || []).filter(n => n.text?.trim());
+      if (notes.length) {
+        lines.push("\nNOTES");
+        lines.push("------");
+        notes.forEach(n => lines.push("- " + n.text));
+      }
+    }
+
+    const ideas = (s.saved || []).filter(i => i.category === "idea" || !i.category);
+    if (ideas.length) {
+      lines.push("\nSAVED IDEAS");
+      lines.push("------------");
+      ideas.forEach(i => lines.push("- " + (i.name || i.title || i.text || "")));
+    }
+
+    const knowledge = (s.saved || []).filter(i => i.category === "knowledge");
+    if (knowledge.length) {
+      lines.push("\nKNOWLEDGE");
+      lines.push("----------");
+      knowledge.forEach(i => lines.push("- " + (i.name || i.title || i.text || "")));
+    }
+
+    const support = (s.saved || []).filter(i => i.category === "support");
+    if (support.length) {
+      lines.push("\nSUPPORT RESOURCES");
+      lines.push("------------------");
+      support.forEach(i => lines.push("- " + (i.name || i.title || i.text || "")));
+    }
+
+    const official = (s.saved || []).filter(i => i.category === "official");
+    if (official.length) {
+      lines.push("\nOFFICIAL NEEDS");
+      lines.push("---------------");
+      official.forEach(i => lines.push("- " + (i.name || i.title || i.text || "")));
+    }
+
+    if (selectedDocIds && selectedDocIds.length) {
+      const docs = s.businessDocs || {};
+      const docLines = [];
+      ["Foundation", "Financial", "Operations"].forEach((cat) => {
+        const items = businessDocTypes.filter(
+          (d) => d.category === cat && !d.isUpload && selectedDocIds.includes(d.id)
+        );
+        if (!items.length) return;
+        docLines.push("\n" + cat.toUpperCase());
+        items.forEach((doc) => {
+          const docData = docs[doc.id] || {};
+          const status = docStatusOptions.find((o) => o.value === (docData.status || ""))?.label || "Not set";
+          const note = docData.note ? " - " + docData.note : "";
+          docLines.push("- " + doc.label + " [" + status + "]" + note);
+        });
+      });
+      if (docLines.length) {
+        lines.push("\nBUSINESS DOCUMENTS");
+        lines.push("-------------------");
+        docLines.forEach(l => lines.push(l));
+      }
+    }
+
+    lines.push("\n================================");
+    lines.push("incomespectrum.com");
+
+    const text = lines.join("\n");
+
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById("copyFounderTextBtn");
+      if (btn) {
+        const original = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(() => { btn.textContent = original; }, 2000);
+      }
+    }).catch(() => {
+      alert("Could not copy. Please try again or use Export as PDF.");
+    });
   }
 
   function exportFounderFile({ includeNotes = true, selectedDocIds = null } = {}) {

@@ -901,7 +901,7 @@
         id: "whatPeoplePayFor",
         title: "What People Pay For",
         prompt: "People pay for outcomes that matter to them.",
-        question: "Which of these feels closest to what stands out most?",
+        question: "What stands out to you?",
         options: [
           { value: "getting", label: "getting something they want" },
           { value: "solving", label: "solving something important" },
@@ -915,7 +915,7 @@
         id: "pullsSpending",
         title: "What Pulls Spending",
         prompt: "Some spending is planned. Some happens fast.",
-        question: "Which of these feels most like what pulls spending forward?",
+        question: "What pulls spending forward?",
         options: [
           { value: "urgency", label: "urgency" },
           { value: "convenience", label: "convenience" },
@@ -929,7 +929,7 @@
         id: "keepsGettingChosen",
         title: "What Keeps Getting Chosen",
         prompt: "People usually repeat what feels worth it to them.",
-        question: "Which of these feels most like what keeps getting chosen?",
+        question: "What keeps getting chosen?",
         options: [
           { value: "saves-time", label: "what saves time" },
           { value: "feels-better", label: "what feels better" },
@@ -943,7 +943,7 @@
         id: "sixDriver",
         title: "The Six",
         prompt: "The Six are core drivers underneath what people pay for.",
-        question: "Which of these feels most active?",
+        question: "What feels most active?",
         options: [
           { value: "relief", label: "relief" },
           { value: "stability", label: "stability" },
@@ -957,7 +957,7 @@
         id: "costOfLiving",
         title: "The Cost of Living",
         prompt: "The Cost of Living is the cost people pay in time, energy, attention, comfort, and risk.",
-        question: "Which of these feels most heavily spent?",
+        question: "What gets spent most heavily?",
         options: [
           { value: "time", label: "time" },
           { value: "energy", label: "energy" },
@@ -971,7 +971,7 @@
         id: "lowerCost",
         title: "What People Would Rather Spend Less Of",
         prompt: "Some costs feel acceptable. Some feel heavier than they should.",
-        question: "Which of these feels most like the cost people would rather lower?",
+        question: "What cost would people most want to lower?",
         options: [
           { value: "time", label: "time" },
           { value: "energy", label: "energy" },
@@ -985,7 +985,7 @@
         id: "resultSought",
         title: "Result Sought",
         prompt: "Spending usually points toward a result.",
-        question: "Which kind of result feels most central here?",
+        question: "What result feels most central?",
         options: [
           { value: "attain", label: "to attain something" },
           { value: "gain", label: "to gain something" },
@@ -999,7 +999,7 @@
         id: "positivePull",
         title: "Positive Pull",
         prompt: "Not all spending comes from pressure. Some comes from attraction.",
-        question: "Which of these feels closest to the positive pull here?",
+        question: "What is the positive pull here?",
         options: [
           { value: "beauty", label: "beauty" },
           { value: "enjoyment", label: "enjoyment" },
@@ -1013,7 +1013,7 @@
         id: "sharedPattern",
         title: "Shared Pattern",
         prompt: "When the same kind of cost and result keep showing up, a pattern forms.",
-        question: "Which of these feels closest to that pattern?",
+        question: "What pattern fits best?",
         options: [
           { value: "easier", label: "people want things to feel easier" },
           { value: "better", label: "people want things to feel better" },
@@ -1027,7 +1027,7 @@
         id: "culture",
         title: "Niche is Culture",
         prompt: "Culture forms where people keep paying around a shared cost and a shared result.",
-        question: "Which of these feels closest to the culture here?",
+        question: "What culture fits best here?",
         options: [
           { value: "relief", label: "a culture of relief" },
           { value: "stability", label: "a culture of stability" },
@@ -1041,7 +1041,7 @@
         id: "cultureValues",
         title: "What the Culture Values",
         prompt: "Every culture reveals what matters through what it keeps choosing.",
-        question: "Which of these feels most valued here?",
+        question: "What is most valued here?",
         options: [
           { value: "ease", label: "ease" },
           { value: "quality", label: "quality" },
@@ -1055,7 +1055,7 @@
         id: "opportunity",
         title: "Cost of Living Creates Opportunity",
         prompt: "Opportunity forms where people keep paying and still want a better way through, toward, or around something.",
-        question: "Which of these feels closest to where opportunity is forming?",
+        question: "Where is opportunity forming?",
         options: [
           { value: "save-time", label: "helping people save time" },
           { value: "use-less-energy", label: "helping people use less energy" },
@@ -1069,7 +1069,7 @@
         id: "direction",
         title: "Direction",
         prompt: "Direction starts to form when the pattern, the cost, and the result begin to make sense together.",
-        question: "Which of these feels most usable as the best direction for you?",
+        question: "What direction fits you best?",
         options: [
           { value: "service", label: "offering a service" },
           { value: "product", label: "creating a product" },
@@ -1083,7 +1083,7 @@
         id: "workStyle",
         title: "Your Style",
         prompt: "The best direction should fit the way you naturally like to work.",
-        question: "Which of these feels most like you?",
+        question: "What feels most like you?",
         options: [
           { value: "solving", label: "solving" },
           { value: "improving", label: "improving" },
@@ -1097,7 +1097,7 @@
         id: "founderFit",
         title: "Founder Fit",
         prompt: "Founder is the catch-all term here, but there are different ways to operate as one.",
-        question: "Which of these feels most like you right now?",
+        question: "What feels most like you right now?",
         options: [
           { value: "Entrepreneur", label: "Entrepreneur", detail: "Building something with room to grow beyond your direct labor." },
           { value: "Solopreneur", label: "Solopreneur", detail: "Running a business you own and operate yourself." },

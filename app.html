@@ -516,19 +516,13 @@
         const isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
         banner.classList.remove('hidden');
         if (isSafari) {
-          text.textContent = 'Open in Safari: tap Share then tap Add to Home Screen.';
+          text.textContent = 'Tap Share then Add to Home Screen to install.';
           btn.style.display = 'none';
         } else {
-          text.textContent = 'Must use Safari to save to Home Screen. Open in Safari, tap Share, then Add to Home Screen.';
-          btn.textContent = 'Copy Link';
+          text.style.display = 'none';
+          btn.textContent = 'Open in Safari to add to home screen';
           btn.addEventListener('click', () => {
-            navigator.clipboard.writeText(window.location.href).then(() => {
-              btn.textContent = 'Copied!';
-              setTimeout(() => { btn.textContent = 'Copy Link'; }, 2000);
-            });
-          });
-          btn.addEventListener('click', () => {
-            window.location.href = 'x-web-search://' + window.location.href;
+            window.location.href = window.location.href.replace(/^https?:\/\//, 'x-safari-https://');
           });
         }
       }

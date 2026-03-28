@@ -1958,6 +1958,20 @@
       "affiliate_vendor": null
     },
     {
+      "id": "nickel",
+      "name": "Nickel",
+      "type": "Business Payment Platform",
+      "description": "Free business payment platform for paying and getting paid - unlimited ACH transfers, bill pay, and invoicing built for independent business owners and America's core industries.",
+      "reach": "National",
+      "tags": ["payments", "ACH", "invoicing", "bill-pay", "business-finance"],
+      "professions": ["business owner", "contractor", "entrepreneur", "self-employed", "small business owner"],
+      "url": "https://www.nickelpay.com",
+      "page": "supportive-services",
+      "section": "Finance, Funding & Transaction",
+      "link_type": "affiliate",
+      "affiliate_vendor": "nickel"
+    },
+    {
       "id": "freshbooks",
       "name": "FreshBooks",
       "type": "Accounting Software",

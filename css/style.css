@@ -2459,9 +2459,9 @@ body::before {
 
 .hero-sub {
   display: block !important;
-  max-width: 720px;
+  max-width: 860px;
   margin-top: 10px;
-  font-size: 20px;
+  font-size: 18px;
   color: rgba(255, 255, 255, 0.88);
   text-align: center;
 }

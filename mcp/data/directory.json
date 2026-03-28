@@ -3162,6 +3162,7 @@
         "certification",
         "association"
       ],
+      "professions": ["electrician", "smart home installer", "low-voltage tech", "AV installer"],
       "url": "https://www.cedia.org",
       "page": "focus",
       "section": "Trades and Technical",
@@ -3180,6 +3181,7 @@
         "infrastructure",
         "green"
       ],
+      "professions": ["electrician", "EV installer", "contractor", "energy consultant"],
       "url": "https://afdc.energy.gov/fuels/electricity_infrastructure.html",
       "page": "focus",
       "section": "Trades and Technical",
@@ -3198,6 +3200,7 @@
         "rental",
         "farm-stay"
       ],
+      "professions": ["landowner", "farmer", "property owner", "rural host"],
       "url": "https://www.hipcamp.com",
       "page": "focus",
       "section": "Home and Property",
@@ -3216,6 +3219,7 @@
         "property",
         "Airbnb"
       ],
+      "professions": ["property manager", "landlord", "real estate agent", "short term rental operator"],
       "url": "https://www.airbnb.com/host/cohosting",
       "page": "focus",
       "section": "Home and Property",
@@ -3234,6 +3238,7 @@
         "experience",
         "entertainment"
       ],
+      "professions": ["venue owner", "entertainment operator", "activity business owner", "experience entrepreneur"],
       "url": "https://worldaxethrowingleague.com/",
       "page": "focus",
       "section": "Experience and Venue",
@@ -3252,6 +3257,7 @@
         "cold-plunge",
         "standards"
       ],
+      "professions": ["wellness practitioner", "spa owner", "sauna operator", "wellness studio owner"],
       "url": "https://www.globalwellnessinstitute.org",
       "page": "focus",
       "section": "Experience and Venue",
@@ -3270,6 +3276,7 @@
         "animal",
         "association"
       ],
+      "professions": ["pet care provider", "animal service operator", "route business owner", "pooper scooper"],
       "url": "https://apaws.org/",
       "page": "focus",
       "section": "Mobile and Route-Based",
@@ -3288,6 +3295,7 @@
         "launch",
         "validation"
       ],
+      "professions": ["developer", "SaaS founder", "tech entrepreneur", "software builder", "indie maker"],
       "url": "https://www.producthunt.com",
       "page": "focus",
       "section": "Digital and Tech Services",
@@ -3306,6 +3314,7 @@
         "nonprofit",
         "tutoring"
       ],
+      "professions": ["tech tutor", "senior care worker", "digital literacy educator", "tech educator"],
       "url": "https://www.aarp.org/home-family/personal-technology",
       "page": "focus",
       "section": "Senior and Care Economy",
@@ -3324,6 +3333,7 @@
         "association",
         "care"
       ],
+      "professions": ["move manager", "senior care worker", "organizer", "relocation specialist"],
       "url": "https://www.nasmm.org",
       "page": "focus",
       "section": "Senior and Care Economy",
@@ -3342,6 +3352,7 @@
         "association",
         "licensing"
       ],
+      "professions": ["home care aide", "caregiver", "companion", "non-medical care provider"],
       "url": "https://www.homecareassociation.org",
       "page": "focus",
       "section": "Senior and Care Economy",
@@ -3360,6 +3371,7 @@
         "green",
         "LEED"
       ],
+      "professions": ["contractor", "builder", "architect", "sustainability consultant", "green building professional"],
       "url": "https://www.usgbc.org/leed",
       "page": "focus",
       "section": "Sustainability and Green Business",
@@ -3378,6 +3390,7 @@
         "green",
         "coalition"
       ],
+      "professions": ["packaging designer", "sustainability consultant", "green business owner", "product manufacturer"],
       "url": "https://www.sustainablepackaging.org",
       "page": "focus",
       "section": "Sustainability and Green Business",
@@ -3396,6 +3409,7 @@
         "vehicles",
         "green"
       ],
+      "professions": ["fleet manager", "EV entrepreneur", "transportation operator", "fleet consultant"],
       "url": "https://afdc.energy.gov/vehicles/electric",
       "page": "focus",
       "section": "Sustainability and Green Business",
@@ -3414,9 +3428,10 @@
         "association",
         "healthcare"
       ],
+      "professions": ["physical therapist", "mobile healthcare provider", "PT", "rehab specialist"],
       "url": "https://www.apta.org",
       "page": "focus",
-      "section": "Sustainability and Green Business",
+      "section": "Senior and Care Economy",
       "link_type": "direct",
       "affiliate_vendor": null
     },
@@ -3432,6 +3447,7 @@
         "mobile",
         "healthcare"
       ],
+      "professions": ["nurse", "IV therapist", "mobile healthcare provider", "RN", "LPN"],
       "url": "https://www.nursingworld.org",
       "page": "focus",
       "section": "Senior and Care Economy",
@@ -3450,6 +3466,7 @@
         "bath",
         "association"
       ],
+      "professions": ["interior designer", "kitchen remodeler", "bath remodeler", "contractor", "designer"],
       "url": "https://www.nkba.org",
       "page": "focus",
       "section": "Trades and Technical",
@@ -3468,6 +3485,7 @@
         "beauty",
         "regulatory"
       ],
+      "professions": ["esthetician", "wellness coach", "supplement seller", "beauty entrepreneur", "nutritionist"],
       "url": "https://www.fda.gov/food/dietary-supplements",
       "page": "focus",
       "section": "Beauty and Wellness",

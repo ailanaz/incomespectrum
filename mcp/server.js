@@ -264,17 +264,21 @@ server.tool(
 // -------------------------------------------------------
 server.tool(
   "get_ideas",
-  "Browse niche idea categories from the Focus section of the directory. Optionally filter by a keyword or interest area. Returns entries grouped by niche.",
-  { keyword: z.string().optional().describe("Optional keyword to filter by (e.g. 'senior', 'sustainability', 'tech', 'trades')") },
+  "Browse niche idea categories from the Focus section of the directory. Filter by niche (e.g. 'senior care', 'green business', 'trades') or by profession/credential (e.g. 'nurse', 'electrician', 'esthetician'). Returns entries grouped by niche.",
+  { keyword: z.string().optional().describe("Niche or profession to filter by. Supports natural phrases like 'senior care', 'sustainable business', 'ideas for nurses', 'side hustle for electricians'.") },
   async ({ keyword } = {}) => {
     let results = entries.filter((e) => e.page === "focus");
     if (keyword) {
+      const words = keyword.toLowerCase().split(/\s+/).filter(Boolean);
+      const matchesAny = (str) => words.some((w) => str.toLowerCase().includes(w));
       results = results.filter(
         (e) =>
-          includes(e.name, keyword) ||
-          includes(e.description, keyword) ||
-          includes(e.type, keyword) ||
-          e.tags.some((t) => includes(t, keyword))
+          matchesAny(e.name) ||
+          matchesAny(e.description) ||
+          matchesAny(e.type) ||
+          matchesAny(e.section) ||
+          e.tags.some((t) => matchesAny(t)) ||
+          (e.professions || []).some((p) => matchesAny(p))
       );
     }
     const grouped = results.reduce((acc, e) => {

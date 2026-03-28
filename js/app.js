@@ -1462,11 +1462,24 @@
         }
       } else if (action === "export-founder-file") {
         openOverlay("exportOverlay");
+        const docChecklist = document.getElementById("exportDocChecklist");
+        const categories = ["Foundation", "Financial", "Operations"];
+        docChecklist.innerHTML = categories.map((cat) => {
+          const items = businessDocTypes.filter((d) => d.category === cat && !d.isUpload);
+          return `<div style="margin-bottom:4px">
+            <p style="font-size:11px;color:#aaa;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">${cat}</p>
+            ${items.map((d) => `
+              <label style="display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;margin-bottom:6px">
+                <input type="checkbox" class="export-doc-check" data-doc-id="${d.id}" checked style="width:16px;height:16px;accent-color:#19782e">
+                ${d.label}
+              </label>`).join("")}
+          </div>`;
+        }).join("");
         document.getElementById("exportConfirmBtn").onclick = () => {
           const includeNotes = document.getElementById("exportIncludeNotes").checked;
-          const includeDocs = document.getElementById("exportIncludeDocs").checked;
+          const selectedDocIds = [...document.querySelectorAll(".export-doc-check:checked")].map((el) => el.dataset.docId);
           closeOverlay("exportOverlay");
-          exportFounderFile({ includeNotes, includeDocs });
+          exportFounderFile({ includeNotes, selectedDocIds });
         };
       } else if (action === "open-quiz") {
         quizIndex = 0;
@@ -4425,7 +4438,7 @@
     return value.replace(/\b\w/g, (char) => char.toUpperCase());
   }
 
-  function exportFounderFile({ includeNotes = true, includeDocs = true } = {}) {
+  function exportFounderFile({ includeNotes = true, selectedDocIds = null } = {}) {
     const planDraft = appState.quizResult
       ? { ...buildPlanDraft(appState.quizResult), ...appState.planDraft }
       : appState.planDraft;
@@ -4479,22 +4492,25 @@
       </div>`;
     }).filter(Boolean).join("") || `<p class="ef-empty">No saved items.</p>`;
 
-    // Business docs
+    // Business docs - filter by selectedDocIds if provided
     const docs = appState.businessDocs || {};
-    const docsHTML = ["Foundation", "Financial", "Operations"].map((category) => {
-      const items = businessDocTypes.filter((d) => d.category === category && !d.isUpload);
-      const rows = items.map((doc) => {
-        const docData = docs[doc.id] || {};
-        const statusLabel = docStatusOptions.find((o) => o.value === (docData.status || ""))?.label || "Not set";
-        const note = docData.note || "";
-        return `<div class="ef-doc-row">
-          <span class="ef-doc-label">${escapeHtml(doc.label)}</span>
-          <span class="ef-doc-status">${statusLabel}</span>
-          ${note ? `<span class="ef-doc-note">${escapeHtml(note)}</span>` : ""}
-        </div>`;
-      }).join("");
-      return `<div class="ef-group"><h4>${category}</h4>${rows}</div>`;
-    }).join("");
+    const docsHTML = selectedDocIds && selectedDocIds.length
+      ? ["Foundation", "Financial", "Operations"].map((category) => {
+          const items = businessDocTypes.filter((d) => d.category === category && !d.isUpload && selectedDocIds.includes(d.id));
+          if (!items.length) return "";
+          const rows = items.map((doc) => {
+            const docData = docs[doc.id] || {};
+            const statusLabel = docStatusOptions.find((o) => o.value === (docData.status || ""))?.label || "Not set";
+            const note = docData.note || "";
+            return `<div class="ef-doc-row">
+              <span class="ef-doc-label">${escapeHtml(doc.label)}</span>
+              <span class="ef-doc-status">${statusLabel}</span>
+              ${note ? `<span class="ef-doc-note">${escapeHtml(note)}</span>` : ""}
+            </div>`;
+          }).join("");
+          return `<div class="ef-group"><h4>${category}</h4>${rows}</div>`;
+        }).filter(Boolean).join("")
+      : "";
 
     // Quiz results
     const quizHTML = appState.quizResult
@@ -4577,7 +4593,7 @@
   <h2>Saved Resources</h2>
   ${savedHTML}
 
-  ${includeDocs ? `<h2>Business Documents</h2>${docsHTML}` : ""}
+  ${docsHTML ? `<h2>Business Documents</h2>${docsHTML}` : ""}
 
   <h2>Find Your Focus Results</h2>
   ${quizHTML}

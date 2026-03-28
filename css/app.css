@@ -635,6 +635,12 @@ button.field-toggle::after {
   align-items: start;
 }
 
+.plan-page-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
 .plan-page-column {
   display: grid;
   align-content: start;

@@ -2532,77 +2532,71 @@
           <p class="helper-copy quick-links-row__label">Quick Links:</p>
           <button class="utility-link-pill" data-action="open-notes">Notes</button>
           <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileDocsSection">Documents</button>
-          <button class="utility-link-pill" data-action="export-founder-file">Export PDF</button>
+          <button class="utility-link-pill" data-action="export-founder-file">Export</button>
         </div>
       </section>
     `;
 
-    savedSectionsNode.className = "plan-page-grid";
+    savedSectionsNode.className = "plan-page-stack";
     savedSectionsNode.innerHTML = `
-      <div class="plan-page-column plan-page-column--left">
-        <section class="saved-block plan-page-block plan-page-block--identity">
-          <p class="section-kicker">Founder Identity</p>
-          <div class="plain-list">${founderIdentityItems}</div>
-        </section>
-        <section class="saved-block plan-page-block">
-          <p class="section-kicker">Goals</p>
-          <div class="plain-list">${goalsMarkup}</div>
-        </section>
+      <section class="saved-block plan-page-block">
+        <p class="section-kicker">Find Your Focus Results</p>
+        <div class="plain-list">${currentFocusMarkup}</div>
+      </section>
+      <section class="saved-block plan-page-block plan-page-block--identity">
+        <p class="section-kicker">Founder Identity</p>
+        <div class="plain-list">${founderIdentityItems}</div>
+      </section>
+      <section class="saved-block plan-page-block">
+        <p class="section-kicker">Goals</p>
+        <div class="plain-list">${goalsMarkup}</div>
+      </section>
       <section class="saved-block plan-page-block" id="founderFileNextStepsSection">
         <p class="section-kicker">Next Steps</p>
         <div class="plain-list">${nextMovesMarkup}</div>
       </section>
-        <section class="saved-block plan-page-block" id="founderFileNotesSection">
-          <p class="section-kicker">Notes</p>
-          <div class="plain-list">
-            ${noteEntries}
+      <section class="saved-block plan-page-block" id="founderFileNotesSection">
+        <p class="section-kicker">Notes</p>
+        <div class="plain-list">${noteEntries}</div>
+      </section>
+      <section class="saved-block plan-page-block" id="founderFileReminderSection">
+        <p class="section-kicker">Save the Date</p>
+        <p class="helper-copy" style="margin-top:0">Reminder notes sync directly to Google Calendar.</p>
+        <div class="reminder-tool">
+          <label class="field plan-draft-field">
+            <input type="text" id="reminderLabel" placeholder="Subject/Note" maxlength="120" style="width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:14px;">
+          </label>
+          <label class="field plan-draft-field" style="margin-top:8px">
+            <input type="date" id="reminderDate" style="width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:14px;">
+          </label>
+          <div class="inline-actions" style="margin-top:10px">
+            <button class="utility-link" data-action="add-reminder">Add to Calendar</button>
           </div>
-        </section>
-      </div>
-      <div class="plan-page-column plan-page-column--right">
-        <section class="saved-block plan-page-block" id="founderFileReminderSection">
-          <p class="section-kicker">Save the Date</p>
-          <p class="helper-copy" style="margin-top:0">Reminder notes sync directly to Google Calendar.</p>
-          <div class="reminder-tool">
-            <label class="field plan-draft-field">
-              <input type="text" id="reminderLabel" placeholder="Subject/Note" maxlength="120" style="width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:14px;">
-            </label>
-            <label class="field plan-draft-field" style="margin-top:8px">
-              <input type="date" id="reminderDate" style="width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:14px;">
-            </label>
-            <div class="inline-actions" style="margin-top:10px">
-              <button class="utility-link" data-action="add-reminder">Add to Calendar</button>
-            </div>
-            <p id="reminderFeedback" style="font-size:12px;color:#888;margin-top:6px;min-height:16px;"></p>
-          </div>
-        </section>
-        <section class="saved-block plan-page-block">
-          <p class="section-kicker">Ideas</p>
-          <div class="plain-list">${ideasMarkup}</div>
-        </section>
-        <section class="saved-block plan-page-block">
-          <p class="section-kicker">Knowledge</p>
-          <div class="plain-list">${knowledgeMarkup}</div>
-        </section>
-        <section class="saved-block plan-page-block">
-          <p class="section-kicker">Support</p>
-          <div class="plain-list">${supportMarkup}</div>
-        </section>
-        <section class="saved-block plan-page-block">
-          <p class="section-kicker">Official Needs</p>
-          <div class="plain-list">${officialMarkup}</div>
-        </section>
-      </div>
-      <section class="saved-block plan-page-block plan-page-block--fullwidth" id="founderFileDocsSection">
+          <p id="reminderFeedback" style="font-size:12px;color:#888;margin-top:6px;min-height:16px;"></p>
+        </div>
+      </section>
+      <section class="saved-block plan-page-block">
+        <p class="section-kicker">Ideas</p>
+        <div class="plain-list">${ideasMarkup}</div>
+      </section>
+      <section class="saved-block plan-page-block">
+        <p class="section-kicker">Knowledge</p>
+        <div class="plain-list">${knowledgeMarkup}</div>
+      </section>
+      <section class="saved-block plan-page-block">
+        <p class="section-kicker">Support</p>
+        <div class="plain-list">${supportMarkup}</div>
+      </section>
+      <section class="saved-block plan-page-block">
+        <p class="section-kicker">Official Needs</p>
+        <div class="plain-list">${officialMarkup}</div>
+      </section>
+      <section class="saved-block plan-page-block" id="founderFileDocsSection">
         <p class="section-kicker">Business Documents</p>
         <p class="helper-copy" style="margin-top:0">Track your key documents from formation to operations. Set a status, add notes, and link to where each one lives.</p>
         <div class="doc-modules">${renderBusinessDocsModule()}</div>
       </section>
-      <section class="saved-block plan-page-block plan-page-block--fullwidth">
-        <p class="section-kicker">Find Your Focus Results</p>
-        <div class="plain-list">${currentFocusMarkup}</div>
-      </section>
-      <section class="saved-block plan-page-block plan-page-block--fullwidth">
+      <section class="saved-block plan-page-block">
         <p class="section-kicker">Explore Another Set of Ideas</p>
         <p>If you are feeling different, seeing a different opportunity pattern, or want to test another set of ideas, you can revisit Find Your Focus.</p>
         <div class="inline-actions">

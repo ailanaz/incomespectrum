@@ -2,6 +2,7 @@
   "name": "Income Spectrum",
   "short_name": "IncomeSpectrum",
   "description": "An interactive companion for exploring income opportunities, education, support services, and official business information while building your personal Founder File.",
+  "id": "com.incomespectrum.app",
   "start_url": "/app.html",
   "scope": "/",
   "display": "standalone",

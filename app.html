@@ -401,6 +401,24 @@
     </div>
   </div>
 
+  <div class="overlay hidden" id="deleteAccountOverlay">
+    <div class="overlay-panel">
+      <div class="overlay-header">
+        <div>
+          <p class="section-kicker">Account</p>
+          <h2>Delete Account</h2>
+        </div>
+        <button class="close-btn" data-action="close-overlay" data-target="deleteAccountOverlay">Close</button>
+      </div>
+      <div style="padding:16px 0 8px">
+        <p style="font-size:15px;color:#444;margin-bottom:8px">This will permanently delete your account and all saved data including your Founder File, notes, and saved resources.</p>
+        <p style="font-size:14px;color:#888;margin-bottom:24px">This cannot be undone.</p>
+        <p id="deleteAccountMessage" style="font-size:13px;color:#dc2626;margin-bottom:12px;min-height:16px"></p>
+        <button class="app-btn app-btn--danger" id="deleteAccountConfirmBtn" style="width:100%">Yes, Delete My Account</button>
+      </div>
+    </div>
+  </div>
+
   <div class="overlay hidden" id="exportOverlay">
     <div class="overlay-panel">
       <div class="overlay-header">

@@ -1481,6 +1481,10 @@
           closeOverlay("exportOverlay");
           exportFounderFile({ includeNotes, selectedDocIds });
         };
+      } else if (action === "confirm-delete-account") {
+        document.getElementById("deleteAccountMessage").textContent = "";
+        openOverlay("deleteAccountOverlay");
+        document.getElementById("deleteAccountConfirmBtn").onclick = () => deleteAccount();
       } else if (action === "open-quiz") {
         quizIndex = 0;
         renderQuiz();
@@ -2622,6 +2626,10 @@
           <button class="utility-link" data-action="open-quiz">Revisit Find Your Focus</button>
         </div>
       </section>
+      ${appState.isSignedIn ? `
+      <section class="saved-block plan-page-block" style="text-align:center;padding:8px 0 4px;">
+        <button class="utility-link" data-action="confirm-delete-account" style="font-size:12px;color:#aaa;">Delete my account</button>
+      </section>` : ""}
     `;
   }
 
@@ -4436,6 +4444,38 @@
 
   function titleCase(value) {
     return value.replace(/\b\w/g, (char) => char.toUpperCase());
+  }
+
+  async function deleteAccount() {
+    const confirmBtn = document.getElementById("deleteAccountConfirmBtn");
+    const messageEl = document.getElementById("deleteAccountMessage");
+    confirmBtn.disabled = true;
+    confirmBtn.textContent = "Deleting...";
+    try {
+      const user = typeof firebase !== "undefined" ? firebase.auth().currentUser : null;
+      if (user) {
+        const db = firebase.firestore();
+        await db.collection("users").doc(user.uid).delete();
+        await user.delete();
+      }
+      appState = structuredClone(defaultState);
+      localStorage.removeItem(STORAGE_KEY_LOCAL);
+      localStorage.removeItem(ACCOUNT_KEY_LOCAL);
+      localStorage.removeItem(FOUNDER_FORMS_KEY);
+      sessionStorage.removeItem(STORAGE_KEY_SESSION);
+      closeOverlay("deleteAccountOverlay");
+      saveState();
+      syncGateState();
+      renderAll();
+    } catch (err) {
+      confirmBtn.disabled = false;
+      confirmBtn.textContent = "Yes, Delete My Account";
+      if (err.code === "auth/requires-recent-login") {
+        messageEl.textContent = "For security, please sign out and sign back in before deleting your account.";
+      } else {
+        messageEl.textContent = "Something went wrong. Please try again.";
+      }
+    }
   }
 
   function exportFounderFile({ includeNotes = true, selectedDocIds = null } = {}) {

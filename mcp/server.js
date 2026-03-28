@@ -259,6 +259,53 @@ server.tool(
 );
 
 // -------------------------------------------------------
+// TOOL 9: get_ideas
+// Browse Focus page entries by niche, optionally filtered by keyword
+// -------------------------------------------------------
+server.tool(
+  "get_ideas",
+  "Browse niche idea categories from the Focus section of the directory. Optionally filter by a keyword or interest area. Returns entries grouped by niche.",
+  { keyword: z.string().optional().describe("Optional keyword to filter by (e.g. 'senior', 'sustainability', 'tech', 'trades')") },
+  async ({ keyword } = {}) => {
+    let results = entries.filter((e) => e.page === "focus");
+    if (keyword) {
+      results = results.filter(
+        (e) =>
+          includes(e.name, keyword) ||
+          includes(e.description, keyword) ||
+          includes(e.type, keyword) ||
+          e.tags.some((t) => includes(t, keyword))
+      );
+    }
+    const grouped = results.reduce((acc, e) => {
+      acc[e.section] = acc[e.section] || [];
+      acc[e.section].push(e);
+      return acc;
+    }, {});
+
+    const output = Object.entries(grouped)
+      .map(
+        ([section, items]) =>
+          `**${section}**\n` +
+          items.map((e) => `  - ${e.name} | ${e.url}`).join("\n")
+      )
+      .join("\n\n");
+
+    return {
+      content: [
+        {
+          type: "text",
+          text:
+            results.length === 0
+              ? `No ideas found${keyword ? ` for "${keyword}"` : ""}.`
+              : `${results.length} idea${results.length !== 1 ? "s" : ""}${keyword ? ` matching "${keyword}"` : ""} across ${Object.keys(grouped).length} niche${Object.keys(grouped).length !== 1 ? "s" : ""}:\n\n${output}`,
+        },
+      ],
+    };
+  }
+);
+
+// -------------------------------------------------------
 // TOOL 7: get_section_list
 // Returns all unique sections and pages - useful orientation tool
 // -------------------------------------------------------

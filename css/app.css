@@ -2322,6 +2322,10 @@ button.field-toggle::after {
     padding: 10px 12px 8px;
   }
 
+  #installBanner {
+    display: none !important;
+  }
+
   .app-topbar__brand {
     width: 100%;
     flex: 1 1 100%;

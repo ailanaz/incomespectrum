@@ -1589,7 +1589,7 @@ p { margin: 0; }
   color: var(--sp-blue);
 }
 .hero-headline {
-  font-size: clamp(39px, 6.3vw, 67px);
+  font-size: clamp(43px, 6.9vw, 74px);
   letter-spacing: -1.5px;
   line-height: 1.12;
 }
@@ -1819,7 +1819,7 @@ body::before {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 60px;
+  margin-top: 64px;
 }
 .hero-cta-btn {
   display: inline-flex;
@@ -3270,7 +3270,7 @@ body::before {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 60px;
+  margin-top: 64px;
 }
 .hero-cta-btn {
   display: inline-flex;

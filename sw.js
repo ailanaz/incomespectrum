@@ -1,4 +1,4 @@
-const CACHE_NAME = 'income-spectrum-v6';
+const CACHE_NAME = 'income-spectrum-v7';
 
 // Only cache static assets - never HTML files
 // HTML is always fetched fresh so updates reach users immediately

@@ -1694,6 +1694,7 @@
     const profileSignupCard = document.getElementById("profileSignupCard");
     const profileToolsTitle = document.getElementById("profileToolsTitle");
     const topSignOutButton = document.getElementById("topSignOutButton");
+    const mobileSignOutButton = document.getElementById("mobileSignOutButton");
     if (signupState) signupState.value = appState.selectedState;
     if (profileState) profileState.value = appState.selectedState;
     if (profileGoal) profileGoal.innerHTML = setupGoals.map((goal) => `
@@ -1705,6 +1706,7 @@
     if (profileSignupCard) profileSignupCard.classList.toggle("hidden", appState.isSignedIn);
     if (profileToolsTitle) profileToolsTitle.textContent = appState.isSignedIn ? "App tools" : "Guest tools";
     if (topSignOutButton) topSignOutButton.classList.toggle("hidden", !appState.isSignedIn);
+    if (mobileSignOutButton) mobileSignOutButton.classList.toggle("hidden", !appState.isSignedIn);
     document.getElementById("topPlannerButton").textContent = "Founder File Overview";
     document.getElementById("topPlannerButton").setAttribute("aria-label", "Open Founder File Overview");
   }
@@ -2576,7 +2578,6 @@
           </div>
         </div>
         <div class="quick-links-row">
-          <p class="helper-copy quick-links-row__label">Quick Links:</p>
           <button class="utility-link-pill" data-action="open-notes">Notes</button>
           <button class="utility-link-pill" data-action="scroll-founder-file-section" data-target="founderFileDocsSection">Documents</button>
           <button class="utility-link-pill" data-action="export-founder-file">Export</button>

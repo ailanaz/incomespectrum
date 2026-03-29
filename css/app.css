@@ -2317,6 +2317,8 @@ button.field-toggle::after {
   }
 
   .app-topbar {
+    position: sticky;
+    top: 0;
     padding: 10px 12px 8px;
   }
 
@@ -2424,6 +2426,10 @@ button.field-toggle::after {
     padding-bottom: calc(env(safe-area-inset-bottom, 0px));
   }
 
+  .app-bottom-nav:has(#mobileSignOutButton:not(.hidden)) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .bottom-tab {
     min-height: 64px;
     height: 64px;
@@ -2435,6 +2441,10 @@ button.field-toggle::after {
   }
 
   .bottom-tab[data-view="saved"] {
+    font-size: 10.5px;
+  }
+
+  #mobileSignOutButton {
     font-size: 10.5px;
   }
 }

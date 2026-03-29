@@ -2435,7 +2435,7 @@ body::before {
     linear-gradient(rgba(10, 50, 25, 0.77), rgba(10, 50, 25, 0.77)),
     url('../img/HeroBG.jpg') !important;
   background-size: cover !important;
-  background-position: center 45% !important;
+  background-position: center 15% !important;
   background-repeat: no-repeat !important;
   border-bottom: 1px solid var(--border);
 }

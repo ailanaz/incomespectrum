@@ -1779,11 +1779,28 @@
         "formation",
         "compliance"
       ],
-      "url": "https://www.northwestregisteredagent.com/",
+      "url": "https://tidd.ly/4s0hwUZ",
       "page": "supportive-services",
       "section": "Legal, Compliance & Protection",
-      "link_type": "direct",
-      "affiliate_vendor": null
+      "link_type": "affiliate",
+      "affiliate_vendor": "Awin"
+    },
+    {
+      "id": "harbor-compliance",
+      "name": "Harbor Compliance",
+      "type": "Business Compliance & Licensing Service",
+      "description": "Business licensing, registered agent, and compliance filing services for small businesses and startups.",
+      "reach": "National",
+      "tags": [
+        "compliance",
+        "licensing",
+        "registered-agent"
+      ],
+      "url": "https://tidd.ly/4maD6oj",
+      "page": "supportive-services",
+      "section": "Legal, Compliance & Protection",
+      "link_type": "affiliate",
+      "affiliate_vendor": "Awin"
     },
     {
       "id": "registered-agents-inc",

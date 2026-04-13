@@ -2770,51 +2770,6 @@ body::before {
   border-color: var(--c-gov) !important;
 }
 
-.page-education-training .cat-block__grid {
-  align-items: stretch;
-}
-
-.page-education-training .listing-card {
-  height: 100%;
-  min-height: 252px;
-}
-
-.page-education-training .listing-card__title-block {
-  display: grid;
-  align-content: start;
-  gap: 2px;
-  min-height: 44px;
-}
-
-.page-education-training .listing-card__name {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  min-height: calc(1.35em * 2);
-}
-
-.page-education-training .listing-card__type {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  line-height: 1.25 !important;
-  min-height: calc(1.25em * 2);
-}
-
-.page-education-training .listing-card__desc {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-  min-height: calc(1.55em * 3);
-}
-
-.page-education-training .listing-card__meta {
-  margin-top: auto;
-}
-
 .site-footer {
   padding-top: 56px !important;
 }

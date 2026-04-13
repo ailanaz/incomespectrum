@@ -24,7 +24,8 @@
     "Small Business Owner",
     "Solopreneur",
     "Freelancer",
-    "Owner-Operator"
+    "Owner-Operator",
+    "Still sorting"
   ];
   const founderIdentityDescriptions = {
     Founder: "A person who starts, owns, builds, buys, or runs a business or venture.",
@@ -32,8 +33,10 @@
     Solopreneur: "Running a business you own and operate yourself.",
     "Small Business Owner": "Owning and running a business that serves a defined market or community.",
     Freelancer: "Working independently by offering a skill or service to clients.",
-    "Owner-Operator": "Owning the business and also doing the day-to-day work."
+    "Owner-Operator": "Owning the business and also doing the day-to-day work.",
+    "Still sorting": "You are still narrowing in on what fits you best."
   };
+  const QUIZ_VERSION = "20260413-focus-v2";
   const FOUNDER_FORMS_KEY = "income-spectrum-founder-forms-v1";
   const FORMS_MAX_BYTES = 1048576; // 1MB per file
   const businessDocTypes = [
@@ -892,219 +895,108 @@
   };
 
   const quiz = {
-    title: "What People Pay For",
+    version: QUIZ_VERSION,
+    title: "Find Your Focus",
     intro: "This quiz is designed to help you understand what people are paying for and turn that understanding into a working Founder File you can use as an aspiring, new, or existing business owner.",
-    frameworkNote: "You will build understanding of The Six, the core drivers behind spending; The Cost of Living, the costs people pay to fulfill a specific outcome; Niche as Culture, where culture is shaped by shared cost and shared outcomes sought; and how the Cost of Living creates opportunity.",
-    optionPrompt: "Choose the response that feels closest to your understanding, your instincts, your style, your direction, or what simply feels right to you. There are no right or wrong answers, only what is right for you.",
+    frameworkNote: "You will build understanding of The Six, the Cost of Living, Niche as Culture, and how the Cost of Living creates opportunity.",
+    optionPrompt: "Read each one quickly and choose what feels closest. There are no right or wrong answers here, only what fits.",
     questions: [
       {
-        id: "whatPeoplePayFor",
-        title: "What People Pay For",
-        prompt: "People pay for outcomes that matter to them.",
-        question: "What stands out to you?",
-        options: [
-          { value: "getting", label: "getting something they want" },
-          { value: "solving", label: "solving something important" },
-          { value: "easing", label: "making life easier" },
-          { value: "improving", label: "improving something" },
-          { value: "enjoying", label: "enjoying something more" },
-          { value: "giving", label: "giving or sharing something meaningful" }
-        ]
-      },
-      {
-        id: "pullsSpending",
-        title: "What Pulls Spending",
-        prompt: "Some spending is planned. Some happens fast.",
-        question: "What pulls spending forward?",
-        options: [
-          { value: "urgency", label: "urgency" },
-          { value: "convenience", label: "convenience" },
-          { value: "desire", label: "desire" },
-          { value: "comfort", label: "comfort" },
-          { value: "trust", label: "trust" },
-          { value: "pleasure", label: "pleasure" }
-        ]
-      },
-      {
-        id: "keepsGettingChosen",
-        title: "What Keeps Getting Chosen",
-        prompt: "People usually repeat what feels worth it to them.",
-        question: "What keeps getting chosen?",
-        options: [
-          { value: "saves-time", label: "what saves time" },
-          { value: "feels-better", label: "what feels better" },
-          { value: "works-well", label: "what works well" },
-          { value: "looks-right", label: "what looks right" },
-          { value: "feels-meaningful", label: "what feels meaningful" },
-          { value: "feels-worth-having", label: "what feels worth having" }
-        ]
-      },
-      {
-        id: "sixDriver",
+        id: "driver",
         title: "The Six",
-        prompt: "The Six are core drivers underneath what people pay for.",
-        question: "What feels most active?",
+        prompt: "Underneath most spending is one core pull. In Income Spectrum, those are relief, stability, access, improvement, connection, and enjoyment.",
+        question: "Think about something people spend on easily. What is usually underneath it?",
         options: [
-          { value: "relief", label: "relief" },
-          { value: "stability", label: "stability" },
-          { value: "access", label: "access" },
-          { value: "improvement", label: "improvement" },
-          { value: "connection", label: "connection" },
-          { value: "enjoyment", label: "enjoyment" }
+          { value: "relief", label: "Relief", detail: "Something feels too hard, too messy, too stressful, or too much to keep carrying." },
+          { value: "stability", label: "Stability", detail: "People want more certainty, steadiness, trust, or control." },
+          { value: "access", label: "Access", detail: "People want a way into something they want to reach, use, learn, or take part in." },
+          { value: "improvement", label: "Improvement", detail: "People want something better, sharper, stronger, or more refined." },
+          { value: "connection", label: "Connection", detail: "People want something rooted in care, belonging, meaning, or shared experience." },
+          { value: "enjoyment", label: "Enjoyment", detail: "People want something because it feels good, looks right, tastes better, or is simply worth having." }
         ]
       },
       {
-        id: "costOfLiving",
+        id: "payFor",
+        title: "What People Pay For",
+        prompt: "People pay for results, not just things. Sometimes practical. Sometimes emotional. Sometimes simply wanted.",
+        question: "What do people seem most ready to pay for?",
+        options: [
+          { value: "getting", label: "Getting something they want", detail: "They want the thing, the access, or the outcome." },
+          { value: "easier", label: "Making life easier", detail: "They want less drag, less hassle, or less effort." },
+          { value: "solving", label: "Solving or easing something", detail: "They want something handled, fixed, reduced, or taken care of." },
+          { value: "access", label: "Getting access", detail: "They want a way into something they could not easily reach on their own." },
+          { value: "improving", label: "Improving something", detail: "They want better quality, better performance, or a stronger result." },
+          { value: "enjoying", label: "Enjoying, expressing, or giving something", detail: "They want pleasure, fit, beauty, meaning, or something to share." }
+        ]
+      },
+      {
+        id: "cost",
         title: "The Cost of Living",
-        prompt: "The Cost of Living is the cost people pay in time, energy, attention, comfort, and risk.",
-        question: "What gets spent most heavily?",
+        prompt: "Before people spend money, they are already paying in time, energy, attention, comfort, and risk.",
+        question: "Which cost seems most active here?",
         options: [
-          { value: "time", label: "time" },
-          { value: "energy", label: "energy" },
-          { value: "attention", label: "attention" },
-          { value: "comfort", label: "comfort" },
-          { value: "risk", label: "risk" },
-          { value: "mix", label: "a mix of these" }
-        ]
-      },
-      {
-        id: "lowerCost",
-        title: "What People Would Rather Spend Less Of",
-        prompt: "Some costs feel acceptable. Some feel heavier than they should.",
-        question: "What cost would people most want to lower?",
-        options: [
-          { value: "time", label: "time" },
-          { value: "energy", label: "energy" },
-          { value: "attention", label: "attention" },
-          { value: "comfort", label: "comfort" },
-          { value: "risk", label: "risk" },
-          { value: "effort", label: "effort across too many areas at once" }
-        ]
-      },
-      {
-        id: "resultSought",
-        title: "Result Sought",
-        prompt: "Spending usually points toward a result.",
-        question: "What result feels most central?",
-        options: [
-          { value: "attain", label: "to attain something" },
-          { value: "gain", label: "to gain something" },
-          { value: "access", label: "to access something" },
-          { value: "secure", label: "to secure something" },
-          { value: "improve", label: "to improve something" },
-          { value: "enjoy", label: "to enjoy something" }
-        ]
-      },
-      {
-        id: "positivePull",
-        title: "Positive Pull",
-        prompt: "Not all spending comes from pressure. Some comes from attraction.",
-        question: "What is the positive pull here?",
-        options: [
-          { value: "beauty", label: "beauty" },
-          { value: "enjoyment", label: "enjoyment" },
-          { value: "convenience", label: "convenience" },
-          { value: "identity", label: "identity" },
-          { value: "preference", label: "preference" },
-          { value: "generosity", label: "generosity" }
-        ]
-      },
-      {
-        id: "sharedPattern",
-        title: "Shared Pattern",
-        prompt: "When the same kind of cost and result keep showing up, a pattern forms.",
-        question: "What pattern fits best?",
-        options: [
-          { value: "easier", label: "people want things to feel easier" },
-          { value: "better", label: "people want things to feel better" },
-          { value: "secure", label: "people want things to feel more secure" },
-          { value: "fit", label: "people want things to fit them better" },
-          { value: "meaningful", label: "people want things to feel more meaningful" },
-          { value: "enjoyable", label: "people want things to be more enjoyable" }
-        ]
-      },
-      {
-        id: "culture",
-        title: "Niche is Culture",
-        prompt: "Culture forms where people keep paying around a shared cost and a shared result.",
-        question: "What culture fits best here?",
-        options: [
-          { value: "relief", label: "a culture of relief" },
-          { value: "stability", label: "a culture of stability" },
-          { value: "access", label: "a culture of access" },
-          { value: "improvement", label: "a culture of improvement" },
-          { value: "connection", label: "a culture of connection" },
-          { value: "enjoyment", label: "a culture of enjoyment" }
-        ]
-      },
-      {
-        id: "cultureValues",
-        title: "What the Culture Values",
-        prompt: "Every culture reveals what matters through what it keeps choosing.",
-        question: "What is most valued here?",
-        options: [
-          { value: "ease", label: "ease" },
-          { value: "quality", label: "quality" },
-          { value: "trust", label: "trust" },
-          { value: "expression", label: "expression" },
-          { value: "belonging", label: "belonging" },
-          { value: "satisfaction", label: "satisfaction" }
+          { value: "time", label: "Time", detail: "Too much time keeps getting spent." },
+          { value: "energy", label: "Energy", detail: "Too much effort keeps getting used up." },
+          { value: "attention", label: "Attention", detail: "Too much focus keeps getting pulled." },
+          { value: "comfort", label: "Comfort", detail: "Something feels harder, rougher, or less pleasant than it should." },
+          { value: "risk", label: "Risk", detail: "Something feels uncertain, exposed, or easy to get wrong." },
+          { value: "mix", label: "A mix across these", detail: "More than one of these is clearly in play." }
         ]
       },
       {
         id: "opportunity",
         title: "Cost of Living Creates Opportunity",
-        prompt: "Opportunity forms where people keep paying and still want a better way through, toward, or around something.",
-        question: "Where is opportunity forming?",
+        prompt: "Opportunity forms where people keep paying a cost and would rather not keep carrying it the same way.",
+        question: "Which kind of opening feels clearest to you?",
         options: [
-          { value: "save-time", label: "helping people save time" },
-          { value: "use-less-energy", label: "helping people use less energy" },
-          { value: "decide-clearly", label: "helping people decide more clearly" },
-          { value: "feel-better", label: "helping people feel better or more secure" },
-          { value: "better-result", label: "helping people reach a better result" },
-          { value: "enjoy-more", label: "helping people enjoy the process or outcome more" }
+          { value: "save-time", label: "Saving time", detail: "A quicker way through." },
+          { value: "use-less-energy", label: "Using less energy", detail: "Less effort to get the result." },
+          { value: "decide-clearly", label: "Deciding more clearly", detail: "More clarity before people choose, spend, or commit." },
+          { value: "feel-better", label: "Feeling better or more secure", detail: "Less stress, less discomfort, or more steadiness." },
+          { value: "better-result", label: "Reaching a better result", detail: "A stronger outcome, finish, standard, or level of quality." },
+          { value: "enjoy-more", label: "Enjoying the process or outcome more", detail: "More pleasure, beauty, satisfaction, or fit." }
         ]
       },
       {
-        id: "direction",
-        title: "Direction",
-        prompt: "Direction starts to form when the pattern, the cost, and the result begin to make sense together.",
-        question: "What direction fits you best?",
+        id: "culture",
+        title: "Niche is Culture",
+        prompt: "A niche is a culture built around a shared cost and a shared result people keep paying around.",
+        question: "Which culture feels closest to the one you want to work inside?",
         options: [
-          { value: "service", label: "offering a service" },
-          { value: "product", label: "creating a product" },
-          { value: "information", label: "organizing information" },
-          { value: "process", label: "improving a process" },
-          { value: "guidance", label: "guiding people through something" },
-          { value: "culture", label: "building around a specific culture" }
+          { value: "relief", label: "A culture of relief", detail: "People want something handled, eased, solved, or taken off their plate." },
+          { value: "stability", label: "A culture of stability", detail: "People want steadiness, trust, order, and fewer surprises." },
+          { value: "access", label: "A culture of access", detail: "People want a clearer way in, through, or toward something." },
+          { value: "improvement", label: "A culture of improvement", detail: "People want better quality, better performance, or a stronger result." },
+          { value: "connection", label: "A culture of connection", detail: "People care about care, belonging, meaning, or shared identity." },
+          { value: "enjoyment", label: "A culture of enjoyment", detail: "People care about pleasure, taste, beauty, experience, or preference." }
         ]
       },
       {
-        id: "workStyle",
-        title: "Your Style",
-        prompt: "The best direction should fit the way you naturally like to work.",
-        question: "What feels most like you?",
-        options: [
-          { value: "solving", label: "solving" },
-          { value: "improving", label: "improving" },
-          { value: "organizing", label: "organizing" },
-          { value: "guiding", label: "guiding" },
-          { value: "creating", label: "creating" },
-          { value: "connecting", label: "connecting" }
-        ]
-      },
-      {
-        id: "founderFit",
+        id: "founder",
         title: "Founder Fit",
-        prompt: "Founder is the catch-all term here, but there are different ways to operate as one.",
-        question: "What feels most like you right now?",
+        prompt: "The same focus can fit different kinds of founders in very different ways. What fits matters.",
+        question: "Which founder fit feels closest to you right now?",
         options: [
           { value: "Entrepreneur", label: "Entrepreneur", detail: "Building something with room to grow beyond your direct labor." },
-          { value: "Solopreneur", label: "Solopreneur", detail: "Running a business you own and operate yourself." },
+          { value: "Solopreneur", label: "Solopreneur", detail: "Running a business you own and operate yourself, intentionally staying lean." },
           { value: "Small Business Owner", label: "Small Business Owner", detail: "Owning and running a business that serves a defined market or community." },
           { value: "Freelancer", label: "Freelancer", detail: "Working independently by offering a skill or service to clients." },
           { value: "Owner-Operator", label: "Owner-Operator", detail: "Owning the business and also doing the day-to-day work." },
-          { value: "Founder", label: "Still defining that", detail: "You are still figuring out what kind of founder fits you best." }
+          { value: "Still sorting", label: "Still sorting", detail: "You are still narrowing in on what fits you best." }
+        ]
+      },
+      {
+        id: "focus",
+        title: "Your Focus",
+        prompt: "Focus starts to take shape when the driver, the cost, the culture, and your founder fit stop pulling in different directions.",
+        question: "Which kind of focus feels strongest to start with?",
+        options: [
+          { value: "service", label: "A service", detail: "You do the work directly for people." },
+          { value: "product", label: "A product", detail: "People buy something you make, source, package, or sell." },
+          { value: "ownership", label: "Ownership or acquisition", detail: "You want to own the business itself or step into something established." },
+          { value: "information", label: "Information or guidance", detail: "You help people understand, choose, prepare, compare, or move more clearly." },
+          { value: "recurring", label: "A recurring or asset-based model", detail: "You want income tied to something that keeps working beyond one-off effort." },
+          { value: "sorting", label: "Still sorting", detail: "You can see the signal, but you are not ready to name the focus yet." }
         ]
       }
     ]
@@ -1157,7 +1049,7 @@
     }
   };
 
-  let appState = loadState();
+  let appState = normalizeQuizState(loadState());
   let quizIndex = 0;
   let savedFilter = "all";
   let exploreFilter = "all";
@@ -1195,7 +1087,7 @@
         if (user && !appState.isSignedIn) {
           const cloudState = await loadStateFromFirestore(user.uid);
           if (cloudState) {
-            appState = { ...structuredClone(defaultState), ...cloudState, isSignedIn: true, setupComplete: true };
+            appState = normalizeQuizState({ ...structuredClone(defaultState), ...cloudState, isSignedIn: true, setupComplete: true });
             saveState();
             renderAll();
             syncGateState();
@@ -1940,7 +1832,7 @@
       const user = userCredential.user;
       const cloudState = await loadStateFromFirestore(user.uid);
       if (cloudState) {
-        appState = { ...structuredClone(defaultState), ...cloudState };
+        appState = normalizeQuizState({ ...structuredClone(defaultState), ...cloudState });
       }
       appState.isSignedIn = true;
       appState.setupComplete = true;
@@ -3503,7 +3395,7 @@
         <h3>${question.title || question.prompt}</h3>
         ${question.prompt ? `<p>${question.prompt}</p>` : ""}
         ${question.question ? `<p><strong>${question.question}</strong></p>` : ""}
-        ${quiz.optionPrompt ? `<p>${quiz.optionPrompt}</p>` : ""}
+        ${quiz.optionPrompt && quizIndex === 0 ? `<p>${quiz.optionPrompt}</p>` : ""}
         <div class="quiz-options">
           ${question.options.map((option) => `
             <button class="quiz-option ${selected === option.value ? "selected" : ""}" data-action="quiz-option" data-value="${option.value}">
@@ -3564,14 +3456,12 @@
   function renderQuizResult(result, includeSaveButton) {
     return `
       <div class="result-group">
-
         <h3>${result.planTitle}</h3>
         <p>${result.startingPointSummary}</p>
 
         <div class="quiz-arc">
-
           <div class="quiz-arc__step">
-            <p class="quiz-arc__label">What people are paying for and what they are paying with</p>
+            <p class="quiz-arc__label">What people are paying for</p>
             <p>${result.understandingSummary}</p>
           </div>
 
@@ -3581,29 +3471,22 @@
           </div>
 
           <div class="quiz-arc__step">
-            <p class="quiz-arc__label">How that translates to opportunity</p>
+            <p class="quiz-arc__label">Where the opening is</p>
             <p>${result.opportunitySummary}</p>
-            <p><strong>${result.incomeIdeaTitle}</strong></p>
+          </div>
+
+          <div class="quiz-arc__step">
+            <p class="quiz-arc__label">What that looks like for you</p>
+            <p><strong>${result.founderIdentity}</strong> - ${result.founderIdentityDescription}</p>
             <p>${result.incomeIdeaSummary}</p>
           </div>
 
+          ${result.focusFitSummary ? `
           <div class="quiz-arc__step">
-            <p class="quiz-arc__label">What that looks like for me</p>
-            <p><strong>${result.founderIdentity}</strong> - ${result.founderIdentityDescription}</p>
-            <p>State: ${appState.selectedState}</p>
-          </div>
-
-          ${result.fieldSuggestion && result.fieldSuggestion.industries && result.fieldSuggestion.industries.length ? `
-          <div class="quiz-arc__step">
-            <p class="quiz-arc__label">What might best fit me</p>
-            <p>Based on what you described about how you work and what you naturally offer, these fields came up as possible starting points.</p>
-            <ul class="quiz-industry-list">
-              ${result.fieldSuggestion.links.map(function (item) {
-                return `<li><a href="${item.href}" class="text-link" target="_blank" rel="noopener noreferrer">${item.label} &rarr;</a></li>`;
-              }).join("")}
-            </ul>
+            <p class="quiz-arc__label">Start here in the spectrum</p>
+            <p><strong>${result.incomeIdeaTitle}</strong></p>
+            <p>${result.focusFitSummary}</p>
           </div>` : ""}
-
         </div>
 
         <div class="detail-section">
@@ -3760,288 +3643,358 @@
   }
 
   function buildQuizResult() {
-    const whatPeoplePayFor = appState.quizAnswers.whatPeoplePayFor || "getting";
-    const pullsSpending = appState.quizAnswers.pullsSpending || "trust";
-    const keepsGettingChosen = appState.quizAnswers.keepsGettingChosen || "works-well";
-    const sixDriver = appState.quizAnswers.sixDriver || "stability";
-    const payment = appState.quizAnswers.costOfLiving || "time";
-    const lowerCost = appState.quizAnswers.lowerCost || payment;
-    const resultSought = appState.quizAnswers.resultSought || "improve";
-    const positivePull = appState.quizAnswers.positivePull || "convenience";
-    const sharedPattern = appState.quizAnswers.sharedPattern || "better";
-    const culture = appState.quizAnswers.culture || sixDriver;
-    const cultureValues = appState.quizAnswers.cultureValues || "quality";
+    const driver = appState.quizAnswers.driver || "stability";
+    const payFor = appState.quizAnswers.payFor || "easier";
+    const cost = appState.quizAnswers.cost || "time";
     const opportunity = appState.quizAnswers.opportunity || "better-result";
-    const direction = appState.quizAnswers.direction || "service";
-    const workStyle = appState.quizAnswers.workStyle || "solving";
-    const founderIdentity = appState.quizAnswers.founderFit || "Founder";
+    const culture = appState.quizAnswers.culture || driver;
+    const founderIdentity = appState.quizAnswers.founder || "Still sorting";
+    const focus = appState.quizAnswers.focus || "sorting";
 
-    const industryLinks = {
-      "Auto Trades": "income-options.html?q=auto",
-      "Home and Local Services": "income-options.html?q=home+services",
-      "Beauty and Wellness": "income-options.html?q=beauty",
-      "Coaching and Counseling": "income-options.html?q=coaching",
-      "Creative and Digital": "income-options.html?q=digital",
-      "Products and Sales": "income-options.html?q=product",
-      "Business and Professional Services": "income-options.html?q=consulting",
-      "Government Contracting": "income-options.html?q=contracting"
-    };
+    const incomeById = Object.fromEntries(data.income.map(function (item) {
+      return [item.id, item];
+    }));
+    const incomeScores = Object.fromEntries(data.income.map(function (item) {
+      return [item.id, 0];
+    }));
+    const trainingScores = Object.fromEntries(data.training.map(function (item) {
+      return [item.id, 0];
+    }));
+    const serviceScores = Object.fromEntries(data.services.map(function (item) {
+      return [item.id, 0];
+    }));
+    const officialScores = Object.fromEntries(data.official.map(function (item) {
+      return [item.id, 0];
+    }));
 
-    function scoreIndustries(style, directionChoice, identity) {
-      const scores = {
-        "Auto Trades": 0,
-        "Home and Local Services": 0,
-        "Beauty and Wellness": 0,
-        "Coaching and Counseling": 0,
-        "Creative and Digital": 0,
-        "Products and Sales": 0,
-        "Business and Professional Services": 0,
-        "Government Contracting": 0
-      };
+    function addScores(bucket, ids, points) {
+      (ids || []).forEach(function (id) {
+        if (Object.prototype.hasOwnProperty.call(bucket, id)) {
+          bucket[id] += points;
+        }
+      });
+    }
 
-      if (style === "solving") { scores["Auto Trades"] += 3; scores["Home and Local Services"] += 2; scores["Business and Professional Services"] += 1; }
-      if (style === "improving") { scores["Beauty and Wellness"] += 2; scores["Business and Professional Services"] += 2; scores["Creative and Digital"] += 2; }
-      if (style === "organizing") { scores["Business and Professional Services"] += 3; scores["Government Contracting"] += 2; scores["Creative and Digital"] += 1; }
-      if (style === "guiding") { scores["Coaching and Counseling"] += 3; scores["Business and Professional Services"] += 1; scores["Beauty and Wellness"] += 1; }
-      if (style === "creating") { scores["Creative and Digital"] += 3; scores["Products and Sales"] += 3; scores["Beauty and Wellness"] += 1; }
-      if (style === "connecting") { scores["Coaching and Counseling"] += 2; scores["Business and Professional Services"] += 2; scores["Government Contracting"] += 1; }
-
-      if (directionChoice === "service") { scores["Home and Local Services"] += 2; scores["Business and Professional Services"] += 2; }
-      if (directionChoice === "product") { scores["Products and Sales"] += 3; scores["Creative and Digital"] += 1; }
-      if (directionChoice === "information") { scores["Business and Professional Services"] += 2; scores["Government Contracting"] += 2; scores["Creative and Digital"] += 1; }
-      if (directionChoice === "process") { scores["Business and Professional Services"] += 3; scores["Government Contracting"] += 1; }
-      if (directionChoice === "guidance") { scores["Coaching and Counseling"] += 3; scores["Business and Professional Services"] += 1; }
-      if (directionChoice === "culture") { scores["Beauty and Wellness"] += 2; scores["Creative and Digital"] += 2; scores["Products and Sales"] += 1; }
-
-      if (identity === "Entrepreneur") { scores["Products and Sales"] += 2; scores["Creative and Digital"] += 1; scores["Government Contracting"] += 1; }
-      if (identity === "Solopreneur") { scores["Business and Professional Services"] += 2; scores["Creative and Digital"] += 2; }
-      if (identity === "Small Business Owner") { scores["Home and Local Services"] += 2; scores["Beauty and Wellness"] += 2; }
-      if (identity === "Freelancer") { scores["Creative and Digital"] += 3; scores["Business and Professional Services"] += 1; }
-      if (identity === "Owner-Operator") { scores["Auto Trades"] += 2; scores["Home and Local Services"] += 2; }
-
-      return Object.entries(scores)
-        .filter(function (entry) { return entry[1] > 0; })
+    function topKeys(bucket, count) {
+      return Object.entries(bucket)
         .sort(function (a, b) { return b[1] - a[1]; })
-        .slice(0, 3)
+        .filter(function (entry) { return entry[1] > 0; })
+        .slice(0, count)
         .map(function (entry) { return entry[0]; });
     }
 
-    const suggestedIndustries = scoreIndustries(workStyle, direction, founderIdentity);
-    const fieldSuggestion = suggestedIndustries.length
-      ? {
-          industries: suggestedIndustries,
-          links: suggestedIndustries.map(function (industry) {
-            return { label: industry, href: industryLinks[industry] || "income-options.html" };
-          })
-        }
-      : null;
-
-    const driverMap = {
-      relief: {
-        title: "Relief is carrying the strongest signal here.",
-        income: ["income-virtual-assistant", "income-commercial-cleaning"],
-        training: ["training-business-foundations", "training-operations-basics"],
-        services: ["service-bookkeeping", "service-legal"],
-        official: ["official-state-registration", "official-ein-irs"]
-      },
-      stability: {
-        title: "Stability is carrying the strongest signal here.",
-        income: ["income-mobile-notary", "income-government-contracting"],
-        training: ["training-business-foundations", "training-notary-basics"],
-        services: ["service-legal", "service-bookkeeping"],
-        official: ["official-state-registration", "official-licensing"]
-      },
-      access: {
-        title: "Access is carrying the strongest signal here.",
-        income: ["income-asl-interpreting", "income-commercial-cleaning"],
-        training: ["training-asl-pathways", "training-certification-prep"],
-        services: ["service-communication-access", "service-advisory"],
-        official: ["official-asl-state", "official-licensing"]
-      },
-      improvement: {
-        title: "Improvement is carrying the strongest signal here.",
-        income: ["income-print-on-demand", "income-virtual-assistant"],
-        training: ["training-digital-storefront", "training-brand-basics"],
-        services: ["service-branding", "service-marketing"],
-        official: ["official-state-registration", "official-state-tax"]
-      },
-      connection: {
-        title: "Connection is carrying the strongest signal here.",
-        income: ["income-asl-interpreting", "income-virtual-assistant"],
-        training: ["training-asl-pathways", "training-business-foundations"],
-        services: ["service-communication-access", "service-branding"],
-        official: ["official-asl-state", "official-state-registration"]
-      },
-      enjoyment: {
-        title: "Enjoyment is carrying the strongest signal here.",
-        income: ["income-government-contracting", "income-print-on-demand"],
-        training: ["training-government-contracting", "training-brand-basics"],
-        services: ["service-advisory", "service-legal"],
-        official: ["official-federal-contracting", "official-state-contracting"]
-      }
-    };
-
-    const directionMap = {
+    const focusMap = {
       service: {
-        pathLabel: "Service direction",
+        focusLabel: "Service focus",
         primarySection: "income",
-        incomeIdeaTitle: "A service direction is the clearest fit here.",
-        incomeIdeaSummary: "This pattern points toward helping people directly through work that solves, handles, improves, supports, or makes something easier."
+        incomeIdeaTitle: "Start with service-based options.",
+        incomeIdeaSummary: "This reads most clearly as work you do directly for people because the result is what they are coming back for.",
+        focusFitSummary: "Start with service-based options first. Stay close to the cost people are already paying and the result they want handled more cleanly.",
+        pathSummary: "Start with service-based options and stay close to the actual cost people are already paying.",
+        knowledgeSummary: "Use the knowledge side of your Founder File to keep the offer clear, the customer language sharp, and the work usable.",
+        incomeIds: ["income-mobile-notary", "income-virtual-assistant", "income-commercial-cleaning", "income-hydroseeding", "income-mobile-battery", "income-driveway-paver", "income-crawlspace-cleanup"],
+        trainingIds: ["training-business-foundations", "training-operations-basics", "training-certification-prep"],
+        serviceIds: ["service-bookkeeping", "service-legal", "service-marketing", "service-advisory"],
+        officialIds: ["official-state-registration", "official-licensing", "official-ein-irs"]
       },
       product: {
-        pathLabel: "Product direction",
+        focusLabel: "Product focus",
         primarySection: "income",
-        incomeIdeaTitle: "A product direction is the clearest fit here.",
-        incomeIdeaSummary: "This pattern points toward making, packaging, curating, or selling something people would choose because it delivers a clear result, fit, or experience."
+        incomeIdeaTitle: "Start with product-based options.",
+        incomeIdeaSummary: "This reads most clearly as something people can choose, buy, use, keep, or come back for because it fits what they want.",
+        focusFitSummary: "Start with product-based options first. Look at what people keep choosing because they want the thing, the fit, the look, or the experience around it.",
+        pathSummary: "Start with product-based options and stay close to what people keep choosing on purpose.",
+        knowledgeSummary: "Use the knowledge side of your Founder File to sharpen what you are offering, who it fits, and why someone would choose it.",
+        incomeIds: ["income-print-on-demand", "income-used-ebike", "income-karaoke-venue", "income-escape-room", "income-capsule-hotel"],
+        trainingIds: ["training-digital-storefront", "training-brand-basics", "training-business-foundations"],
+        serviceIds: ["service-website-setup", "service-branding", "service-marketing", "service-bookkeeping"],
+        officialIds: ["official-state-registration", "official-state-tax", "official-licensing"]
+      },
+      ownership: {
+        focusLabel: "Ownership focus",
+        primarySection: "income",
+        incomeIdeaTitle: "Start with ownership and acquisition.",
+        incomeIdeaSummary: "This reads most clearly as owning the business itself or stepping into something that already has operating ground under it.",
+        focusFitSummary: "Start with ownership and acquisition first. Look for work worth owning, not just work worth doing.",
+        pathSummary: "Start with ownership and acquisition and keep the operating model in view from the beginning.",
+        knowledgeSummary: "Use the knowledge side of your Founder File to keep the model, the numbers, and the operating requirements in view.",
+        incomeIds: ["income-government-contracting", "income-commercial-cleaning", "income-hydroseeding", "income-used-ebike", "income-capsule-hotel"],
+        trainingIds: ["training-business-foundations", "training-government-contracting"],
+        serviceIds: ["service-legal", "service-bookkeeping", "service-advisory"],
+        officialIds: ["official-state-registration", "official-state-tax", "official-licensing", "official-ein-irs"]
       },
       information: {
-        pathLabel: "Information direction",
+        focusLabel: "Information focus",
         primarySection: "training",
-        incomeIdeaTitle: "An information direction is the clearest fit here.",
-        incomeIdeaSummary: "This pattern points toward organizing what people need to know, clarifying decisions, reducing confusion, or making the next step easier to understand."
+        incomeIdeaTitle: "Start with information and guidance-based options.",
+        incomeIdeaSummary: "This reads most clearly as work that helps people understand, compare, prepare, decide, or move more clearly.",
+        focusFitSummary: "Start with information and guidance-based options first. Stay close to confusion, comparison, preparation, and the places people do not want to guess.",
+        pathSummary: "Start with information and guidance-based options and keep clarity at the center of the offer.",
+        knowledgeSummary: "Use the knowledge side of your Founder File to collect the terms, comparisons, and official points that make the focus clearer.",
+        incomeIds: ["income-storefront-setup", "income-listing-optimization", "income-vertical-content", "income-government-contracting", "income-virtual-assistant"],
+        trainingIds: ["training-business-foundations", "training-digital-storefront", "training-government-contracting", "training-certification-prep"],
+        serviceIds: ["service-advisory", "service-website-setup", "service-bookkeeping", "service-legal"],
+        officialIds: ["official-state-registration", "official-state-tax", "official-licensing", "official-federal-contracting", "official-state-contracting"]
       },
-      process: {
-        pathLabel: "Process direction",
-        primarySection: "services",
-        incomeIdeaTitle: "A process direction is the clearest fit here.",
-        incomeIdeaSummary: "This pattern points toward making something run better, flow better, or hold together more cleanly for the people involved."
-      },
-      guidance: {
-        pathLabel: "Guidance direction",
-        primarySection: "services",
-        incomeIdeaTitle: "A guidance direction is the clearest fit here.",
-        incomeIdeaSummary: "This pattern points toward helping people think, choose, navigate, or move through something with more clarity and confidence."
-      },
-      culture: {
-        pathLabel: "Culture-based direction",
+      recurring: {
+        focusLabel: "Recurring focus",
         primarySection: "income",
-        incomeIdeaTitle: "A culture-based direction is the clearest fit here.",
-        incomeIdeaSummary: "This pattern points toward building around a shared taste, preference, identity, value, or way of living that people keep choosing and paying around."
+        incomeIdeaTitle: "Start with recurring and asset-based options.",
+        incomeIdeaSummary: "This reads most clearly as work tied to something that keeps paying, keeps running, or keeps getting renewed beyond one-off effort.",
+        focusFitSummary: "Start with recurring and asset-based options first. Look for what repeats, renews, or keeps generating demand once it is in place.",
+        pathSummary: "Start with recurring and asset-based options and keep repeat demand in view.",
+        knowledgeSummary: "Use the knowledge side of your Founder File to clarify what repeats, what gets maintained, and what keeps the model working.",
+        incomeIds: ["income-laundry-pickup", "income-commercial-cleaning", "income-government-contracting", "income-capsule-hotel", "income-used-ebike"],
+        trainingIds: ["training-business-foundations", "training-operations-basics", "training-government-contracting"],
+        serviceIds: ["service-bookkeeping", "service-legal", "service-advisory"],
+        officialIds: ["official-state-registration", "official-state-tax", "official-licensing", "official-ein-irs"]
+      },
+      sorting: {
+        focusLabel: "Still sorting",
+        primarySection: "income",
+        incomeIdeaTitle: "Start broad in Focus.",
+        incomeIdeaSummary: "The signal is there. You do not need to force the label too early for it to be useful.",
+        focusFitSummary: "Start broad in Focus. Save what keeps matching, let the weaker signal fall away, and narrow from there.",
+        pathSummary: "Start broad and use the Founder File to see what keeps holding up.",
+        knowledgeSummary: "Use the knowledge side of your Founder File to keep the signal in view while the focus gets clearer.",
+        incomeIds: ["income-mobile-notary", "income-print-on-demand", "income-government-contracting", "income-virtual-assistant", "income-commercial-cleaning"],
+        trainingIds: ["training-business-foundations", "training-digital-storefront"],
+        serviceIds: ["service-advisory", "service-bookkeeping"],
+        officialIds: ["official-state-registration", "official-licensing"]
       }
     };
 
-    const whatMap = {
+    const payForLabels = {
       getting: "getting something they want",
-      solving: "solving something important",
-      easing: "making life easier",
+      easier: "making life easier",
+      solving: "solving or easing something",
+      access: "getting access",
       improving: "improving something",
-      enjoying: "enjoying something more",
-      giving: "giving or sharing something meaningful"
+      enjoying: "enjoying, expressing, or giving something"
     };
-    const keepsChosenMap = {
-      "saves-time": "what saves time",
-      "feels-better": "what feels better",
-      "works-well": "what works well",
-      "looks-right": "what looks right",
-      "feels-meaningful": "what feels meaningful",
-      "feels-worth-having": "what feels worth having"
+    const payForInsight = {
+      getting: "People are ready to spend when they want the thing, the access, or the outcome enough to reach for it.",
+      easier: "People are ready to spend when something feels lighter, smoother, faster, or less frustrating to deal with.",
+      solving: "People are ready to spend when they do not want to keep carrying the problem, the mess, or the pressure on their own.",
+      access: "People are ready to spend when something opens a door or shortens the distance to what they want.",
+      improving: "People are ready to spend when better matters and the difference can be felt, seen, or used.",
+      enjoying: "People are ready to spend when pleasure, fit, taste, beauty, expression, or generosity is part of the value."
     };
-    const resultMap = {
-      attain: "attain something",
-      gain: "gain something",
-      access: "access something",
-      secure: "secure something",
-      improve: "improve something",
-      enjoy: "enjoy something"
+    const driverLabels = {
+      relief: "Relief",
+      stability: "Stability",
+      access: "Access",
+      improvement: "Improvement",
+      connection: "Connection",
+      enjoyment: "Enjoyment"
     };
-    const positivePullMap = {
-      beauty: "beauty",
-      enjoyment: "enjoyment",
-      convenience: "convenience",
-      identity: "identity",
-      preference: "preference",
-      generosity: "generosity"
+    const driverInsight = {
+      relief: "The pull underneath it looks like relief. Something has become annoying, draining, stressful, messy, or too much to keep carrying as it is.",
+      stability: "The pull underneath it looks like stability. People want fewer surprises, more trust, more structure, or more peace of mind.",
+      access: "The pull underneath it looks like access. People want a clearer way in, through, or toward something they want to reach.",
+      improvement: "The pull underneath it looks like improvement. People want better quality, better performance, or a stronger finish than they have now.",
+      connection: "The pull underneath it looks like connection. People want care, belonging, shared meaning, or something that feels rooted in people.",
+      enjoyment: "The pull underneath it looks like enjoyment. People want something because it feels good, looks right, tastes better, or adds to life in a way they value."
     };
-    const sharedPatternMap = {
-      easier: "people want things to feel easier",
-      better: "people want things to feel better",
-      secure: "people want things to feel more secure",
-      fit: "people want things to fit them better",
-      meaningful: "people want things to feel more meaningful",
-      enjoyable: "people want things to be more enjoyable"
+    const costLabels = {
+      time: "Time",
+      energy: "Energy",
+      attention: "Attention",
+      comfort: "Comfort",
+      risk: "Risk",
+      mix: "A mix across these"
     };
-    const cultureValueMap = {
-      ease: "ease",
-      quality: "quality",
-      trust: "trust",
-      expression: "expression",
-      belonging: "belonging",
-      satisfaction: "satisfaction"
+    const costInsight = {
+      time: "Time is getting spent first. If you shorten that, the value is easy to feel.",
+      energy: "Energy is getting spent first. If you make the work lighter, the pull gets stronger.",
+      attention: "Attention is getting spent first. Clearer systems, clearer choices, and less mental drag matter here.",
+      comfort: "Comfort is getting spent first. Better feel, less friction, and a smoother experience matter here.",
+      risk: "Risk is getting spent first. Clarity, trust, correctness, and steadiness matter here.",
+      mix: "Several costs are stacking up at once. That is often where stronger opportunities start to form."
     };
-    const opportunityMap = {
-      "save-time": "helping people save time",
-      "use-less-energy": "helping people use less energy",
-      "decide-clearly": "helping people decide more clearly",
-      "feel-better": "helping people feel better or more secure",
-      "better-result": "helping people reach a better result",
-      "enjoy-more": "helping people enjoy the process or outcome more"
+    const opportunityLabels = {
+      "save-time": "Saving time",
+      "use-less-energy": "Using less energy",
+      "decide-clearly": "Deciding more clearly",
+      "feel-better": "Feeling better or more secure",
+      "better-result": "Reaching a better result",
+      "enjoy-more": "Enjoying the process or outcome more"
+    };
+    const opportunityInsight = {
+      "save-time": "The opening looks strongest where people want something handled faster or with less waiting.",
+      "use-less-energy": "The opening looks strongest where people are tired of doing too much of the work themselves.",
+      "decide-clearly": "The opening looks strongest where people do not want to guess, compare blindly, or figure it out alone.",
+      "feel-better": "The opening looks strongest where people want less stress, less discomfort, or less exposure.",
+      "better-result": "The opening looks strongest where quality, outcome, or standard is the reason people choose.",
+      "enjoy-more": "The opening looks strongest where the experience itself matters, not just the basic function."
+    };
+    const cultureLabels = {
+      relief: "a culture of relief",
+      stability: "a culture of stability",
+      access: "a culture of access",
+      improvement: "a culture of improvement",
+      connection: "a culture of connection",
+      enjoyment: "a culture of enjoyment"
+    };
+    const cultureInsight = {
+      relief: "People here want something handled, eased, solved, cleaned up, or taken off their plate.",
+      stability: "People here want steadiness, trust, order, and fewer surprises.",
+      access: "People here want a clearer way in, through, or toward something they want.",
+      improvement: "People here want better, not just enough.",
+      connection: "People here care about care, belonging, meaning, or shared identity.",
+      enjoyment: "People here care about pleasure, taste, beauty, experience, or preference."
     };
 
-    const result = driverMap[sixDriver] || driverMap.stability;
-    const path = directionMap[direction] || directionMap.service;
-    const paymentText = payment === "mix" ? "a mix of time, energy, attention, comfort, and risk" : payment;
-    const lowerCostText = lowerCost === "effort" ? "effort across too many areas at once" : lowerCost;
-    const directionText = `${opportunityMap[opportunity]} is the clearest opening right now.`;
-    const planTitle = "Founder File";
-    const startingPointSummary = `You are reading this pattern through ${whatMap[whatPeoplePayFor]}, with ${pullsSpending} and ${keepsChosenMap[keepsGettingChosen]} standing out as the strongest pull.`;
-    const understandingSummary = `The strongest driver here is ${sixDriver}. The cost of living is showing up most in ${paymentText}, and the cost people would most likely rather lower is ${lowerCostText}. The result at the center of the spending is to ${resultMap[resultSought]}, with ${positivePullMap[positivePull]} still playing a real role in why people choose what they choose.`;
-    const cultureSummary = `The shared pattern here looks most like this: ${sharedPatternMap[sharedPattern]}. That is why the culture reads most clearly as a culture of ${culture}. What it keeps valuing is ${cultureValueMap[cultureValues]}.`;
-    const opportunitySummary = `${directionText} This is how the cost of living creates opportunity here: people keep paying in ${paymentText}, they would rather pay less in ${lowerCostText}, and they still want to ${resultMap[resultSought]}.`;
-    const knowledgeSummary = direction === "information"
-      ? "Knowledge should stay practical here. Focus on the exact information, terms, and structure that make the direction clearer and more usable."
-      : direction === "process"
-        ? "Knowledge should focus on how the work runs, how it holds together, and what makes delivery stronger and more consistent."
-        : "Use knowledge to sharpen the fit, not to bury the direction. Add only what helps you understand the pattern, the offer, or the work more clearly.";
+    const currentFocus = focusMap[focus] || focusMap.sorting;
+
+    const payForBoosts = {
+      getting: ["income-print-on-demand", "income-used-ebike", "income-storefront-setup", "income-karaoke-venue", "income-escape-room"],
+      easier: ["income-virtual-assistant", "income-mobile-notary", "income-laundry-pickup", "income-mobile-battery", "income-storefront-setup", "income-commercial-cleaning"],
+      solving: ["income-commercial-cleaning", "income-crawlspace-cleanup", "income-lice-removal", "income-mobile-battery", "income-driveway-paver", "income-pet-funeral"],
+      access: ["income-asl-interpreting", "income-government-contracting", "income-storefront-setup", "income-used-ebike", "income-mobile-notary"],
+      improving: ["income-listing-optimization", "income-vertical-content", "income-hydroseeding", "income-driveway-paver", "income-print-on-demand"],
+      enjoying: ["income-print-on-demand", "income-karaoke-venue", "income-escape-room", "income-capsule-hotel", "income-vertical-content", "income-postpartum-retreat"]
+    };
+    const driverBoosts = {
+      relief: ["income-commercial-cleaning", "income-crawlspace-cleanup", "income-lice-removal", "income-mobile-battery", "income-virtual-assistant", "income-laundry-pickup"],
+      stability: ["income-mobile-notary", "income-government-contracting", "income-commercial-cleaning", "income-laundry-pickup"],
+      access: ["income-asl-interpreting", "income-storefront-setup", "income-used-ebike", "income-mobile-battery"],
+      improvement: ["income-listing-optimization", "income-vertical-content", "income-driveway-paver", "income-hydroseeding", "income-storefront-setup", "income-print-on-demand"],
+      connection: ["income-asl-interpreting", "income-death-doula", "income-pet-funeral", "income-postpartum-retreat", "income-virtual-assistant"],
+      enjoyment: ["income-print-on-demand", "income-karaoke-venue", "income-escape-room", "income-capsule-hotel", "income-used-ebike", "income-vertical-content"]
+    };
+    const founderBoosts = {
+      Entrepreneur: ["income-escape-room", "income-karaoke-venue", "income-capsule-hotel", "income-government-contracting", "income-storefront-setup", "income-vertical-content"],
+      Solopreneur: ["income-virtual-assistant", "income-mobile-notary", "income-listing-optimization", "income-storefront-setup", "income-print-on-demand", "income-used-ebike"],
+      "Small Business Owner": ["income-commercial-cleaning", "income-hydroseeding", "income-laundry-pickup", "income-driveway-paver", "income-mobile-battery"],
+      Freelancer: ["income-listing-optimization", "income-vertical-content", "income-storefront-setup", "income-virtual-assistant", "income-print-on-demand"],
+      "Owner-Operator": ["income-mobile-battery", "income-hydroseeding", "income-commercial-cleaning", "income-laundry-pickup", "income-driveway-paver", "income-crawlspace-cleanup", "income-mobile-notary"],
+      "Still sorting": ["income-mobile-notary", "income-virtual-assistant", "income-print-on-demand", "income-government-contracting"]
+    };
+    const costBoosts = {
+      time: ["income-virtual-assistant", "income-mobile-notary", "income-laundry-pickup", "income-mobile-battery", "income-listing-optimization", "income-storefront-setup"],
+      energy: ["income-commercial-cleaning", "income-crawlspace-cleanup", "income-driveway-paver", "income-hydroseeding", "income-laundry-pickup"],
+      attention: ["income-listing-optimization", "income-storefront-setup", "income-virtual-assistant", "income-government-contracting", "income-mobile-notary"],
+      comfort: ["income-capsule-hotel", "income-postpartum-retreat", "income-pet-funeral", "income-death-doula", "income-lice-removal"],
+      risk: ["income-government-contracting", "income-mobile-notary", "income-asl-interpreting"],
+      mix: ["income-virtual-assistant", "income-commercial-cleaning", "income-government-contracting", "income-storefront-setup", "income-mobile-notary"]
+    };
+    const opportunityBoosts = {
+      "save-time": ["income-virtual-assistant", "income-mobile-battery", "income-mobile-notary", "income-storefront-setup", "income-listing-optimization", "income-laundry-pickup"],
+      "use-less-energy": ["income-commercial-cleaning", "income-laundry-pickup", "income-crawlspace-cleanup", "income-driveway-paver", "income-mobile-battery"],
+      "decide-clearly": ["income-listing-optimization", "income-government-contracting", "income-mobile-notary", "income-virtual-assistant", "income-storefront-setup"],
+      "feel-better": ["income-pet-funeral", "income-death-doula", "income-postpartum-retreat", "income-lice-removal", "income-capsule-hotel"],
+      "better-result": ["income-hydroseeding", "income-driveway-paver", "income-listing-optimization", "income-storefront-setup", "income-print-on-demand", "income-used-ebike"],
+      "enjoy-more": ["income-karaoke-venue", "income-escape-room", "income-capsule-hotel", "income-print-on-demand", "income-vertical-content", "income-used-ebike"]
+    };
+
+    addScores(incomeScores, currentFocus.incomeIds, 4);
+    addScores(incomeScores, payForBoosts[payFor] || [], 2);
+    addScores(incomeScores, driverBoosts[driver] || [], 2);
+    addScores(incomeScores, driverBoosts[culture] || [], 1);
+    addScores(incomeScores, founderBoosts[founderIdentity] || [], 1);
+    addScores(incomeScores, costBoosts[cost] || [], 1);
+    addScores(incomeScores, opportunityBoosts[opportunity] || [], 2);
+
+    const suggestedIncomeIds = topKeys(incomeScores, 3).length
+      ? topKeys(incomeScores, 3)
+      : currentFocus.incomeIds.slice(0, 3);
+
+    suggestedIncomeIds.forEach(function (id, index) {
+      const item = incomeById[id];
+      if (!item) return;
+      const points = Math.max(3, 5 - index);
+      addScores(trainingScores, item.trainingIds || [], points);
+      addScores(serviceScores, item.serviceIds || [], points);
+      addScores(officialScores, item.officialIds || [], points);
+    });
+
+    addScores(trainingScores, currentFocus.trainingIds, 2);
+    addScores(serviceScores, currentFocus.serviceIds, 2);
+    addScores(officialScores, currentFocus.officialIds, 2);
+
+    if (driver === "connection" || culture === "connection") {
+      addScores(trainingScores, ["training-asl-pathways", "training-certification-prep"], 1);
+      addScores(serviceScores, ["service-communication-access", "service-advisory"], 1);
+      addScores(officialScores, ["official-asl-state"], 1);
+    }
+
+    if (driver === "improvement" || opportunity === "better-result") {
+      addScores(trainingScores, ["training-brand-basics", "training-digital-storefront", "training-operations-basics"], 1);
+      addScores(serviceScores, ["service-branding", "service-marketing"], 1);
+    }
+
+    if (cost === "risk" || driver === "stability" || focus === "ownership" || focus === "information") {
+      addScores(officialScores, ["official-state-registration", "official-state-tax", "official-licensing", "official-ein-irs"], 1);
+    }
+
+    if (opportunity === "decide-clearly") {
+      addScores(trainingScores, ["training-business-foundations", "training-government-contracting"], 1);
+      addScores(serviceScores, ["service-advisory", "service-bookkeeping"], 1);
+      addScores(officialScores, ["official-state-contracting", "official-federal-contracting"], 1);
+    }
+
+    const suggestedTrainingIds = topKeys(trainingScores, 3);
+    const suggestedServiceIds = topKeys(serviceScores, 3);
+    const suggestedOfficialIds = topKeys(officialScores, 3);
+
+    const paymentText = costLabels[cost].toLowerCase();
+    const startingPointSummary = `What stands out here is ${payForLabels[payFor]}. Underneath it, the pull looks most like ${driverLabels[driver].toLowerCase()}, and the cost showing up first is ${paymentText}.`;
+    const understandingSummary = `${payForInsight[payFor]} ${driverInsight[driver]} ${costInsight[cost]}`;
+    const cultureSummary = `${cultureInsight[culture]} That is the culture this focus sounds closest to.`;
+    const opportunitySummary = `${opportunityInsight[opportunity]} ${currentFocus.incomeIdeaSummary}`;
     const supportSummary = founderIdentity === "Solopreneur" || founderIdentity === "Freelancer"
-      ? "Support should stay lean and useful. Bring in only what saves time, reduces friction, or helps you deliver more cleanly."
+      ? "Keep support lean and useful. Bring in help where it saves time, reduces friction, or helps you deliver more cleanly."
       : founderIdentity === "Small Business Owner" || founderIdentity === "Owner-Operator"
-        ? "Support services can help the work run more steadily. Use them where they strengthen delivery, operations, or consistency."
-        : "Support services should match the direction, not distract from it. Use them where they make the business easier to run or the result stronger to deliver.";
-    const officialSummary = payment === "risk" || lowerCost === "risk" || direction === "process" || direction === "information"
-      ? `Official information should be checked early here. Use ${appState.selectedState} and federal resources to confirm the registrations, tax steps, licensing, contracting, or compliance details that shape the work.`
-      : `Official information still matters here because it anchors the work in real requirements. Use ${appState.selectedState} and federal resources to confirm what applies before you move too far ahead.`;
+        ? "Use support where it helps the work run more steadily, more clearly, or with less drag on delivery."
+        : founderIdentity === "Still sorting"
+          ? "Use support where it helps you compare, clarify, and keep the useful parts in view without overbuilding too early."
+          : "Use support where it helps the focus hold together and the work stay stronger in practice.";
+    const officialSummary = cost === "risk" || focus === "ownership" || focus === "information"
+      ? `Check official information early. Use ${appState.selectedState} and federal resources to confirm the registrations, tax steps, licensing, contracting, or compliance details that shape the work.`
+      : `Use official information to keep the work tied to real requirements. Check what applies in ${appState.selectedState} before you build too far around an assumption.`;
     const planSteps = [
-      "Start with the pattern that keeps showing up.",
-      "Keep the cost, the result, and the culture tied together as you sort through options.",
-      `Use ${path.pathLabel.toLowerCase()} as a working direction, not a fixed identity.`,
-      "Save what fits, ignore what does not, and keep refining the file as the signal gets clearer.",
-      "Let the Founder File stay working, not final."
+      "Start with the focus that feels strongest.",
+      "Save the ideas and resources that keep matching it.",
+      "Use the Founder File to hold the pattern, the cost, and the opening in one place.",
+      "Let the focus get clearer before you widen it."
     ];
-    const proofSummary = "The strongest proof at this stage is clarity: the pattern makes sense, the culture feels real, the direction fits you, and the opportunity feels usable enough to keep building around.";
+    const proofSummary = "The point here is not certainty. It is having a usable focus you can keep working from without forcing it too early.";
 
     return {
       id: "quiz-result",
-      title: result.title,
-      planTitle,
-      explanation: `This result is not trying to force a business idea on you. It is helping you understand what is standing out. The strongest driver here is ${sixDriver}, the cost of living shows up most in ${paymentText}, and the culture is forming around ${culture}.`,
-      motivator: sixDriver,
-      payment,
+      quizVersion: QUIZ_VERSION,
+      title: `The strongest signal here is ${driverLabels[driver].toLowerCase()}.`,
+      planTitle: "Here is the focus taking shape in your answers.",
+      explanation: `This is not a final label. It is a working read on what people are paying for, what cost is showing up, and where a usable focus may be forming.`,
+      motivator: driver,
+      payment: cost,
       culture,
-      action: resultSought,
+      action: payFor,
       value: opportunity,
-      primarySection: path.primarySection,
-      pathLabel: path.pathLabel,
-      pathSummary: `Build around the shared cost, the sought result, and the culture forming around them. Here, that means ${sixDriver}, ${paymentText}, and a ${path.pathLabel.toLowerCase()} you can keep refining.`,
-      planSummary: "This file is not a formal business-plan document. It is a living Founder File meant to help you shape and keep refining a direction that fits.",
+      primarySection: currentFocus.primarySection,
+      pathLabel: currentFocus.focusLabel,
+      pathSummary: currentFocus.pathSummary,
+      planSummary: "This Founder File is meant to stay working, not final. Save what keeps matching and let the weaker signal fall away.",
       founderIdentity,
       founderIdentityDescription: founderIdentityDescriptions[founderIdentity] || founderIdentityDescriptions.Founder,
       startingPointSummary,
       understandingSummary,
       cultureSummary,
       opportunitySummary,
-      incomeIdeaTitle: path.incomeIdeaTitle,
-      incomeIdeaSummary: path.incomeIdeaSummary,
-      knowledgeSummary,
+      focusFitSummary: currentFocus.focusFitSummary,
+      incomeIdeaTitle: currentFocus.incomeIdeaTitle,
+      incomeIdeaSummary: currentFocus.incomeIdeaSummary,
+      knowledgeSummary: currentFocus.knowledgeSummary,
       supportSummary,
       officialSummary,
       planSteps,
       proofSummary,
-      direction: directionText,
-      fieldSuggestion,
-      suggestedIncomeIds: result.income,
-      suggestedTrainingIds: result.training,
-      suggestedServiceIds: result.services,
-      suggestedOfficialIds: result.official
+      direction: opportunityLabels[opportunity],
+      suggestedIncomeIds,
+      suggestedTrainingIds,
+      suggestedServiceIds,
+      suggestedOfficialIds
     };
   }
 
@@ -4357,17 +4310,26 @@
       const localRaw = localStorage.getItem(STORAGE_KEY_LOCAL);
       if (localRaw) {
         const parsed = JSON.parse(localRaw);
-        if (parsed.isSignedIn) return { ...structuredClone(defaultState), ...parsed };
+        if (parsed.isSignedIn) return normalizeQuizState({ ...structuredClone(defaultState), ...parsed });
       }
       const sessionRaw = sessionStorage.getItem(STORAGE_KEY_SESSION);
       if (sessionRaw) {
         const parsed = JSON.parse(sessionRaw);
-        if (!parsed.isSignedIn) return { ...structuredClone(defaultState), ...parsed };
+        if (!parsed.isSignedIn) return normalizeQuizState({ ...structuredClone(defaultState), ...parsed });
       }
-      return structuredClone(defaultState);
+      return normalizeQuizState(structuredClone(defaultState));
     } catch (error) {
-      return structuredClone(defaultState);
+      return normalizeQuizState(structuredClone(defaultState));
     }
+  }
+
+  function normalizeQuizState(state) {
+    const nextState = state || structuredClone(defaultState);
+    if (nextState.quizResult && nextState.quizResult.quizVersion !== QUIZ_VERSION) {
+      nextState.quizResult = null;
+      nextState.quizAnswers = {};
+    }
+    return nextState;
   }
 
   async function restoreOverlayState() {

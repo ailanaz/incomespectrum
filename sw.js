@@ -1,10 +1,18 @@
-const CACHE_NAME = 'income-spectrum-v7';
+const CACHE_NAME = 'income-spectrum-v9';
 
 // Only cache static assets - never HTML files
 // HTML is always fetched fresh so updates reach users immediately
 const STATIC_ASSETS = [
   '/css/app.css',
-  '/js/app.js',
+  '/js/app.v20260413.part1.js',
+  '/js/app.v20260413.part2.js',
+  '/js/app.v20260413.part3.js',
+  '/js/app.v20260413.part4.js',
+  '/js/app.v20260413.part5.js',
+  '/js/app.v20260413.part6.js',
+  '/js/app.v20260413.part7.js',
+  '/js/app.v20260413.part8.js',
+  '/js/app.v20260413.loader.js',
   '/img/logo.png',
   '/img/logo-with-name.png',
   '/img/icon-192.png',

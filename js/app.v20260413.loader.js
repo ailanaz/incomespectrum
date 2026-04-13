@@ -1,0 +1,1 @@
+(function(){var chunks=window.__IS_APP_CHUNKS||[];var code=chunks.join('');var s=document.createElement('script');s.text=code;document.head.appendChild(s);try{delete window.__IS_APP_CHUNKS}catch(e){window.__IS_APP_CHUNKS=[]}})();

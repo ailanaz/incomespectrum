@@ -3454,64 +3454,78 @@
   }
 
   function renderQuizResult(result, includeSaveButton) {
+    const hookMap = {
+      "income-mobile-notary": "Local appointment-based service with low startup cost and a clear certification path.",
+      "income-virtual-assistant": "Fully remote, starts with one client, scales through systems and specialization.",
+      "income-asl-interpreting": "Certification-backed service with growing demand and referral-driven client work.",
+      "income-print-on-demand": "Online product testing with no inventory - design and the platform handles fulfillment.",
+      "income-commercial-cleaning": "Recurring commercial contracts that compound over time with the right client mix.",
+      "income-hydroseeding": "Equipment-based outdoor service with residential, commercial, and municipal demand.",
+      "income-escape-room": "Venue-based experience business with strong corporate and group booking revenue.",
+      "income-karaoke-venue": "Private-room hospitality with repeat group traffic and food and beverage upside.",
+      "income-laundry-pickup": "Route-based subscription service with low overhead and high residential repeat usage.",
+      "income-lice-removal": "Low-startup health service with strong school and pediatric referral pipelines.",
+      "income-capsule-hotel": "High-density micro-lodging near transit hubs with lower per-unit build cost than conventional hotels.",
+      "income-postpartum-retreat": "Structured wellness stay business with early-mover advantage and minimal US competition.",
+      "income-pet-funeral": "Full-service pet aftercare with vet referral pipelines and growing demand for personalized care.",
+      "income-death-doula": "Independent practice with low overhead and meaningful end-of-life client work.",
+      "income-government-contracting": "A public-sector revenue lane for businesses already delivering services.",
+      "income-used-ebike": "Buy, repair, resell - growing supply, clear demand, no manufacturing needed.",
+      "income-mobile-battery": "On-demand automotive service - 5 to 8 jobs per day from a stocked van, no shop required.",
+      "income-storefront-setup": "Build and configure e-commerce storefronts for small business clients on project and retainer terms.",
+      "income-listing-optimization": "Remote e-commerce SEO work with measurable results, repeatable scope, and referral-driven growth.",
+      "income-vertical-content": "One filming session delivers 4 to 8 weeks of content - retainer model, 8 to 15 clients.",
+      "income-driveway-paver": "Restoration beats replacement on cost - high close rate when clients see the difference.",
+      "income-crawlspace-cleanup": "Specialty physical work most operators avoid - low competition, real estate referral pipeline."
+    };
+
+    const incomeItems = (result.suggestedIncomeIds || []).map((id) => findItem(id)).filter(Boolean);
+    const snapshotRows = result.snapshotRows || [];
+
+    const directorySection = appState.isSignedIn ? `
+      <div class="detail-section">
+        <h4>From the directory</h4>
+        <p class="dir-group-label">Knowledge</p>
+        ${renderRelatedLinks(result.suggestedTrainingIds, "training")}
+        <p class="dir-group-label">Support</p>
+        ${renderRelatedLinks(result.suggestedServiceIds, "services")}
+        <p class="dir-group-label">Official</p>
+        ${renderRelatedLinks(result.suggestedOfficialIds, "official")}
+      </div>
+    ` : "";
+
     return `
       <div class="result-group">
         <h3>${result.planTitle}</h3>
-        <p>${result.startingPointSummary}</p>
+        <p class="result-tagline">${result.founderTagline}</p>
 
-        <div class="quiz-arc">
-          <div class="quiz-arc__step">
-            <p class="quiz-arc__label">What people are paying for</p>
-            <p>${result.understandingSummary}</p>
-          </div>
-
-          <div class="quiz-arc__step">
-            <p class="quiz-arc__label">What that looks like as culture</p>
-            <p>${result.cultureSummary}</p>
-          </div>
-
-          <div class="quiz-arc__step">
-            <p class="quiz-arc__label">Where the opening is</p>
-            <p>${result.opportunitySummary}</p>
-          </div>
-
-          <div class="quiz-arc__step">
-            <p class="quiz-arc__label">What that looks like for you</p>
-            <p><strong>${result.founderIdentity}</strong> - ${result.founderIdentityDescription}</p>
-            <p>${result.incomeIdeaSummary}</p>
-          </div>
-
-          ${result.focusFitSummary ? `
-          <div class="quiz-arc__step">
-            <p class="quiz-arc__label">Start here in the spectrum</p>
-            <p><strong>${result.incomeIdeaTitle}</strong></p>
-            <p>${result.focusFitSummary}</p>
-          </div>` : ""}
+        <div class="founder-snapshot">
+          ${snapshotRows.map((row) => `
+            <div class="snapshot-row">
+              <span class="snap-label">${row.label}</span>
+              <span class="snap-value">${row.value}</span>
+            </div>
+          `).join("")}
         </div>
 
         <div class="detail-section">
-          <h4>Building the file from here</h4>
-          <p>${result.knowledgeSummary}</p>
-          <p>${result.supportSummary}</p>
-          <p>${result.officialSummary}</p>
+          <h4>Ideas worth looking into</h4>
+          <p>${result.ideasContext}</p>
+          ${incomeItems.length ? `
+            <ul class="idea-list">
+              ${incomeItems.map((item) => `
+                <li class="idea-row">
+                  <button class="text-link" data-action="open-item" data-id="${item.id}" data-type="income">${item.title}</button>
+                  <span class="idea-row__hook">${hookMap[item.id] || item.description}</span>
+                </li>
+              `).join("")}
+            </ul>
+          ` : `<div class="empty-state">No close matches surfaced yet.</div>`}
         </div>
 
-        <div class="detail-section">
-          <h4>Income Opportunities</h4>
-          ${renderRelatedLinks(result.suggestedIncomeIds, "income")}
-        </div>
-        <div class="detail-section">
-          <h4>Knowledge Resources</h4>
-          ${renderRelatedLinks(result.suggestedTrainingIds, "training")}
-        </div>
-        <div class="detail-section">
-          <h4>Supportive Services</h4>
-          ${renderRelatedLinks(result.suggestedServiceIds, "services")}
-        </div>
-        <div class="detail-section">
-          <h4>Official Information</h4>
-          ${renderRelatedLinks(result.suggestedOfficialIds, "official")}
-        </div>
+        ${directorySection}
+
+        <p class="result-file-note">${result.fileNote}</p>
 
         ${includeSaveButton ? `<div class="inline-actions"><button class="app-btn app-btn--primary" data-action="save-quiz-result">${appState.isSignedIn ? "Build File" : "Sign Up to Build File"}</button></div>` : ""}
       </div>
@@ -3540,19 +3554,20 @@
   }
 
   function buildPlanDraft(result) {
+    const snapshotText = (result.snapshotRows || []).map((row) => `${row.label}: ${row.value}`).join("\n");
     return {
       founderIdentity: result.founderIdentity || "Founder",
-      startingPoint: result.startingPointSummary,
-      understanding: result.understandingSummary,
-      culture: result.cultureSummary,
-      opportunity: result.opportunitySummary,
-      incomeIdea: result.incomeIdeaSummary,
-      knowledge: result.knowledgeSummary,
-      support: result.supportSummary,
-      official: result.officialSummary,
-      nextMoves: result.planSteps.join("\n"),
-      goals: result.proofSummary,
-      proof: result.proofSummary
+      startingPoint: result.founderTagline || "",
+      understanding: snapshotText,
+      culture: "",
+      opportunity: result.ideasContext || "",
+      incomeIdea: (result.suggestedIncomeIds || []).join(", "),
+      knowledge: "",
+      support: "",
+      official: "",
+      nextMoves: result.fileNote || "",
+      goals: result.planSummary || "",
+      proof: result.planSummary || ""
     };
   }
 
@@ -3849,7 +3864,7 @@
 
     const styleBoosts = {
       solving: ["income-mobile-battery", "income-commercial-cleaning", "income-crawlspace-cleanup", "income-lice-removal", "income-driveway-paver"],
-      improving: ["income-listing-optimization", "income-vertical-content", "income-hydroseeding", "income-driveway-paver", "income-print-on-demand"],
+      improving: ["income-listing-optimization", "income-vertical-content", "income-hydroseeding", "income-driveway-paver", "income-storefront-setup"],
       organizing: ["income-virtual-assistant", "income-storefront-setup", "income-government-contracting", "income-laundry-pickup", "income-mobile-notary"],
       guiding: ["income-mobile-notary", "income-storefront-setup", "income-government-contracting", "income-virtual-assistant", "income-listing-optimization"],
       creating: ["income-print-on-demand", "income-vertical-content", "income-escape-room", "income-karaoke-venue", "income-used-ebike"],
@@ -3859,7 +3874,7 @@
       relief: ["income-commercial-cleaning", "income-crawlspace-cleanup", "income-lice-removal", "income-mobile-battery", "income-virtual-assistant", "income-laundry-pickup"],
       stability: ["income-mobile-notary", "income-government-contracting", "income-commercial-cleaning", "income-laundry-pickup"],
       access: ["income-asl-interpreting", "income-storefront-setup", "income-used-ebike", "income-mobile-battery"],
-      improvement: ["income-listing-optimization", "income-vertical-content", "income-driveway-paver", "income-hydroseeding", "income-storefront-setup", "income-print-on-demand"],
+      improvement: ["income-listing-optimization", "income-vertical-content", "income-driveway-paver", "income-hydroseeding", "income-storefront-setup"],
       connection: ["income-asl-interpreting", "income-death-doula", "income-pet-funeral", "income-postpartum-retreat", "income-virtual-assistant"],
       enjoyment: ["income-print-on-demand", "income-karaoke-venue", "income-escape-room", "income-capsule-hotel", "income-used-ebike", "income-vertical-content"]
     };
@@ -3884,7 +3899,7 @@
       "use-less-energy": ["income-commercial-cleaning", "income-laundry-pickup", "income-crawlspace-cleanup", "income-driveway-paver", "income-mobile-battery"],
       "decide-clearly": ["income-listing-optimization", "income-government-contracting", "income-mobile-notary", "income-virtual-assistant", "income-storefront-setup"],
       "feel-better": ["income-pet-funeral", "income-death-doula", "income-postpartum-retreat", "income-lice-removal", "income-capsule-hotel"],
-      "better-result": ["income-hydroseeding", "income-driveway-paver", "income-listing-optimization", "income-storefront-setup", "income-print-on-demand", "income-used-ebike"],
+      "better-result": ["income-hydroseeding", "income-driveway-paver", "income-listing-optimization", "income-storefront-setup", "income-used-ebike"],
       "enjoy-more": ["income-karaoke-venue", "income-escape-room", "income-capsule-hotel", "income-print-on-demand", "income-vertical-content", "income-used-ebike"]
     };
 
@@ -3938,35 +3953,77 @@
     const suggestedServiceIds = topKeys(serviceScores, 3);
     const suggestedOfficialIds = topKeys(officialScores, 3);
 
-    const paymentText = costLabels[cost].toLowerCase();
-    const startingPointSummary = `Core driver: ${driverLabels[driver]}. Primary cost your market pays: ${paymentText}. Working style: ${styleLabels[style]}. These point toward ${currentFocus.focusLabel.toLowerCase()} in the Income Spectrum directory.`;
-    const understandingSummary = `${driverInsight[driver]} ${costInsight[cost]} ${styleInsight[style]}`;
-    const cultureSummary = `${cultureInsight[culture]}`;
-    const opportunitySummary = `${opportunityInsight[opportunity]} ${currentFocus.incomeIdeaSummary}`;
-    const supportSummary = founderIdentity === "Solopreneur" || founderIdentity === "Freelancer"
-      ? "In the Supportive Services section, bring in support where it saves time or reduces friction - legal setup, bookkeeping, and a basic web presence. Keep overhead lean and only add what directly improves delivery."
-      : founderIdentity === "Small Business Owner" || founderIdentity === "Owner-Operator"
-        ? "In the Supportive Services section, look for legal, bookkeeping, and operational support that helps the work run steadily. Focus on infrastructure that reduces drag on delivery and keeps the business compliant."
-        : founderIdentity === "Still sorting"
-          ? "In the Supportive Services section, look for advisory resources that help you compare and clarify direction. Do not build out support infrastructure before your focus is clear."
-          : "In the Supportive Services section, look for legal, marketing, and advisory support that helps the business scale without overhead becoming unmanageable.";
-    const officialSummary = cost === "risk" || focus === "ownership" || focus === "information"
-      ? `In the Official Resources section, look up ${appState.selectedState} and federal requirements before you commit. Registration, licensing, tax setup, and contracting eligibility all have specific requirements - check them early so they shape the build, not surprise you later.`
-      : `In the Official Resources section, check ${appState.selectedState} requirements for your business type. Registration, licensing, and tax setup steps are there and should be confirmed before you launch.`;
-    const planSteps = [
-      "Start with the focus that feels strongest.",
-      "Save the ideas and resources that keep matching it.",
-      "Use the Founder File to hold the pattern, the cost, and the opening in one place.",
-      "Let the focus get clearer before you widen it."
+    const costVerbs = {
+      time: "getting things done and off the plate",
+      energy: "taking heavy work off people's plates",
+      attention: "reducing complexity and clarifying decisions",
+      comfort: "making things easier and less uncomfortable",
+      risk: "getting things right and reducing exposure",
+      mix: "addressing multiple costs at once"
+    };
+    const founderTagline = `${founderIdentityDescriptions[founderIdentity] || "Founder"} - ${styleLabels[style].toLowerCase()} style, drawn toward ${costVerbs[cost] || "reducing cost for people"} in ${cultureLabels[culture]}.`;
+
+    const directionPhrases = {
+      time: "Helping people hand it off and get it done",
+      energy: "Taking the heavy work off people's plates",
+      attention: "Cutting through complexity and decisions",
+      comfort: "Making hard things easier and less stressful",
+      risk: "Helping people get it right and reduce exposure",
+      mix: "Reducing multiple costs at once"
+    };
+    const opportunityAddons = {
+      "save-time": "by doing it faster or doing it for them",
+      "use-less-energy": "by taking the physical load off",
+      "decide-clearly": "by helping them understand and move forward",
+      "feel-better": "by making it safer or more comfortable",
+      "better-result": "by delivering a noticeably stronger outcome",
+      "enjoy-more": "by making the experience worth choosing"
+    };
+    const styleDescriptions = {
+      solving: "Solving - diagnosing, fixing, and figuring things out",
+      improving: "Improving - taking what works and making it noticeably better",
+      organizing: "Organizing - bringing order, systems, and structure",
+      guiding: "Guiding - helping people think through decisions and navigate",
+      creating: "Creating - making things, content, experiences, or ideas",
+      connecting: "Connecting - bringing people, resources, or opportunities together"
+    };
+    const marketDescriptions = {
+      relief: "Relief - people paying to get something handled or resolved",
+      stability: "Stability - people paying for certainty, accuracy, and trust",
+      access: "Access - people paying to reach something they cannot get to alone",
+      improvement: "Improvement - people paying for a better outcome, not just a completed job",
+      connection: "Connection - people paying for care, relationship, and shared meaning",
+      enjoyment: "Enjoyment - people paying because it feels right, looks right, or is worth experiencing"
+    };
+
+    const snapshotRows = [
+      { label: "Direction", value: `${directionPhrases[cost] || "Helping people pay less to get what they need"} - ${opportunityAddons[opportunity] || "through better delivery"}` },
+      { label: "Style", value: styleDescriptions[style] || style },
+      { label: "Market", value: marketDescriptions[driver] || driver },
+      { label: "Focus", value: currentFocus.focusLabel }
     ];
-    const proofSummary = "The point here is not certainty. It is having a usable focus you can keep working from without forcing it too early.";
+
+    const ideasContextMap = {
+      service: `These service-based options match your ${styleLabels[style].toLowerCase()} style and the ${driver} market you identified.`,
+      product: `These product-based options match your ${styleLabels[style].toLowerCase()} direction and the ${driver} market taking shape in your answers.`,
+      ownership: `These ownership-oriented options match your direction toward building something rather than starting from scratch.`,
+      information: `These information and guidance-based options match your ${styleLabels[style].toLowerCase()} style and the ${driver} market you are drawn toward.`,
+      recurring: `These recurring and asset-based options match your direction toward income that compounds beyond single jobs.`,
+      sorting: `These are a broad starting point based on the signal in your answers - use Explore to go deeper and save what keeps matching.`
+    };
+    const ideasContext = ideasContextMap[focus] || `These are the closest matches in the Income Opportunities section based on your answers.`;
+    const fileNote = `Save the ideas that keep matching and let the Founder File show you where your focus is landing.`;
+    const planSummary = "This Founder File is meant to stay working, not final. Save what keeps matching and let the weaker signal fall away.";
 
     return {
       id: "quiz-result",
       quizVersion: QUIZ_VERSION,
-      title: `The strongest signal here is ${driverLabels[driver].toLowerCase()}.`,
-      planTitle: "Here is the focus taking shape in your answers.",
-      explanation: `This is not a final label. It is a working read on what people are paying for, what cost is showing up, and where a usable focus may be forming.`,
+      planTitle: focus === "sorting" ? "The signal is there - here is what to work from." : `${currentFocus.focusLabel} - here is what that looks like.`,
+      planSummary,
+      founderTagline,
+      snapshotRows,
+      ideasContext,
+      fileNote,
       motivator: driver,
       payment: cost,
       culture,
@@ -3975,22 +4032,8 @@
       primarySection: currentFocus.primarySection,
       pathLabel: currentFocus.focusLabel,
       pathSummary: currentFocus.pathSummary,
-      planSummary: "This Founder File is meant to stay working, not final. Save what keeps matching and let the weaker signal fall away.",
       founderIdentity,
       founderIdentityDescription: founderIdentityDescriptions[founderIdentity] || founderIdentityDescriptions.Founder,
-      startingPointSummary,
-      understandingSummary,
-      cultureSummary,
-      opportunitySummary,
-      focusFitSummary: currentFocus.focusFitSummary,
-      incomeIdeaTitle: currentFocus.incomeIdeaTitle,
-      incomeIdeaSummary: currentFocus.incomeIdeaSummary,
-      knowledgeSummary: currentFocus.knowledgeSummary,
-      supportSummary,
-      officialSummary,
-      planSteps,
-      proofSummary,
-      direction: opportunityLabels[opportunity],
       suggestedIncomeIds,
       suggestedTrainingIds,
       suggestedServiceIds,

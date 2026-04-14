@@ -2098,6 +2098,88 @@ button.field-toggle::after {
   font-weight: 600;
 }
 
+/* Quiz result - founder file layout */
+.result-tagline {
+  font-size: 14px;
+  color: var(--app-text-soft);
+  margin: 4px 0 0;
+  line-height: 1.5;
+}
+.founder-snapshot {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 16px 0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.snapshot-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.snapshot-row:last-child {
+  border-bottom: none;
+}
+.snap-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--app-text-soft);
+  min-width: 68px;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+.snap-value {
+  font-size: 13px;
+  color: var(--app-text);
+  line-height: 1.45;
+}
+.idea-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.idea-row {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.idea-row:last-child {
+  border-bottom: none;
+}
+.idea-row .text-link {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 3px;
+}
+.idea-row__hook {
+  font-size: 13px;
+  color: var(--app-text-soft);
+  line-height: 1.4;
+  display: block;
+}
+.dir-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--app-text-soft);
+  margin: 12px 0 4px;
+}
+.result-file-note {
+  font-size: 13px;
+  color: var(--app-text-soft);
+  font-style: italic;
+  margin: 12px 0 0;
+}
+
 .quiz-nav {
   display: flex;
   justify-content: space-between;

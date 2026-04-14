@@ -4,7 +4,7 @@
     {
       "name": "incomespectrum",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["/tmp/is_serve.py"],
+      "runtimeArgs": ["-m", "http.server", "3000"],
       "port": 3000
     }
   ]

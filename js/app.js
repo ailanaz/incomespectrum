@@ -3406,7 +3406,7 @@
         </div>
         <div class="quiz-nav">
           <button class="app-btn app-btn--ghost" data-action="quiz-back" ${quizIndex === 0 ? "disabled" : ""}>Back</button>
-          <button class="app-btn app-btn--primary" data-action="quiz-next">${quizIndex === quiz.questions.length - 1 ? "See Result" : "Next"}</button>
+          <button class="app-btn app-btn--primary" data-action="quiz-next" ${!selected ? "disabled" : ""}>${quizIndex === quiz.questions.length - 1 ? "See Result" : "Next"}</button>
         </div>
       </div>
     `;

@@ -36,7 +36,7 @@
     "Owner-Operator": "Owning the business and also doing the day-to-day work.",
     "Still sorting": "You are still narrowing in on what fits you best."
   };
-  const QUIZ_VERSION = "20260413-focus-v2";
+  const QUIZ_VERSION = "20260413-focus-v3";
   const FOUNDER_FORMS_KEY = "income-spectrum-founder-forms-v1";
   const FORMS_MAX_BYTES = 1048576; // 1MB per file
   const businessDocTypes = [
@@ -904,99 +904,99 @@
       {
         id: "driver",
         title: "The Six",
-        prompt: "Underneath most spending is one core pull. In Income Spectrum, those are relief, stability, access, improvement, connection, and enjoyment.",
-        question: "Think about something people spend on easily. What is usually underneath it?",
+        prompt: "Every purchase traces back to one of six core drivers. These are The Six: relief, stability, access, improvement, connection, and enjoyment. Before someone spends money on anything, one of these is behind it. Understanding which driver your business serves is the first step toward understanding who you are really serving and why.",
+        question: "Think about people you know who spend on something without much hesitation. What is usually driving it?",
         options: [
-          { value: "relief", label: "Relief", detail: "Something feels too hard, too messy, too stressful, or too much to keep carrying." },
-          { value: "stability", label: "Stability", detail: "People want more certainty, steadiness, trust, or control." },
-          { value: "access", label: "Access", detail: "People want a way into something they want to reach, use, learn, or take part in." },
-          { value: "improvement", label: "Improvement", detail: "People want something better, sharper, stronger, or more refined." },
-          { value: "connection", label: "Connection", detail: "People want something rooted in care, belonging, meaning, or shared experience." },
-          { value: "enjoyment", label: "Enjoyment", detail: "People want something because it feels good, looks right, tastes better, or is simply worth having." }
-        ]
-      },
-      {
-        id: "payFor",
-        title: "What People Pay For",
-        prompt: "People pay for results, not just things. Sometimes practical. Sometimes emotional. Sometimes simply wanted.",
-        question: "What do people seem most ready to pay for?",
-        options: [
-          { value: "getting", label: "Getting something they want", detail: "They want the thing, the access, or the outcome." },
-          { value: "easier", label: "Making life easier", detail: "They want less drag, less hassle, or less effort." },
-          { value: "solving", label: "Solving or easing something", detail: "They want something handled, fixed, reduced, or taken care of." },
-          { value: "access", label: "Getting access", detail: "They want a way into something they could not easily reach on their own." },
-          { value: "improving", label: "Improving something", detail: "They want better quality, better performance, or a stronger result." },
-          { value: "enjoying", label: "Enjoying, expressing, or giving something", detail: "They want pleasure, fit, beauty, meaning, or something to share." }
+          { value: "relief", label: "Relief", detail: "Something was wrong, uncomfortable, or stressful and spending fixed it." },
+          { value: "stability", label: "Stability", detail: "Something felt uncertain and spending made it feel more secure or controlled." },
+          { value: "access", label: "Access", detail: "Spending opened a door to something they could not otherwise reach or do." },
+          { value: "improvement", label: "Improvement", detail: "Something was already fine but spending made it noticeably better." },
+          { value: "connection", label: "Connection", detail: "Spending was about people — belonging, giving, or being part of something." },
+          { value: "enjoyment", label: "Enjoyment", detail: "There was no problem. It just felt good, pleasurable, or worth having." }
         ]
       },
       {
         id: "cost",
         title: "The Cost of Living",
-        prompt: "Before people spend money, they are already paying in time, energy, attention, comfort, and risk.",
-        question: "Which cost seems most active here?",
+        prompt: "The Cost of Living is not about money. It is the cost people pay in time, energy, attention, comfort, and risk to get an outcome they want. Every business exists because getting something done costs people something — and they would rather pay money than keep paying that cost. The higher the cost someone is already paying, the stronger the pull toward a business that reduces it.",
+        question: "Which cost do you see people around you carrying most heavily right now?",
         options: [
-          { value: "time", label: "Time", detail: "Too much time keeps getting spent." },
-          { value: "energy", label: "Energy", detail: "Too much effort keeps getting used up." },
-          { value: "attention", label: "Attention", detail: "Too much focus keeps getting pulled." },
-          { value: "comfort", label: "Comfort", detail: "Something feels harder, rougher, or less pleasant than it should." },
-          { value: "risk", label: "Risk", detail: "Something feels uncertain, exposed, or easy to get wrong." },
-          { value: "mix", label: "A mix across these", detail: "More than one of these is clearly in play." }
+          { value: "time", label: "Time", detail: "Too many things take longer than they should." },
+          { value: "energy", label: "Energy", detail: "Too much effort keeps getting used up on things that drain people." },
+          { value: "attention", label: "Attention", detail: "Focus keeps getting pulled in too many directions at once." },
+          { value: "comfort", label: "Comfort", detail: "Something feels harder, less convenient, or less pleasant than it needs to be." },
+          { value: "risk", label: "Risk", detail: "Too much feels uncertain or exposed. The stakes feel high." },
+          { value: "mix", label: "A mix across all of these", detail: "The weight is spread across several of these at once." }
         ]
       },
       {
         id: "opportunity",
         title: "Cost of Living Creates Opportunity",
-        prompt: "Opportunity forms where people keep paying a cost and would rather not keep carrying it the same way.",
-        question: "Which kind of opening feels clearest to you?",
+        prompt: "Opportunity does not come from having a clever idea. It comes from a cost that people are already paying and would rather not. When a lot of people share the same cost and are already spending to reduce it, a market already exists. Your job is not to create demand — it is to find where demand already lives and put a better path through it.",
+        question: "Where do you see people around you spending to get relief from a cost they are already paying?",
         options: [
-          { value: "save-time", label: "Saving time", detail: "A quicker way through." },
-          { value: "use-less-energy", label: "Using less energy", detail: "Less effort to get the result." },
-          { value: "decide-clearly", label: "Deciding more clearly", detail: "More clarity before people choose, spend, or commit." },
-          { value: "feel-better", label: "Feeling better or more secure", detail: "Less stress, less discomfort, or more steadiness." },
-          { value: "better-result", label: "Reaching a better result", detail: "A stronger outcome, finish, standard, or level of quality." },
-          { value: "enjoy-more", label: "Enjoying the process or outcome more", detail: "More pleasure, beauty, satisfaction, or fit." }
+          { value: "save-time", label: "Saving time", detail: "People outsource tasks, hire help, or pay for speed." },
+          { value: "use-less-energy", label: "Using less energy", detail: "People pay for done-for-you services, tools, or systems that do the heavy lifting." },
+          { value: "decide-clearly", label: "Deciding more clearly", detail: "People pay for guidance, information, or expertise to avoid uncertainty." },
+          { value: "feel-better", label: "Feeling better or more secure", detail: "People pay to reduce discomfort, stress, or risk." },
+          { value: "better-result", label: "Reaching a better result", detail: "People pay for skill, quality, or access they cannot get on their own." },
+          { value: "enjoy-more", label: "Enjoying the process or outcome more", detail: "People pay to make something feel better, look better, or be more pleasurable." }
         ]
       },
       {
         id: "culture",
         title: "Niche is Culture",
-        prompt: "A niche is a culture built around a shared cost and a shared result people keep paying around.",
-        question: "Which culture feels closest to the one you want to work inside?",
+        prompt: "A niche is not just a market segment. It is a culture — a group of people who share the same cost and the same result they are seeking. Culture forms where spending keeps repeating around a shared experience. When you understand the culture you are entering, you understand what the people in it value, how they talk, what they trust, and what makes them choose one provider over another.",
+        question: "Which kind of culture feels closest to the one you want to work inside?",
         options: [
-          { value: "relief", label: "A culture of relief", detail: "People want something handled, eased, solved, or taken off their plate." },
-          { value: "stability", label: "A culture of stability", detail: "People want steadiness, trust, order, and fewer surprises." },
-          { value: "access", label: "A culture of access", detail: "People want a clearer way in, through, or toward something." },
-          { value: "improvement", label: "A culture of improvement", detail: "People want better quality, better performance, or a stronger result." },
-          { value: "connection", label: "A culture of connection", detail: "People care about care, belonging, meaning, or shared identity." },
-          { value: "enjoyment", label: "A culture of enjoyment", detail: "People care about pleasure, taste, beauty, experience, or preference." }
+          { value: "relief", label: "A culture of relief", detail: "People dealing with problems, stress, or situations that need fixing." },
+          { value: "stability", label: "A culture of stability", detail: "People building security, structure, or long-term peace of mind." },
+          { value: "access", label: "A culture of access", detail: "People trying to reach something — skills, opportunities, or markets." },
+          { value: "improvement", label: "A culture of improvement", detail: "People who want things better, sharper, higher quality, or more refined." },
+          { value: "connection", label: "A culture of connection", detail: "People who care about community, relationships, giving, or shared identity." },
+          { value: "enjoyment", label: "A culture of enjoyment", detail: "People who want things to feel better, taste better, look better, or be more pleasurable." }
         ]
       },
       {
         id: "founder",
-        title: "Founder Fit",
-        prompt: "The same focus can fit different kinds of founders in very different ways. What fits matters.",
-        question: "Which founder fit feels closest to you right now?",
+        title: "Founder Identity",
+        prompt: "The same opportunity can look very different depending on how you want to operate. A cleaning business run by a solopreneur looks nothing like one built by someone growing a team. Knowing which kind of founder you are shapes which opportunities are actually right for you — and which ones would feel wrong even if the numbers looked good.",
+        question: "Which founder identity fits where you are right now?",
         options: [
           { value: "Entrepreneur", label: "Entrepreneur", detail: "Building something with room to grow beyond your direct labor." },
           { value: "Solopreneur", label: "Solopreneur", detail: "Running a business you own and operate yourself, intentionally staying lean." },
-          { value: "Small Business Owner", label: "Small Business Owner", detail: "Owning and running a business that serves a defined market or community." },
+          { value: "Small Business Owner", label: "Small Business Owner", detail: "Owning and running a business that serves a defined local or niche market." },
           { value: "Freelancer", label: "Freelancer", detail: "Working independently by offering a skill or service to clients." },
-          { value: "Owner-Operator", label: "Owner-Operator", detail: "Owning the business and also doing the day-to-day work." },
-          { value: "Still sorting", label: "Still sorting", detail: "You are still narrowing in on what fits you best." }
+          { value: "Owner-Operator", label: "Owner-Operator", detail: "Owning the business and doing the day-to-day work yourself." },
+          { value: "Still sorting", label: "Still defining that", detail: "You are still figuring out which model fits you best." }
+        ]
+      },
+      {
+        id: "style",
+        title: "Working Style",
+        prompt: "The best business for you is not just the one with the best numbers — it is the one that fits how you naturally work. Someone who loves solving problems will burn out running a business built around constant connection. Someone who loves creating will struggle with a process-heavy operation. Your working style filters opportunity as much as any market condition does.",
+        question: "Which way of working feels most natural to you?",
+        options: [
+          { value: "solving", label: "Solving", detail: "I like diagnosing, fixing, and figuring things out." },
+          { value: "improving", label: "Improving", detail: "I like taking something that works and making it noticeably better." },
+          { value: "organizing", label: "Organizing", detail: "I like bringing order, systems, and structure to things." },
+          { value: "guiding", label: "Guiding", detail: "I like helping people think through decisions or navigate something." },
+          { value: "creating", label: "Creating", detail: "I like making things — objects, content, experiences, or ideas." },
+          { value: "connecting", label: "Connecting", detail: "I like bringing people, resources, or opportunities together." }
         ]
       },
       {
         id: "focus",
         title: "Your Focus",
-        prompt: "Focus starts to take shape when the driver, the cost, the culture, and your founder fit stop pulling in different directions.",
-        question: "Which kind of focus feels strongest to start with?",
+        prompt: "Focus is what happens when your driver, your cost, your culture, and your working style start pointing in the same direction. A focused opportunity is one where the people you serve, the cost you reduce, the result they want, and the way you work all fit together. This is what makes a business feel right rather than just viable.",
+        question: "Which kind of opportunity feels like the right shape for you right now?",
         options: [
-          { value: "service", label: "A service", detail: "You do the work directly for people." },
+          { value: "service", label: "A service", detail: "You deliver something directly to people using your skills or time." },
           { value: "product", label: "A product", detail: "People buy something you make, source, package, or sell." },
-          { value: "ownership", label: "Ownership or acquisition", detail: "You want to own the business itself or step into something established." },
-          { value: "information", label: "Information or guidance", detail: "You help people understand, choose, prepare, compare, or move more clearly." },
-          { value: "recurring", label: "A recurring or asset-based model", detail: "You want income tied to something that keeps working beyond one-off effort." },
-          { value: "sorting", label: "Still sorting", detail: "You can see the signal, but you are not ready to name the focus yet." }
+          { value: "ownership", label: "Ownership or acquisition", detail: "You want to buy into or own a business rather than build from scratch." },
+          { value: "information", label: "Information or guidance", detail: "You help people understand, decide, or navigate something." },
+          { value: "recurring", label: "A recurring or asset-based model", detail: "You want income tied to something you own or have set up, not just your hours." },
+          { value: "sorting", label: "Still sorting", detail: "You need to explore more before you can say." }
         ]
       }
     ]
@@ -3644,7 +3644,7 @@
 
   function buildQuizResult() {
     const driver = appState.quizAnswers.driver || "stability";
-    const payFor = appState.quizAnswers.payFor || "easier";
+    const style = appState.quizAnswers.style || "solving";
     const cost = appState.quizAnswers.cost || "time";
     const opportunity = appState.quizAnswers.opportunity || "better-result";
     const culture = appState.quizAnswers.culture || driver;
@@ -3764,21 +3764,21 @@
       }
     };
 
-    const payForLabels = {
-      getting: "getting something they want",
-      easier: "making life easier",
-      solving: "solving or easing something",
-      access: "getting access",
-      improving: "improving something",
-      enjoying: "enjoying, expressing, or giving something"
+    const styleLabels = {
+      solving: "Solving",
+      improving: "Improving",
+      organizing: "Organizing",
+      guiding: "Guiding",
+      creating: "Creating",
+      connecting: "Connecting"
     };
-    const payForInsight = {
-      getting: "People are ready to spend when they want the thing, the access, or the outcome enough to reach for it.",
-      easier: "People are ready to spend when something feels lighter, smoother, faster, or less frustrating to deal with.",
-      solving: "People are ready to spend when they do not want to keep carrying the problem, the mess, or the pressure on their own.",
-      access: "People are ready to spend when something opens a door or shortens the distance to what they want.",
-      improving: "People are ready to spend when better matters and the difference can be felt, seen, or used.",
-      enjoying: "People are ready to spend when pleasure, fit, taste, beauty, expression, or generosity is part of the value."
+    const styleInsight = {
+      solving: "You are drawn to work that involves diagnosing, fixing, or figuring something out. Businesses where the value comes from getting something resolved fit this well.",
+      improving: "You are drawn to work that makes something measurably better. Businesses where quality, finish, or performance is the reason people choose fit this well.",
+      organizing: "You are drawn to work that brings order and structure. Businesses built on clarity, systems, or keeping things from falling apart fit this well.",
+      guiding: "You are drawn to work that helps people think through decisions or navigate something. Businesses built on expertise, trust, and clear counsel fit this well.",
+      creating: "You are drawn to work that makes things. Businesses built on original output — content, products, experiences, or ideas — fit this well.",
+      connecting: "You are drawn to work that brings people, resources, or opportunities together. Businesses built on relationships and community fit this well."
     };
     const driverLabels = {
       relief: "Relief",
@@ -3847,13 +3847,13 @@
 
     const currentFocus = focusMap[focus] || focusMap.sorting;
 
-    const payForBoosts = {
-      getting: ["income-print-on-demand", "income-used-ebike", "income-storefront-setup", "income-karaoke-venue", "income-escape-room"],
-      easier: ["income-virtual-assistant", "income-mobile-notary", "income-laundry-pickup", "income-mobile-battery", "income-storefront-setup", "income-commercial-cleaning"],
-      solving: ["income-commercial-cleaning", "income-crawlspace-cleanup", "income-lice-removal", "income-mobile-battery", "income-driveway-paver", "income-pet-funeral"],
-      access: ["income-asl-interpreting", "income-government-contracting", "income-storefront-setup", "income-used-ebike", "income-mobile-notary"],
+    const styleBoosts = {
+      solving: ["income-mobile-battery", "income-commercial-cleaning", "income-crawlspace-cleanup", "income-lice-removal", "income-driveway-paver"],
       improving: ["income-listing-optimization", "income-vertical-content", "income-hydroseeding", "income-driveway-paver", "income-print-on-demand"],
-      enjoying: ["income-print-on-demand", "income-karaoke-venue", "income-escape-room", "income-capsule-hotel", "income-vertical-content", "income-postpartum-retreat"]
+      organizing: ["income-virtual-assistant", "income-storefront-setup", "income-government-contracting", "income-laundry-pickup", "income-mobile-notary"],
+      guiding: ["income-mobile-notary", "income-storefront-setup", "income-government-contracting", "income-virtual-assistant", "income-listing-optimization"],
+      creating: ["income-print-on-demand", "income-vertical-content", "income-escape-room", "income-karaoke-venue", "income-used-ebike"],
+      connecting: ["income-asl-interpreting", "income-death-doula", "income-pet-funeral", "income-postpartum-retreat", "income-virtual-assistant"]
     };
     const driverBoosts = {
       relief: ["income-commercial-cleaning", "income-crawlspace-cleanup", "income-lice-removal", "income-mobile-battery", "income-virtual-assistant", "income-laundry-pickup"],
@@ -3889,7 +3889,7 @@
     };
 
     addScores(incomeScores, currentFocus.incomeIds, 4);
-    addScores(incomeScores, payForBoosts[payFor] || [], 2);
+    addScores(incomeScores, styleBoosts[style] || [], 2);
     addScores(incomeScores, driverBoosts[driver] || [], 2);
     addScores(incomeScores, driverBoosts[culture] || [], 1);
     addScores(incomeScores, founderBoosts[founderIdentity] || [], 1);
@@ -3939,8 +3939,8 @@
     const suggestedOfficialIds = topKeys(officialScores, 3);
 
     const paymentText = costLabels[cost].toLowerCase();
-    const startingPointSummary = `What stands out here is ${payForLabels[payFor]}. Underneath it, the pull looks most like ${driverLabels[driver].toLowerCase()}, and the cost showing up first is ${paymentText}.`;
-    const understandingSummary = `${payForInsight[payFor]} ${driverInsight[driver]} ${costInsight[cost]}`;
+    const startingPointSummary = `The driver underneath the spending looks most like ${driverLabels[driver].toLowerCase()}. The cost showing up first is ${paymentText}. Your working style points toward ${styleLabels[style].toLowerCase()}.`;
+    const understandingSummary = `${driverInsight[driver]} ${costInsight[cost]} ${styleInsight[style]}`;
     const cultureSummary = `${cultureInsight[culture]} That is the culture this focus sounds closest to.`;
     const opportunitySummary = `${opportunityInsight[opportunity]} ${currentFocus.incomeIdeaSummary}`;
     const supportSummary = founderIdentity === "Solopreneur" || founderIdentity === "Freelancer"
@@ -3970,7 +3970,7 @@
       motivator: driver,
       payment: cost,
       culture,
-      action: payFor,
+      workingStyle: style,
       value: opportunity,
       primarySection: currentFocus.primarySection,
       pathLabel: currentFocus.focusLabel,

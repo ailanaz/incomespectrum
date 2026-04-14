@@ -3772,7 +3772,7 @@
         focusFitSummary: "Start broad in Focus. Save what keeps matching, let the weaker signal fall away, and narrow from there.",
         pathSummary: "Start broad and use the Founder File to see what keeps holding up.",
         knowledgeSummary: "Use the Education & Training section to explore business foundations while your focus gets clearer. Save the income ideas and training resources that keep matching - let the pattern in your Founder File show you where to narrow.",
-        incomeIds: ["income-mobile-notary", "income-print-on-demand", "income-government-contracting", "income-virtual-assistant", "income-commercial-cleaning"],
+        incomeIds: ["income-mobile-notary", "income-laundry-pickup", "income-government-contracting", "income-virtual-assistant", "income-commercial-cleaning"],
         trainingIds: ["training-business-foundations", "training-digital-storefront"],
         serviceIds: ["service-advisory", "service-bookkeeping"],
         officialIds: ["official-state-registration", "official-licensing"]
@@ -3880,11 +3880,11 @@
     };
     const founderBoosts = {
       Entrepreneur: ["income-escape-room", "income-karaoke-venue", "income-capsule-hotel", "income-government-contracting", "income-storefront-setup", "income-vertical-content"],
-      Solopreneur: ["income-virtual-assistant", "income-mobile-notary", "income-listing-optimization", "income-storefront-setup", "income-print-on-demand", "income-used-ebike"],
+      Solopreneur: ["income-virtual-assistant", "income-mobile-notary", "income-listing-optimization", "income-storefront-setup", "income-vertical-content", "income-used-ebike"],
       "Small Business Owner": ["income-commercial-cleaning", "income-hydroseeding", "income-laundry-pickup", "income-driveway-paver", "income-mobile-battery"],
-      Freelancer: ["income-listing-optimization", "income-vertical-content", "income-storefront-setup", "income-virtual-assistant", "income-print-on-demand"],
+      Freelancer: ["income-listing-optimization", "income-vertical-content", "income-storefront-setup", "income-virtual-assistant", "income-mobile-notary"],
       "Owner-Operator": ["income-mobile-battery", "income-hydroseeding", "income-commercial-cleaning", "income-laundry-pickup", "income-driveway-paver", "income-crawlspace-cleanup", "income-mobile-notary"],
-      "Still sorting": ["income-mobile-notary", "income-virtual-assistant", "income-print-on-demand", "income-government-contracting"]
+      "Still sorting": ["income-mobile-notary", "income-virtual-assistant", "income-commercial-cleaning", "income-government-contracting"]
     };
     const costBoosts = {
       time: ["income-virtual-assistant", "income-mobile-notary", "income-laundry-pickup", "income-mobile-battery", "income-listing-optimization", "income-storefront-setup"],

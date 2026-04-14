@@ -582,7 +582,7 @@ button.field-toggle::after {
 .view {
   display: none;
   padding: 20px;
-  padding-bottom: 132px;
+  padding-bottom: 160px;
   min-height: calc(100vh - 170px);
 }
 

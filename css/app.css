@@ -2034,6 +2034,23 @@ button.field-toggle::after {
   gap: 14px;
 }
 
+.quiz-intro {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--app-text);
+}
+.quiz-intro p {
+  margin: 0;
+}
+.quiz-intro ul {
+  padding-left: 18px;
+  margin: 2px 0 4px;
+  display: grid;
+  gap: 4px;
+}
+
 .quiz-options {
   display: grid;
   gap: 10px;

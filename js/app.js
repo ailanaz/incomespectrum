@@ -36,7 +36,7 @@
     "Owner-Operator": "Owning the business and also doing the day-to-day work.",
     "Still sorting": "You are still narrowing in on what fits you best."
   };
-  const QUIZ_VERSION = "20260413-focus-v3";
+  const QUIZ_VERSION = "20260414-focus-v4";
   const FOUNDER_FORMS_KEY = "income-spectrum-founder-forms-v1";
   const FORMS_MAX_BYTES = 1048576; // 1MB per file
   const businessDocTypes = [
@@ -897,22 +897,47 @@
   const quiz = {
     version: QUIZ_VERSION,
     title: "Find Your Focus",
-    intro: "This quiz is designed to help you understand what people are paying for and turn that understanding into a working Founder File you can use as an aspiring, new, or existing business owner.",
-    frameworkNote: "You will build understanding of The Six, the Cost of Living, Niche as Culture, and how the Cost of Living creates opportunity.",
+    intro: `<p>This quiz maps what people are already spending to a business direction that fits how you work. Here is what the questions are built on:</p>
+<p><strong>Needs and Wants</strong></p>
+<ul>
+  <li><strong>Needs</strong> are what people must have - survival, safety, health, shelter, stability.</li>
+  <li><strong>Wants</strong> are what people choose - comfort, pleasure, belonging, meaning. Both create real markets. Most income opportunities sit in wants, not survival needs.</li>
+</ul>
+<p><strong>The Six</strong> - the six things people are actually buying:</p>
+<ul>
+  <li><strong>Survival and Stability</strong> - keeping finances, routines, and security in place</li>
+  <li><strong>Safety and Protection</strong> - reducing risk, avoiding mistakes, reaching what they cannot access alone</li>
+  <li><strong>Relief and Health</strong> - removing a problem, burden, or stress from their life</li>
+  <li><strong>Pleasure and Comfort</strong> - making life feel better, easier, or more enjoyable</li>
+  <li><strong>Belonging and Love</strong> - connection, care, shared meaning, community</li>
+  <li><strong>Status and Meaning</strong> - improving their situation, their results, or how they are seen</li>
+</ul>
+<p><strong>Cost of Living</strong> - what people give up before they spend money:</p>
+<ul>
+  <li>Time, energy, attention, comfort, and risk are the real costs people carry every day.</li>
+  <li>Every business earns by reducing one of these costs for someone who would rather pay than keep carrying it.</li>
+</ul>
+<p><strong>Niche Is Culture</strong> - a niche is more than a target market:</p>
+<ul>
+  <li>A culture is a group of people who share the same cost and the same outcome they want.</li>
+  <li>Culture shapes what they trust, what they will pay for, and who they choose.</li>
+  <li>When you understand the culture you are building for, you can build something that belongs in their world.</li>
+</ul>`,
+    frameworkNote: "",
     optionPrompt: "Read each one and choose what feels closest. There are no right or wrong answers here, only what fits.",
     questions: [
       {
         id: "driver",
         title: "The Six",
-        prompt: "Every purchase traces back to one of six core drivers: relief, stability, access, improvement, connection, and enjoyment. These are The Six. They are the real reason people spend - not for the product or service itself, but for what it delivers underneath. When you build a business, you are not selling a thing. You are serving one of these drivers. Knowing which one is at the center of your focus tells you who you are really serving, what they are willing to pay for, and which section of the Income Spectrum directory is most relevant to the direction you are building toward.",
-        question: "Which of The Six do you see as the clearest driver behind the opportunity you want to pursue?",
+        prompt: "Think about a group of people who keep spending money on the same kind of problem, need, or want. You do not have to have a business idea yet. Just think about spending patterns you have noticed - people around you, situations you have been in, or problems that keep showing up. The six patterns below are what sits underneath most of that spending.",
+        question: "Which spending pattern do you recognize most clearly - in your own life, in people around you, or in a market you have noticed?",
         options: [
-          { value: "relief", label: "Relief", detail: "People are paying to get something off their plate, fixed, resolved, or handled." },
-          { value: "stability", label: "Stability", detail: "People are paying for certainty, steadiness, security, or peace of mind." },
-          { value: "access", label: "Access", detail: "People are paying to reach something - a skill, market, credential, or outcome they cannot get to alone." },
-          { value: "improvement", label: "Improvement", detail: "People are paying to make something better - sharper, cleaner, stronger, or more refined." },
-          { value: "connection", label: "Connection", detail: "People are paying for belonging, care, shared meaning, or something rooted in relationships." },
-          { value: "enjoyment", label: "Enjoyment", detail: "People are paying because it feels good, looks right, tastes better, or simply makes life more worth living." }
+          { value: "stability", label: "Survival and Stability", detail: "People spending to keep their finances, routines, or security from falling apart." },
+          { value: "access", label: "Safety and Protection", detail: "People spending to reduce risk, avoid a costly mistake, or reach something they could not get to on their own." },
+          { value: "relief", label: "Relief and Health", detail: "People spending to remove a problem, a burden, or a source of stress from their life." },
+          { value: "enjoyment", label: "Pleasure and Comfort", detail: "People spending to make their daily life feel better, easier, or more enjoyable." },
+          { value: "connection", label: "Belonging and Love", detail: "People spending for connection, care, shared meaning, or to feel like they belong somewhere." },
+          { value: "improvement", label: "Status and Meaning", detail: "People spending to improve their situation, their results, or how they show up in the world." }
         ]
       },
       {
@@ -945,16 +970,16 @@
       },
       {
         id: "culture",
-        title: "Niche is Culture",
-        prompt: "A niche is not just a segment of people. It is a culture - a group of people who share the same cost and the same outcome they are seeking. Culture shapes how people talk about their problem, who they trust, what they expect, and what makes them choose one provider over another. When you understand the culture of the people you want to serve, you can speak their language and build something that feels like it belongs in their world. The income opportunities, education resources, and support services in the Income Spectrum directory are all organized around these cultures - and the culture you choose is the starting point for narrowing which ones apply to you.",
-        question: "Which culture feels closest to the one you want to build your business inside?",
+        title: "Niche Is Culture",
+        prompt: "People who keep spending on the same kind of outcome form a culture - a group that shares the same cost and the same thing they are trying to get. That culture shapes what they trust, who they pay, and what makes a business feel like it belongs in their world. The income opportunities and resources in the Income Spectrum directory are organized around these cultures.",
+        question: "Which culture are the people you want to build for most likely part of?",
         options: [
-          { value: "relief", label: "A culture of relief", detail: "People dealing with problems, pressure, or situations that need to be resolved or handled." },
-          { value: "stability", label: "A culture of stability", detail: "People building structure, security, or long-term steadiness in their business or personal life." },
-          { value: "access", label: "A culture of access", detail: "People trying to reach something - a credential, a market, a skill, or an opportunity." },
-          { value: "improvement", label: "A culture of improvement", detail: "People who want better performance, better quality, or a stronger result than they have now." },
-          { value: "connection", label: "A culture of connection", detail: "People who care about community, relationships, giving, or shared identity." },
-          { value: "enjoyment", label: "A culture of enjoyment", detail: "People who want things to feel better, look better, taste better, or be more worth experiencing." }
+          { value: "relief", label: "A relief and health culture", detail: "People dealing with recurring problems, health burdens, or situations that keep needing to be resolved." },
+          { value: "stability", label: "A survival and stability culture", detail: "People building or protecting financial security, steady routines, or long-term steadiness." },
+          { value: "access", label: "A safety and protection culture", detail: "People trying to reduce risk, avoid costly mistakes, or reach a credential, market, or opportunity they cannot get to alone." },
+          { value: "improvement", label: "A status and meaning culture", detail: "People who want better performance, a stronger result, or to be seen as having made a real upgrade." },
+          { value: "connection", label: "A belonging and love culture", detail: "People who care about community, care, relationships, or shared identity and meaning." },
+          { value: "enjoyment", label: "A pleasure and comfort culture", detail: "People who want things to feel better, be more enjoyable, or be genuinely worth experiencing." }
         ]
       },
       {
@@ -2416,27 +2441,21 @@
     ].join("");
     const quizResultSummary = appState.quizResult
       ? {
-          understanding: appState.quizResult.understandingSummary,
-          culture: appState.quizResult.cultureSummary,
-          opportunity: appState.quizResult.opportunitySummary
+          costOfLiving: appState.quizResult.costOfLivingOpportunitySummary,
+          nicheAsCulture: appState.quizResult.nicheAsCultureSummary
         }
       : {
-          understanding: "Your quiz results will summarize what people pay for here once you complete the quiz.",
-          culture: "Your quiz results will summarize how niche is culture here once you complete the quiz.",
-          opportunity: "Your quiz results will summarize how the Cost of Living drives opportunity here once you complete the quiz."
+          costOfLiving: "Your quiz results will show the specific cost your business saves future clients once you complete the quiz.",
+          nicheAsCulture: "Your quiz results will show the culture and outcome specific to your income path once you complete the quiz."
         };
     const currentFocusMarkup = `
       <div class="mini-card">
-        <strong>What People Pay For</strong>
-        <p>${quizResultSummary.understanding}</p>
+        <strong>The Cost of Living Driving Opportunity</strong>
+        <p>${quizResultSummary.costOfLiving}</p>
       </div>
       <div class="mini-card">
         <strong>Niche as Culture</strong>
-        <p>${quizResultSummary.culture}</p>
-      </div>
-      <div class="mini-card">
-        <strong>The Cost of Living Drives Opportunity</strong>
-        <p>${quizResultSummary.opportunity}</p>
+        <p>${quizResultSummary.nicheAsCulture}</p>
       </div>
     `;
     const ideasMarkup = `
@@ -3391,7 +3410,7 @@
     progressBar.style.width = `${((quizIndex + 1) / quiz.questions.length) * 100}%`;
     body.innerHTML = `
       <div class="quiz-question">
-        ${quizIndex === 0 ? `<p>${quiz.intro}</p><p>${quiz.frameworkNote}</p>` : ""}
+        ${quizIndex === 0 ? `<div class="quiz-intro">${quiz.intro}</div>` : ""}
         <h3>${question.title || question.prompt}</h3>
         ${question.prompt ? `<p>${question.prompt}</p>` : ""}
         ${question.question ? `<p><strong>${question.question}</strong></p>` : ""}
@@ -4015,6 +4034,36 @@
     const fileNote = `Save the ideas that keep matching and let the Founder File show you where your focus is landing.`;
     const planSummary = "This Founder File is meant to stay working, not final. Save what keeps matching and let the weaker signal fall away.";
 
+    const costLivingOpportunityStatements = {
+      time: "The people you are building for are spending time they would rather not spend. Your business earns by taking the task off their schedule - doing it faster, handling it entirely, or removing the steps that drain their day.",
+      energy: "The people you are building for are spending energy on something they would rather hand off. Your business earns by carrying the physical or mental load so they do not have to show up for it.",
+      attention: "The people you are building for are spending attention on complexity they want to escape. Your business earns by simplifying, deciding, or handling the overhead so they can focus on what matters to them.",
+      comfort: "The people you are building for are spending comfort on something harder or more stressful than it needs to be. Your business earns by reducing the friction, the worry, or the discomfort they are currently carrying.",
+      risk: "The people you are building for are absorbing risk exposure on something they cannot afford to get wrong. Your business earns by getting it right for them - reducing the chance they make a costly mistake on their own.",
+      mix: "The people you are building for are paying across multiple costs at once - time, energy, attention, comfort, and risk are all stacking up. A business that reduces more than one of these at once is harder to replace and easier to choose."
+    };
+    const costOfLivingOpportunitySummary = costLivingOpportunityStatements[cost] || costLivingOpportunityStatements.mix;
+
+    const topIncome = incomeById[suggestedIncomeIds[0]];
+    const topIncomeTitle = topIncome ? topIncome.title : "your income direction";
+    const nicheDriverPhrases = {
+      relief: "The driver in this culture is resolution",
+      stability: "The driver in this culture is certainty",
+      access: "The driver in this culture is reach",
+      improvement: "The driver in this culture is quality",
+      connection: "The driver in this culture is belonging",
+      enjoyment: "The driver in this culture is experience"
+    };
+    const nicheOutcomePhrases = {
+      relief: "people pay to stop carrying the problem, not just to have it addressed",
+      stability: "people pay for the confidence that it was handled correctly and will not need to be revisited",
+      access: "people pay to get there - to the credential, the market, or the result they could not reach alone",
+      improvement: "people pay because the difference between where they are and a better result is visible and worth the cost",
+      connection: "people pay for care, shared meaning, and the sense that the business understands them",
+      enjoyment: "people pay because the experience itself is the product - comfort, pleasure, or something worth choosing"
+    };
+    const nicheAsCultureSummary = `${nicheDriverPhrases[culture] || nicheDriverPhrases.relief}. In this culture, ${nicheOutcomePhrases[culture] || nicheOutcomePhrases.relief}. An income path like ${topIncomeTitle} earns inside this culture by delivering exactly that outcome.`;
+
     return {
       id: "quiz-result",
       quizVersion: QUIZ_VERSION,
@@ -4037,7 +4086,9 @@
       suggestedIncomeIds,
       suggestedTrainingIds,
       suggestedServiceIds,
-      suggestedOfficialIds
+      suggestedOfficialIds,
+      costOfLivingOpportunitySummary,
+      nicheAsCultureSummary
     };
   }
 
@@ -4706,9 +4757,8 @@
     // Quiz results
     const quizHTML = appState.quizResult
       ? `<div class="ef-group">
-          <div class="ef-quiz-item"><strong>What People Pay For</strong><p>${escapeHtml(appState.quizResult.understandingSummary || "")}</p></div>
-          <div class="ef-quiz-item"><strong>Niche as Culture</strong><p>${escapeHtml(appState.quizResult.cultureSummary || "")}</p></div>
-          <div class="ef-quiz-item"><strong>The Cost of Living Drives Opportunity</strong><p>${escapeHtml(appState.quizResult.opportunitySummary || "")}</p></div>
+          <div class="ef-quiz-item"><strong>The Cost of Living Driving Opportunity</strong><p>${escapeHtml(appState.quizResult.costOfLivingOpportunitySummary || "")}</p></div>
+          <div class="ef-quiz-item"><strong>Niche as Culture</strong><p>${escapeHtml(appState.quizResult.nicheAsCultureSummary || "")}</p></div>
         </div>`
       : `<p class="ef-empty">Find Your Focus not yet completed.</p>`;
 

@@ -899,7 +899,7 @@
     title: "Find Your Focus",
     intro: "This quiz is designed to help you understand what people are paying for and turn that understanding into a working Founder File you can use as an aspiring, new, or existing business owner.",
     frameworkNote: "You will build understanding of The Six, the Cost of Living, Niche as Culture, and how the Cost of Living creates opportunity.",
-    optionPrompt: "Read each one quickly and choose what feels closest. There are no right or wrong answers here, only what fits.",
+    optionPrompt: "Read each one and choose what feels closest. There are no right or wrong answers here, only what fits.",
     questions: [
       {
         id: "driver",

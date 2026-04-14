@@ -904,13 +904,13 @@
       {
         id: "driver",
         title: "The Six",
-        prompt: "Every purchase traces back to one of six core drivers: relief, stability, access, improvement, connection, and enjoyment. These are The Six. They are the real reason people spend — not for the product or service itself, but for what it delivers underneath. When you build a business, you are not selling a thing. You are serving one of these drivers. Knowing which one is at the center of your focus tells you who you are really serving, what they are willing to pay for, and which section of the Income Spectrum directory is most relevant to the direction you are building toward.",
+        prompt: "Every purchase traces back to one of six core drivers: relief, stability, access, improvement, connection, and enjoyment. These are The Six. They are the real reason people spend - not for the product or service itself, but for what it delivers underneath. When you build a business, you are not selling a thing. You are serving one of these drivers. Knowing which one is at the center of your focus tells you who you are really serving, what they are willing to pay for, and which section of the Income Spectrum directory is most relevant to the direction you are building toward.",
         question: "Which of The Six do you see as the clearest driver behind the opportunity you want to pursue?",
         options: [
           { value: "relief", label: "Relief", detail: "People are paying to get something off their plate, fixed, resolved, or handled." },
           { value: "stability", label: "Stability", detail: "People are paying for certainty, steadiness, security, or peace of mind." },
-          { value: "access", label: "Access", detail: "People are paying to reach something — a skill, market, credential, or outcome they cannot get to alone." },
-          { value: "improvement", label: "Improvement", detail: "People are paying to make something better — sharper, cleaner, stronger, or more refined." },
+          { value: "access", label: "Access", detail: "People are paying to reach something - a skill, market, credential, or outcome they cannot get to alone." },
+          { value: "improvement", label: "Improvement", detail: "People are paying to make something better - sharper, cleaner, stronger, or more refined." },
           { value: "connection", label: "Connection", detail: "People are paying for belonging, care, shared meaning, or something rooted in relationships." },
           { value: "enjoyment", label: "Enjoyment", detail: "People are paying because it feels good, looks right, tastes better, or simply makes life more worth living." }
         ]
@@ -932,7 +932,7 @@
       {
         id: "opportunity",
         title: "Cost of Living Creates Opportunity",
-        prompt: "Opportunity is not invented — it is found where the Cost of Living is high and people are already spending to reduce it. When a large group of people share the same cost and keep paying to address it, a market already exists. The Income Spectrum directory is built around this: every income direction, every education resource, and every support service listed exists because a group of people has a cost they would rather pay to have reduced. Your job is not to create demand — it is to find where that demand already lives and where your ability to reduce the cost lines up with it.",
+        prompt: "Opportunity is not invented - it is found where the Cost of Living is high and people are already spending to reduce it. When a large group of people share the same cost and keep paying to address it, a market already exists. The Income Spectrum directory is built around this: every income direction, every education resource, and every support service listed exists because a group of people has a cost they would rather pay to have reduced. Your job is not to create demand - it is to find where that demand already lives and where your ability to reduce the cost lines up with it.",
         question: "Which kind of opening do you see most clearly in the cost you identified?",
         options: [
           { value: "save-time", label: "Saving time", detail: "You could provide something faster, do it for them, or remove the steps that slow them down." },
@@ -940,18 +940,18 @@
           { value: "decide-clearly", label: "Deciding more clearly", detail: "You could help them understand, compare, prepare, or move through a decision with more confidence." },
           { value: "feel-better", label: "Feeling better or more secure", detail: "You could reduce the discomfort, stress, or exposure they are currently carrying." },
           { value: "better-result", label: "Reaching a better result", detail: "You could deliver a stronger outcome, finish, or standard than they can reach on their own." },
-          { value: "enjoy-more", label: "Enjoying the process or outcome more", detail: "You could make the experience itself better — more pleasurable, more fitting, more satisfying." }
+          { value: "enjoy-more", label: "Enjoying the process or outcome more", detail: "You could make the experience itself better - more pleasurable, more fitting, more satisfying." }
         ]
       },
       {
         id: "culture",
         title: "Niche is Culture",
-        prompt: "A niche is not just a segment of people. It is a culture — a group of people who share the same cost and the same outcome they are seeking. Culture shapes how people talk about their problem, who they trust, what they expect, and what makes them choose one provider over another. When you understand the culture of the people you want to serve, you can speak their language and build something that feels like it belongs in their world. The income opportunities, education resources, and support services in the Income Spectrum directory are all organized around these cultures — and the culture you choose is the starting point for narrowing which ones apply to you.",
+        prompt: "A niche is not just a segment of people. It is a culture - a group of people who share the same cost and the same outcome they are seeking. Culture shapes how people talk about their problem, who they trust, what they expect, and what makes them choose one provider over another. When you understand the culture of the people you want to serve, you can speak their language and build something that feels like it belongs in their world. The income opportunities, education resources, and support services in the Income Spectrum directory are all organized around these cultures - and the culture you choose is the starting point for narrowing which ones apply to you.",
         question: "Which culture feels closest to the one you want to build your business inside?",
         options: [
           { value: "relief", label: "A culture of relief", detail: "People dealing with problems, pressure, or situations that need to be resolved or handled." },
           { value: "stability", label: "A culture of stability", detail: "People building structure, security, or long-term steadiness in their business or personal life." },
-          { value: "access", label: "A culture of access", detail: "People trying to reach something — a credential, a market, a skill, or an opportunity." },
+          { value: "access", label: "A culture of access", detail: "People trying to reach something - a credential, a market, a skill, or an opportunity." },
           { value: "improvement", label: "A culture of improvement", detail: "People who want better performance, better quality, or a stronger result than they have now." },
           { value: "connection", label: "A culture of connection", detail: "People who care about community, relationships, giving, or shared identity." },
           { value: "enjoyment", label: "A culture of enjoyment", detail: "People who want things to feel better, look better, taste better, or be more worth experiencing." }
@@ -960,7 +960,7 @@
       {
         id: "founder",
         title: "Founder Identity",
-        prompt: "The same income opportunity can fit very different kinds of founders. A commercial cleaning route run by an owner-operator looks completely different from a cleaning company built by an entrepreneur scaling a team. Which kind of founder you are shapes which opportunities in the directory are right for you — not just which ones sound interesting, but which ones actually fit how you want to work, what you want to own, and what you want to build over time.",
+        prompt: "The same income opportunity can fit very different kinds of founders. A commercial cleaning route run by an owner-operator looks completely different from a cleaning company built by an entrepreneur scaling a team. Which kind of founder you are shapes which opportunities in the directory are right for you - not just which ones sound interesting, but which ones actually fit how you want to work, what you want to own, and what you want to build over time.",
         question: "Which founder identity fits where you are right now?",
         options: [
           { value: "Entrepreneur", label: "Entrepreneur", detail: "Building something with room to grow beyond your direct labor." },
@@ -974,21 +974,21 @@
       {
         id: "style",
         title: "Working Style",
-        prompt: "The right opportunity is not just the one with the best numbers — it is the one that fits how you naturally work. Someone energized by solving problems will struggle in a business built around constant creative output. Someone who loves organizing systems will feel out of place in a role that demands improvisation. Your working style is a filter: it tells you which income directions in the directory will feel natural and sustainable, and which ones will feel like a grind even when the market demand is real.",
+        prompt: "The right opportunity is not just the one with the best numbers - it is the one that fits how you naturally work. Someone energized by solving problems will struggle in a business built around constant creative output. Someone who loves organizing systems will feel out of place in a role that demands improvisation. Your working style is a filter: it tells you which income directions in the directory will feel natural and sustainable, and which ones will feel like a grind even when the market demand is real.",
         question: "Which way of working feels most natural to you?",
         options: [
           { value: "solving", label: "Solving", detail: "I like diagnosing, fixing, and figuring things out." },
           { value: "improving", label: "Improving", detail: "I like taking something that works and making it noticeably better." },
           { value: "organizing", label: "Organizing", detail: "I like bringing order, systems, and structure to things." },
           { value: "guiding", label: "Guiding", detail: "I like helping people think through decisions or navigate something." },
-          { value: "creating", label: "Creating", detail: "I like making things — objects, content, experiences, or ideas." },
+          { value: "creating", label: "Creating", detail: "I like making things - objects, content, experiences, or ideas." },
           { value: "connecting", label: "Connecting", detail: "I like bringing people, resources, or opportunities together." }
         ]
       },
       {
         id: "focus",
         title: "Your Focus",
-        prompt: "Your focus is where The Six, the Cost of Living, the culture, and your working style all point in the same direction. The Income Spectrum directory is organized around this: income opportunities, education and training, support services, and official resources are all indexed so you can find and build from a clear starting point. This question maps everything you have identified to the section of the directory that fits your focus best — and gives you a working direction to take into the Founder File.",
+        prompt: "Your focus is where The Six, the Cost of Living, the culture, and your working style all point in the same direction. The Income Spectrum directory is organized around this: income opportunities, education and training, support services, and official resources are all indexed so you can find and build from a clear starting point. This question maps everything you have identified to the section of the directory that fits your focus best - and gives you a working direction to take into the Founder File.",
         question: "Which kind of income opportunity fits the focus taking shape in your answers?",
         options: [
           { value: "service", label: "A service", detail: "You deliver work directly to people using your skills or time." },
@@ -3717,7 +3717,7 @@
         incomeIdeaSummary: "This reads most clearly as owning the business itself or stepping into something that already has operating ground under it.",
         focusFitSummary: "Start with ownership and acquisition first. Look for work worth owning, not just work worth doing.",
         pathSummary: "Start with ownership and acquisition and keep the operating model in view from the beginning.",
-        knowledgeSummary: "In the Education & Training section, go to Entrepreneurship & Ownership specifically — acquisition training and business-buying education are there. In Supportive Services, look for legal and advisory support before you commit to anything.",
+        knowledgeSummary: "In the Education & Training section, go to Entrepreneurship & Ownership specifically - acquisition training and business-buying education are there. In Supportive Services, look for legal and advisory support before you commit to anything.",
         incomeIds: ["income-government-contracting", "income-commercial-cleaning", "income-hydroseeding", "income-used-ebike", "income-capsule-hotel"],
         trainingIds: ["training-business-foundations", "training-government-contracting"],
         serviceIds: ["service-legal", "service-bookkeeping", "service-advisory"],
@@ -3756,7 +3756,7 @@
         incomeIdeaSummary: "The signal is there. You do not need to force the label too early for it to be useful.",
         focusFitSummary: "Start broad in Focus. Save what keeps matching, let the weaker signal fall away, and narrow from there.",
         pathSummary: "Start broad and use the Founder File to see what keeps holding up.",
-        knowledgeSummary: "Use the Education & Training section to explore business foundations while your focus gets clearer. Save the income ideas and training resources that keep matching — let the pattern in your Founder File show you where to narrow.",
+        knowledgeSummary: "Use the Education & Training section to explore business foundations while your focus gets clearer. Save the income ideas and training resources that keep matching - let the pattern in your Founder File show you where to narrow.",
         incomeIds: ["income-mobile-notary", "income-print-on-demand", "income-government-contracting", "income-virtual-assistant", "income-commercial-cleaning"],
         trainingIds: ["training-business-foundations", "training-digital-storefront"],
         serviceIds: ["service-advisory", "service-bookkeeping"],
@@ -3773,12 +3773,12 @@
       connecting: "Connecting"
     };
     const styleInsight = {
-      solving: "Solvers fit service businesses where diagnosing and fixing is the core of the work. In the income opportunities section, look at repair, inspection, technical services, and problem-resolution businesses — the ones where getting it resolved is exactly what the customer is paying for.",
-      improving: "Improvers fit quality-focused service and product businesses where the result is visibly better. In the income opportunities section, look at landscaping, listing optimization, finishing trades, and content work — businesses where the reason someone chooses you is the difference in outcome.",
-      organizing: "Organizers fit operational service and logistics businesses where systems and process are the value. In the income opportunities section, look at virtual assistance, route-based operations, compliance support, and admin-heavy services — businesses where order and reliability are what the customer is buying.",
-      guiding: "Guiders fit information-based and advisory businesses where helping people navigate something is the product. In the income opportunities section, look at storefront setup support, government contracting guidance, and information services — businesses where the customer's confidence in moving forward is what you are delivering.",
-      creating: "Creators fit product, content, and experience businesses where original output is the value. In the income opportunities section, look at print-on-demand, content creation, entertainment venues, and hospitality businesses — the ones where what you make or build is the reason people come to you.",
-      connecting: "Connectors fit community, care, and relationship-driven businesses where the human element is central. In the income opportunities section, look at interpreting services, doula work, pet care, and event-based businesses — the ones where the connection between provider and customer is part of what is being delivered."
+      solving: "Solvers fit service businesses where diagnosing and fixing is the core of the work. In the income opportunities section, look at repair, inspection, technical services, and problem-resolution businesses - the ones where getting it resolved is exactly what the customer is paying for.",
+      improving: "Improvers fit quality-focused service and product businesses where the result is visibly better. In the income opportunities section, look at landscaping, listing optimization, finishing trades, and content work - businesses where the reason someone chooses you is the difference in outcome.",
+      organizing: "Organizers fit operational service and logistics businesses where systems and process are the value. In the income opportunities section, look at virtual assistance, route-based operations, compliance support, and admin-heavy services - businesses where order and reliability are what the customer is buying.",
+      guiding: "Guiders fit information-based and advisory businesses where helping people navigate something is the product. In the income opportunities section, look at storefront setup support, government contracting guidance, and information services - businesses where the customer's confidence in moving forward is what you are delivering.",
+      creating: "Creators fit product, content, and experience businesses where original output is the value. In the income opportunities section, look at print-on-demand, content creation, entertainment venues, and hospitality businesses - the ones where what you make or build is the reason people come to you.",
+      connecting: "Connectors fit community, care, and relationship-driven businesses where the human element is central. In the income opportunities section, look at interpreting services, doula work, pet care, and event-based businesses - the ones where the connection between provider and customer is part of what is being delivered."
     };
     const driverLabels = {
       relief: "Relief",
@@ -3789,11 +3789,11 @@
       enjoyment: "Enjoyment"
     };
     const driverInsight = {
-      relief: "Relief-driven markets are where service businesses earn their most reliable customers. People in a relief market hire you because something needs to be handled — and they keep coming back when the problem comes back. In the Income Spectrum directory, start with service income opportunities: cleaning, maintenance, care, repair, and done-for-you work where getting it off the customer's plate is the product.",
+      relief: "Relief-driven markets are where service businesses earn their most reliable customers. People in a relief market hire you because something needs to be handled - and they keep coming back when the problem comes back. In the Income Spectrum directory, start with service income opportunities: cleaning, maintenance, care, repair, and done-for-you work where getting it off the customer's plate is the product.",
       stability: "Stability-driven markets support businesses built on trust, accuracy, and repeat relationships. Customers here are paying to reduce the chance of getting something wrong. Notary work, government contracting, compliance-adjacent services, and professional support all sit here. In the directory, look at service and information income opportunities where reliability and correctness are the reason someone chooses you.",
-      access: "Access-driven markets support businesses that open doors. Customers here are paying to reach something they cannot get to alone — a credential, a market, a skill, or a pathway. In the directory, look at education and training resources alongside income opportunities like interpreting, storefront setup support, and government contracting that give people access to something they need.",
-      improvement: "Improvement-driven markets support quality-focused services and products. Customers here can already get the job done — they are paying because better matters and the difference is visible. In the directory, look at service and product income opportunities like landscaping, listing optimization, finishing trades, and content creation where the output is the reason someone chooses you over a cheaper option.",
-      connection: "Connection-driven markets support businesses where the human element is part of the value. Customers here are paying for care, shared experience, or belonging — not just a task completed. In the directory, look at income opportunities like interpreting services, doula work, pet care, and community-facing businesses where the relationship between provider and customer shapes the outcome.",
+      access: "Access-driven markets support businesses that open doors. Customers here are paying to reach something they cannot get to alone - a credential, a market, a skill, or a pathway. In the directory, look at education and training resources alongside income opportunities like interpreting, storefront setup support, and government contracting that give people access to something they need.",
+      improvement: "Improvement-driven markets support quality-focused services and products. Customers here can already get the job done - they are paying because better matters and the difference is visible. In the directory, look at service and product income opportunities like landscaping, listing optimization, finishing trades, and content creation where the output is the reason someone chooses you over a cheaper option.",
+      connection: "Connection-driven markets support businesses where the human element is part of the value. Customers here are paying for care, shared experience, or belonging - not just a task completed. In the directory, look at income opportunities like interpreting services, doula work, pet care, and community-facing businesses where the relationship between provider and customer shapes the outcome.",
       enjoyment: "Enjoyment-driven markets support businesses built on experience. Customers here spend freely when something feels genuinely good. In the directory, look at product and experience income opportunities: entertainment venues, hospitality, print-on-demand, and businesses where the experience itself is the product."
     };
     const costLabels = {
@@ -3805,12 +3805,12 @@
       mix: "A mix across these"
     };
     const costInsight = {
-      time: "Time is the cost your market is already paying. A business that gets the job done faster, handles it entirely, or removes the back-and-forth has a clear value. In the income opportunities section, look at done-for-you services, route-based businesses, and virtual support — these are built around saving the customer time.",
-      energy: "Energy is the cost your market is already paying. People here are tired of carrying heavy work themselves and will pay to hand it off. In the income opportunities section, look at physical service businesses — commercial cleaning, landscaping, crawlspace work, laundry pickup — where the value is that the customer does not have to do the work.",
-      attention: "Attention is the cost your market is already paying. People here are overwhelmed by complexity and will pay for clarity and managed decisions. In the income opportunities section, look at information and operational support — virtual assistance, listing optimization, government contracting support, and storefront setup are all built around reducing cognitive load.",
-      comfort: "Comfort is the cost your market is already paying. People here are dealing with something harder or more unpleasant than it needs to be and will pay for ease. In the income opportunities section, look at care, hospitality, and comfort-adjacent businesses — doula services, pet care, capsule hotel concepts, and similar work.",
+      time: "Time is the cost your market is already paying. A business that gets the job done faster, handles it entirely, or removes the back-and-forth has a clear value. In the income opportunities section, look at done-for-you services, route-based businesses, and virtual support - these are built around saving the customer time.",
+      energy: "Energy is the cost your market is already paying. People here are tired of carrying heavy work themselves and will pay to hand it off. In the income opportunities section, look at physical service businesses - commercial cleaning, landscaping, crawlspace work, laundry pickup - where the value is that the customer does not have to do the work.",
+      attention: "Attention is the cost your market is already paying. People here are overwhelmed by complexity and will pay for clarity and managed decisions. In the income opportunities section, look at information and operational support - virtual assistance, listing optimization, government contracting support, and storefront setup are all built around reducing cognitive load.",
+      comfort: "Comfort is the cost your market is already paying. People here are dealing with something harder or more unpleasant than it needs to be and will pay for ease. In the income opportunities section, look at care, hospitality, and comfort-adjacent businesses - doula services, pet care, capsule hotel concepts, and similar work.",
       risk: "Risk is the cost your market is already paying. People here are operating where getting it wrong has real consequences and will pay for accuracy and correct guidance. In the income opportunities section, look at notary services, interpreting, government contracting, and compliance-adjacent businesses where getting it right is the product.",
-      mix: "Multiple costs are stacking up at once. That often signals stronger opportunity — the more costs your business reduces, the harder it is to replace. Look broadly across the income opportunities section and save the ones that address more than one of these costs for the customer."
+      mix: "Multiple costs are stacking up at once. That often signals stronger opportunity - the more costs your business reduces, the harder it is to replace. Look broadly across the income opportunities section and save the ones that address more than one of these costs for the customer."
     };
     const opportunityLabels = {
       "save-time": "Saving time",
@@ -3821,12 +3821,12 @@
       "enjoy-more": "Enjoying the process or outcome more"
     };
     const opportunityInsight = {
-      "save-time": "The clearest path here is a done-for-you service or route-based business. In the Income Spectrum income opportunities section, look at service businesses built around handling tasks completely — cleaning, virtual support, laundry pickup, and mobile services that compete on convenience and speed.",
-      "use-less-energy": "The clearest path here is a physical service or labor business. In the income opportunities section, look at businesses that take the heavy work off the customer entirely — commercial cleaning, landscaping, driveway work, and crawlspace cleanup, where the value is that the customer does not have to do it.",
-      "decide-clearly": "The clearest path here is an information or guidance business. In the income opportunities section, look at information-based directions — storefront setup support, listing optimization, government contracting guidance, and virtual assistance where helping people move through a decision is the product.",
-      "feel-better": "The clearest path here is a care or comfort business. In the income opportunities section, look at service businesses where how the customer feels is the measure of success — doula services, pet care, lice removal, and comfort-adjacent work that reduces stress or discomfort directly.",
-      "better-result": "The clearest path here is a quality-focused service or product. In the income opportunities section, look at businesses where the outcome is the differentiator — hydroseeding, driveway paving, listing optimization, and product businesses where what you deliver is measurably better than what the customer could get elsewhere.",
-      "enjoy-more": "The clearest path here is an experience or creative product business. In the income opportunities section, look at entertainment, hospitality, and product businesses — karaoke venues, escape rooms, capsule hotels, print-on-demand, and used e-bikes — where the experience is the product."
+      "save-time": "The clearest path here is a done-for-you service or route-based business. In the Income Spectrum income opportunities section, look at service businesses built around handling tasks completely - cleaning, virtual support, laundry pickup, and mobile services that compete on convenience and speed.",
+      "use-less-energy": "The clearest path here is a physical service or labor business. In the income opportunities section, look at businesses that take the heavy work off the customer entirely - commercial cleaning, landscaping, driveway work, and crawlspace cleanup, where the value is that the customer does not have to do it.",
+      "decide-clearly": "The clearest path here is an information or guidance business. In the income opportunities section, look at information-based directions - storefront setup support, listing optimization, government contracting guidance, and virtual assistance where helping people move through a decision is the product.",
+      "feel-better": "The clearest path here is a care or comfort business. In the income opportunities section, look at service businesses where how the customer feels is the measure of success - doula services, pet care, lice removal, and comfort-adjacent work that reduces stress or discomfort directly.",
+      "better-result": "The clearest path here is a quality-focused service or product. In the income opportunities section, look at businesses where the outcome is the differentiator - hydroseeding, driveway paving, listing optimization, and product businesses where what you deliver is measurably better than what the customer could get elsewhere.",
+      "enjoy-more": "The clearest path here is an experience or creative product business. In the income opportunities section, look at entertainment, hospitality, and product businesses - karaoke venues, escape rooms, capsule hotels, print-on-demand, and used e-bikes - where the experience is the product."
     };
     const cultureLabels = {
       relief: "a culture of relief",
@@ -3838,11 +3838,11 @@
     };
     const cultureInsight = {
       relief: "In a relief culture, the business earns by being the thing that handles it. Customers here do not want to think about it again once it is done. The businesses that do best here are reliable, available, and known for taking the problem away cleanly. In the directory, these businesses earn through repeat customers and referrals from people who had the same problem.",
-      stability: "In a stability culture, the business earns by being the one you trust. Customers here are choosing based on track record, accuracy, and professional consistency. In the directory, businesses in this culture build long-term relationships and earn through reliability over time — notary, contracting, professional services.",
-      access: "In an access culture, the business earns by being the bridge. Customers here are paying to get somewhere they cannot reach on their own. In the directory, businesses in this culture are known as the path in — to a credential, a market, a skill, or an opportunity. Education resources and platform-based income both sit here.",
-      improvement: "In an improvement culture, the business earns by delivering better. Customers here can see the difference between good and better — and they pay for it. In the directory, businesses in this culture are chosen because their output is visibly stronger, not just cheaper or more available.",
-      connection: "In a connection culture, the business earns by being the one that understood. Customers here are paying for how the work made them feel, not just what it produced. In the directory, businesses in this culture build trust through care and communication — and they are chosen because they feel like they belong in the customer's world.",
-      enjoyment: "In an enjoyment culture, the business earns by being worth choosing. Customers here are not solving a problem — they are choosing an experience. In the directory, businesses in this culture are the ones that make the thing feel right, taste right, or look right in a way that cannot be easily replaced."
+      stability: "In a stability culture, the business earns by being the one you trust. Customers here are choosing based on track record, accuracy, and professional consistency. In the directory, businesses in this culture build long-term relationships and earn through reliability over time - notary, contracting, professional services.",
+      access: "In an access culture, the business earns by being the bridge. Customers here are paying to get somewhere they cannot reach on their own. In the directory, businesses in this culture are known as the path in - to a credential, a market, a skill, or an opportunity. Education resources and platform-based income both sit here.",
+      improvement: "In an improvement culture, the business earns by delivering better. Customers here can see the difference between good and better - and they pay for it. In the directory, businesses in this culture are chosen because their output is visibly stronger, not just cheaper or more available.",
+      connection: "In a connection culture, the business earns by being the one that understood. Customers here are paying for how the work made them feel, not just what it produced. In the directory, businesses in this culture build trust through care and communication - and they are chosen because they feel like they belong in the customer's world.",
+      enjoyment: "In an enjoyment culture, the business earns by being worth choosing. Customers here are not solving a problem - they are choosing an experience. In the directory, businesses in this culture are the ones that make the thing feel right, taste right, or look right in a way that cannot be easily replaced."
     };
 
     const currentFocus = focusMap[focus] || focusMap.sorting;
@@ -3944,14 +3944,14 @@
     const cultureSummary = `${cultureInsight[culture]}`;
     const opportunitySummary = `${opportunityInsight[opportunity]} ${currentFocus.incomeIdeaSummary}`;
     const supportSummary = founderIdentity === "Solopreneur" || founderIdentity === "Freelancer"
-      ? "In the Supportive Services section, bring in support where it saves time or reduces friction — legal setup, bookkeeping, and a basic web presence. Keep overhead lean and only add what directly improves delivery."
+      ? "In the Supportive Services section, bring in support where it saves time or reduces friction - legal setup, bookkeeping, and a basic web presence. Keep overhead lean and only add what directly improves delivery."
       : founderIdentity === "Small Business Owner" || founderIdentity === "Owner-Operator"
         ? "In the Supportive Services section, look for legal, bookkeeping, and operational support that helps the work run steadily. Focus on infrastructure that reduces drag on delivery and keeps the business compliant."
         : founderIdentity === "Still sorting"
           ? "In the Supportive Services section, look for advisory resources that help you compare and clarify direction. Do not build out support infrastructure before your focus is clear."
           : "In the Supportive Services section, look for legal, marketing, and advisory support that helps the business scale without overhead becoming unmanageable.";
     const officialSummary = cost === "risk" || focus === "ownership" || focus === "information"
-      ? `In the Official Resources section, look up ${appState.selectedState} and federal requirements before you commit. Registration, licensing, tax setup, and contracting eligibility all have specific requirements — check them early so they shape the build, not surprise you later.`
+      ? `In the Official Resources section, look up ${appState.selectedState} and federal requirements before you commit. Registration, licensing, tax setup, and contracting eligibility all have specific requirements - check them early so they shape the build, not surprise you later.`
       : `In the Official Resources section, check ${appState.selectedState} requirements for your business type. Registration, licensing, and tax setup steps are there and should be confirmed before you launch.`;
     const planSteps = [
       "Start with the focus that feels strongest.",

@@ -2051,6 +2051,17 @@ button.field-toggle::after {
   gap: 4px;
 }
 
+.quiz-option-prompt {
+  font-size: 13px;
+  color: var(--app-text-soft);
+  font-style: italic;
+  margin: 0;
+}
+
+.quiz-nav--intro {
+  justify-content: flex-end;
+}
+
 .quiz-options {
   display: grid;
   gap: 10px;

@@ -1075,7 +1075,7 @@
   };
 
   let appState = normalizeQuizState(loadState());
-  let quizIndex = 0;
+  let quizIndex = -1;
   let savedFilter = "all";
   let exploreFilter = "all";
 
@@ -1290,7 +1290,7 @@
         }
       } else if (action === "post-signup-quiz") {
         closeOverlay("progressOverlay");
-        quizIndex = 0;
+        quizIndex = -1;
         renderQuiz();
         openOverlay("quizOverlay", { kind: "quiz" });
       } else if (action === "post-signup-explore") {
@@ -1427,7 +1427,7 @@
         openOverlay("deleteAccountOverlay");
         document.getElementById("deleteAccountConfirmBtn").onclick = () => deleteAccount();
       } else if (action === "open-quiz") {
-        quizIndex = 0;
+        quizIndex = -1;
         renderQuiz();
         openOverlay("quizOverlay", { kind: "quiz" });
       } else if (action === "open-articles") {
@@ -1499,6 +1499,9 @@
         saveState();
         syncGateState();
         renderAll();
+      } else if (action === "quiz-begin") {
+        quizIndex = 0;
+        renderQuiz();
       } else if (action === "quiz-option") {
         setQuizAnswer(actionNode.dataset.value);
       } else if (action === "quiz-next") {
@@ -3404,17 +3407,30 @@
       return;
     }
 
+    if (quizIndex === -1) {
+      progressText.textContent = "Introduction";
+      progressBar.style.width = "0%";
+      body.innerHTML = `
+        <div class="quiz-question">
+          <div class="quiz-intro">${quiz.intro}</div>
+          <p class="quiz-option-prompt">${quiz.optionPrompt}</p>
+          <div class="quiz-nav quiz-nav--intro">
+            <button class="app-btn app-btn--primary" data-action="quiz-begin">Begin Quiz</button>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
     const question = quiz.questions[quizIndex];
     const selected = appState.quizAnswers[question.id];
     progressText.textContent = `Question ${quizIndex + 1} of ${quiz.questions.length}`;
     progressBar.style.width = `${((quizIndex + 1) / quiz.questions.length) * 100}%`;
     body.innerHTML = `
       <div class="quiz-question">
-        ${quizIndex === 0 ? `<div class="quiz-intro">${quiz.intro}</div>` : ""}
         <h3>${question.title || question.prompt}</h3>
         ${question.prompt ? `<p>${question.prompt}</p>` : ""}
         ${question.question ? `<p><strong>${question.question}</strong></p>` : ""}
-        ${quiz.optionPrompt && quizIndex === 0 ? `<p>${quiz.optionPrompt}</p>` : ""}
         <div class="quiz-options">
           ${question.options.map((option) => `
             <button class="quiz-option ${selected === option.value ? "selected" : ""}" data-action="quiz-option" data-value="${option.value}">
@@ -3424,7 +3440,7 @@
           `).join("")}
         </div>
         <div class="quiz-nav">
-          <button class="app-btn app-btn--ghost" data-action="quiz-back" ${quizIndex === 0 ? "disabled" : ""}>Back</button>
+          <button class="app-btn app-btn--ghost" data-action="quiz-back">Back</button>
           <button class="app-btn app-btn--primary" data-action="quiz-next" ${!selected ? "disabled" : ""}>${quizIndex === quiz.questions.length - 1 ? "See Result" : "Next"}</button>
         </div>
       </div>
@@ -3457,7 +3473,7 @@
   }
 
   function previousQuizStep() {
-    if (quizIndex > 0) {
+    if (quizIndex > -1) {
       quizIndex -= 1;
       renderQuiz();
     }
@@ -3468,7 +3484,7 @@
     const isQuizComplete = quizIndex >= quiz.questions.length;
     if (hasCompletedResult || isQuizComplete) return;
     appState.quizAnswers = {};
-    quizIndex = 0;
+    quizIndex = -1;
     saveState();
   }
 

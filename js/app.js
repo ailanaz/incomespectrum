@@ -3525,7 +3525,6 @@
       return;
     }
     appState.quizResult = buildQuizResult();
-    applyQuizResultToPlan(appState.quizResult);
     quizIndex = quiz.questions.length;
     saveState();
     renderQuiz();

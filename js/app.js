@@ -2578,6 +2578,14 @@
         <p class="section-kicker">Next Steps</p>
         <div class="plain-list">${nextMovesMarkup}</div>
       </section>
+      <section class="saved-block plan-page-block">
+        <p class="section-kicker">Go Deeper</p>
+        <p>Have an idea you want to dig deeper into? Founder Focus builds out the tools, legal steps, and a first-week plan for your business and state.</p>
+        <div class="inline-actions" style="gap:12px">
+          <button class="utility-link" data-action="open-stack">Founder Focus Tool &rarr;</button>
+          <button class="utility-link" data-action="open-quiz">Quiz &rarr;</button>
+        </div>
+      </section>
       <section class="saved-block plan-page-block" id="founderFileNotesSection">
         <p class="section-kicker">Notes</p>
         <div class="plain-list">${noteEntries}</div>
@@ -2618,14 +2626,6 @@
         <p class="section-kicker">Business Documents</p>
         <p class="helper-copy" style="margin-top:0">Track your key documents from formation to operations. Set a status, add notes, and link to where each one lives.</p>
         <div class="doc-modules">${renderBusinessDocsModule()}</div>
-      </section>
-      <section class="saved-block plan-page-block">
-        <p class="section-kicker">Go Deeper</p>
-        <p>Have a specific idea in mind? Founder Focus builds out the tools, legal steps, and a first-week plan for your business and state.</p>
-        <div class="inline-actions" style="gap:12px">
-          <button class="utility-link" data-action="open-stack">Open Founder Focus</button>
-          <button class="utility-link" data-action="open-quiz" style="font-size:12px;color:var(--app-text-soft)">Retake Find Your Focus</button>
-        </div>
       </section>
       <section class="saved-block plan-page-block" style="display:flex;justify-content:space-between;align-items:center;padding:8px 0 20px;gap:12px;margin-bottom:20px;">
         <div style="display:flex;gap:16px;">

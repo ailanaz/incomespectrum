@@ -3958,6 +3958,300 @@
       text: t.text.replace("${state}", state)
     }));
 
+    // ─── IDEA PROFILES ────────────────────────────────────────────────────────
+    // Keyword-matched profiles that inject idea-specific notes, tools, and steps
+    const ideaProfiles = [
+      {
+        keywords: ["massage", "massage therapy", "massage therapist", "bodywork", "deep tissue", "swedish massage", "sports massage", "lmt"],
+        licenseNote: `Massage therapy is a licensed profession in most states. You will need to complete an accredited program (typically 500-1,000 hours), pass the MBLEx licensing exam, and register with ${state}'s massage therapy board before you can practice and charge clients.`,
+        ideaNote: "Massage therapy builds income through repeat clients on standing appointments. Most solo operators fill a book within 6-12 months by combining Google reviews, referrals, and a booking link.",
+        specificTools: [
+          { name: "Acuity Scheduling", cost: "Free to $25/mo", link: "https://acuityscheduling.com", desc: "The standard booking tool for solo massage therapists. Clients self-book, intake forms collect health history, and reminders cut no-shows automatically." },
+          { name: "Jane App", cost: "From $39/mo", link: "https://jane.app", desc: "Built specifically for health practitioners. SOAP notes, client health history, online booking, and payments in one place - worth it once you have 10+ regular clients." }
+        ],
+        specificTodos: [
+          "Verify your massage therapy license status with the ${state} board - confirm it is active and in good standing before marketing.",
+          "Get professional liability insurance specific to massage therapy (ABMP or AMTA membership includes coverage at low annual cost).",
+          "Set up a booking link before you have clients - the link is your business card."
+        ]
+      },
+      {
+        keywords: ["personal trainer", "personal training", "fitness trainer", "fitness coach", "strength coach", "gym trainer"],
+        licenseNote: `Personal training does not require a state license in most states, but working in a gym typically requires a nationally recognized certification (NASM, ACE, ISSA, or NSCA). Some states require additional credentials if you work with medical clients.`,
+        ideaNote: "Personal training income comes from session packages and recurring monthly clients. Most trainers start at a gym to build their book, then move to independent or mobile training once they have 10+ committed clients.",
+        specificTools: [
+          { name: "TrueCoach", cost: "From $19/mo", link: "https://truecoach.co", desc: "Program delivery, client check-ins, workout tracking, and messaging. The industry standard for independent personal trainers." },
+          { name: "Acuity Scheduling", cost: "Free to $25/mo", link: "https://acuityscheduling.com", desc: "Self-booking for session appointments. Clients pick their slot, pay a deposit, and get automatic reminders." }
+        ],
+        specificTodos: [
+          "Get your nationally recognized certification if you do not already have one - NASM, ACE, or ISSA are employer-recognized and client-trusted.",
+          "Get personal trainer liability insurance before working with any client (IDEA or ACE membership includes it).",
+          "Decide on your niche - weight loss, strength, athletes, seniors, post-rehab - before you market."
+        ]
+      },
+      {
+        keywords: ["yoga", "pilates", "yoga studio", "yoga instructor", "pilates instructor", "yoga teacher"],
+        licenseNote: `Yoga instruction does not require a state license, but most studios and clients expect a 200-hour RYT (Registered Yoga Teacher) certification through Yoga Alliance. Teaching Pilates on equipment typically requires 450-600 hours of training.`,
+        ideaNote: "Yoga and Pilates instructors typically start by teaching at studios, then build a private client base, online classes, or their own small studio once they have consistent demand.",
+        specificTools: [
+          { name: "Mindbody", cost: "From $129/mo", link: "https://mindbodyonline.com", desc: "The industry standard for fitness and wellness studios. Class scheduling, memberships, retail, and client management. Worth the cost for a studio with regular class slots." },
+          { name: "Acuity Scheduling", cost: "Free to $25/mo", link: "https://acuityscheduling.com", desc: "A lighter booking option for solo instructors doing private sessions or small group classes before moving to a full studio system." }
+        ],
+        specificTodos: [
+          "Verify your RYT certification is current with Yoga Alliance if teaching yoga.",
+          "Get yoga or Pilates instructor liability insurance before your first class.",
+          "Decide whether you are building toward private clients, group classes, a studio, or online - each model has a different startup path."
+        ]
+      },
+      {
+        keywords: ["hair", "barber", "salon", "hairstylist", "hair stylist", "lash", "lashes", "nail", "nails", "esthetician", "esthetics", "cosmetology", "wax", "waxing", "brow", "skincare", "skin care", "facial"],
+        licenseNote: `Beauty and cosmetology services are licensed professions in every state. You need a valid ${state} cosmetology, barbering, esthetics, or nail technician license before charging clients. Renting a booth or suite also typically requires you to hold your own active license.`,
+        ideaNote: "Beauty service operators typically start by renting a booth or suite at an established salon to build their clientele before moving to a standalone space. Booth rent removes commission splits but means you cover your own supplies and marketing.",
+        specificTools: [
+          { name: "GlossGenius", cost: "From $24/mo", link: "https://glossgenius.com", desc: "Built for beauty professionals. Booking, deposits, client notes, text reminders, and payment processing designed around salon workflows." },
+          { name: "Square Appointments", cost: "Free for individuals", link: "https://squareup.com/us/en/appointments", desc: "Booking, card on file, and no-show protection built into the Square system you are likely already using for payments." }
+        ],
+        specificTodos: [
+          `Verify your ${state} cosmetology or esthetics license is active and in good standing before marketing.`,
+          "Get professional liability insurance specific to your service type before your first paid client.",
+          "Decide on booth rent vs. commission split - booth rent is typically better once you have a steady clientele but costs more upfront."
+        ]
+      },
+      {
+        keywords: ["food truck", "catering", "baking", "bakery", "cake", "restaurant", "cafe", "coffee", "meal prep", "chef", "personal chef", "cook", "cooking", "food delivery", "street food", "pop-up", "pop up"],
+        licenseNote: `Food businesses require a food handler permit, a commercial kitchen inspection, and often a county food facility permit before selling to the public. ${state} may also require a cottage food license for home-based baking or a mobile food facility permit for trucks. Check your county health department first.`,
+        ideaNote: "Food businesses have the most regulatory requirements of any small business. Getting the permits in order before your first sale is critical - fines for unlicensed food sales can close you down before you launch.",
+        specificTools: [
+          { name: "Square for Restaurants", cost: "From $60/mo (free plan available)", link: "https://squareup.com/us/en/point-of-sale/restaurants", desc: "Order management, payment processing, and menu management designed for food service operators." },
+          { name: "Toast", cost: "Free starter plan available", link: "https://pos.toasttab.com", desc: "Point of sale built for restaurants and food trucks. Online ordering, kitchen display, and delivery integration." }
+        ],
+        specificTodos: [
+          `Contact your ${state} county health department first - food permits are county-level and required before any sale.`,
+          "Complete your food handler certification (ServSafe is the national standard and recognized in most states).",
+          "Find a licensed commercial kitchen to rent if you do not have an approved kitchen - most counties require food to be prepared in an inspected facility."
+        ]
+      },
+      {
+        keywords: ["cleaning", "house cleaning", "maid", "residential cleaning", "home cleaning", "janitorial", "office cleaning"],
+        licenseNote: `Cleaning businesses generally do not require a professional license, but most ${state} counties require a general business license. If hiring employees, you will need workers' compensation insurance. Bonding is highly recommended for residential clients.`,
+        ideaNote: "Cleaning is one of the lowest-barrier businesses to start and one of the fastest to reach recurring revenue. The key variable is whether you go residential (higher-touch, referral-driven) or commercial (contract-based, more scalable).",
+        specificTools: [
+          { name: "Jobber", cost: "From $19/mo", link: "/directory/jobber.html", desc: "Quoting, scheduling, dispatching, and invoicing built for cleaning businesses. Client reminders and recurring job setup are standard features." },
+          { name: "ZenMaid", cost: "From $49/mo", link: "https://zenmaid.com", desc: "Built specifically for residential cleaning businesses. Recurring scheduling, automatic reminders, and client communication in one tool." }
+        ],
+        specificTodos: [
+          "Get bonded and insured before your first residential job - clients will ask and it protects you from claims.",
+          "Decide on residential vs. commercial focus before marketing - the client, pricing, and equipment requirements differ significantly.",
+          "Price your first jobs to cover labor, supplies, and travel - do not start below your actual cost to acquire a client."
+        ]
+      },
+      {
+        keywords: ["landscaping", "lawn care", "lawn mowing", "mowing", "lawn", "grass cutting", "gardening", "tree trimming", "pressure washing", "power washing", "snow removal", "irrigation"],
+        licenseNote: `Landscaping and lawn care typically require a county business license. Pesticide application requires a separate state pesticide applicator license in most states. Tree removal may require additional local permits depending on your county.`,
+        ideaNote: "Lawn care and landscaping are route-based businesses - the goal is to pack routes tightly by neighborhood to reduce drive time and maximize jobs per day. Most operators grow by neighborhood referrals before expanding into commercial contracts.",
+        specificTools: [
+          { name: "Jobber", cost: "From $19/mo", link: "/directory/jobber.html", desc: "The industry standard for field service businesses. Route optimization, quoting, scheduling, and invoicing in one system - built for exactly this type of work." },
+          { name: "Housecall Pro", cost: "From $49/mo", link: "/directory/housecall-pro.html", desc: "Booking, dispatching, customer communication, and payment collection for field service operators." }
+        ],
+        specificTodos: [
+          "Check your county for a business license requirement before your first paid job.",
+          "Get commercial general liability insurance - most property managers and HOA contracts will require proof of insurance.",
+          "Map your first routes by neighborhood - tight geography reduces fuel cost and lets you fit more jobs per day."
+        ]
+      },
+      {
+        keywords: ["plumber", "plumbing", "electrician", "electrical", "hvac", "hvac technician", "air conditioning", "heating", "contractor", "general contractor", "construction"],
+        licenseNote: `Trades work is heavily licensed. ${state} requires a state contractor license for plumbing, electrical, HVAC, and general contracting work above certain thresholds. Unlicensed trades work carries serious legal and insurance liability. Check ${state}'s contractor licensing board before taking any paid work.`,
+        ideaNote: "Licensed trades businesses are high-demand and can command premium pricing. The licensing process varies by trade and state - some require apprenticeship hours, exams, and bond/insurance before you can pull permits.",
+        specificTools: [
+          { name: "Jobber", cost: "From $19/mo", link: "/directory/jobber.html", desc: "Quoting, scheduling, dispatching, and invoicing built for trades businesses. Manage customer history, crew scheduling, and follow-ups from one dashboard." },
+          { name: "Housecall Pro", cost: "From $49/mo", link: "/directory/housecall-pro.html", desc: "Field service management with GPS tracking, customer communication, and instant payment collection. Popular across plumbing, electrical, and HVAC operators." }
+        ],
+        specificTodos: [
+          `Verify your ${state} contractor license status before marketing - practice without a license carries criminal and civil liability.`,
+          "Get commercial general liability and tools-and-equipment insurance before your first job.",
+          "Check whether your county or municipality requires a separate local contractor registration on top of your state license."
+        ]
+      },
+      {
+        keywords: ["painting", "painter", "house painting", "interior painting", "exterior painting", "handyman", "home repair", "remodeling", "renovation", "flooring", "tile"],
+        licenseNote: `Painting and handyman services have fewer licensing requirements than other trades, but most ${state} counties require a general business license. General contractors doing work above certain dollar thresholds typically need a state contractor license. Lead paint work on pre-1978 homes requires EPA RRP certification.`,
+        ideaNote: "Painting is one of the most accessible trade businesses to start and one that can scale quickly with subcontractors. Handyman services have lower ticket sizes but higher booking frequency - the model depends on whether you want fewer big jobs or more small ones.",
+        specificTools: [
+          { name: "Jobber", cost: "From $19/mo", link: "/directory/jobber.html", desc: "Quoting, scheduling, and job tracking for painting and handyman operators. Clients can approve quotes digitally and pay online when the job is done." }
+        ],
+        specificTodos: [
+          "Get a general liability certificate of insurance before your first job - property damage claims are common in painting and repair work.",
+          "Check whether your county requires a business license or contractor registration for the work you are doing.",
+          "Get EPA RRP certified if you work on homes built before 1978 - it is federally required for renovation work disturbing lead paint."
+        ]
+      },
+      {
+        keywords: ["tutoring", "tutor", "teaching", "academic coaching", "test prep", "sat prep", "act prep", "homework help"],
+        licenseNote: `Private tutoring does not require a state license, but if you operate as an educational business or tutor minors, many states require background checks and some require registration with the state education department. Check ${state}'s requirements if you plan to hire tutors.`,
+        ideaNote: "Tutoring is one of the highest-margin solo service businesses - no overhead, no inventory, and clients are sticky once results show. Most tutors start part-time and convert to full-time once their schedule is at 80%+ capacity.",
+        specificTools: [
+          { name: "Calendly", cost: "Free to $8/mo", link: "https://calendly.com", desc: "Self-booking for session scheduling. Clients pick their slot and pay a deposit - no back-and-forth needed." },
+          { name: "Zoom", cost: "Free for sessions under 40 min", link: "https://zoom.us", desc: "The standard platform for online tutoring. Whiteboard, screen share, and recording make it easy to track session content." }
+        ],
+        specificTodos: [
+          "Decide on your niche subject and grade level before marketing - specific tutors get more bookings than general ones.",
+          "Get a background check through a service like Checkr if you plan to work with minors - many families require it.",
+          "Set your rates above what tutoring platforms pay - platform rates are typically below the market rate for direct clients."
+        ]
+      },
+      {
+        keywords: ["childcare", "daycare", "child care", "babysitting", "nanny", "after school", "preschool", "home daycare"],
+        licenseNote: `Home-based childcare is regulated by ${state}'s child care licensing agency. Most states require a license or registration once you care for more than one or two unrelated children for pay. Background checks for all adults in the home are typically required. Check ${state}'s Office of Child Care before taking any paid clients.`,
+        ideaNote: "Home daycare has consistent demand and low startup cost but significant regulatory requirements. The licensing process can take several months - start the application before you market so you can open legally on day one.",
+        specificTools: [
+          { name: "Brightwheel", cost: "Free basic", link: "https://mybrightwheel.com", desc: "Designed for childcare providers. Attendance tracking, parent communication, billing, and daily activity logs - the standard app for home daycare and small centers." }
+        ],
+        specificTodos: [
+          `Contact ${state}'s child care licensing office first - get the application requirements before you tell anyone you are opening.`,
+          "Get a background check through your state's required channel before you can legally operate.",
+          "Get childcare provider liability insurance - home daycare policies are specific and standard homeowner's insurance does not cover business childcare activity."
+        ]
+      },
+      {
+        keywords: ["dog walking", "pet sitting", "dog trainer", "dog grooming", "pet grooming", "animal care", "pet care", "doggy daycare"],
+        licenseNote: `Pet care services generally do not require state licensing except for dog training (in some states) and grooming in a commercial facility (may require a pet shop license). Home-based boarding may be subject to local zoning rules. Check your county for home-based business restrictions.`,
+        ideaNote: "Pet care is referral-driven and sticky once clients trust you with their animals. Most dog walkers and sitters start through platforms like Rover or Wag to build reviews, then move to direct clients where margins are better.",
+        specificTools: [
+          { name: "Time To Pet", cost: "From $20/mo", link: "https://timetopet.com", desc: "The industry standard for independent pet care businesses. Scheduling, client communication, GPS tracking for walks, and invoicing built for exactly this business." },
+          { name: "Rover", cost: "No monthly cost - 20% commission", link: "https://rover.com/become-a-sitter", desc: "The fastest way to get your first clients and reviews. Move clients to direct booking once they trust you - your net per booking doubles." }
+        ],
+        specificTodos: [
+          "Get pet care professional liability insurance before your first client - NAPPS or Pet Sitters International offer affordable policies.",
+          "Set up a Rover profile to build reviews while you build your direct client base in parallel.",
+          "Check your county's home-based business rules if you are planning to board dogs at your home."
+        ]
+      },
+      {
+        keywords: ["notary", "mobile notary", "loan signing", "loan signing agent", "notary public", "signing agent"],
+        licenseNote: `Notary commissions are issued by ${state}'s Secretary of State or equivalent office. You will need to apply, pass an exam (in some states), and post a surety bond. Loan signing agents also complete the NNA's Signing Agent certification and background check, which most signing services require before assigning work.`,
+        ideaNote: "Mobile notary and loan signing is one of the most accessible and fast-to-launch service businesses. Commission approval takes 2-6 weeks depending on the state. Most signing agents start earning within 30 days of getting their NNA certification.",
+        specificTools: [
+          { name: "Snapdocs", cost: "Free for signers", link: "https://snapdocs.com", desc: "The primary platform that connects signing agents with signing services and title companies. Setting up your profile here is the most direct path to your first assignments." },
+          { name: "SigningOrder", cost: "Free", link: "https://signingorder.com", desc: "Secondary signing platform. List on multiple platforms to keep your schedule full." }
+        ],
+        specificTodos: [
+          `Apply for your ${state} notary commission through the Secretary of State's office - the fee is typically under $100.`,
+          "Complete the NNA Signing Agent certification and background check - required by most signing services before they will assign you closings.",
+          "Set up your Snapdocs profile as soon as you receive your commission - that is where most of your first assignments will come from."
+        ]
+      },
+      {
+        keywords: ["virtual assistant", "va ", "virtual assistant services", "executive assistant", "admin support", "administrative assistant"],
+        licenseNote: `Virtual assistant services do not require a license, but if you handle client social media, financial records, or legal documents, understanding the scope of what you are authorized to do protects both you and the client. A simple service agreement on every engagement is non-optional.`,
+        ideaNote: "VA businesses typically start with one or two clients and grow through referrals from those clients' networks. Specializing in a niche (legal VA, e-commerce VA, social media VA) typically commands higher rates than general admin support.",
+        specificTools: [
+          { name: "Dubsado", cost: "From $20/mo", link: "https://dubsado.com", desc: "CRM, contracts, invoicing, and client onboarding in one system. The industry standard for solo VAs managing multiple client relationships." },
+          { name: "Notion", cost: "Free", link: "https://notion.so", desc: "Build your client SOPs, project trackers, and internal knowledge base. Most VA clients will want you working inside their Notion workspace too." }
+        ],
+        specificTodos: [
+          "Set your minimum monthly retainer before you price your first client - hourly rates undervalue VA work once relationships grow.",
+          "Create a service agreement template before you take your first client - define scope, revision limits, and cancellation terms.",
+          "Pick a niche within the first 90 days - specialized VAs earn 30-50% more than generalists."
+        ]
+      },
+      {
+        keywords: ["photography", "photographer", "videography", "videographer", "photo", "video production", "real estate photography", "wedding photography", "portrait", "headshot"],
+        licenseNote: `Photography and videography businesses do not require a state license, but shooting on private property or drone photography requires explicit permission. FAA Part 107 certification is required for commercial drone use. Photographing minors requires signed model releases.`,
+        ideaNote: "Photography businesses grow fastest when niched - real estate, weddings, headshots, and product photography each have distinct client bases, pricing models, and referral networks. Generalist photographers compete on price; specialists compete on expertise.",
+        specificTools: [
+          { name: "HoneyBook", cost: "From $16/mo", link: "https://honeybook.com", desc: "Contracts, invoices, questionnaires, and project tracking in one tool. The most widely used CRM among wedding and portrait photographers." },
+          { name: "Pixieset", cost: "Free to $25/mo", link: "https://pixieset.com", desc: "Client gallery delivery, download tracking, and print sales. The standard way to deliver finished photos to clients professionally." }
+        ],
+        specificTodos: [
+          "Register your business name and get a general liability policy specific to photography before your first paid shoot.",
+          "Create a client contract template that covers usage rights, cancellation, delivery timeline, and revision terms.",
+          "Get FAA Part 107 certified if you plan to use a drone for any commercial work - it is a federal requirement and the exam is under $175."
+        ]
+      },
+      {
+        keywords: ["web design", "web designer", "web developer", "website design", "website developer", "app developer", "app development", "software developer", "software development", "ui ux", "ux design"],
+        licenseNote: `Web design and development businesses do not require a state license. However, contracts protecting your intellectual property, defining scope of work, and specifying ownership of deliverables are essential before starting any client project.`,
+        ideaNote: "Web design and development businesses grow fastest through referrals and a portfolio. Your first two or three projects - even discounted or pro bono - are what every future client will ask to see. Pick a niche early: e-commerce, SaaS, local business, or a specific industry.",
+        specificTools: [
+          { name: "Webflow", cost: "Free to build, from $14/mo to publish", link: "https://webflow.com", desc: "The strongest no-code and code hybrid for client web design. Clients can edit content without touching code - reduces ongoing support requests significantly." },
+          { name: "Dubsado", cost: "From $20/mo", link: "https://dubsado.com", desc: "Proposals, contracts, invoicing, and project timelines. Keeps every client engagement organized and professional from the first email." }
+        ],
+        specificTodos: [
+          "Create a client contract template before your first project - include IP ownership, payment milestones, revision limits, and kill fee.",
+          "Build three portfolio pieces before you pitch clients - even spec or personal projects count if they show the quality of your work.",
+          "Decide on your tech stack before client work begins - changing platforms mid-client is expensive in time and trust."
+        ]
+      },
+      {
+        keywords: ["social media", "social media manager", "social media marketing", "content creator", "content creation", "influencer", "digital marketing", "marketing agency", "copywriting", "copywriter", "seo", "email marketing"],
+        licenseNote: `Digital marketing and content businesses do not require a state license. If you run paid advertising for clients, make sure your client agreements specify who owns the ad accounts, what happens to data when the engagement ends, and what constitutes a deliverable.`,
+        ideaNote: "Social media and content services are highly commoditized at the low end. The fastest path to better clients and better rates is niche - industry-specific social media managers command higher retainers because clients see them as the expert, not just an executor.",
+        specificTools: [
+          { name: "Buffer", cost: "Free for up to 3 channels", link: "https://buffer.com", desc: "Scheduling, analytics, and engagement tracking for client accounts. Clean interface that clients can access to see reporting without giving up platform access." },
+          { name: "Later", cost: "From $18/mo", link: "https://later.com", desc: "Visual content calendar built for Instagram-heavy strategies. Link-in-bio tool and analytics make client reporting straightforward." }
+        ],
+        specificTodos: [
+          "Set your minimum retainer before you pitch your first client - project-based social media work undervalues the ongoing effort required.",
+          "Create a content intake process before your first client - knowing what assets, approvals, and access you need saves weeks of back-and-forth.",
+          "Decide on three industries you will specialize in - it triples your referral pool without limiting your ability to take other clients."
+        ]
+      },
+      {
+        keywords: ["airbnb", "short-term rental", "str", "vacation rental", "vrbo", "property management", "real estate", "rental property", "rent out", "hosting"],
+        licenseNote: `Short-term rental regulations vary significantly by city and county. Many ${state} municipalities require a short-term rental permit, a zoning approval, and in some cases a hotel-motel tax registration. Check your local municipality's STR ordinance before listing - unlicensed STRs face significant fines and forced removal from platforms.`,
+        ideaNote: "Short-term rental income depends on occupancy and nightly rate - both of which are highly location-dependent. Most successful operators start with one unit, optimize it fully, then expand rather than scaling too fast before they understand the demand pattern.",
+        specificTools: [
+          { name: "Hostaway", cost: "Pricing on request", link: "/directory/hostaway.html", desc: "Channel manager connecting your listing across Airbnb, VRBO, Booking.com, and direct bookings. Unified inbox, automated messaging, and owner reporting." },
+          { name: "Lodgify", cost: "From $12/mo", link: "/directory/lodgify.html", desc: "Direct booking website, channel manager, and property management system. Reduces platform dependency and removes commission on direct bookings." }
+        ],
+        specificTodos: [
+          `Check your ${state} municipality's short-term rental ordinance before listing - permit requirements and enforcement vary significantly by city.`,
+          "Register for your local hotel/motel tax account - most cities require STR hosts to collect and remit occupancy tax.",
+          "Get STR-specific property insurance - standard homeowner's policies typically exclude commercial rental activity."
+        ]
+      },
+      {
+        keywords: ["delivery", "courier", "package delivery", "last mile", "logistics", "rideshare", "uber driver", "lyft driver", "doordash", "instacart", "gig"],
+        licenseNote: `Platform-based delivery and rideshare requires a business vehicle insurance policy or a rideshare endorsement on your personal auto policy. Standard personal auto insurance typically does not cover commercial delivery or rideshare activity - a gap that leaves drivers uninsured during active trips.`,
+        ideaNote: "Platform delivery and rideshare can start generating income the same day you are approved. The income ceiling on platforms is limited by your hours - operators who want to scale move toward independent courier contracts with local businesses, which pay flat rates without platform fees.",
+        specificTools: [
+          { name: "Stride", cost: "Free", link: "https://stridehealth.com", desc: "Mileage tracking, expense logging, and tax prep for gig workers. Tracks deductible miles automatically in the background while you drive." },
+          { name: "Gridwise", cost: "Free basic", link: "https://gridwise.io", desc: "Earnings tracking across multiple gig platforms in one dashboard. Shows you which platform and which time windows are generating the best per-hour rate." }
+        ],
+        specificTodos: [
+          "Call your insurance provider today and disclose your delivery or rideshare activity - you need a commercial or rideshare endorsement before your first trip.",
+          "Start tracking every mile from day one - vehicle mileage is your largest tax deduction as a gig driver.",
+          "Compare platform rates by hour in your market before committing to one - earnings per hour vary significantly by platform and time of day."
+        ]
+      },
+      {
+        keywords: ["car detailing", "auto detailing", "mobile detailing", "detailing", "car wash", "ceramic coating", "paint correction", "window tinting"],
+        licenseNote: `Auto detailing does not require a state license, but mobile detailing that uses wastewater must comply with local stormwater regulations - washing runoff cannot enter storm drains in most municipalities. Check your county's environmental rules before operating.`,
+        ideaNote: "Mobile auto detailing is a low-overhead, high-repeat business. The upgrade from basic washes to paint correction, ceramic coating, and protection packages dramatically increases ticket size. Most successful detailers charge by service package, not by the hour.",
+        specificTools: [
+          { name: "Jobber", cost: "From $19/mo", link: "/directory/jobber.html", desc: "Quoting, scheduling, and invoicing built for mobile service businesses. Client history, job notes, and payment collection in one system." },
+          { name: "DetailingPRO", cost: "Varies", link: "https://detailingpro.com", desc: "Industry education, pricing guides, and coating certification programs. Useful for moving into higher-margin ceramic and protection services." }
+        ],
+        specificTodos: [
+          "Check your county's stormwater rules for mobile detailing - you may need a water reclamation system or to operate only in approved locations.",
+          "Build package pricing before your first client - basic wash, full detail, and paint correction should be separate offerings with clear pricing.",
+          "Get commercial auto and general liability insurance before operating - client vehicle damage claims happen and you need to be covered."
+        ]
+      }
+    ];
+
+    function getIdeaProfile(ideaText) {
+      if (!ideaText) return null;
+      const lower = ideaText.toLowerCase();
+      for (const profile of ideaProfiles) {
+        if (profile.keywords.some(kw => lower.includes(kw))) return profile;
+      }
+      return null;
+    }
+
+    const ideaProfile = getIdeaProfile(idea);
+
     let html = `
       <div class="ff-result">
         <div class="ff-result-header">
@@ -3970,6 +4264,32 @@
           </div>
         </div>
     `;
+
+    if (ideaProfile) {
+      html += `
+        <div class="ff-section ff-section--idea">
+          <p class="ff-section-num">About Your Idea</p>
+          <h4 class="ff-section-title">Specific to ${idea}</h4>
+          <p class="ff-section-sub">${ideaProfile.ideaNote}</p>
+          ${ideaProfile.licenseNote ? `<div class="ff-note ff-note--warning"><strong>License or Certification Note:</strong> ${ideaProfile.licenseNote}</div>` : ""}
+          ${ideaProfile.specificTools && ideaProfile.specificTools.length ? `
+            <p class="ff-section-sub" style="margin-top:14px;font-weight:600">Tools built for this type of business:</p>
+            ${ideaProfile.specificTools.map(t => `
+              <div class="ff-tool">
+                <div class="ff-tool-name">${t.name} <span class="ff-tool-cost">${t.cost}</span> <a class="ff-tool-link" href="${t.link}" target="_blank">Visit &rarr;</a></div>
+                <p class="ff-tool-desc">${t.desc}</p>
+              </div>
+            `).join("")}
+          ` : ""}
+          ${ideaProfile.specificTodos && ideaProfile.specificTodos.length ? `
+            <p class="ff-section-sub" style="margin-top:14px;font-weight:600">Steps specific to this business:</p>
+            <ul class="ff-todo-list" style="list-style:disc;padding-left:18px">
+              ${ideaProfile.specificTodos.map(t => `<li class="ff-todo-item">${t.replace("${state}", state)}</li>`).join("")}
+            </ul>
+          ` : ""}
+        </div>
+      `;
+    }
 
     for (const sec of sections) {
       html += `<div class="ff-section">

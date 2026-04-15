@@ -2629,8 +2629,8 @@
       </section>
       <section class="saved-block plan-page-block" style="display:flex;justify-content:space-between;align-items:center;padding:8px 0 20px;gap:12px;margin-bottom:20px;">
         <div style="display:flex;gap:16px;">
-          <button class="utility-link" data-action="export-founder-file" style="font-size:12px;color:#aaa;">Export as PDF</button>
-          <button class="utility-link" data-action="copy-founder-file-text" style="font-size:12px;color:#aaa;" id="copyFounderTextBtn">Copy as text</button>
+          <button class="utility-link utility-link--no-arrow" data-action="export-founder-file" style="font-size:12px;color:#475569;">Export as PDF</button>
+          <button class="utility-link utility-link--no-arrow" data-action="copy-founder-file-text" style="font-size:12px;color:#475569;" id="copyFounderTextBtn">Copy as text</button>
         </div>
         ${appState.isSignedIn ? `<button class="utility-link" data-action="confirm-delete-account" style="font-size:12px;color:#aaa;">Delete my account</button>` : ""}
       </section>

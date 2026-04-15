@@ -1335,6 +1335,10 @@ button.field-toggle::after {
   content: " \2192";
 }
 
+.utility-link--no-arrow::after {
+  content: none;
+}
+
 .text-link {
   display: inline-flex;
   align-items: center;

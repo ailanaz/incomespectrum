@@ -2582,8 +2582,8 @@
         <p class="section-kicker">Go Deeper</p>
         <p>Have an idea you want to dig deeper into? Founder Focus builds out the tools, legal steps, and a first-week plan for your business and state.</p>
         <div style="display:flex;justify-content:space-between;align-items:center">
-          <button class="utility-link" data-action="open-stack">Founder Focus Tool</button>
-          <button class="utility-link" data-action="open-quiz">Quiz</button>
+          <button class="utility-link utility-link--no-arrow" data-action="open-stack">Founder Focus Tool</button>
+          <button class="utility-link utility-link--no-arrow" data-action="open-quiz">Quiz</button>
         </div>
       </section>
       <section class="saved-block plan-page-block" id="founderFileNotesSection">

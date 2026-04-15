@@ -251,14 +251,14 @@
         </section>
 
         <div class="home-dashboard-grid">
-          <section class="card home-panel home-panel--quiz">
+          <section class="card home-panel home-panel--quiz" id="homeFocusPanel">
             <div class="card-header">
               <div>
-                <p class="section-kicker">Find Your Focus</p>
+                <p class="section-kicker" id="homeFocusPanelKicker">Find Your Focus</p>
               </div>
             </div>
-            <p>Understand What People Pay For.</p>
-            <button class="text-link" data-action="open-quiz">Find Your Focus</button>
+            <p id="homeFocusPanelCopy">Understand what people pay for and find income ideas matched to how you work.</p>
+            <button class="text-link" id="homeFocusPanelBtn" data-action="open-quiz">Take the Quiz</button>
           </section>
 
           <section class="card home-panel home-panel--pbpp">
@@ -484,6 +484,23 @@
         <p id="quizProgressText"></p>
       </div>
       <div id="quizBody"></div>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="founderFocusOverlay">
+    <div class="overlay-panel">
+      <div class="overlay-header">
+        <div>
+          <p class="section-kicker">Founder Focus</p>
+          <h2 id="founderFocusTitle">Build Your Stack</h2>
+        </div>
+        <button class="close-btn" data-action="close-overlay" data-target="founderFocusOverlay">Close</button>
+      </div>
+      <div class="quiz-progress">
+        <div class="quiz-progress__bar"><span id="founderFocusProgressBar"></span></div>
+        <p id="founderFocusProgressText"></p>
+      </div>
+      <div id="founderFocusBody"></div>
     </div>
   </div>
 

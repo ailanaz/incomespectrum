@@ -309,11 +309,81 @@
     .btn-pdf:hover { background: #155f24; }
 
     @media print {
-      body { background: #fff; padding: 0; }
+      @page { margin: 0.6in 0.7in; }
+      body { background: #fff !important; padding: 0 !important; font-size: 11px; }
+
+      /* Hide everything except the result */
       .result-actions, #quiz-shell, .brand { display: none !important; }
       #result-shell { display: block !important; }
-      .result-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .result-section { page-break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+
+      /* Header - keep navy background */
+      .result-header {
+        background: #14253d !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        border-radius: 6px;
+        padding: 14px 16px;
+        margin-bottom: 10px;
+      }
+      .result-header .kicker { color: #fdd215 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; font-size: 9px; }
+      .result-header h1 { font-size: 15px; margin-bottom: 8px; }
+      .goal-pill { font-size: 9px; padding: 2px 8px; }
+
+      /* Sections - compact, no shadows, page-break safe */
+      .result-section {
+        border: 1px solid #d0d0d0 !important;
+        box-shadow: none !important;
+        padding: 12px 14px !important;
+        margin-bottom: 8px !important;
+        page-break-inside: avoid;
+        border-radius: 6px !important;
+      }
+      .result-section-header { margin-bottom: 10px !important; }
+      .result-section-num { font-size: 8px; }
+      .result-section-title { font-size: 13px !important; margin-bottom: 2px !important; }
+      .result-section-sub { font-size: 10px !important; margin-bottom: 0 !important; }
+
+      /* Tools */
+      .tool-entry { margin-bottom: 7px !important; }
+      .tool-name { font-size: 11px !important; }
+      .tool-cost {
+        background: #e6f4eb !important;
+        color: #14622c !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        font-size: 9px;
+      }
+      .tool-link { display: none !important; }
+      .tool-desc { font-size: 10px !important; line-height: 1.45 !important; }
+
+      /* Note boxes */
+      .note-box {
+        background: #fffbeb !important;
+        border-color: #fcd34d !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        padding: 8px 10px !important;
+        font-size: 10px !important;
+      }
+
+      /* To-do list */
+      .todo-list { gap: 6px !important; }
+      .todo-list li { font-size: 10px !important; }
+      .todo-num {
+        background: #14253d !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        width: 18px !important; height: 18px !important;
+        font-size: 9px !important;
+      }
+
+      /* Footer */
+      .result-footer {
+        font-size: 9px !important;
+        margin-top: 10px !important;
+        padding: 10px 0 0 !important;
+        border-top: 1px solid #e2e2e2 !important;
+      }
     }
 
     @media (max-width: 480px) {

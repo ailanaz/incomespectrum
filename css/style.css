@@ -584,6 +584,89 @@ p { margin: 0; }
 }
 
 /* ============================================================
+   FIND YOUR FOCUS - Homepage Section
+   ============================================================ */
+.fyf-section {
+  padding: var(--gap-xl) 0;
+  background: #f0f7f2;
+  border-top: 1px solid #d4e8da;
+  border-bottom: 1px solid #d4e8da;
+}
+.fyf-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+  background: #fff;
+  border: 2px solid #14253d;
+  border-radius: 16px;
+  padding: 36px 40px;
+  box-shadow: 0 8px 0 rgba(20,37,61,0.07), 0 12px 32px rgba(20,37,61,0.10);
+}
+.fyf-card__kicker {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #19782e;
+  margin: 0 0 10px;
+}
+.fyf-card__title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #14253d;
+  margin: 0 0 12px;
+  line-height: 1.2;
+}
+.fyf-card__desc {
+  font-size: 15px;
+  color: #5e6470;
+  line-height: 1.6;
+  margin: 0 0 22px;
+  max-width: 480px;
+}
+.fyf-card__btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  background: #14253d;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.fyf-card__btn:hover { background: #1b48d8; color: #fff; }
+.fyf-card__visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 220px;
+  flex-shrink: 0;
+}
+.fyf-pip {
+  padding: 9px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  border: 1.5px solid;
+}
+.fyf-pip--1 { background: #fef2f2; border-color: #fca5a5; color: #991b1b; }
+.fyf-pip--2 { background: #eff6ff; border-color: #93c5fd; color: #1d4ed8; }
+.fyf-pip--3 { background: #fdf4ff; border-color: #d8b4fe; color: #7e22ce; }
+.fyf-pip--4 { background: #fffbeb; border-color: #fcd34d; color: #92400e; }
+.fyf-pip--5 { background: #f0fdf4; border-color: #86efac; color: #166534; }
+.fyf-pip--6 { background: #fff7ed; border-color: #fdba74; color: #9a3412; }
+@media (max-width: 700px) {
+  .fyf-card { grid-template-columns: 1fr; }
+  .fyf-card__visual { display: none; }
+  .fyf-card { padding: 28px 24px; }
+  .fyf-card__title { font-size: 22px; }
+}
+
+/* ============================================================
    CATEGORY CARDS (Homepage)
    ============================================================ */
 .dir-categories {

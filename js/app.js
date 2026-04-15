@@ -1076,6 +1076,8 @@
 
   let appState = normalizeQuizState(loadState());
   let quizIndex = -1;
+  let ffStep = 0;
+  let ffSelections = { name: "", idea: "", businessType: "", budget: "" };
   let savedFilter = "all";
   let exploreFilter = "all";
 
@@ -1106,6 +1108,14 @@
       showView(appState.activeView || "home");
       await restoreOverlayState();
     }
+    // Auto-open quiz if launched from website with ?quiz=1
+    if (new URLSearchParams(window.location.search).get("quiz") === "1" && appState.setupComplete) {
+      quizIndex = -1;
+      renderQuiz();
+      openOverlay("quizOverlay", { kind: "quiz" });
+      history.replaceState(null, "", window.location.pathname);
+    }
+
     // Firebase auth state listener - restores session across devices
     if (typeof firebase !== "undefined") {
       firebase.auth().onAuthStateChanged(async (user) => {
@@ -1430,6 +1440,16 @@
         quizIndex = -1;
         renderQuiz();
         openOverlay("quizOverlay", { kind: "quiz" });
+      } else if (action === "open-stack") {
+        if (appState.isSignedIn) {
+          ffStep = 0;
+          ffSelections = { name: "", idea: "", businessType: "", budget: "" };
+          renderFounderFocus();
+          openOverlay("founderFocusOverlay", { kind: "founder-focus" });
+        } else {
+          renderPlannerSignupPrompt();
+          openOverlay("progressOverlay", { kind: "planner-signup" });
+        }
       } else if (action === "open-articles") {
         renderArticleDirectory();
       } else if (action === "open-terms") {
@@ -1508,6 +1528,29 @@
         nextQuizStep();
       } else if (action === "quiz-back") {
         previousQuizStep();
+      } else if (action === "ff-next") {
+        ffStep++;
+        renderFounderFocus();
+      } else if (action === "ff-back") {
+        ffStep = Math.max(0, ffStep - 1);
+        renderFounderFocus();
+      } else if (action === "ff-select") {
+        const field = actionNode.dataset.field;
+        const val = actionNode.dataset.value;
+        if (field) {
+          ffSelections[field] = val;
+          document.querySelectorAll(`[data-field="${field}"].ff-option`).forEach(b => b.classList.remove("selected"));
+          actionNode.classList.add("selected");
+          const nextBtn = document.getElementById("ffNextBtn");
+          if (nextBtn) nextBtn.disabled = false;
+        }
+      } else if (action === "ff-build") {
+        ffStep = "result";
+        renderFounderFocus();
+      } else if (action === "ff-restart") {
+        ffStep = 0;
+        ffSelections = { name: "", idea: "", businessType: "", budget: "" };
+        renderFounderFocus();
       } else if (action === "save-quiz-result") {
         if (appState.isSignedIn) {
           saveQuizResult();
@@ -2151,6 +2194,24 @@
 
     const recentMarkup = appState.recentlyViewed.slice(0, 1).map((id) => renderMiniCard(findItem(id), "Revisit")).join("");
     document.getElementById("recentlyViewed").innerHTML = recentMarkup || `<div class="empty-state">Recently viewed items will show up here.</div>`;
+
+    // Switch home focus panel between quiz (guest) and Founder Focus (signed in)
+    const kicker = document.getElementById("homeFocusPanelKicker");
+    const copy = document.getElementById("homeFocusPanelCopy");
+    const btn = document.getElementById("homeFocusPanelBtn");
+    if (kicker && copy && btn) {
+      if (appState.isSignedIn) {
+        kicker.textContent = "Founder Focus";
+        copy.textContent = "Have a specific idea? Build out the tools, legal steps, and first-week plan for your business and state.";
+        btn.textContent = "Open Founder Focus";
+        btn.dataset.action = "open-stack";
+      } else {
+        kicker.textContent = "Find Your Focus";
+        copy.textContent = "Understand what people pay for and find income ideas matched to how you work.";
+        btn.textContent = "Take the Quiz";
+        btn.dataset.action = "open-quiz";
+      }
+    }
   }
 
   function buildFounderSpaceStatusMarkup() {
@@ -2559,10 +2620,11 @@
         <div class="doc-modules">${renderBusinessDocsModule()}</div>
       </section>
       <section class="saved-block plan-page-block">
-        <p class="section-kicker">Explore Another Set of Ideas</p>
-        <p>If you are feeling different, seeing a different opportunity pattern, or want to test another set of ideas, you can revisit Find Your Focus.</p>
-        <div class="inline-actions">
-          <button class="utility-link" data-action="open-quiz">Revisit Find Your Focus</button>
+        <p class="section-kicker">Go Deeper</p>
+        <p>Have a specific idea in mind? Founder Focus builds out the tools, legal steps, and a first-week plan for your business and state.</p>
+        <div class="inline-actions" style="gap:12px">
+          <button class="utility-link" data-action="open-stack">Open Founder Focus</button>
+          <button class="utility-link" data-action="open-quiz" style="font-size:12px;color:var(--app-text-soft)">Retake Find Your Focus</button>
         </div>
       </section>
       <section class="saved-block plan-page-block" style="display:flex;justify-content:space-between;align-items:center;padding:8px 0 20px;gap:12px;margin-bottom:20px;">
@@ -3576,6 +3638,396 @@
       </div>
     `;
   }
+
+  // ─── FOUNDER FOCUS ────────────────────────────────────────────────────────
+
+  const ffBusinessTypes = [
+    { value: "mobile-service",  label: "Mobile or on-site service",        detail: "You go to the client - trades, detailing, cleaning, delivery, mobile services." },
+    { value: "local-service",   label: "Appointment-based local service",   detail: "Clients come to you or meet you locally - notary, salon, wellness, studio." },
+    { value: "online-service",  label: "Online or remote service",          detail: "You work from anywhere - VA, consulting, content, coaching, design." },
+    { value: "product",         label: "Product business",                  detail: "Physical or digital products - e-commerce, resale, print-on-demand, handmade." },
+    { value: "venue",           label: "Experience or venue",               detail: "Clients pay to be somewhere you operate - escape room, retreat, lodging, studio." }
+  ];
+  const ffBudgets = [
+    { value: "free", label: "Free tools only",             detail: "Start lean. Tools with no monthly cost only." },
+    { value: "low",  label: "Under $50 per month",         detail: "A small tool cost is fine if it clearly earns its place." },
+    { value: "paid", label: "Open to investing in tools",  detail: "Will pay for tools that save real time or generate revenue." }
+  ];
+  const ffBusinessTypeLabels = {
+    "mobile-service": "Mobile or On-Site Service",
+    "local-service":  "Appointment-Based Local Service",
+    "online-service": "Online or Remote Service",
+    "product":        "Product Business",
+    "venue":          "Experience or Venue"
+  };
+  const ffBudgetLabels = { free: "Free tools only", low: "Under $50/mo", paid: "Open to investing" };
+
+  function renderFounderFocus() {
+    const body = document.getElementById("founderFocusBody");
+    const progressBar = document.getElementById("founderFocusProgressBar");
+    const progressText = document.getElementById("founderFocusProgressText");
+    const title = document.getElementById("founderFocusTitle");
+    if (!body) return;
+
+    const totalSteps = 3;
+
+    if (ffStep === "result") {
+      if (title) title.textContent = "Your Founder Focus";
+      if (progressText) progressText.textContent = "Result";
+      if (progressBar) progressBar.style.width = "100%";
+      body.innerHTML = renderFounderFocusResult();
+      return;
+    }
+
+    const stepNum = ffStep + 1;
+    if (progressText) progressText.textContent = `Step ${stepNum} of ${totalSteps}`;
+    if (progressBar) progressBar.style.width = `${(stepNum / totalSteps) * 100}%`;
+
+    if (ffStep === 0) {
+      if (title) title.textContent = "Founder Focus";
+      body.innerHTML = `
+        <div class="quiz-question">
+          <h3>Your Business</h3>
+          <p>Tell us about the idea you want to build out. Both fields are optional - they personalize your output.</p>
+          <div class="ff-field">
+            <label for="ffNameInput">Your first name</label>
+            <input id="ffNameInput" type="text" placeholder="e.g. Sarah" value="${ffSelections.name}" class="ff-input">
+          </div>
+          <div class="ff-field">
+            <label for="ffIdeaInput">Your business idea</label>
+            <input id="ffIdeaInput" type="text" placeholder="e.g. Mobile Car Detailing, Escape Room, Virtual Assistant" value="${ffSelections.idea}" class="ff-input">
+          </div>
+          <div class="quiz-nav quiz-nav--intro">
+            <button class="app-btn app-btn--primary" data-action="ff-next" id="ffNextBtn0">Next</button>
+          </div>
+        </div>
+      `;
+      document.getElementById("ffNameInput").addEventListener("input", e => { ffSelections.name = e.target.value; });
+      document.getElementById("ffIdeaInput").addEventListener("input", e => { ffSelections.idea = e.target.value; });
+    } else if (ffStep === 1) {
+      if (title) title.textContent = "Business Type";
+      body.innerHTML = `
+        <div class="quiz-question">
+          <h3>What kind of business are you building?</h3>
+          <p>Choose the type that fits closest.</p>
+          <div class="quiz-options">
+            ${ffBusinessTypes.map(o => `
+              <button class="quiz-option ff-option ${ffSelections.businessType === o.value ? "selected" : ""}" data-action="ff-select" data-field="businessType" data-value="${o.value}">
+                <strong>${o.label}</strong>
+                <small>${o.detail}</small>
+              </button>`).join("")}
+          </div>
+          <div class="quiz-nav">
+            <button class="app-btn app-btn--ghost" data-action="ff-back">Back</button>
+            <button class="app-btn app-btn--primary" id="ffNextBtn" data-action="ff-next" ${!ffSelections.businessType ? "disabled" : ""}>Next</button>
+          </div>
+        </div>
+      `;
+    } else if (ffStep === 2) {
+      if (title) title.textContent = "Starting Budget";
+      body.innerHTML = `
+        <div class="quiz-question">
+          <h3>What is your starting budget for tools?</h3>
+          <p>Most strong stacks start free. You can always upgrade later.</p>
+          <div class="quiz-options">
+            ${ffBudgets.map(o => `
+              <button class="quiz-option ff-option ${ffSelections.budget === o.value ? "selected" : ""}" data-action="ff-select" data-field="budget" data-value="${o.value}">
+                <strong>${o.label}</strong>
+                <small>${o.detail}</small>
+              </button>`).join("")}
+          </div>
+          <div class="quiz-nav">
+            <button class="app-btn app-btn--ghost" data-action="ff-back">Back</button>
+            <button class="app-btn app-btn--primary" id="ffNextBtn" data-action="ff-build" ${!ffSelections.budget ? "disabled" : ""}>Build My Stack</button>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  function renderFounderFocusResult() {
+    const { name, idea, businessType, budget } = ffSelections;
+    const state = appState.selectedState || "your state";
+    const stateSlug = state.toLowerCase().replace(/\s+/g, "-");
+    const displayName = name || "";
+    const businessLabel = ffBusinessTypeLabels[businessType] || businessType;
+    const budgetLabel = ffBudgetLabels[budget] || budget;
+    const planTitle = idea
+      ? (displayName ? `${displayName}'s Game Plan: ${idea}` : `Game Plan: ${idea}`)
+      : `${businessLabel} - ${state}`;
+
+    // Tool data keyed by business type
+    const allSections = {
+      "mobile-service": [
+        { num: 1, title: "Your Public Shop Window",     sub: "How people find you and see your work quality.",
+          tools: [
+            { name: "Instagram Business", cost: "Free", link: "https://business.instagram.com", desc: "Post before-and-after shots of every job. Location tags put your work in front of neighbors before they ever search." },
+            { name: "Google Business Profile", cost: "Free", link: "https://business.google.com", desc: "The single highest-ROI free move for a local service business. Puts you on the map with your number, hours, and reviews." },
+            { name: "Canva", cost: "Free", link: "https://canva.com", desc: "Make flyers, price lists, and post templates to share in neighborhood groups. No design background needed." }
+          ]
+        },
+        { num: 2, title: "Your Digital Wallet",        sub: "How you get paid after every job.",
+          tools: [
+            { name: "Square", cost: "Free app", link: "https://squareup.com", desc: "Accept card payments the moment you finish each job. Clients get a digital receipt instantly. No cash, no waiting." },
+            { name: "PayPal Business", cost: "Free", link: "https://paypal.com/us/business", desc: "Most clients already have it. Text a payment request link and get paid before you drive away." }
+          ],
+          note: "Open a separate free checking account before your first paid job - even if you are not yet registered. Keep business money completely separate from day one."
+        },
+        { num: 3, title: "Staying Legal",              sub: "State registration and county permit basics.",
+          legal: true
+        },
+        { num: 4, title: "Daily Work Tools",           sub: "Tools that save you time so you are not doing paperwork all evening.",
+          tools: [
+            { name: "WhatsApp Business", cost: "Free", link: "https://business.whatsapp.com", desc: "Set an auto-reply so clients get a response while you are mid-job. Broadcast lists for appointment reminders without texting each person." },
+            ...(budget !== "free" ? [{ name: "Jobber", cost: "From $19/mo", link: "/directory/jobber.html", desc: "Quoting, scheduling, dispatching, invoicing, and payments built for field service. Worth the cost once you hit 20+ jobs per week." }] : [])
+          ]
+        },
+        { num: 5, title: "Tracking Your Money",        sub: "Keep your books clean from day one.",
+          tools: [
+            { name: "Wave", cost: "Free", link: "https://waveapps.com", desc: "Track every job, every expense, and every payment. Clean records when tax time arrives without sorting through months of receipts." },
+            ...(budget === "paid" ? [{ name: "QuickBooks Simple Start", cost: "From $17.50/mo", link: "https://quickbooks.intuit.com", desc: "Mileage tracking, bank sync, and tax-ready categories. Worth the cost once your job volume grows." }] : [])
+          ]
+        }
+      ],
+      "local-service": [
+        { num: 1, title: "How Clients Find You",       sub: "Your digital presence and first impression.",
+          tools: [
+            { name: "Google Business Profile", cost: "Free", link: "https://business.google.com", desc: "New clients search before they call. A verified Google listing with photos and reviews is the most important free marketing step." },
+            { name: "Canva", cost: "Free", link: "https://canva.com", desc: "Design your price menu, service cards, and appointment reminder graphics without a design budget." },
+            { name: "Meta Business Suite", cost: "Free", link: "https://business.facebook.com", desc: "Manage Facebook and Instagram together. Local Facebook groups still drive real booking leads." }
+          ]
+        },
+        { num: 2, title: "How You Get Paid",           sub: "Collecting payment professionally from the first booking.",
+          tools: [
+            { name: "Square", cost: "Free app", link: "https://squareup.com", desc: "Accept cards, send digital receipts, and track every transaction. The free card reader ships to your door." },
+            { name: "Calendly", cost: "Free", link: "https://calendly.com", desc: "Clients book their own appointment without back-and-forth. Double-bookings go to zero." }
+          ],
+          note: "Set aside 25-30% of every payment for quarterly estimated taxes. Self-employment tax applies from your first dollar."
+        },
+        { num: 3, title: "Staying Legal",              sub: "State registration and local license steps.", legal: true },
+        { num: 4, title: "Running Your Practice",      sub: "Keeping bookings, follow-ups, and client records organized.",
+          tools: [
+            { name: "HubSpot CRM", cost: "Free", link: "https://hubspot.com/products/crm", desc: "Track every client, their service history, and your follow-up tasks. Repeat business is built on the follow-up." }
+          ]
+        },
+        { num: 5, title: "Tracking Your Money",        sub: "Keep your books clean from the first appointment.",
+          tools: [
+            { name: "Wave", cost: "Free", link: "https://waveapps.com", desc: "Free invoicing, expense tracking, and basic financial reports. Enough for most solo local service operators." },
+            ...(budget !== "free" ? [{ name: "QuickBooks Simple Start", cost: "From $17.50/mo", link: "https://quickbooks.intuit.com", desc: "Industry standard. Your accountant already knows it. Books are clean and tax-ready." }] : [])
+          ]
+        }
+      ],
+      "online-service": [
+        { num: 1, title: "Your Digital Presence",      sub: "How potential clients find you and decide you are the right hire.",
+          tools: [
+            { name: "LinkedIn Business Profile", cost: "Free", link: "https://linkedin.com", desc: "Most online service clients check LinkedIn first. List your services clearly and show your work." },
+            { name: "Canva", cost: "Free", link: "https://canva.com", desc: "Build content templates once - quote graphics, tip cards, case study layouts - and reuse them every week." },
+            { name: "Calendly", cost: "Free", link: "https://calendly.com", desc: "The standard for discovery calls and onboarding sessions. Every online service operator needs a shareable booking link from day one." }
+          ]
+        },
+        { num: 2, title: "Collecting Payment",         sub: "Getting paid online, fast, and professionally.",
+          tools: [
+            { name: "Stripe", cost: "Free to set up", link: "https://stripe.com", desc: "Send clients a payment link, set up recurring invoices, or charge a card on file - all from one dashboard." },
+            { name: "PayPal Business", cost: "Free", link: "https://paypal.com/us/business", desc: "Many clients prefer paying freelancers through PayPal. Works alongside Stripe as a backup option." }
+          ],
+          note: "Track all income from day one. PayPal transfers, invoices, and direct deposits all count as taxable income. Set aside 25-30% for quarterly taxes."
+        },
+        { num: 3, title: "Staying Legal",              sub: "Business registration and compliance for online operators.", legal: true },
+        { num: 4, title: "Running Your Practice",      sub: "Managing clients, projects, and schedule.",
+          tools: [
+            { name: "Notion", cost: "Free", link: "https://notion.so", desc: "Client workspace, project tracker, proposal templates, and operations manual in one flexible tool. Most solo online operators run their entire practice from Notion." },
+            { name: "HubSpot CRM", cost: "Free", link: "https://hubspot.com/products/crm", desc: "Track every lead, proposal, and client relationship. The free plan is robust enough for a solo consulting or agency practice." }
+          ]
+        },
+        { num: 5, title: "Tracking Your Income",       sub: "Keep your books clean and your tax bill predictable.",
+          tools: [
+            { name: "Wave", cost: "Free", link: "https://waveapps.com", desc: "Connect your bank, track client payments automatically, and send professional invoices. Free accounting without a monthly cost." },
+            ...(budget !== "free" ? [{ name: "QuickBooks Simple Start", cost: "From $17.50/mo", link: "https://quickbooks.intuit.com", desc: "Handles contractor payments, time tracking, and invoice automation. Industry standard as your client base grows." }] : [])
+          ]
+        }
+      ],
+      "product": [
+        { num: 1, title: "Getting Eyes on Your Products", sub: "How buyers find and trust your products.",
+          tools: [
+            { name: "Instagram Business", cost: "Free", link: "https://business.instagram.com", desc: "Your feed is your storefront. Show products in use, unboxing moments, and customer reactions. Visual proof drives purchase decisions." },
+            { name: "Meta Business Suite", cost: "Free", link: "https://business.facebook.com", desc: "Run ads, manage your product catalog, and track which content drives traffic and sales." },
+            { name: "Canva", cost: "Free", link: "https://canva.com", desc: "Product post templates, packaging mockups, and promotional graphics. Your brand stays consistent across every channel." }
+          ]
+        },
+        { num: 2, title: "Your Store",                 sub: "Where your products live and how buyers check out.",
+          tools: [
+            { name: "Etsy", cost: "Free to open", link: "https://etsy.com/sell", desc: "Built-in buyer traffic from day one. Best for handmade, custom, vintage, or unique products where discovery is part of the purchase journey." },
+            { name: "Printful", cost: "Free", link: "https://printful.com", desc: "Connects to your Etsy or Shopify store and handles printing and shipping automatically. No inventory, no upfront cost." },
+            ...(budget !== "free" ? [{ name: "Shopify", cost: "From $39/mo", link: "https://shopify.com", desc: "Store, payments, shipping, inventory, and analytics in one system. Best when you need your own storefront outside Etsy." }] : [])
+          ]
+        },
+        { num: 3, title: "How Buyers Pay You",         sub: "Payment processing and financial setup.",
+          tools: [
+            { name: "Stripe", cost: "Free to set up", link: "https://stripe.com", desc: "Connects to your Shopify or custom store. Strong fraud protection and international currency support." },
+            { name: "PayPal Business", cost: "Free", link: "https://paypal.com/us/business", desc: "Universally trusted for e-commerce. Works as an additional checkout option alongside your primary payment processor." }
+          ],
+          note: "Track your cost of goods for every product from day one - every inventory purchase is a deductible expense that reduces your taxable income."
+        },
+        { num: 4, title: "Staying Legal",              sub: "Business registration, EIN, and sales tax basics.", legal: true },
+        { num: 5, title: "Tracking Your Money",        sub: "Cost of goods, expenses, and revenue - clean from day one.",
+          tools: [
+            { name: "Wave", cost: "Free", link: "https://waveapps.com", desc: "Track your sales revenue and expenses. Free and straightforward for early-stage product businesses." },
+            ...(budget !== "free" ? [{ name: "QuickBooks Simple Start", cost: "From $17.50/mo", link: "https://quickbooks.intuit.com", desc: "Inventory tracking, cost of goods sold reporting, and sales tax automation. Necessary as your product volume grows." }] : [])
+          ]
+        }
+      ],
+      "venue": [
+        { num: 1, title: "Getting People Through the Door", sub: "How guests discover, trust, and decide to book.",
+          tools: [
+            { name: "Google Business Profile", cost: "Free", link: "https://business.google.com", desc: "Your Google listing is the first thing most guests check before booking. Photos, hours, and reviews here determine whether people show up." },
+            { name: "Instagram Business", cost: "Free", link: "https://business.instagram.com", desc: "Behind-the-scenes setup, guest reaction videos, and themed content build anticipation. People share experiences - make yours worth sharing." },
+            { name: "Meta Business Suite", cost: "Free", link: "https://business.facebook.com", desc: "Create events, manage RSVPs, schedule posts, and track guest engagement. Essential for venues that need consistent visibility between bookings." }
+          ]
+        },
+        { num: 2, title: "Taking Payments and Deposits", sub: "Session fees, deposits, and group bookings.",
+          tools: [
+            { name: "Square", cost: "Free app", link: "https://squareup.com", desc: "Take session fees, deposits, and any merchandise sales through the same system. Detailed transaction history makes end-of-month reconciliation fast." },
+            { name: "PayPal Business", cost: "Free", link: "https://paypal.com/us/business", desc: "Useful for group deposit collection and corporate bookings where clients prefer a familiar platform." }
+          ],
+          note: "A merchant services account and a separate business checking account are both needed for venues handling deposits, session payments, and any food-and-beverage revenue."
+        },
+        { num: 3, title: "Staying Legal",              sub: "Commercial permits, insurance, and registration.", legal: true },
+        { num: 4, title: "Running the Space",          sub: "Bookings, guest communication, and daily operations.",
+          tools: [
+            { name: "WhatsApp Business", cost: "Free", link: "https://business.whatsapp.com", desc: "Handle group booking inquiries, send confirmation messages, and manage guest questions from one business profile." },
+            { name: "Canva", cost: "Free", link: "https://canva.com", desc: "Create booking graphics, event promotions, and themed social content. Polished branded content fast for operators who are not designers." }
+          ]
+        },
+        { num: 5, title: "Tracking Your Revenue",      sub: "Keep a clean record of every session, expense, and payment.",
+          tools: [
+            { name: "Wave", cost: "Free", link: "https://waveapps.com", desc: "Revenue tracking by session type, expense categories, and basic profitability reporting without a bookkeeping subscription." },
+            ...(budget !== "free" ? [{ name: "QuickBooks Simple Start", cost: "From $17.50/mo", link: "https://quickbooks.intuit.com", desc: "Revenue category tracking, payroll preparation, and tax-ready reporting for operations with multiple revenue streams." }] : [])
+          ]
+        }
+      ]
+    };
+
+    const legalNotes = {
+      "mobile-service": `Mobile service businesses typically need a local business license or home occupation permit on top of state registration. Check your county clerk's website - local rules often require a separate permit for businesses that operate across neighborhoods.`,
+      "local-service":  `Appointment-based local services often need a DBA registration if you use a business name other than your own, and sometimes professional permits depending on your service type. Check your county clerk's office - local permits are often separate from state registration.`,
+      "online-service": `Online businesses still need to register with ${state} if earning business income. Most states allow LLC or sole proprietor registration entirely online. If clients are in multiple states, check whether you have nexus obligations for income tax beyond your home state.`,
+      "product":        `Product businesses often need to collect and remit sales tax. Check ${state}'s nexus threshold for online sales. Etsy and Amazon collect and remit sales tax in many states - but not all. Confirm before you assume it is handled.`,
+      "venue":          `Venue businesses typically require a commercial business license, a certificate of occupancy from your local fire and building department, and sometimes a specific entertainment or food service permit. Start with your county or municipality - zoning rules matter before you sign a lease.`
+    };
+
+    const todoLists = {
+      "mobile-service": [
+        { quick: true,  text: "Claim your Google Business Profile right now - takes under 5 minutes and is the number one source of free local leads." },
+        { quick: false, text: "Open a free separate checking account before your first paid job. Business money stays separate from day one." },
+        { quick: false, text: "Check your county clerk's website for any local business license or mobile service permit requirements." },
+        { quick: false, text: "Set up Square on your phone so you can accept card payment on the spot at your first job." },
+        { quick: false, text: "Put 25% of every payment into savings immediately. Self-employment tax is real and quarterly." }
+      ],
+      "local-service": [
+        { quick: true,  text: "Claim your Google Business Profile and add at least one photo today - takes under 10 minutes." },
+        { quick: false, text: "Register your business name with ${state} if you use anything other than your own legal name." },
+        { quick: false, text: "Set up a free Calendly link and share it everywhere - email signature, Instagram bio, business card." },
+        { quick: false, text: "Open a free business checking account this week. You need it before most payment processors will work professionally." },
+        { quick: false, text: "Put 25-30% of every payment aside for quarterly estimated taxes." }
+      ],
+      "online-service": [
+        { quick: true,  text: "Update your LinkedIn profile right now to list your service clearly - takes under 10 minutes and clients check it first." },
+        { quick: false, text: "Create a Calendly link for discovery calls and add it to every pitch, email, and profile." },
+        { quick: false, text: "Register your business with ${state} and apply for your EIN from the IRS - both are free and online." },
+        { quick: false, text: "Open a Stripe account so you can send a payment link to your first client without delay." },
+        { quick: false, text: "Track all income from day one. PayPal transfers, invoices, and direct deposits all count as taxable income." }
+      ],
+      "product": [
+        { quick: true,  text: "Claim your business name on Instagram and Etsy right now - handles go fast and take under 5 minutes each." },
+        { quick: false, text: "Open an Etsy shop and list your first product with a search-optimized title. You will learn fast from what gets views." },
+        { quick: false, text: "Register your business with ${state} and apply for your EIN from the IRS online." },
+        { quick: false, text: "Open a separate bank account for product revenue. Track every inventory purchase as a business expense." },
+        { quick: false, text: "Learn your state's sales tax rules for your product type before your first sale." }
+      ],
+      "venue": [
+        { quick: true,  text: "Claim your business name on Google Maps and Instagram right now - both take under 5 minutes." },
+        { quick: false, text: "Research your county's commercial zoning rules before signing any lease. Zoning determines what you can legally operate." },
+        { quick: false, text: "Register your business as an LLC - the liability protection matters for any operation where the public enters your space." },
+        { quick: false, text: "Apply for your EIN from the IRS online before opening a business bank account." },
+        { quick: false, text: "Get at least two commercial liability insurance quotes before you open to the public." }
+      ]
+    };
+
+    const sections = allSections[businessType] || allSections["mobile-service"];
+    const todos = (todoLists[businessType] || todoLists["mobile-service"]).map(t => ({
+      ...t,
+      text: t.text.replace("${state}", state)
+    }));
+
+    let html = `
+      <div class="ff-result">
+        <div class="ff-result-header">
+          <p class="ff-result-kicker">${displayName ? displayName + "'s " : ""}Founder Focus - ${state}</p>
+          <h3 class="ff-result-title">${planTitle}</h3>
+          <div class="ff-result-pills">
+            <span class="ff-pill">${businessLabel}</span>
+            <span class="ff-pill">${state}</span>
+            <span class="ff-pill">${budgetLabel}</span>
+          </div>
+        </div>
+    `;
+
+    for (const sec of sections) {
+      html += `<div class="ff-section">
+        <p class="ff-section-num">Section ${sec.num}</p>
+        <h4 class="ff-section-title">${sec.title}</h4>
+        <p class="ff-section-sub">${sec.sub}</p>`;
+
+      if (sec.legal) {
+        html += `
+          <div class="ff-tool">
+            <div class="ff-tool-name">${state} Business Registration <span class="ff-tool-cost">State fee applies</span> <a class="ff-tool-link" href="/states/${stateSlug}.html" target="_blank">State Info &rarr;</a></div>
+            <p class="ff-tool-desc">Register with ${state}. The specific form depends on your structure - sole proprietorship, LLC, or corporation. Your state page on Income Spectrum has the direct links.</p>
+          </div>
+          <div class="ff-tool">
+            <div class="ff-tool-name">IRS EIN Application <span class="ff-tool-cost">Free</span> <a class="ff-tool-link" href="https://www.irs.gov/businesses/small-businesses-self-employed/employer-id-numbers" target="_blank">IRS.gov &rarr;</a></div>
+            <p class="ff-tool-desc">Free, instant, and required before opening a business bank account. Takes about 10 minutes online.</p>
+          </div>
+          <div class="ff-note"><strong>${state}:</strong> ${legalNotes[businessType] || ""}</div>
+        `;
+      } else if (sec.tools) {
+        html += sec.tools.map(t => `
+          <div class="ff-tool">
+            <div class="ff-tool-name">${t.name} <span class="ff-tool-cost">${t.cost}</span> <a class="ff-tool-link" href="${t.link}" target="_blank">Visit &rarr;</a></div>
+            <p class="ff-tool-desc">${t.desc}</p>
+          </div>
+        `).join("");
+        if (sec.note) {
+          html += `<div class="ff-note">${sec.note}</div>`;
+        }
+      }
+
+      html += `</div>`;
+    }
+
+    // First Week
+    html += `
+      <div class="ff-section">
+        <p class="ff-section-num">Your First Week</p>
+        <h4 class="ff-section-title">The First-Week To-Do List</h4>
+        <p class="ff-section-sub">The five moves that matter most right now.</p>
+        <ol class="ff-todo-list">
+          ${todos.map((t, i) => `
+            <li class="ff-todo-item">
+              ${i === 0 ? `<span class="ff-quick-win">Quick Win</span> ` : ""}${t.text}
+            </li>`).join("")}
+        </ol>
+      </div>
+      <div class="ff-result-footer">
+        <button class="app-btn app-btn--ghost" data-action="ff-restart" style="font-size:13px">Start Over</button>
+        <button class="app-btn app-btn--primary" onclick="window.print()" style="font-size:13px">Save as PDF</button>
+      </div>
+    </div>`;
+
+    return html;
+  }
+
+  // ─── END FOUNDER FOCUS ────────────────────────────────────────────────────
 
   function saveQuizResult() {
     if (!appState.isSignedIn) {

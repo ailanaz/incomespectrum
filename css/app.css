@@ -2629,3 +2629,236 @@ button.field-toggle::after {
     font-size: 10.5px;
   }
 }
+
+/* ── Founder Focus overlay UI ───────────────────────────────────────────── */
+.ff-field {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.ff-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--app-navy);
+}
+.ff-input {
+  padding: 11px 14px;
+  border: 2px solid var(--app-border);
+  border-radius: var(--app-radius);
+  background: var(--app-surface);
+  font-size: 15px;
+  color: var(--app-text);
+  width: 100%;
+}
+.ff-input:focus { outline: none; border-color: var(--app-blue); }
+.ff-option { cursor: pointer; }
+
+/* Founder Focus result */
+.ff-result { display: grid; gap: 0; }
+.ff-result-header {
+  background: var(--app-navy);
+  color: #fff;
+  border-radius: var(--app-radius);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.ff-result-kicker {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--app-gold);
+  margin: 0 0 6px;
+}
+.ff-result-title {
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+.ff-result-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.ff-pill {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.ff-section {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--app-border);
+}
+.ff-section:last-of-type { border-bottom: none; }
+.ff-section-num {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--app-blue);
+  margin: 0 0 4px;
+}
+.ff-section-title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--app-navy);
+}
+.ff-section-sub {
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: var(--app-text-soft);
+  line-height: 1.5;
+}
+.ff-tool { margin-bottom: 14px; }
+.ff-tool:last-of-type { margin-bottom: 0; }
+.ff-tool-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--app-navy);
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.ff-tool-cost {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--app-green);
+  background: rgba(25,120,46,0.1);
+  border-radius: 4px;
+  padding: 1px 7px;
+}
+.ff-tool-link {
+  font-size: 11px;
+  color: var(--app-blue);
+  text-decoration: underline;
+  font-weight: 500;
+  margin-left: auto;
+}
+.ff-tool-desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--app-text);
+}
+.ff-note {
+  background: rgba(253,210,21,0.15);
+  border: 1px solid rgba(253,210,21,0.45);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.ff-todo-list {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 10px;
+}
+.ff-todo-item { font-size: 13px; line-height: 1.55; }
+.ff-quick-win {
+  display: inline-block;
+  background: var(--app-green);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.ff-result-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0 4px;
+  border-top: 1px solid var(--app-border);
+  margin-top: 8px;
+}
+
+/* ── Founder Focus PDF print ─────────────────────────────────────────────── */
+@media print {
+  /* Hide everything except the result panel */
+  .app-topbar,
+  .app-bottom-nav,
+  .overlay-header,
+  .ff-result-footer,
+  .quiz-progress,
+  .offline-banner,
+  .install-banner { display: none !important; }
+
+  .overlay {
+    position: static !important;
+    background: none !important;
+    padding: 0 !important;
+  }
+  .overlay-panel {
+    width: 100% !important;
+    max-height: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #fff !important;
+  }
+
+  /* Only show the active Founder Focus overlay content */
+  body > * { display: none !important; }
+  #founderFocusOverlay { display: block !important; }
+  #founderFocusOverlay .overlay-panel { display: block !important; }
+
+  /* Brief layout */
+  .ff-result { font-family: "Inter", Arial, sans-serif; color: #0F172A; }
+
+  .ff-result-header {
+    background: #14253d !important;
+    color: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+  .ff-result-kicker { color: #fdd215 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .ff-result-title { font-size: 16px; margin-bottom: 8px; }
+  .ff-pill { font-size: 10px; padding: 2px 8px; }
+
+  .ff-section { padding: 10px 0; page-break-inside: avoid; }
+  .ff-section-title { font-size: 13px; }
+  .ff-section-sub { font-size: 11px; margin-bottom: 8px; }
+  .ff-section-num { font-size: 9px; }
+
+  .ff-tool { margin-bottom: 8px; }
+  .ff-tool-name { font-size: 12px; }
+  .ff-tool-cost {
+    background: #e6f4eb !important;
+    color: #14622c !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .ff-tool-link { display: none; }
+  .ff-tool-desc { font-size: 11px; }
+
+  .ff-note {
+    background: #fffbeb !important;
+    border-color: #fcd34d !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+
+  .ff-quick-win {
+    background: #19782e !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-size: 9px;
+  }
+
+  .ff-todo-list { gap: 6px; }
+  .ff-todo-item { font-size: 11px; }
+}

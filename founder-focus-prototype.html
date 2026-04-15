@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Founder Focus - Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #19782e;
+      --navy: #14253d;
+      --blue: #1b48d8;
+      --gold: #fdd215;
+      --bg: #eef7f0;
+      --surface: #fffdf6;
+      --border: #d8d2bf;
+      --text: #0F172A;
+      --text-soft: #5e6470;
+      --radius: 10px;
+      --shadow: 0 14px 0 rgba(20,37,61,0.07), 0 18px 40px rgba(20,37,61,0.11);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: linear-gradient(135deg, rgba(253,210,21,0.10) 0 18%, transparent 18% 100%),
+                  linear-gradient(180deg, #eef7f0 0%, #e4f0e7 100%);
+      color: var(--text);
+      padding: 24px 16px 80px;
+    }
+    .shell {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .brand span { opacity: 0.5; font-weight: 400; margin: 0 6px; }
+    .brand strong { color: var(--green); }
+    .card {
+      background: var(--surface);
+      border: 2px solid var(--navy);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .kicker {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--green);
+      margin: 0 0 8px;
+    }
+    h2 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.25;
+    }
+    h2.step-title { font-size: 18px; }
+    .step-prompt {
+      margin: 0 0 20px;
+      font-size: 14px;
+      color: var(--text-soft);
+      line-height: 1.55;
+    }
+    .field {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .field label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .field input,
+    .field select {
+      padding: 12px 14px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      font-size: 15px;
+      color: var(--text);
+      width: 100%;
+    }
+    .field input:focus,
+    .field select:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+    .options { display: grid; gap: 10px; }
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 16px;
+      border-radius: 16px;
+      border: 2px solid var(--navy);
+      background: var(--surface);
+      display: grid;
+      gap: 4px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .option-btn:hover { border-color: var(--blue); background: rgba(27,72,216,0.06); }
+    .option-btn.selected { border-color: var(--blue); background: rgba(27,72,216,0.14); }
+    .option-btn strong { font-size: 15px; display: block; }
+    .option-btn small { font-size: 13px; color: var(--text-soft); line-height: 1.4; }
+    .nav {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .btn {
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--blue); }
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--text-soft);
+    }
+    .btn-ghost:hover { border-color: var(--navy); color: var(--navy); }
+    .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+    .progress {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+    .progress-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+    .progress-dot.done { background: var(--green); }
+    .progress-dot.active { background: var(--navy); width: 24px; border-radius: 4px; }
+    .progress-label {
+      margin-left: 8px;
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+    .hidden { display: none !important; }
+
+    /* RESULT STYLES */
+    #result-shell { display: none; }
+    .result-header {
+      background: var(--navy);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .result-header .kicker { color: var(--gold); }
+    .result-header h1 {
+      margin: 8px 0 12px;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+    .result-goal-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .goal-pill {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .result-section {
+      background: var(--surface);
+      border: 2px solid var(--navy);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+    .result-section-header {
+      margin-bottom: 18px;
+    }
+    .result-section-num {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+      margin: 0 0 4px;
+    }
+    .result-section-title {
+      margin: 0 0 4px;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .result-section-sub {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+    .tool-entry { margin-bottom: 20px; }
+    .tool-entry:last-child { margin-bottom: 0; }
+    .tool-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 0 0 6px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .tool-cost {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--green);
+      background: rgba(25,120,46,0.1);
+      border-radius: 4px;
+      padding: 1px 7px;
+    }
+    .tool-link {
+      font-size: 11px;
+      color: var(--blue);
+      text-decoration: underline;
+      font-weight: 500;
+      margin-left: auto;
+    }
+    .tool-desc {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+    .note-box {
+      background: rgba(253,210,21,0.15);
+      border: 1px solid rgba(253,210,21,0.5);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-top: 14px;
+    }
+    .note-box p { margin: 0; font-size: 13px; line-height: 1.55; }
+    .todo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+    .todo-list li {
+      display: flex;
+      gap: 12px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .todo-num {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+    .result-footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-top: 20px;
+      padding: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .result-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .btn-pdf {
+      background: var(--green);
+      color: #fff;
+      border-color: transparent;
+    }
+    .btn-pdf:hover { background: #155f24; }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .result-actions, #quiz-shell, .brand { display: none !important; }
+      #result-shell { display: block !important; }
+      .result-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .result-section { page-break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+    }
+
+    @media (max-width: 480px) {
+      .result-header h1 { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="brand">
+      <strong>Income</strong><span>Spectrum</span> Founder Focus
+      <span style="margin-left:auto;font-size:11px;color:#aaa;border:1px solid #ddd;border-radius:4px;padding:2px 8px">PROTOTYPE</span>
+    </div>
+
+    <!-- QUIZ SHELL -->
+    <div id="quiz-shell">
+      <div class="progress" id="progressDots"></div>
+      <div class="card" id="stepCard"></div>
+    </div>
+
+    <!-- RESULT SHELL -->
+    <div id="result-shell">
+      <div class="result-actions">
+        <button class="btn btn-pdf" onclick="printResult()">Save as PDF</button>
+        <button class="btn btn-ghost" onclick="restartQuiz()">Start Over</button>
+      </div>
+      <div id="result-output"></div>
+      <div class="result-footer">
+        Generated by the Income Spectrum Founder Focus - <span id="footerDate"></span>
+      </div>
+    </div>
+  </div>
+
+<script>
+// ─── DATA ──────────────────────────────────────────────────────────────────────
+
+const stackTools = [
+
+  // VISIBILITY
+  {
+    id: "instagram",
+    name: "Instagram Business Account",
+    costLabel: "Free",
+    link: "https://business.instagram.com",
+    section: "visibility",
+    budgetTier: "free",
+    contexts: {
+      "mobile-service": "Before-and-after photos of every job build your local reputation faster than any ad. Post results daily and use location tags so neighbors can see your work.",
+      "local-service": "Photos of your space, your process, and happy clients make new bookings feel comfortable before they ever arrive. Your feed is social proof.",
+      "online-service": "Share tips, process clips, and client wins to build authority in your niche. Consistency here makes you the obvious expert to follow.",
+      "product": "Your feed is your storefront. Show products in use, unboxing moments, and customer reactions. Visual proof drives purchase decisions.",
+      "venue": "Behind-the-scenes setup, guest reaction videos, and themed content build anticipation. People share experiences - make yours worth sharing."
+    }
+  },
+  {
+    id: "google-biz",
+    name: "Google Business Profile",
+    costLabel: "Free",
+    link: "https://business.google.com",
+    section: "visibility",
+    budgetTier: "free",
+    contexts: {
+      "mobile-service": "When someone nearby searches for your service, this is what puts you on the map with your phone number, hours, and reviews. The single highest-ROI free tool for local service businesses.",
+      "local-service": "New clients search before they call. A verified Google listing with photos and reviews is the most important free marketing step you can take.",
+      "online-service": "Even for online businesses, a Google profile builds credibility. If you ever meet clients locally, this is what they check first.",
+      "product": "If you sell locally or at markets, this puts your business on the map for nearby buyers. Photos of your products show up directly in search.",
+      "venue": "Your Google listing is the first thing most guests check before booking. Photos, hours, and reviews here determine whether people show up."
+    }
+  },
+  {
+    id: "canva",
+    name: "Canva",
+    costLabel: "Free",
+    link: "https://canva.com",
+    section: "visibility",
+    budgetTier: "free",
+    contexts: {
+      "mobile-service": "Make flyers, price lists, and before-and-after post templates you can share in neighborhood Facebook groups and text to referrals. No design background needed.",
+      "local-service": "Design your price menu, service cards, and appointment reminder graphics without hiring a designer. Your brand looks consistent without a design budget.",
+      "online-service": "Build your content templates once - quote graphics, tip cards, case study layouts - and reuse them every week. Consistency without daily effort.",
+      "product": "Product post templates, packaging mockups, and promotional graphics all live here. Your brand stays consistent across every channel.",
+      "venue": "Create booking graphics, event promotions, and themed social content. Canva makes polished branded content fast for operators who are not designers."
+    }
+  },
+  {
+    id: "meta-suite",
+    name: "Meta Business Suite",
+    costLabel: "Free",
+    link: "https://business.facebook.com",
+    section: "visibility",
+    budgetTier: "free",
+    contexts: {
+      "mobile-service": "Manage your Facebook and Instagram pages together. Neighborhood groups and community pages on Facebook are high-value free advertising for local service businesses.",
+      "local-service": "Schedule posts, respond to messages, and track what content gets engagement - all from one place. Local Facebook groups still drive real booking leads.",
+      "online-service": "Schedule content across both platforms from one dashboard without spending all day online. Good for maintaining visibility between client projects.",
+      "product": "Run ads, manage your product catalog, and track which content drives traffic and sales - all from one free tool.",
+      "venue": "Create events, manage RSVPs, schedule posts, and track guest engagement. Essential for venues that need consistent visibility between bookings."
+    }
+  },
+
+  // PAYMENTS
+  {
+    id: "square",
+    name: "Square",
+    costLabel: "Free app (2.6% per tap)",
+    link: "https://squareup.com",
+    section: "payments",
+    budgetTier: "free",
+    showFor: ["mobile-service", "local-service", "venue"],
+    contexts: {
+      "mobile-service": "Put the free app on your phone and accept card payments the moment you finish each job. Clients get a digital receipt instantly. No waiting for checks, no awkward cash handling.",
+      "local-service": "Accept cards, send digital receipts, and track every transaction from your phone or a simple reader. The free card reader ships to your door.",
+      "venue": "Take session fees, deposits, and any merchandise sales through the same system. Detailed transaction history makes end-of-month reconciliation fast."
+    }
+  },
+  {
+    id: "stripe",
+    name: "Stripe",
+    costLabel: "Free to set up (2.9% + 30c per transaction)",
+    link: "https://stripe.com",
+    section: "payments",
+    budgetTier: "free",
+    showFor: ["online-service", "product"],
+    contexts: {
+      "online-service": "The standard for collecting payment online. Send clients a payment link, set up recurring invoices, or charge a card on file - all from a simple dashboard.",
+      "product": "Connects to your Shopify, Etsy, or custom store. Built for online product sales with strong fraud protection and international currency support."
+    }
+  },
+  {
+    id: "paypal-biz",
+    name: "PayPal Business",
+    costLabel: "Free to set up",
+    link: "https://paypal.com/us/business",
+    section: "payments",
+    budgetTier: "free",
+    contexts: {
+      "mobile-service": "Most clients already have PayPal. Texting a payment request link gets you paid without any equipment and before you even drive away.",
+      "local-service": "Good for collecting deposits before appointments and sending invoices for larger services. Nearly every client already has it.",
+      "online-service": "Works alongside Stripe as a backup payment method. Many clients prefer to pay freelancers through PayPal for convenience.",
+      "product": "Universally trusted for e-commerce. Works as an additional checkout option alongside your primary payment processor.",
+      "venue": "Useful for group deposit collection and corporate bookings where clients prefer a familiar, established platform."
+    }
+  },
+
+  // BOOKKEEPING
+  {
+    id: "wave",
+    name: "Wave",
+    costLabel: "Free",
+    link: "https://waveapps.com",
+    section: "bookkeeping",
+    budgetTier: "free",
+    contexts: {
+      "mobile-service": "Track every job, every expense, and every payment in one place. When tax time comes, you will have a clean record without sorting through months of receipts.",
+      "local-service": "Free invoicing, expense tracking, and basic financial reports. Enough for most solo and small local service operators without a monthly subscription.",
+      "online-service": "Connect your bank, track client payments automatically, and send professional invoices. Free accounting without the monthly cost.",
+      "product": "Track your cost of goods, sales revenue, and expenses from day one. Free and straightforward for early-stage product businesses.",
+      "venue": "Revenue tracking by session type, expense categories, and basic profitability reporting - all without a bookkeeping subscription."
+    }
+  },
+  {
+    id: "quickbooks",
+    name: "QuickBooks Simple Start",
+    costLabel: "From $17.50/month",
+    link: "https://quickbooks.intuit.com",
+    section: "bookkeeping",
+    budgetTier: "low",
+    contexts: {
+      "mobile-service": "Automatic bank sync, mileage tracking, and tax-ready expense categories. Worth the cost once your job volume grows past 10-15 per month.",
+      "local-service": "The most widely used small business accounting software. Your accountant will already know it. Your books will be clean and tax-ready.",
+      "online-service": "Handles contractor payments, time tracking, invoice automation, and tax prep. Industry standard as your client base grows.",
+      "product": "Inventory tracking, cost of goods sold reporting, and sales tax automation built in. Necessary as your product volume increases.",
+      "venue": "Revenue category tracking, payroll preparation, and tax-ready reporting for operations with multiple revenue streams."
+    }
+  },
+
+  // OPERATIONS
+  {
+    id: "whatsapp-biz",
+    name: "WhatsApp Business",
+    costLabel: "Free",
+    link: "https://business.whatsapp.com",
+    section: "operations",
+    budgetTier: "free",
+    showFor: ["mobile-service", "local-service", "venue"],
+    contexts: {
+      "mobile-service": "Set an auto-reply so clients get a response while you are mid-job. Use broadcast lists to send appointment reminders without texting each person individually. Business profile separates your work from your personal number.",
+      "local-service": "Quick-reply templates for booking confirmation, pre-appointment reminders, and follow-ups. Professional client communication at zero cost.",
+      "venue": "Handle group booking inquiries, send confirmation messages, and manage guest questions from one business profile without giving out your personal number."
+    }
+  },
+  {
+    id: "calendly",
+    name: "Calendly",
+    costLabel: "Free (1 event type)",
+    link: "https://calendly.com",
+    section: "operations",
+    budgetTier: "free",
+    showFor: ["local-service", "online-service"],
+    contexts: {
+      "local-service": "Send clients a booking link and they schedule their own appointment without back-and-forth messages. Your calendar stays yours, double-bookings go to zero.",
+      "online-service": "The standard for client discovery calls, onboarding sessions, and check-ins. Every online service operator needs a shareable booking link from day one."
+    }
+  },
+  {
+    id: "jobber",
+    name: "Jobber",
+    costLabel: "From $19/month",
+    link: "https://incomespectrum.com/directory/jobber.html",
+    section: "operations",
+    budgetTier: "low",
+    showFor: ["mobile-service"],
+    contexts: {
+      "mobile-service": "Quoting, scheduling, dispatching, invoicing, and payments in one system built specifically for field service businesses. When you hit 20+ jobs a week, this saves hours and prevents the scheduling errors that lose clients."
+    }
+  },
+  {
+    id: "hubspot-crm",
+    name: "HubSpot CRM",
+    costLabel: "Free",
+    link: "https://hubspot.com/products/crm",
+    section: "operations",
+    budgetTier: "free",
+    showFor: ["online-service", "local-service"],
+    contexts: {
+      "online-service": "Track every lead, proposal, and client relationship without a spreadsheet. The free plan is robust enough to run a solo consulting or agency practice.",
+      "local-service": "Keep a record of every client, their service history, and your follow-up tasks. Repeat business is built on the follow-up, and this makes it automatic."
+    }
+  },
+  {
+    id: "notion",
+    name: "Notion",
+    costLabel: "Free",
+    link: "https://notion.so",
+    section: "operations",
+    budgetTier: "free",
+    showFor: ["online-service"],
+    contexts: {
+      "online-service": "Build your client workspace, project tracker, proposal templates, and operations manual in one flexible tool. Most solo online operators run their entire practice from Notion."
+    }
+  },
+  {
+    id: "housecall-pro",
+    name: "HouseCall Pro",
+    costLabel: "From $65/month",
+    link: "https://incomespectrum.com/directory/housecall-pro.html",
+    section: "operations",
+    budgetTier: "paid",
+    showFor: ["mobile-service"],
+    contexts: {
+      "mobile-service": "Scheduling, dispatching, online booking, customer follow-up, and review collection built for home service operators. Stronger on marketing automation than Jobber."
+    }
+  },
+
+  // E-COMMERCE (product only)
+  {
+    id: "etsy",
+    name: "Etsy",
+    costLabel: "Free to open ($0.20 per listing)",
+    link: "https://etsy.com/sell",
+    section: "ecommerce",
+    budgetTier: "free",
+    showFor: ["product"],
+    contexts: {
+      "product": "Built-in buyer traffic means you do not need to drive your own audience from day one. Best for handmade, custom, vintage, or unique products where discovery is part of the purchase journey."
+    }
+  },
+  {
+    id: "printful",
+    name: "Printful",
+    costLabel: "Free (pay per order fulfilled)",
+    link: "https://printful.com",
+    section: "ecommerce",
+    budgetTier: "free",
+    showFor: ["product"],
+    contexts: {
+      "product": "Connects to your Etsy or Shopify store and handles printing and shipping automatically. No inventory to hold, no upfront cost. You design it, they ship it."
+    }
+  },
+  {
+    id: "shopify",
+    name: "Shopify",
+    costLabel: "From $39/month",
+    link: "https://shopify.com",
+    section: "ecommerce",
+    budgetTier: "low",
+    showFor: ["product"],
+    contexts: {
+      "product": "The most complete platform for product businesses. Store, payments, shipping, inventory, and analytics in one system. Best when you need your own storefront outside of a marketplace like Etsy."
+    }
+  }
+
+];
+
+// ─── SECTION CONFIGS ─────────────────────────────────────────────────────────
+
+const sectionConfig = {
+  "mobile-service": [
+    { id: "visibility", num: 1, title: "Your Public Shop Window",     sub: "How people find you and see that your work is high quality." },
+    { id: "payments",   num: 2, title: "Your Digital Wallet",          sub: "How you get paid quickly and safely after every job." },
+    { id: "legal",      num: 3, title: "The Rulebook - Staying Legal", sub: "The steps to operate within your state and county rules." },
+    { id: "operations", num: 4, title: "Your Daily Work Tools",         sub: "Tools that save you time so you are not doing paperwork all evening." },
+    { id: "bookkeeping",num: 5, title: "Tracking Your Money",           sub: "Keep your income and expenses clean from day one." }
+  ],
+  "local-service": [
+    { id: "visibility", num: 1, title: "How Clients Find You",          sub: "Your digital presence and how new clients discover and trust your business." },
+    { id: "payments",   num: 2, title: "How You Get Paid",              sub: "Collecting payment professionally and tracking income from the first booking." },
+    { id: "legal",      num: 3, title: "The Rulebook - Staying Legal",  sub: "State registration and permit steps for your service type." },
+    { id: "operations", num: 4, title: "Running Your Practice",          sub: "The tools that keep bookings, follow-ups, and client records organized." },
+    { id: "bookkeeping",num: 5, title: "Tracking Your Money",            sub: "Keep your income and expenses clean from the first appointment." }
+  ],
+  "online-service": [
+    { id: "visibility", num: 1, title: "Your Digital Presence",         sub: "How potential clients find you and decide you are the right person to hire." },
+    { id: "payments",   num: 2, title: "Collecting Payment",             sub: "Getting paid online, fast, and professionally." },
+    { id: "legal",      num: 3, title: "The Rulebook - Staying Legal",   sub: "Business registration and compliance for online operators." },
+    { id: "operations", num: 4, title: "Running Your Practice",          sub: "The tools that manage your clients, projects, and schedule." },
+    { id: "bookkeeping",num: 5, title: "Tracking Your Income",           sub: "Accounting basics that keep your books clean and your tax bill predictable." }
+  ],
+  "product": [
+    { id: "visibility", num: 1, title: "Getting Eyes on Your Products",  sub: "How buyers find and trust your products before they purchase." },
+    { id: "ecommerce",  num: 2, title: "Your Store",                      sub: "Where your products live and how buyers check out." },
+    { id: "payments",   num: 3, title: "How Buyers Pay You",              sub: "Payment processing and financial separation from your first sale." },
+    { id: "legal",      num: 4, title: "The Rulebook - Staying Legal",    sub: "Business registration, EIN, and sales tax basics for product sellers." },
+    { id: "bookkeeping",num: 5, title: "Tracking Your Money",              sub: "Cost of goods, expenses, and revenue - clean from day one." }
+  ],
+  "venue": [
+    { id: "visibility", num: 1, title: "Getting People Through the Door", sub: "How guests discover, trust, and decide to book your experience." },
+    { id: "payments",   num: 2, title: "Taking Payments and Deposits",    sub: "Session fees, deposits, and any food-and-beverage revenue." },
+    { id: "legal",      num: 3, title: "The Rulebook - Staying Legal",    sub: "Business registration, commercial permits, and insurance for venue operators." },
+    { id: "operations", num: 4, title: "Running the Space",               sub: "Tools for bookings, guest communication, and daily operations." },
+    { id: "bookkeeping",num: 5, title: "Tracking Your Revenue",            sub: "Keep a clean record of every session, expense, and payment from day one." }
+  ]
+};
+
+// ─── LEGAL NOTES ─────────────────────────────────────────────────────────────
+
+const legalNotes = {
+  "mobile-service": "Mobile service businesses typically need a business license or home occupation permit in addition to state registration. Check your county clerk's website - local rules often require a separate permit for businesses that operate across neighborhoods. If you are doing any vehicle-related or chemical-based work, look for industry-specific state requirements as well.",
+  "local-service":  "Appointment-based local services often require a business license, DBA registration if you use a business name other than your own, and sometimes professional permits depending on your service type. Check both your state's requirements and your county clerk's office - local permits are often separate from state registration.",
+  "online-service": "Online businesses still need to register with their state if they are operating as a business entity and earning income. Most states allow you to register as a sole proprietor or LLC entirely online. If clients are in multiple states, check whether you have nexus obligations for state income tax beyond your home state.",
+  "product":        "Product businesses often need to collect and remit sales tax depending on your state's rules. Check your state's nexus threshold for online sales. If you sell on Etsy or Amazon, those platforms collect and remit sales tax in many states - but not all, and not for all transaction types. Confirm before you assume it is handled.",
+  "venue":          "Venue and experience businesses typically require a commercial business license, a certificate of occupancy from your local fire and building department, and sometimes a specific entertainment or food service permit if you serve beverages. Start with your county or municipality - zoning rules matter before you sign a lease."
+};
+
+// ─── BANK NOTES ──────────────────────────────────────────────────────────────
+
+const bankNotes = {
+  "mobile-service": "Even before you officially register, open a free separate checking account for your business income. In many states, service labor is not taxed the way product sales are - but federal self-employment tax still applies. Put 25-30% of every payment into savings. Track your mileage from day one - it is deductible.",
+  "local-service":  "A separate business checking account makes your books clean and is required by most payment processors once you are registered. Many banks offer free business checking for sole proprietors. Set aside 25-30% of every payment for self-employment and income tax.",
+  "online-service": "A separate bank account and a dedicated PayPal or Stripe account makes income tracking and quarterly tax payments significantly easier. Self-employment tax applies to all freelance income - including PayPal transfers. Set aside 25-30% from every invoice.",
+  "product":        "Track cost of goods sold from day one - every inventory purchase is a deductible expense that reduces your taxable income. A separate business account makes the math straightforward. If your state collects sales tax on your products, you will need to remit it on a regular schedule.",
+  "venue":          "A merchant services account and a separate business checking account are both needed for venues handling deposits, session payments, and food-and-beverage revenue. Some states apply amusement or entertainment taxes on venue income - check your county revenue office before opening."
+};
+
+// ─── TODO LISTS ──────────────────────────────────────────────────────────────
+
+const todoLists = {
+  "mobile-service": [
+    "Claim your Google Business Profile today - it is the number one source of free local leads for mobile service businesses.",
+    "Open a free separate checking account before your first paid job. Keep business money completely separate from day one.",
+    "Check your county clerk's website for any local business license or mobile service permit requirements.",
+    "Set up Square on your phone before your first job so you can accept card payment on the spot.",
+    "Put 25% of every payment into a savings account immediately. Self-employment tax is real and quarterly."
+  ],
+  "local-service": [
+    "Register your business name with your state if you are using anything other than your own legal name.",
+    "Claim your Google Business Profile and add photos of your space, your work, or yourself. Reviews here drive bookings.",
+    "Set up a free Calendly link so clients can book without calling. Share it everywhere.",
+    "Open a free business checking account this week. You need it before you can use most payment processors professionally.",
+    "Put 25-30% of every payment aside for quarterly estimated taxes."
+  ],
+  "online-service": [
+    "Set up your LinkedIn profile as a business profile and list your services clearly. Most online service clients will check it.",
+    "Create a Calendly link for discovery calls and include it in every pitch, email, and profile.",
+    "Register your business with your state and apply for your EIN from the IRS - both are free and online.",
+    "Open a Stripe account so you can send a payment link to your first client without delay.",
+    "Track all income from day one - PayPal transfers, invoices, and direct deposits all count as taxable income."
+  ],
+  "product": [
+    "Open an Etsy shop today and list your first product with a search-optimized title. You will learn fast from what gets views.",
+    "Register your business with your state and apply for your EIN from the IRS online - required for a business bank account.",
+    "Open a separate bank account for product revenue. Track every inventory purchase as a business expense from the start.",
+    "Learn your state's sales tax rules for your product type before your first sale. Some platforms collect it for you - confirm.",
+    "Document your cost of goods for every product. It directly reduces your taxable income."
+  ],
+  "venue": [
+    "Research your county's commercial zoning rules before signing any lease. Zoning determines what you can legally operate.",
+    "Register your business as an LLC - the liability protection is important for any operation where the public enters your space.",
+    "Apply for your EIN from the IRS online before opening a business bank account.",
+    "Get at least two commercial liability insurance quotes before you open to the public.",
+    "Set up your Google Business Profile with photos of your space as soon as you have a confirmed location."
+  ]
+};
+
+// ─── QUIZ STATE ───────────────────────────────────────────────────────────────
+
+const allStates = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","District of Columbia","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"];
+
+const businessTypeLabels = {
+  "mobile-service": "Mobile or On-Site Service",
+  "local-service":  "Appointment-Based Local Service",
+  "online-service": "Online or Remote Service",
+  "product":        "Product Business",
+  "venue":          "Experience or Venue"
+};
+
+const budgetLabels = {
+  "free": "Starting with $0",
+  "low":  "Budget under $50/month",
+  "paid": "Open to investing in tools"
+};
+
+let step = 0;
+let selections = { name: "", idea: "", businessType: "", state: "", budget: "" };
+
+const steps = ["intro", "businessType", "state", "budget"];
+
+// ─── QUIZ RENDERING ───────────────────────────────────────────────────────────
+
+function updateProgress() {
+  const dots = document.getElementById("progressDots");
+  dots.innerHTML = steps.map((s, i) => {
+    const cls = i < step ? "progress-dot done" : i === step ? "progress-dot active" : "progress-dot";
+    return `<div class="${cls}"></div>`;
+  }).join("") + `<span class="progress-label">Step ${step + 1} of ${steps.length}</span>`;
+}
+
+function renderStep() {
+  updateProgress();
+  const card = document.getElementById("stepCard");
+  if (step === 0) renderIntro(card);
+  else if (step === 1) renderBusinessType(card);
+  else if (step === 2) renderState(card);
+  else if (step === 3) renderBudget(card);
+}
+
+function renderIntro(card) {
+  card.innerHTML = `
+    <p class="kicker">Founder Focus</p>
+    <h2>Your personalized founder tool stack.</h2>
+    <p class="step-prompt">Answer four quick questions and we will build a practical, budget-aware tool plan for your specific business and state.</p>
+    <div class="field">
+      <label for="nameInput">Your first name <span style="font-weight:400;color:var(--text-soft)">(optional)</span></label>
+      <input id="nameInput" type="text" placeholder="e.g. Sarah" value="${selections.name}">
+    </div>
+    <div class="field">
+      <label for="ideaInput">Your business idea <span style="font-weight:400;color:var(--text-soft)">(optional - used in your plan title)</span></label>
+      <input id="ideaInput" type="text" placeholder="e.g. Mobile Car Detailing, Virtual Assistant, Escape Room" value="${selections.idea}">
+    </div>
+    <div class="nav">
+      <button class="btn btn-primary" onclick="nextFromIntro()">Next</button>
+    </div>
+  `;
+}
+
+function nextFromIntro() {
+  selections.name = document.getElementById("nameInput").value.trim();
+  selections.idea = document.getElementById("ideaInput").value.trim();
+  step = 1;
+  renderStep();
+}
+
+function renderBusinessType(card) {
+  const options = [
+    { value: "mobile-service", label: "Mobile or on-site service", detail: "You go to the client - cleaning, detailing, lawn care, trades, delivery, mobile services." },
+    { value: "local-service",  label: "Appointment-based local service", detail: "Clients come to you or meet you locally - notary, salon, wellness, studio, pet care." },
+    { value: "online-service", label: "Online or remote service", detail: "You work from anywhere - virtual assistant, consulting, content, coaching, design." },
+    { value: "product",        label: "Product business", detail: "Physical or digital products - e-commerce, resale, print-on-demand, handmade goods." },
+    { value: "venue",          label: "Experience or venue", detail: "Clients pay to be somewhere you operate - escape room, studio, retreat, lodging, karaoke." }
+  ];
+  card.innerHTML = `
+    <p class="kicker">Step 1 of 3</p>
+    <h2 class="step-title">What kind of business are you building?</h2>
+    <p class="step-prompt">Choose the type that fits closest. You can run the recommender again to see how the stack changes.</p>
+    <div class="options">
+      ${options.map(o => `
+        <button class="option-btn ${selections.businessType === o.value ? "selected" : ""}" onclick="selectBusinessType('${o.value}')">
+          <strong>${o.label}</strong>
+          <small>${o.detail}</small>
+        </button>`).join("")}
+    </div>
+    <div class="nav">
+      <button class="btn btn-ghost" onclick="step=0;renderStep()">Back</button>
+      <button class="btn btn-primary" id="nextBT" ${!selections.businessType ? "disabled" : ""} onclick="step=2;renderStep()">Next</button>
+    </div>
+  `;
+}
+
+function selectBusinessType(val) {
+  selections.businessType = val;
+  document.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
+  event.currentTarget.classList.add("selected");
+  document.getElementById("nextBT").disabled = false;
+}
+
+function renderState(card) {
+  const opts = allStates.map(s => `<option value="${s}" ${selections.state === s ? "selected" : ""}>${s}</option>`).join("");
+  card.innerHTML = `
+    <p class="kicker">Step 2 of 3</p>
+    <h2 class="step-title">What state are you in?</h2>
+    <p class="step-prompt">Your state determines the registration links and legal context in your plan.</p>
+    <div class="field">
+      <label for="stateSelect">Select your state</label>
+      <select id="stateSelect" onchange="selections.state=this.value;document.getElementById('nextState').disabled=!this.value">
+        <option value="">-- Choose your state --</option>
+        ${opts}
+      </select>
+    </div>
+    <div class="nav">
+      <button class="btn btn-ghost" onclick="step=1;renderStep()">Back</button>
+      <button class="btn btn-primary" id="nextState" ${!selections.state ? "disabled" : ""} onclick="step=3;renderStep()">Next</button>
+    </div>
+  `;
+}
+
+function renderBudget(card) {
+  const options = [
+    { value: "free", label: "Free tools only",            detail: "I want to start lean. I will only use tools with no monthly cost." },
+    { value: "low",  label: "Under $50 per month",        detail: "I can cover a small tool cost if it clearly saves time or makes money." },
+    { value: "paid", label: "Open to investing in tools", detail: "I will pay for tools that clearly earn their cost through efficiency or revenue." }
+  ];
+  card.innerHTML = `
+    <p class="kicker">Step 3 of 3</p>
+    <h2 class="step-title">What is your starting budget for tools?</h2>
+    <p class="step-prompt">Most strong stacks start free. Be honest - you can always upgrade later.</p>
+    <div class="options">
+      ${options.map(o => `
+        <button class="option-btn ${selections.budget === o.value ? "selected" : ""}" onclick="selectBudget('${o.value}')">
+          <strong>${o.label}</strong>
+          <small>${o.detail}</small>
+        </button>`).join("")}
+    </div>
+    <div class="nav">
+      <button class="btn btn-ghost" onclick="step=2;renderStep()">Back</button>
+      <button class="btn btn-primary" id="nextBudget" ${!selections.budget ? "disabled" : ""} onclick="generateResult()">Build My Stack</button>
+    </div>
+  `;
+}
+
+function selectBudget(val) {
+  selections.budget = val;
+  document.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
+  event.currentTarget.classList.add("selected");
+  document.getElementById("nextBudget").disabled = false;
+}
+
+// ─── RESULT GENERATION ────────────────────────────────────────────────────────
+
+function getFilteredTools(sectionId) {
+  const budgetOrder = { free: 0, low: 1, paid: 2 };
+  const userLevel = budgetOrder[selections.budget] || 0;
+  return stackTools.filter(t => {
+    if (t.section !== sectionId) return false;
+    if (t.showFor && !t.showFor.includes(selections.businessType)) return false;
+    const toolLevel = budgetOrder[t.budgetTier] || 0;
+    if (toolLevel > userLevel) return false;
+    return true;
+  });
+}
+
+function renderToolEntry(tool) {
+  const desc = tool.contexts[selections.businessType] || Object.values(tool.contexts)[0];
+  return `
+    <div class="tool-entry">
+      <div class="tool-name">
+        ${tool.name}
+        <span class="tool-cost">${tool.costLabel}</span>
+        <a class="tool-link" href="${tool.link}" target="_blank" rel="noopener">Visit &rarr;</a>
+      </div>
+      <p class="tool-desc">${desc}</p>
+    </div>
+  `;
+}
+
+function generateResult() {
+  const { name, idea, businessType, state, budget } = selections;
+
+  const displayName = name || "You";
+  const stateSlug = state.toLowerCase().replace(/\s+/g, "-");
+  const statePageUrl = `/states/${stateSlug}.html`;
+  const businessLabel = businessTypeLabels[businessType] || businessType;
+  const budgetLabel = budgetLabels[budget] || budget;
+
+  const planTitle = idea
+    ? `${displayName}'s Game Plan: ${idea} (${state})`
+    : `${displayName}'s Game Plan: ${businessLabel} in ${state}`;
+
+  const sections = sectionConfig[businessType] || sectionConfig["mobile-service"];
+
+  let html = `
+    <div class="result-header">
+      <p class="kicker">Your Personalized Founder Stack</p>
+      <h1>${planTitle}</h1>
+      <div class="result-goal-pills">
+        <span class="goal-pill">${businessLabel}</span>
+        <span class="goal-pill">${state}</span>
+        <span class="goal-pill">${budgetLabel}</span>
+      </div>
+    </div>
+  `;
+
+  for (const sec of sections) {
+    if (sec.id === "legal") {
+      // Legal section rendered separately
+      html += `
+        <div class="result-section">
+          <div class="result-section-header">
+            <p class="result-section-num">Section ${sec.num}</p>
+            <h2 class="result-section-title">${sec.title}</h2>
+            <p class="result-section-sub">${sec.sub}</p>
+          </div>
+          <div class="tool-entry">
+            <div class="tool-name">
+              ${state} Business Registration
+              <span class="tool-cost">State Filing Fee Applies</span>
+              <a class="tool-link" href="${statePageUrl}" target="_blank" rel="noopener">State Info &rarr;</a>
+            </div>
+            <p class="tool-desc">Register your business with ${state}. The specific form depends on your structure - sole proprietorship, LLC, or corporation. Filing online through your Secretary of State is the fastest route. Your state page on Income Spectrum has the direct links.</p>
+          </div>
+          <div class="tool-entry">
+            <div class="tool-name">
+              IRS EIN Application
+              <span class="tool-cost">Free</span>
+              <a class="tool-link" href="https://www.irs.gov/businesses/small-businesses-self-employed/employer-id-numbers" target="_blank" rel="noopener">Apply at IRS.gov &rarr;</a>
+            </div>
+            <p class="tool-desc">Apply for your Employer Identification Number directly through the IRS website. It is free, instant, and required for opening a business bank account and paying employees. Takes about 10 minutes online.</p>
+          </div>
+          <div class="note-box">
+            <p><strong>For ${state}:</strong> ${legalNotes[businessType]}</p>
+          </div>
+        </div>
+      `;
+    } else {
+      const tools = getFilteredTools(sec.id);
+      if (!tools.length) continue;
+
+      let sectionHtml = tools.map(renderToolEntry).join("");
+
+      // Payments section: always add bank account note
+      if (sec.id === "payments") {
+        sectionHtml += `
+          <div class="note-box">
+            <p><strong>The bank account habit:</strong> ${bankNotes[businessType]}</p>
+          </div>
+        `;
+      }
+
+      html += `
+        <div class="result-section">
+          <div class="result-section-header">
+            <p class="result-section-num">Section ${sec.num}</p>
+            <h2 class="result-section-title">${sec.title}</h2>
+            <p class="result-section-sub">${sec.sub}</p>
+          </div>
+          ${sectionHtml}
+        </div>
+      `;
+    }
+  }
+
+  // First Week To-Do List
+  const todos = todoLists[businessType] || [];
+  html += `
+    <div class="result-section">
+      <div class="result-section-header">
+        <p class="result-section-num">Your First Week</p>
+        <h2 class="result-section-title">The First-Week To-Do List</h2>
+        <p class="result-section-sub">The five moves that matter most before anything else.</p>
+      </div>
+      <ul class="todo-list">
+        ${todos.map((t, i) => `
+          <li>
+            <span class="todo-num">${i + 1}</span>
+            <span>${t}</span>
+          </li>`).join("")}
+      </ul>
+    </div>
+  `;
+
+  document.getElementById("result-output").innerHTML = html;
+  document.getElementById("footerDate").textContent = new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" });
+  document.getElementById("quiz-shell").style.display = "none";
+  document.getElementById("result-shell").style.display = "block";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function printResult() {
+  window.print();
+}
+
+function restartQuiz() {
+  selections = { name: "", idea: "", businessType: "", state: "", budget: "" };
+  step = 0;
+  document.getElementById("result-shell").style.display = "none";
+  document.getElementById("quiz-shell").style.display = "block";
+  renderStep();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+renderStep();
+</script>
+</body>
+</html>

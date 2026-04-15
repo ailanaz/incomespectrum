@@ -3501,68 +3501,78 @@
       "income-laundry-pickup": "Route-based subscription service with low overhead and high residential repeat usage.",
       "income-lice-removal": "Low-startup health service with strong school and pediatric referral pipelines.",
       "income-capsule-hotel": "High-density micro-lodging near transit hubs with lower per-unit build cost than conventional hotels.",
-      "income-postpartum-retreat": "Structured wellness stay business with early-mover advantage and minimal US competition.",
-      "income-pet-funeral": "Full-service pet aftercare with vet referral pipelines and growing demand for personalized care.",
+      "income-postpartum-retreat": "Structured wellness stay with early-mover advantage and minimal US competition.",
+      "income-pet-funeral": "Full-service pet aftercare with vet referral pipelines and growing demand.",
       "income-death-doula": "Independent practice with low overhead and meaningful end-of-life client work.",
       "income-government-contracting": "A public-sector revenue lane for businesses already delivering services.",
       "income-used-ebike": "Buy, repair, resell - growing supply, clear demand, no manufacturing needed.",
       "income-mobile-battery": "On-demand automotive service - 5 to 8 jobs per day from a stocked van, no shop required.",
-      "income-storefront-setup": "Build and configure e-commerce storefronts for small business clients on project and retainer terms.",
-      "income-listing-optimization": "Remote e-commerce SEO work with measurable results, repeatable scope, and referral-driven growth.",
-      "income-vertical-content": "One filming session delivers 4 to 8 weeks of content - retainer model, 8 to 15 clients.",
+      "income-storefront-setup": "Build e-commerce storefronts for small business clients on project and retainer terms.",
+      "income-listing-optimization": "Remote e-commerce SEO with measurable results and referral-driven growth.",
+      "income-vertical-content": "One shoot delivers 4 to 8 weeks of content - retainer model, 8 to 15 clients.",
       "income-driveway-paver": "Restoration beats replacement on cost - high close rate when clients see the difference.",
       "income-crawlspace-cleanup": "Specialty physical work most operators avoid - low competition, real estate referral pipeline."
     };
 
+    const identityName = result.inferredFounderIdentity || result.founderIdentity || "Founder";
+    const identityDesc = founderIdentityDescriptions[identityName] || founderIdentityDescriptions.Founder;
     const incomeItems = (result.suggestedIncomeIds || []).map((id) => findItem(id)).filter(Boolean);
-    const snapshotRows = result.snapshotRows || [];
+    const trainingItems = (result.suggestedTrainingIds || []).map((id) => findItem(id)).filter(Boolean);
 
-    const directorySection = appState.isSignedIn ? `
-      <div class="detail-section">
-        <h4>From the directory</h4>
-        <p class="dir-group-label">Knowledge</p>
-        ${renderRelatedLinks(result.suggestedTrainingIds, "training")}
-        <p class="dir-group-label">Support</p>
-        ${renderRelatedLinks(result.suggestedServiceIds, "services")}
-        <p class="dir-group-label">Official</p>
-        ${renderRelatedLinks(result.suggestedOfficialIds, "official")}
-      </div>
-    ` : "";
+    const setupCta = appState.isSignedIn
+      ? `<button class="app-btn app-btn--ghost" data-action="open-stack">Open Founder Focus</button>`
+      : `<button class="app-btn app-btn--ghost" data-action="start-setup-signup">Sign Up to Access Founder Focus</button>`;
 
     return `
       <div class="result-group">
-        <h3>${result.planTitle}</h3>
-        <p class="result-tagline">${result.founderTagline}</p>
 
-        <div class="founder-snapshot">
-          ${snapshotRows.map((row) => `
-            <div class="snapshot-row">
-              <span class="snap-label">${row.label}</span>
-              <span class="snap-value">${row.value}</span>
-            </div>
-          `).join("")}
+        <div class="result-block result-block--identity">
+          <p class="result-block-label">Your Founder Identity</p>
+          <h3 class="result-identity-title">${identityName}</h3>
+          <p class="result-identity-desc">${identityDesc}</p>
+          ${result.founderIdentityFit ? `<p class="result-identity-fit">${result.founderIdentityFit}</p>` : ""}
         </div>
 
-        <div class="detail-section">
-          <h4>Ideas worth looking into</h4>
-          <p>${result.ideasContext}</p>
+        <div class="result-block">
+          <p class="result-block-label">Income Ideas to Explore</p>
           ${incomeItems.length ? `
-            <ul class="idea-list">
+            <ul class="result-idea-list">
               ${incomeItems.map((item) => `
-                <li class="idea-row">
+                <li class="result-idea-row">
                   <button class="text-link" data-action="open-item" data-id="${item.id}" data-type="income">${item.title}</button>
-                  <span class="idea-row__hook">${hookMap[item.id] || item.description}</span>
+                  ${hookMap[item.id] ? `<span class="result-idea-hook">${hookMap[item.id]}</span>` : ""}
                 </li>
               `).join("")}
             </ul>
-          ` : `<div class="empty-state">No close matches surfaced yet.</div>`}
+          ` : `<p style="font-size:14px;color:var(--app-text-soft)">Explore the Income Opportunities section for matches.</p>`}
         </div>
 
-        ${directorySection}
+        ${trainingItems.length ? `
+          <div class="result-block">
+            <p class="result-block-label">Education Worth Looking At</p>
+            <ul class="result-training-list">
+              ${trainingItems.map((item) => `
+                <li>
+                  <button class="text-link" data-action="open-item" data-id="${item.id}" data-type="training">${item.title}</button>
+                </li>
+              `).join("")}
+            </ul>
+          </div>
+        ` : ""}
 
-        <p class="result-file-note">${result.fileNote}</p>
+        <div class="result-block result-block--cta">
+          <p class="result-block-label">Dig Deeper</p>
+          <p class="result-cta-copy">Have a specific idea in mind? Founder Focus builds out what your business actually looks like - tools, legal steps, and a first-week plan for your state and budget.</p>
+          ${setupCta}
+        </div>
 
-        ${includeSaveButton ? `<div class="inline-actions"><button class="app-btn app-btn--primary" data-action="save-quiz-result">${appState.isSignedIn ? "Build File" : "Sign Up to Build File"}</button></div>` : ""}
+        ${includeSaveButton ? `
+          <div class="inline-actions" style="margin-top:4px">
+            <button class="app-btn app-btn--primary" data-action="save-quiz-result">
+              ${appState.isSignedIn ? "Save to Founder File" : "Sign Up to Save Result"}
+            </button>
+          </div>
+        ` : ""}
       </div>
     `;
   }
@@ -4124,6 +4134,37 @@
     };
     const nicheAsCultureSummary = `${nicheDriverPhrases[culture] || nicheDriverPhrases.relief}. In this culture, ${nicheOutcomePhrases[culture] || nicheOutcomePhrases.relief}. An income path like ${topIncomeTitle} earns inside this culture by delivering exactly that outcome.`;
 
+    // Infer founder identity from style + driver when "Still sorting"
+    function inferFounderType(st, dr) {
+      if (st === "creating") return "Solopreneur";
+      if (st === "connecting") return "Small Business Owner";
+      if (st === "solving") return "Owner-Operator";
+      if (st === "organizing") return "Owner-Operator";
+      if (st === "guiding") return (dr === "access" || dr === "improvement") ? "Freelancer" : "Small Business Owner";
+      if (st === "improving") return dr === "improvement" ? "Entrepreneur" : "Small Business Owner";
+      return "Founder";
+    }
+    const inferredFounderIdentity = (founderIdentity === "Still sorting" || !founderIdentity)
+      ? inferFounderType(style, driver)
+      : founderIdentity;
+
+    const sid = (styleLabels[style] || style).toLowerCase();
+    const did = (driverLabels[driver] || driver).toLowerCase();
+    let founderIdentityFit = "";
+    if (inferredFounderIdentity === "Entrepreneur") {
+      founderIdentityFit = `An improving style in a ${did} market signals someone building toward outcomes beyond their own direct labor. That is the Entrepreneur pattern.`;
+    } else if (inferredFounderIdentity === "Solopreneur") {
+      founderIdentityFit = `Creating is your work style and ${did} is your market. A Solopreneur owns the business and delivers the output themselves - that combination fits here.`;
+    } else if (inferredFounderIdentity === "Small Business Owner") {
+      founderIdentityFit = `Your ${sid} style in a ${did} market reads as someone building a defined business for a specific community or client base.`;
+    } else if (inferredFounderIdentity === "Freelancer") {
+      founderIdentityFit = `A guiding style with a ${did} market focus is a Freelancer pattern - independent work delivered directly to clients who need a specific expertise.`;
+    } else if (inferredFounderIdentity === "Owner-Operator") {
+      founderIdentityFit = `Your ${sid} style in a ${did} market reads as someone who wants to own the operation and stay in the work. That is Owner-Operator.`;
+    } else {
+      founderIdentityFit = "Your answers show someone building with clear intent. Founder is the right label when the shape is still forming but the direction is real.";
+    }
+
     return {
       id: "quiz-result",
       quizVersion: QUIZ_VERSION,
@@ -4148,7 +4189,9 @@
       suggestedServiceIds,
       suggestedOfficialIds,
       costOfLivingOpportunitySummary,
-      nicheAsCultureSummary
+      nicheAsCultureSummary,
+      inferredFounderIdentity,
+      founderIdentityFit
     };
   }
 

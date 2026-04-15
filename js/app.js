@@ -2207,7 +2207,7 @@
         btn.dataset.action = "open-stack";
       } else {
         kicker.textContent = "Find Your Focus";
-        copy.textContent = "Understand what people pay for and find income ideas matched to how you work.";
+        copy.textContent = "Understand what people pay for, find income ideas and more.";
         btn.textContent = "Take the Quiz";
         btn.dataset.action = "open-quiz";
       }

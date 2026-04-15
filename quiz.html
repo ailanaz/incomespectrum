@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Your Focus | Income Spectrum</title>
+  <meta name="description" content="Seven questions. A founder identity, income ideas, and education matched to how you work and what you noticed in the market. No account needed.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E0X0YYVSC4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-E0X0YYVSC4');
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .qz-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .qz-progress {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .qz-progress-bar {
+      flex: 1;
+      height: 6px;
+      background: rgba(20,37,61,0.12);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .qz-progress-bar span {
+      display: block;
+      height: 100%;
+      background: #14253d;
+      border-radius: 99px;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+    .qz-progress-label {
+      font-size: 12px;
+      color: #64748b;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+    .qz-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #64748b;
+      margin: 0 0 8px;
+    }
+    .qz-prompt {
+      font-size: 15px;
+      color: #475569;
+      line-height: 1.6;
+      margin: 0 0 6px;
+    }
+    .qz-question {
+      font-size: 18px;
+      font-weight: 700;
+      color: #14253d;
+      line-height: 1.4;
+      margin: 0 0 20px;
+    }
+    .qz-options {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .qz-option {
+      display: grid;
+      text-align: left;
+      padding: 14px 18px;
+      border: 2px solid rgba(20,37,61,0.15);
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      font-family: inherit;
+      gap: 3px;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .qz-option:hover {
+      border-color: #14253d;
+      background: #f8fafc;
+    }
+    .qz-option.selected {
+      border-color: #14253d;
+      background: rgba(20,37,61,0.06);
+    }
+    .qz-option strong {
+      font-size: 15px;
+      font-weight: 600;
+      color: #14253d;
+      line-height: 1.3;
+    }
+    .qz-option small {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+    .qz-nav {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .qz-btn {
+      padding: 11px 24px;
+      border-radius: 7px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid #14253d;
+      transition: background 0.15s, color 0.15s;
+    }
+    .qz-btn--primary {
+      background: #14253d;
+      color: #fff;
+    }
+    .qz-btn--primary:hover:not(:disabled) {
+      background: #1e3a5f;
+    }
+    .qz-btn--primary:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+    .qz-btn--ghost {
+      background: transparent;
+      color: #14253d;
+    }
+    .qz-btn--ghost:hover {
+      background: rgba(20,37,61,0.06);
+    }
+    /* Intro */
+    .qz-intro-card {
+      background: #fff;
+      border: 2px solid rgba(20,37,61,0.12);
+      border-radius: 12px;
+      padding: 36px 40px;
+      margin-bottom: 28px;
+    }
+    .qz-intro-card h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #14253d;
+      margin: 0 0 18px;
+    }
+    .qz-intro-card p { font-size: 15px; color: #334155; line-height: 1.65; margin: 0 0 12px; }
+    .qz-intro-card ul { padding-left: 20px; margin: 0 0 12px; }
+    .qz-intro-card li { font-size: 14px; color: #475569; line-height: 1.65; margin-bottom: 4px; }
+    .qz-intro-card strong { color: #14253d; }
+    .qz-intro-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+    }
+    .qz-app-link {
+      font-size: 13px;
+      color: #94a3b8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .qz-app-link:hover { color: #14253d; }
+    /* Result */
+    .qz-result {
+      display: grid;
+      gap: 20px;
+    }
+    .qz-result-block {
+      background: #fff;
+      border: 2px solid rgba(20,37,61,0.12);
+      border-radius: 10px;
+      padding: 24px 28px;
+    }
+    .qz-result-block--identity {
+      background: #14253d;
+      color: #fff;
+      border-color: #14253d;
+    }
+    .qz-result-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #94a3b8;
+      margin: 0 0 8px;
+    }
+    .qz-result-block--identity .qz-result-label {
+      color: rgba(255,255,255,0.55);
+    }
+    .qz-identity-name {
+      font-size: 26px;
+      font-weight: 800;
+      margin: 0 0 8px;
+    }
+    .qz-identity-desc {
+      font-size: 15px;
+      opacity: 0.85;
+      line-height: 1.55;
+      margin: 0 0 8px;
+    }
+    .qz-identity-fit {
+      font-size: 14px;
+      opacity: 0.7;
+      line-height: 1.55;
+      margin: 0;
+    }
+    .qz-idea-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+    .qz-idea-item {
+      border-bottom: 1px solid rgba(20,37,61,0.08);
+      padding-bottom: 12px;
+    }
+    .qz-idea-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .qz-idea-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #14253d;
+      margin: 0 0 3px;
+    }
+    .qz-idea-hook {
+      font-size: 13px;
+      color: #64748b;
+      margin: 0;
+      line-height: 1.5;
+    }
+    .qz-training-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+    .qz-training-list li {
+      font-size: 14px;
+      color: #334155;
+      padding-left: 14px;
+      position: relative;
+    }
+    .qz-training-list li::before {
+      content: "-";
+      position: absolute;
+      left: 0;
+      color: #94a3b8;
+    }
+    .qz-result-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 4px;
+    }
+    .qz-restart {
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 13px;
+      color: #94a3b8;
+      cursor: pointer;
+      padding: 0;
+    }
+    .qz-restart:hover { color: #14253d; }
+    @media (max-width: 600px) {
+      .qz-wrap { padding: 24px 16px 60px; }
+      .qz-intro-card { padding: 24px 20px; }
+      .qz-result-block { padding: 20px; }
+      .qz-identity-name { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Income Spectrum Home">
+      <img src="img/logo.png" class="nav-logo__gauge" width="44" height="44" alt="" aria-hidden="true">
+      <span class="nav-logo__text"><strong>Income</strong>Spectrum</span>
+    </a>
+    <ul class="nav-links" id="mainNav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="focus.html">Focus</a></li>
+      <li><a href="income-options.html">Opportunities</a></li>
+      <li><a href="education-training.html">Education &amp; Training</a></li>
+      <li><a href="supportive-services.html">Supportive Services</a></li>
+      <li><a href="state-federal-resources.html">Official Resources</a></li>
+      <li><a href="https://incomespectrum.app">App</a></li>
+    </ul>
+    <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+  <div class="qz-wrap">
+    <div class="qz-progress">
+      <div class="qz-progress-bar"><span id="qzBar"></span></div>
+      <span class="qz-progress-label" id="qzLabel">Introduction</span>
+    </div>
+    <div id="qzBody"></div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-copy">&copy; 2025 Income Spectrum. All rights reserved.</p>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="about.html">About</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="disclaimer.html">Disclaimer</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function() {
+
+  // ─── DATA ─────────────────────────────────────────────────────────────────
+
+  const founderIdentityDescriptions = {
+    Founder: "A person who starts, owns, builds, buys, or runs a business or venture.",
+    Entrepreneur: "Building something with room to grow beyond your direct labor.",
+    Solopreneur: "Running a business you own and operate yourself.",
+    "Small Business Owner": "Owning and running a business that serves a defined market or community.",
+    Freelancer: "Working independently by offering a skill or service to clients.",
+    "Owner-Operator": "Owning the business and also doing the day-to-day work.",
+    "Still sorting": "You are still narrowing in on what fits you best."
+  };
+
+  const hookMap = {
+    "income-mobile-notary": "Local appointment-based service with low startup cost and a clear certification path.",
+    "income-virtual-assistant": "Fully remote, starts with one client, scales through systems and specialization.",
+    "income-asl-interpreting": "Certification-backed service with growing demand and referral-driven client work.",
+    "income-print-on-demand": "Online product testing with no inventory - design and the platform handles fulfillment.",
+    "income-commercial-cleaning": "Recurring commercial contracts that compound over time with the right client mix.",
+    "income-hydroseeding": "Equipment-based outdoor service with residential, commercial, and municipal demand.",
+    "income-escape-room": "Venue-based experience business with strong corporate and group booking revenue.",
+    "income-karaoke-venue": "Private-room hospitality with repeat group traffic and food and beverage upside.",
+    "income-laundry-pickup": "Route-based subscription service with low overhead and high residential repeat usage.",
+    "income-lice-removal": "Low-startup health service with strong school and pediatric referral pipelines.",
+    "income-capsule-hotel": "High-density micro-lodging near transit hubs with lower per-unit build cost than conventional hotels.",
+    "income-postpartum-retreat": "Structured wellness stay with early-mover advantage and minimal US competition.",
+    "income-pet-funeral": "Full-service pet aftercare with vet referral pipelines and growing demand.",
+    "income-death-doula": "Independent practice with low overhead and meaningful end-of-life client work.",
+    "income-government-contracting": "A public-sector revenue lane for businesses already delivering services.",
+    "income-used-ebike": "Buy, repair, resell - growing supply, clear demand, no manufacturing needed.",
+    "income-mobile-battery": "On-demand automotive service - 5 to 8 jobs per day from a stocked van, no shop required.",
+    "income-storefront-setup": "Build e-commerce storefronts for small business clients on project and retainer terms.",
+    "income-listing-optimization": "Remote e-commerce SEO with measurable results and referral-driven growth.",
+    "income-vertical-content": "One shoot delivers 4 to 8 weeks of content - retainer model, 8 to 15 clients.",
+    "income-driveway-paver": "Restoration beats replacement on cost - high close rate when clients see the difference.",
+    "income-crawlspace-cleanup": "Specialty physical work most operators avoid - low competition, real estate referral pipeline."
+  };
+
+  const incomeTitles = {
+    "income-mobile-notary": "Mobile Notary Service",
+    "income-virtual-assistant": "Virtual Assistant Services",
+    "income-asl-interpreting": "ASL Interpreting",
+    "income-print-on-demand": "Print-on-Demand Shop",
+    "income-commercial-cleaning": "Commercial Cleaning Business",
+    "income-hydroseeding": "Hydroseeding Service",
+    "income-escape-room": "Escape Room Business",
+    "income-karaoke-venue": "Karaoke Box Venue",
+    "income-laundry-pickup": "Mobile Laundry Pickup Service",
+    "income-lice-removal": "Lice Removal Salon",
+    "income-capsule-hotel": "Capsule Hotel",
+    "income-postpartum-retreat": "Postpartum Recovery Retreat",
+    "income-pet-funeral": "Pet Funeral and Grief Services",
+    "income-death-doula": "Death Doula",
+    "income-government-contracting": "Government Contracting Services",
+    "income-used-ebike": "Used E-Bike Refurbish and Resale",
+    "income-mobile-battery": "Mobile Battery Replacement Service",
+    "income-storefront-setup": "Online Storefront Setup Service",
+    "income-listing-optimization": "Product Listing Optimization Service",
+    "income-vertical-content": "Vertical Content Capture Service",
+    "income-driveway-paver": "Driveway and Paver Restoration",
+    "income-crawlspace-cleanup": "Crawlspace Cleanup and Sanitation"
+  };
+
+  const trainingTitles = {
+    "training-business-foundations": "Business Foundations for Service Operators",
+    "training-operations-basics": "Operations Basics for Service Businesses",
+    "training-digital-storefront": "Digital Storefront Setup",
+    "training-brand-basics": "Brand Basics",
+    "training-certification-prep": "Certification Preparation",
+    "training-asl-pathways": "ASL Education and Interpreter Options",
+    "training-government-contracting": "Government Contracting Basics",
+    "training-notary-basics": "Notary Commission Basics",
+    "training-va-systems": "Virtual Assistant Systems and Client Workflow",
+    "training-hydroseeding": "IAHP - Certified Hydroseeding Professional (CHP)"
+  };
+
+  // ─── QUIZ DATA ─────────────────────────────────────────────────────────────
+
+  const quiz = {
+    title: "Find Your Focus",
+    intro: `<p>This quiz maps what people are already spending to a business direction that fits how you work. Here is what the questions are built on:</p>
+<p><strong>Needs and Wants</strong></p>
+<ul>
+  <li><strong>Needs</strong> are what people must have - survival, safety, health, shelter, stability.</li>
+  <li><strong>Wants</strong> are what people choose - comfort, pleasure, belonging, meaning. Both create real markets. Most income opportunities sit in wants, not survival needs.</li>
+</ul>
+<p><strong>The Six</strong> - the six things people are actually buying:</p>
+<ul>
+  <li><strong>Survival and Stability</strong> - keeping finances, routines, and security in place</li>
+  <li><strong>Safety and Protection</strong> - reducing risk, avoiding mistakes, reaching what they cannot access alone</li>
+  <li><strong>Relief and Health</strong> - removing a problem, burden, or stress from their life</li>
+  <li><strong>Pleasure and Comfort</strong> - making life feel better, easier, or more enjoyable</li>
+  <li><strong>Belonging and Love</strong> - connection, care, shared meaning, community</li>
+  <li><strong>Status and Meaning</strong> - improving their situation, their results, or how they are seen</li>
+</ul>
+<p><strong>Cost of Living</strong> - what people give up before they spend money:</p>
+<ul>
+  <li>Time, energy, attention, comfort, and risk are the real costs people carry every day.</li>
+  <li>Every business earns by reducing one of these costs for someone who would rather pay than keep carrying it.</li>
+</ul>
+<p><strong>Niche Is Culture</strong> - a niche is more than a target market:</p>
+<ul>
+  <li>A culture is a group of people who share the same cost and the same outcome they want.</li>
+  <li>Culture shapes what they trust, what they will pay for, and who they choose.</li>
+  <li>When you understand the culture you are building for, you can build something that belongs in their world.</li>
+</ul>`,
+    optionPrompt: "Read each one and choose what feels closest. There are no right or wrong answers here, only what fits.",
+    questions: [
+      {
+        id: "driver",
+        title: "The Six",
+        prompt: "Think about a group of people who keep spending money on the same kind of problem, need, or want. You do not have to have a business idea yet. Just think about spending patterns you have noticed - people around you, situations you have been in, or problems that keep showing up. The six patterns below are what sits underneath most of that spending.",
+        question: "Which spending pattern do you recognize most clearly - in your own life, in people around you, or in a market you have noticed?",
+        options: [
+          { value: "stability", label: "Survival and Stability", detail: "People spending to keep their finances, routines, or security from falling apart." },
+          { value: "access", label: "Safety and Protection", detail: "People spending to reduce risk, avoid a costly mistake, or reach something they could not get to on their own." },
+          { value: "relief", label: "Relief and Health", detail: "People spending to remove a problem, a burden, or a source of stress from their life." },
+          { value: "enjoyment", label: "Pleasure and Comfort", detail: "People spending to make their daily life feel better, easier, or more enjoyable." },
+          { value: "connection", label: "Belonging and Love", detail: "People spending for connection, care, shared meaning, or to feel like they belong somewhere." },
+          { value: "improvement", label: "Status and Meaning", detail: "People spending to improve their situation, their results, or how they show up in the world." }
+        ]
+      },
+      {
+        id: "cost",
+        title: "The Cost of Living",
+        prompt: "Before people spend money, they are already paying a cost. The Cost of Living is what people spend in time, energy, attention, comfort, and risk to get something done. Every business exists because it reduces one of these costs for someone who would rather pay money than keep carrying it. The higher the cost someone is already paying, the stronger the pull toward a business that reduces it. When you identify the cost the people you want to serve are already paying, you have found the real reason they would hire you, buy from you, or keep coming back.",
+        question: "Which cost do you see the people you want to serve paying most heavily?",
+        options: [
+          { value: "time", label: "Time", detail: "Getting this done takes longer than it should. They would pay to have it faster or handled." },
+          { value: "energy", label: "Energy", detail: "This drains them. They would pay to have less of it on their plate." },
+          { value: "attention", label: "Attention", detail: "This keeps pulling their focus. They would pay for clarity, simplicity, or someone to handle the complexity." },
+          { value: "comfort", label: "Comfort", detail: "This is harder, rougher, or less pleasant than it needs to be. They would pay for ease." },
+          { value: "risk", label: "Risk", detail: "This feels uncertain or exposed. They would pay to reduce the chance of getting it wrong." },
+          { value: "mix", label: "A mix across these", detail: "More than one of these is clearly stacking up at once." }
+        ]
+      },
+      {
+        id: "opportunity",
+        title: "Cost of Living Creates Opportunity",
+        prompt: "Opportunity is not invented - it is found where the Cost of Living is high and people are already spending to reduce it. When a large group of people share the same cost and keep paying to address it, a market already exists. The Income Spectrum directory is built around this: every income direction, every education resource, and every support service listed exists because a group of people has a cost they would rather pay to have reduced. Your job is not to create demand - it is to find where that demand already lives and where your ability to reduce the cost lines up with it.",
+        question: "Which kind of opening do you see most clearly in the cost you identified?",
+        options: [
+          { value: "save-time", label: "Saving time", detail: "You could provide something faster, do it for them, or remove the steps that slow them down." },
+          { value: "use-less-energy", label: "Using less energy", detail: "You could take something heavy off their plate or make the effort significantly lighter." },
+          { value: "decide-clearly", label: "Deciding more clearly", detail: "You could help them understand, compare, prepare, or move through a decision with more confidence." },
+          { value: "feel-better", label: "Feeling better or more secure", detail: "You could reduce the discomfort, stress, or exposure they are currently carrying." },
+          { value: "better-result", label: "Reaching a better result", detail: "You could deliver a stronger outcome, finish, or standard than they can reach on their own." },
+          { value: "enjoy-more", label: "Enjoying the process or outcome more", detail: "You could make the experience itself better - more pleasurable, more fitting, more satisfying." }
+        ]
+      },
+      {
+        id: "culture",
+        title: "Niche Is Culture",
+        prompt: "People who keep spending on the same kind of outcome form a culture - a group that shares the same cost and the same thing they are trying to get. That culture shapes what they trust, who they pay, and what makes a business feel like it belongs in their world. The income opportunities and resources in the Income Spectrum directory are organized around these cultures.",
+        question: "Which culture are the people you want to build for most likely part of?",
+        options: [
+          { value: "relief", label: "A relief and health culture", detail: "People dealing with recurring problems, health burdens, or situations that keep needing to be resolved." },
+          { value: "stability", label: "A survival and stability culture", detail: "People building or protecting financial security, steady routines, or long-term steadiness." },
+          { value: "access", label: "A safety and protection culture", detail: "People trying to reduce risk, avoid costly mistakes, or reach a credential, market, or opportunity they cannot get to alone." },
+          { value: "improvement", label: "A status and meaning culture", detail: "People who want better performance, a stronger result, or to be seen as having made a real upgrade." },
+          { value: "connection", label: "A belonging and love culture", detail: "People who care about community, care, relationships, or shared identity and meaning." },
+          { value: "enjoyment", label: "A pleasure and comfort culture", detail: "People who want things to feel better, be more enjoyable, or be genuinely worth experiencing." }
+        ]
+      },
+      {
+        id: "founder",
+        title: "Founder Identity",
+        prompt: "The same income opportunity can fit very different kinds of founders. A commercial cleaning route run by an owner-operator looks completely different from a cleaning company built by an entrepreneur scaling a team. Which kind of founder you are shapes which opportunities in the directory are right for you - not just which ones sound interesting, but which ones actually fit how you want to work, what you want to own, and what you want to build over time.",
+        question: "Which founder identity fits where you are right now?",
+        options: [
+          { value: "Entrepreneur", label: "Entrepreneur", detail: "Building something with room to grow beyond your direct labor." },
+          { value: "Solopreneur", label: "Solopreneur", detail: "Running a business you own and operate yourself, intentionally staying lean." },
+          { value: "Small Business Owner", label: "Small Business Owner", detail: "Owning and running a business that serves a defined local or niche market." },
+          { value: "Freelancer", label: "Freelancer", detail: "Working independently by offering a skill or service to clients." },
+          { value: "Owner-Operator", label: "Owner-Operator", detail: "Owning the business and doing the day-to-day work yourself." },
+          { value: "Still sorting", label: "Still defining that", detail: "You are still figuring out which model fits you best." }
+        ]
+      },
+      {
+        id: "style",
+        title: "Working Style",
+        prompt: "The right opportunity is not just the one with the best numbers - it is the one that fits how you naturally work. Someone energized by solving problems will struggle in a business built around constant creative output. Someone who loves organizing systems will feel out of place in a role that demands improvisation. Your working style is a filter: it tells you which income directions in the directory will feel natural and sustainable, and which ones will feel like a grind even when the market demand is real.",
+        question: "Which way of working feels most natural to you?",
+        options: [
+          { value: "solving", label: "Solving", detail: "I like diagnosing, fixing, and figuring things out." },
+          { value: "improving", label: "Improving", detail: "I like taking something that works and making it noticeably better." },
+          { value: "organizing", label: "Organizing", detail: "I like bringing order, systems, and structure to things." },
+          { value: "guiding", label: "Guiding", detail: "I like helping people think through decisions or navigate something." },
+          { value: "creating", label: "Creating", detail: "I like making things - objects, content, experiences, or ideas." },
+          { value: "connecting", label: "Connecting", detail: "I like bringing people, resources, or opportunities together." }
+        ]
+      },
+      {
+        id: "focus",
+        title: "Your Focus",
+        prompt: "Your focus is where The Six, the Cost of Living, the culture, and your working style all point in the same direction. The Income Spectrum directory is organized around this: income opportunities, education and training, support services, and official resources are all indexed so you can find and build from a clear starting point. This question maps everything you have identified to the section of the directory that fits your focus best - and gives you a working direction to take into the Founder File.",
+        question: "Which kind of income opportunity fits the focus taking shape in your answers?",
+        options: [
+          { value: "service", label: "A service", detail: "You deliver work directly to people using your skills or time." },
+          { value: "product", label: "A product", detail: "People buy something you make, source, package, or sell." },
+          { value: "ownership", label: "Ownership or acquisition", detail: "You want to buy into or own a business rather than build from scratch." },
+          { value: "information", label: "Information or guidance", detail: "You help people understand, decide, or navigate something." },
+          { value: "recurring", label: "A recurring or asset-based model", detail: "You want income tied to something you own or have set up, not just your hours." },
+          { value: "sorting", label: "Still sorting", detail: "You need to explore more before you can commit to a direction." }
+        ]
+      }
+    ]
+  };
+
+  // ─── STATE ─────────────────────────────────────────────────────────────────
+
+  let qzIndex = -1;
+  const answers = {};
+  let result = null;
+
+  // ─── SCORING ───────────────────────────────────────────────────────────────
+
+  function buildResult() {
+    const driver = answers.driver || "stability";
+    const style = answers.style || "solving";
+    const cost = answers.cost || "time";
+    const opportunity = answers.opportunity || "better-result";
+    const culture = answers.culture || driver;
+    const founderIdentity = answers.founder || "Still sorting";
+    const focus = answers.focus || "sorting";
+
+    const allIncomeIds = ["income-mobile-notary","income-virtual-assistant","income-asl-interpreting","income-print-on-demand","income-commercial-cleaning","income-hydroseeding","income-escape-room","income-karaoke-venue","income-laundry-pickup","income-lice-removal","income-capsule-hotel","income-postpartum-retreat","income-pet-funeral","income-death-doula","income-government-contracting","income-used-ebike","income-mobile-battery","income-storefront-setup","income-listing-optimization","income-vertical-content","income-driveway-paver","income-crawlspace-cleanup"];
+    const allTrainingIds = ["training-business-foundations","training-operations-basics","training-digital-storefront","training-brand-basics","training-certification-prep","training-asl-pathways","training-government-contracting","training-notary-basics","training-va-systems","training-hydroseeding"];
+
+    const incomeScores = Object.fromEntries(allIncomeIds.map(id => [id, 0]));
+    const trainingScores = Object.fromEntries(allTrainingIds.map(id => [id, 0]));
+
+    function add(bucket, ids, pts) { (ids||[]).forEach(id => { if (id in bucket) bucket[id] += pts; }); }
+    function sub(bucket, ids, pts) { (ids||[]).forEach(id => { if (id in bucket) bucket[id] -= pts; }); }
+    function top(bucket, n) {
+      return Object.entries(bucket).sort((a,b)=>b[1]-a[1]).filter(e=>e[1]>0).slice(0,n).map(e=>e[0]);
+    }
+
+    const focusMap = {
+      service:    { incomeIds: ["income-mobile-notary","income-virtual-assistant","income-commercial-cleaning","income-mobile-battery","income-laundry-pickup","income-crawlspace-cleanup"], trainingIds: ["training-business-foundations","training-operations-basics","training-certification-prep"] },
+      product:    { incomeIds: ["income-print-on-demand","income-used-ebike","income-karaoke-venue","income-escape-room","income-capsule-hotel"], trainingIds: ["training-digital-storefront","training-brand-basics","training-business-foundations"] },
+      ownership:  { incomeIds: ["income-government-contracting","income-commercial-cleaning","income-escape-room","income-hydroseeding","income-capsule-hotel"], trainingIds: ["training-business-foundations","training-government-contracting"] },
+      information:{ incomeIds: ["income-storefront-setup","income-listing-optimization","income-vertical-content","income-government-contracting","income-virtual-assistant"], trainingIds: ["training-business-foundations","training-digital-storefront","training-government-contracting","training-certification-prep"] },
+      recurring:  { incomeIds: ["income-laundry-pickup","income-commercial-cleaning","income-government-contracting","income-capsule-hotel","income-mobile-battery"], trainingIds: ["training-business-foundations","training-operations-basics","training-government-contracting"] },
+      sorting:    { incomeIds: ["income-mobile-notary","income-laundry-pickup","income-government-contracting","income-virtual-assistant","income-commercial-cleaning"], trainingIds: ["training-business-foundations","training-digital-storefront"] }
+    };
+    const currentFocus = focusMap[focus] || focusMap.sorting;
+
+    const styleBoosts = {
+      solving:    ["income-mobile-battery","income-commercial-cleaning","income-crawlspace-cleanup","income-lice-removal"],
+      improving:  ["income-listing-optimization","income-hydroseeding","income-driveway-paver","income-vertical-content"],
+      organizing: ["income-virtual-assistant","income-government-contracting","income-laundry-pickup","income-mobile-notary"],
+      guiding:    ["income-mobile-notary","income-government-contracting","income-virtual-assistant","income-listing-optimization"],
+      creating:   ["income-print-on-demand","income-vertical-content","income-escape-room","income-karaoke-venue"],
+      connecting: ["income-asl-interpreting","income-death-doula","income-pet-funeral","income-postpartum-retreat"]
+    };
+    const driverBoosts = {
+      relief:      ["income-commercial-cleaning","income-crawlspace-cleanup","income-lice-removal","income-mobile-battery"],
+      stability:   ["income-mobile-notary","income-government-contracting","income-mobile-battery","income-asl-interpreting"],
+      access:      ["income-asl-interpreting","income-storefront-setup","income-mobile-notary","income-government-contracting"],
+      improvement: ["income-listing-optimization","income-driveway-paver","income-hydroseeding","income-used-ebike"],
+      connection:  ["income-asl-interpreting","income-death-doula","income-postpartum-retreat","income-pet-funeral"],
+      enjoyment:   ["income-print-on-demand","income-karaoke-venue","income-escape-room","income-capsule-hotel"]
+    };
+    const founderBoosts = {
+      Entrepreneur:        ["income-escape-room","income-karaoke-venue","income-capsule-hotel","income-government-contracting","income-used-ebike"],
+      Solopreneur:         ["income-virtual-assistant","income-mobile-notary","income-listing-optimization","income-vertical-content"],
+      "Small Business Owner": ["income-commercial-cleaning","income-hydroseeding","income-laundry-pickup","income-driveway-paver","income-mobile-battery"],
+      Freelancer:          ["income-listing-optimization","income-vertical-content","income-virtual-assistant","income-mobile-notary"],
+      "Owner-Operator":    ["income-mobile-battery","income-hydroseeding","income-commercial-cleaning","income-laundry-pickup","income-driveway-paver","income-crawlspace-cleanup"],
+      "Still sorting":     ["income-mobile-notary","income-virtual-assistant","income-commercial-cleaning","income-government-contracting"]
+    };
+    const costBoosts = {
+      time:      ["income-virtual-assistant","income-mobile-notary","income-laundry-pickup","income-mobile-battery"],
+      energy:    ["income-commercial-cleaning","income-crawlspace-cleanup","income-driveway-paver","income-hydroseeding"],
+      attention: ["income-listing-optimization","income-virtual-assistant","income-government-contracting","income-mobile-notary"],
+      comfort:   ["income-capsule-hotel","income-postpartum-retreat","income-death-doula","income-pet-funeral"],
+      risk:      ["income-government-contracting","income-mobile-notary","income-asl-interpreting"],
+      mix:       ["income-virtual-assistant","income-government-contracting","income-mobile-notary","income-commercial-cleaning"]
+    };
+    const opportunityBoosts = {
+      "save-time":       ["income-virtual-assistant","income-laundry-pickup","income-mobile-battery","income-mobile-notary"],
+      "use-less-energy": ["income-commercial-cleaning","income-crawlspace-cleanup","income-driveway-paver","income-laundry-pickup"],
+      "decide-clearly":  ["income-listing-optimization","income-government-contracting","income-mobile-notary","income-virtual-assistant"],
+      "feel-better":     ["income-pet-funeral","income-death-doula","income-postpartum-retreat","income-lice-removal"],
+      "better-result":   ["income-hydroseeding","income-driveway-paver","income-listing-optimization","income-vertical-content"],
+      "enjoy-more":      ["income-karaoke-venue","income-escape-room","income-capsule-hotel","income-print-on-demand"]
+    };
+    const driverPenalties = {
+      stability:   ["income-karaoke-venue","income-escape-room","income-capsule-hotel","income-print-on-demand","income-used-ebike"],
+      access:      ["income-karaoke-venue","income-escape-room","income-print-on-demand","income-used-ebike","income-crawlspace-cleanup"],
+      relief:      ["income-karaoke-venue","income-escape-room","income-capsule-hotel","income-used-ebike"],
+      connection:  ["income-listing-optimization","income-mobile-battery","income-crawlspace-cleanup","income-driveway-paver","income-hydroseeding"],
+      improvement: ["income-crawlspace-cleanup","income-lice-removal","income-laundry-pickup","income-pet-funeral"],
+      enjoyment:   ["income-government-contracting","income-crawlspace-cleanup","income-lice-removal","income-mobile-notary"]
+    };
+    const stylePenalties = {
+      creating:   ["income-commercial-cleaning","income-crawlspace-cleanup","income-laundry-pickup","income-mobile-notary","income-government-contracting"],
+      connecting: ["income-listing-optimization","income-mobile-battery","income-hydroseeding","income-driveway-paver","income-crawlspace-cleanup"],
+      solving:    ["income-laundry-pickup","income-print-on-demand","income-karaoke-venue","income-capsule-hotel"],
+      organizing: ["income-karaoke-venue","income-escape-room","income-print-on-demand"],
+      improving:  ["income-death-doula","income-pet-funeral","income-postpartum-retreat","income-lice-removal"],
+      guiding:    ["income-commercial-cleaning","income-crawlspace-cleanup","income-mobile-battery","income-hydroseeding"]
+    };
+    const opportunityPenalties = {
+      "enjoy-more":      ["income-government-contracting","income-mobile-notary","income-commercial-cleaning","income-crawlspace-cleanup","income-lice-removal"],
+      "feel-better":     ["income-government-contracting","income-listing-optimization","income-hydroseeding","income-used-ebike"],
+      "better-result":   ["income-karaoke-venue","income-escape-room","income-death-doula","income-pet-funeral"],
+      "save-time":       ["income-karaoke-venue","income-escape-room","income-print-on-demand","income-capsule-hotel"],
+      "use-less-energy": ["income-listing-optimization","income-vertical-content","income-print-on-demand","income-karaoke-venue"],
+      "decide-clearly":  ["income-karaoke-venue","income-escape-room","income-commercial-cleaning","income-crawlspace-cleanup","income-used-ebike"]
+    };
+
+    add(incomeScores, currentFocus.incomeIds, 5);
+    add(incomeScores, styleBoosts[style] || [], 3);
+    add(incomeScores, driverBoosts[driver] || [], 3);
+    if (culture !== driver) add(incomeScores, driverBoosts[culture] || [], 2);
+    add(incomeScores, founderBoosts[founderIdentity] || [], 1);
+    add(incomeScores, costBoosts[cost] || [], 1);
+    add(incomeScores, opportunityBoosts[opportunity] || [], 3);
+    sub(incomeScores, driverPenalties[driver] || [], 3);
+    sub(incomeScores, stylePenalties[style] || [], 2);
+    sub(incomeScores, opportunityPenalties[opportunity] || [], 2);
+
+    const suggestedIncomeIds = top(incomeScores, 3).length ? top(incomeScores, 3) : currentFocus.incomeIds.slice(0,3);
+
+    suggestedIncomeIds.forEach((id, i) => {
+      // boost training from income item associations (simplified - use focus map training)
+    });
+    add(trainingScores, currentFocus.trainingIds, 3);
+    if (driver === "connection" || culture === "connection") add(trainingScores, ["training-asl-pathways","training-certification-prep"], 1);
+    if (driver === "improvement" || opportunity === "better-result") add(trainingScores, ["training-brand-basics","training-digital-storefront","training-operations-basics"], 1);
+    if (opportunity === "decide-clearly") add(trainingScores, ["training-business-foundations","training-government-contracting"], 1);
+
+    const suggestedTrainingIds = top(trainingScores, 3);
+
+    // Infer founder identity
+    function inferFounderType(st, dr) {
+      if (st === "creating") return "Solopreneur";
+      if (st === "connecting") return "Small Business Owner";
+      if (st === "solving") return "Owner-Operator";
+      if (st === "organizing") return "Owner-Operator";
+      if (st === "guiding") return (dr === "access" || dr === "improvement") ? "Freelancer" : "Small Business Owner";
+      if (st === "improving") return dr === "improvement" ? "Entrepreneur" : "Small Business Owner";
+      return "Founder";
+    }
+    const inferredFounderIdentity = (founderIdentity === "Still sorting" || !founderIdentity) ? inferFounderType(style, driver) : founderIdentity;
+
+    const styleLabels = { solving:"Solving", improving:"Improving", organizing:"Organizing", guiding:"Guiding", creating:"Creating", connecting:"Connecting" };
+    const driverLabels = { relief:"Relief", stability:"Stability", access:"Access", improvement:"Improvement", connection:"Connection", enjoyment:"Enjoyment" };
+    const sid = (styleLabels[style] || style).toLowerCase();
+    const did = (driverLabels[driver] || driver).toLowerCase();
+    let founderIdentityFit = "";
+    if (inferredFounderIdentity === "Entrepreneur") {
+      founderIdentityFit = `An improving style in a ${did} market signals someone building toward outcomes beyond their own direct labor. That is the Entrepreneur pattern.`;
+    } else if (inferredFounderIdentity === "Solopreneur") {
+      founderIdentityFit = `Creating is your work style and ${did} is your market. A Solopreneur owns the business and delivers the output themselves - that combination fits here.`;
+    } else if (inferredFounderIdentity === "Small Business Owner") {
+      founderIdentityFit = `Your ${sid} style in a ${did} market reads as someone building a defined business for a specific community or client base.`;
+    } else if (inferredFounderIdentity === "Freelancer") {
+      founderIdentityFit = `A guiding style with a ${did} market focus is a Freelancer pattern - independent work delivered directly to clients who need a specific expertise.`;
+    } else if (inferredFounderIdentity === "Owner-Operator") {
+      founderIdentityFit = `Your ${sid} style in a ${did} market reads as someone who wants to own the operation and stay in the work. That is Owner-Operator.`;
+    } else {
+      founderIdentityFit = "Your answers show someone building with clear intent. Founder is the right label when the shape is still forming but the direction is real.";
+    }
+
+    return { inferredFounderIdentity, founderIdentityFit, suggestedIncomeIds, suggestedTrainingIds };
+  }
+
+  // ─── RENDER ────────────────────────────────────────────────────────────────
+
+  const bar = document.getElementById("qzBar");
+  const label = document.getElementById("qzLabel");
+  const body = document.getElementById("qzBody");
+
+  function setProgress(pct, text) {
+    bar.style.width = pct + "%";
+    label.textContent = text;
+  }
+
+  function render() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    if (result) {
+      renderResult();
+      return;
+    }
+
+    if (qzIndex === -1) {
+      setProgress(0, "Introduction");
+      body.innerHTML = `
+        <div class="qz-intro-card">
+          <h2>Find Your Focus</h2>
+          ${quiz.intro}
+          <p style="font-size:13px;color:#94a3b8;margin:16px 0 0">${quiz.optionPrompt}</p>
+        </div>
+        <div class="qz-intro-footer">
+          <a href="app.html" class="qz-app-link">Explore the directory &rarr;</a>
+          <button class="qz-btn qz-btn--primary" id="qzBegin">Begin Quiz</button>
+        </div>
+      `;
+      document.getElementById("qzBegin").addEventListener("click", () => {
+        qzIndex = 0;
+        render();
+      });
+      return;
+    }
+
+    const q = quiz.questions[qzIndex];
+    const selected = answers[q.id];
+    const isLast = qzIndex === quiz.questions.length - 1;
+    setProgress(((qzIndex + 1) / quiz.questions.length) * 100, `Question ${qzIndex + 1} of ${quiz.questions.length}`);
+
+    body.innerHTML = `
+      <p class="qz-title">${q.title}</p>
+      ${q.prompt ? `<p class="qz-prompt">${q.prompt}</p>` : ""}
+      <p class="qz-question">${q.question}</p>
+      <div class="qz-options">
+        ${q.options.map(opt => `
+          <button class="qz-option${selected === opt.value ? " selected" : ""}" data-value="${opt.value}">
+            <strong>${opt.label}</strong>
+            ${opt.detail ? `<small>${opt.detail}</small>` : ""}
+          </button>
+        `).join("")}
+      </div>
+      <div class="qz-nav">
+        ${qzIndex > 0 ? `<button class="qz-btn qz-btn--ghost" id="qzBack">Back</button>` : "<span></span>"}
+        <button class="qz-btn qz-btn--primary" id="qzNext" ${!selected ? "disabled" : ""}>${isLast ? "See Result" : "Next"}</button>
+      </div>
+    `;
+
+    body.querySelectorAll(".qz-option").forEach(btn => {
+      btn.addEventListener("click", () => {
+        answers[q.id] = btn.dataset.value;
+        body.querySelectorAll(".qz-option").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        document.getElementById("qzNext").disabled = false;
+      });
+    });
+
+    document.getElementById("qzNext").addEventListener("click", () => {
+      if (!answers[q.id]) return;
+      if (!isLast) {
+        qzIndex++;
+        render();
+      } else {
+        result = buildResult();
+        render();
+      }
+    });
+
+    const backBtn = document.getElementById("qzBack");
+    if (backBtn) {
+      backBtn.addEventListener("click", () => {
+        qzIndex--;
+        render();
+      });
+    }
+  }
+
+  function renderResult() {
+    setProgress(100, "Result");
+    const { inferredFounderIdentity, founderIdentityFit, suggestedIncomeIds, suggestedTrainingIds } = result;
+    const identityDesc = founderIdentityDescriptions[inferredFounderIdentity] || founderIdentityDescriptions.Founder;
+
+    const incomeHtml = suggestedIncomeIds.map(id => `
+      <li class="qz-idea-item">
+        <p class="qz-idea-title">${incomeTitles[id] || id}</p>
+        ${hookMap[id] ? `<p class="qz-idea-hook">${hookMap[id]}</p>` : ""}
+      </li>
+    `).join("");
+
+    const trainingHtml = suggestedTrainingIds.length ? `
+      <div class="qz-result-block">
+        <p class="qz-result-label">Education Worth Looking At</p>
+        <ul class="qz-training-list">
+          ${suggestedTrainingIds.map(id => `<li>${trainingTitles[id] || id}</li>`).join("")}
+        </ul>
+      </div>
+    ` : "";
+
+    body.innerHTML = `
+      <div class="qz-result">
+        <div class="qz-result-block qz-result-block--identity">
+          <p class="qz-result-label">Your Founder Identity</p>
+          <h2 class="qz-identity-name">${inferredFounderIdentity}</h2>
+          <p class="qz-identity-desc">${identityDesc}</p>
+          ${founderIdentityFit ? `<p class="qz-identity-fit">${founderIdentityFit}</p>` : ""}
+        </div>
+        <div class="qz-result-block">
+          <p class="qz-result-label">Income Ideas to Explore</p>
+          <ul class="qz-idea-list">${incomeHtml}</ul>
+        </div>
+        ${trainingHtml}
+        <div class="qz-result-footer">
+          <button class="qz-restart" id="qzRestart">Retake the quiz</button>
+          <a href="app.html" class="qz-app-link">Explore the directory &rarr;</a>
+        </div>
+      </div>
+    `;
+
+    document.getElementById("qzRestart").addEventListener("click", () => {
+      qzIndex = -1;
+      result = null;
+      Object.keys(answers).forEach(k => delete answers[k]);
+      render();
+    });
+  }
+
+  render();
+
+  // ─── NAV TOGGLE ────────────────────────────────────────────────────────────
+  const navToggle = document.querySelector(".nav-toggle");
+  const mainNav = document.getElementById("mainNav");
+  if (navToggle && mainNav) {
+    navToggle.addEventListener("click", () => {
+      const expanded = navToggle.getAttribute("aria-expanded") === "true";
+      navToggle.setAttribute("aria-expanded", String(!expanded));
+      mainNav.classList.toggle("open");
+    });
+  }
+
+})();
+</script>
+</body>
+</html>

@@ -170,11 +170,11 @@
     }
     .qz-app-link {
       font-size: 13px;
-      color: #94a3b8;
+      color: #14253d;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 700;
     }
-    .qz-app-link:hover { color: #14253d; }
+    .qz-app-link:hover { color: #1e3a5f; }
     /* Result */
     .qz-result {
       display: grid;
@@ -205,6 +205,7 @@
     .qz-identity-name {
       font-size: 26px;
       font-weight: 800;
+      color: #fff;
       margin: 0 0 8px;
     }
     .qz-identity-desc {
@@ -276,11 +277,12 @@
       border: none;
       font-family: inherit;
       font-size: 13px;
-      color: #94a3b8;
+      color: #14253d;
+      font-weight: 700;
       cursor: pointer;
       padding: 0;
     }
-    .qz-restart:hover { color: #14253d; }
+    .qz-restart:hover { color: #1e3a5f; }
     @media (max-width: 600px) {
       .qz-wrap { padding: 24px 16px 60px; }
       .qz-intro-card { padding: 24px 20px; }
@@ -733,7 +735,7 @@
           <p style="font-size:13px;color:#94a3b8;margin:16px 0 0">${quiz.optionPrompt}</p>
         </div>
         <div class="qz-intro-footer">
-          <a href="app.html" class="qz-app-link">Explore the directory &rarr;</a>
+          <a href="app.html" class="qz-app-link">Explore the app &rarr;</a>
           <button class="qz-btn qz-btn--primary" id="qzBegin">Begin Quiz</button>
         </div>
       `;
@@ -832,7 +834,7 @@
         ${trainingHtml}
         <div class="qz-result-footer">
           <button class="qz-restart" id="qzRestart">Retake the quiz</button>
-          <a href="app.html" class="qz-app-link">Explore the directory &rarr;</a>
+          <a href="app.html" class="qz-app-link">Explore the app &rarr;</a>
         </div>
       </div>
     `;

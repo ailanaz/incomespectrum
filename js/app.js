@@ -365,7 +365,7 @@
         overview: "A business direction for operators who want to connect existing service capabilities to public-sector purchasing systems.",
         whyChoose: "This may fit a business owner who already offers services and wants an additional client lane beyond private work.",
         fit: "Useful for someone willing to handle registrations, certifications, capability statements, and procurement processes.",
-        tags: ["service-based", "ownership-based", "skill-based", "online", "local", "ownership & acquisition"],
+        tags: ["service-based", "ownership-based", "skill-based", "online", "local"],
         startupCost: "Medium",
         speed: "Slow",
         skill: "High",
@@ -403,7 +403,7 @@
         overview: "No shop, no lift, no waiting. Interstate Battery and AAA run this model. Local independent operators compete on speed and price with lower overhead. Five to eight calls per day is achievable with a stocked van and basic territory routing.",
         whyChoose: "This may fit someone who wants an automotive service business with a specific, fast, repeatable job type and no facility overhead.",
         fit: "Useful for someone comfortable with basic automotive service, inventory management, and building referral relationships with roadside assistance services.",
-        tags: ["local", "service-based", "automotive", "mobile", "on-demand"],
+        tags: ["local", "service-based", "automotive", "mobile", "on-demand", "auto trades"],
         startupCost: "Low",
         speed: "Fast",
         skill: "Low",
@@ -430,7 +430,7 @@
         repeatIncome: "Medium",
         customerInteraction: "Medium",
         complexity: "Low",
-        trainingIds: ["training-digital-marketing", "training-operations-basics"],
+        trainingIds: ["training-digital-storefront", "training-operations-basics"],
         serviceIds: ["service-bookkeeping"],
         officialIds: ["official-state-registration"]
       },
@@ -449,7 +449,7 @@
         repeatIncome: "High",
         customerInteraction: "Low",
         complexity: "Low",
-        trainingIds: ["training-digital-marketing"],
+        trainingIds: ["training-digital-storefront", "training-brand-basics"],
         serviceIds: ["service-bookkeeping"],
         officialIds: ["official-state-registration"]
       },
@@ -468,7 +468,7 @@
         repeatIncome: "High",
         customerInteraction: "Medium",
         complexity: "Low",
-        trainingIds: ["training-digital-marketing", "training-operations-basics"],
+        trainingIds: ["training-brand-basics", "training-operations-basics"],
         serviceIds: ["service-bookkeeping"],
         officialIds: ["official-state-registration"]
       },
@@ -546,7 +546,7 @@
         covers: "Pricing, positioning, operations, and foundational business tasks.",
         fit: "Useful for anyone moving from skill to service business.",
         tags: ["free", "paid", "beginner", "online", "full program"],
-        relatedIncomeIds: ["income-mobile-notary", "income-virtual-assistant", "income-commercial-cleaning", "income-government-contracting"]
+        relatedIncomeIds: ["income-mobile-notary", "income-virtual-assistant", "income-asl-interpreting", "income-commercial-cleaning", "income-hydroseeding", "income-escape-room", "income-karaoke-venue", "income-laundry-pickup", "income-lice-removal", "income-capsule-hotel", "income-postpartum-retreat", "income-pet-funeral", "income-death-doula", "income-government-contracting"]
       },
       {
         id: "training-asl-pathways",
@@ -570,7 +570,7 @@
         covers: "Exam prep, skill-building, and readiness for formal certification steps. Includes NIC via CASLI and state programs such as BEI for Texas.",
         fit: "Useful for people moving from interest into qualification-dependent work.",
         tags: ["advanced", "certification", "online", "in-person"],
-        relatedIncomeIds: ["income-asl-interpreting"]
+        relatedIncomeIds: ["income-asl-interpreting", "income-mobile-notary", "income-death-doula"]
       },
       {
         id: "training-digital-storefront",
@@ -582,7 +582,7 @@
         covers: "Store setup, product publishing, and foundational ecommerce workflow.",
         fit: "Useful for product-based operators using print-on-demand or online retail models.",
         tags: ["beginner", "online", "short-form"],
-        relatedIncomeIds: ["income-print-on-demand"]
+        relatedIncomeIds: ["income-print-on-demand", "income-storefront-setup", "income-listing-optimization"]
       },
       {
         id: "training-brand-basics",
@@ -594,7 +594,7 @@
         covers: "Basic brand clarity, positioning, and offer communication.",
         fit: "Useful for new service and product operators who need a clear public-facing offer.",
         tags: ["beginner", "online", "short-form"],
-        relatedIncomeIds: ["income-print-on-demand"]
+        relatedIncomeIds: ["income-print-on-demand", "income-storefront-setup", "income-listing-optimization", "income-vertical-content"]
       },
       {
         id: "training-operations-basics",
@@ -606,7 +606,7 @@
         covers: "Operations planning, service delivery systems, and recurring service management.",
         fit: "Useful for hands-on service operators who need process and repeatability.",
         tags: ["beginner", "online", "full program"],
-        relatedIncomeIds: ["income-commercial-cleaning"]
+        relatedIncomeIds: ["income-commercial-cleaning", "income-hydroseeding", "income-escape-room", "income-karaoke-venue", "income-laundry-pickup", "income-lice-removal", "income-capsule-hotel", "income-postpartum-retreat", "income-pet-funeral", "income-death-doula", "income-storefront-setup", "income-vertical-content", "income-used-ebike", "income-mobile-battery", "income-driveway-paver", "income-crawlspace-cleanup"]
       },
       {
         id: "training-hydroseeding",
@@ -3742,7 +3742,7 @@
         focusFitSummary: "Start with service-based options first. Stay close to the cost people are already paying and the result they want handled more cleanly.",
         pathSummary: "Start with service-based options and stay close to the actual cost people are already paying.",
         knowledgeSummary: "In the Education & Training section, look for business foundations and operations resources relevant to your service type. In Supportive Services, look for legal setup, bookkeeping, and marketing support to keep the business running cleanly.",
-        incomeIds: ["income-mobile-notary", "income-virtual-assistant", "income-commercial-cleaning", "income-hydroseeding", "income-mobile-battery", "income-driveway-paver", "income-crawlspace-cleanup"],
+        incomeIds: ["income-mobile-notary", "income-virtual-assistant", "income-commercial-cleaning", "income-mobile-battery", "income-laundry-pickup", "income-crawlspace-cleanup"],
         trainingIds: ["training-business-foundations", "training-operations-basics", "training-certification-prep"],
         serviceIds: ["service-bookkeeping", "service-legal", "service-marketing", "service-advisory"],
         officialIds: ["official-state-registration", "official-licensing", "official-ein-irs"]
@@ -3768,7 +3768,7 @@
         focusFitSummary: "Start with ownership and acquisition first. Look for work worth owning, not just work worth doing.",
         pathSummary: "Start with ownership and acquisition and keep the operating model in view from the beginning.",
         knowledgeSummary: "In the Education & Training section, go to Entrepreneurship & Ownership specifically - acquisition training and business-buying education are there. In Supportive Services, look for legal and advisory support before you commit to anything.",
-        incomeIds: ["income-government-contracting", "income-commercial-cleaning", "income-hydroseeding", "income-used-ebike", "income-capsule-hotel"],
+        incomeIds: ["income-government-contracting", "income-commercial-cleaning", "income-escape-room", "income-hydroseeding", "income-capsule-hotel"],
         trainingIds: ["training-business-foundations", "training-government-contracting"],
         serviceIds: ["service-legal", "service-bookkeeping", "service-advisory"],
         officialIds: ["official-state-registration", "official-state-tax", "official-licensing", "official-ein-irs"]
@@ -3794,7 +3794,7 @@
         focusFitSummary: "Start with recurring and asset-based options first. Look for what repeats, renews, or keeps generating demand once it is in place.",
         pathSummary: "Start with recurring and asset-based options and keep repeat demand in view.",
         knowledgeSummary: "In the Education & Training section, look for business operations and foundations resources. In Supportive Services, look for legal, bookkeeping, and advisory support to structure the recurring model correctly from the start.",
-        incomeIds: ["income-laundry-pickup", "income-commercial-cleaning", "income-government-contracting", "income-capsule-hotel", "income-used-ebike"],
+        incomeIds: ["income-laundry-pickup", "income-commercial-cleaning", "income-government-contracting", "income-capsule-hotel", "income-mobile-battery"],
         trainingIds: ["training-business-foundations", "training-operations-basics", "training-government-contracting"],
         serviceIds: ["service-bookkeeping", "service-legal", "service-advisory"],
         officialIds: ["official-state-registration", "official-state-tax", "official-licensing", "official-ein-irs"]
@@ -3897,54 +3897,98 @@
 
     const currentFocus = focusMap[focus] || focusMap.sorting;
 
+    // Tightened boost lists - max 4 items each, strong fits only
     const styleBoosts = {
-      solving: ["income-mobile-battery", "income-commercial-cleaning", "income-crawlspace-cleanup", "income-lice-removal", "income-driveway-paver"],
-      improving: ["income-listing-optimization", "income-vertical-content", "income-hydroseeding", "income-driveway-paver", "income-storefront-setup"],
-      organizing: ["income-virtual-assistant", "income-storefront-setup", "income-government-contracting", "income-laundry-pickup", "income-mobile-notary"],
-      guiding: ["income-mobile-notary", "income-storefront-setup", "income-government-contracting", "income-virtual-assistant", "income-listing-optimization"],
-      creating: ["income-print-on-demand", "income-vertical-content", "income-escape-room", "income-karaoke-venue", "income-used-ebike"],
-      connecting: ["income-asl-interpreting", "income-death-doula", "income-pet-funeral", "income-postpartum-retreat", "income-virtual-assistant"]
+      solving: ["income-mobile-battery", "income-commercial-cleaning", "income-crawlspace-cleanup", "income-lice-removal"],
+      improving: ["income-listing-optimization", "income-hydroseeding", "income-driveway-paver", "income-vertical-content"],
+      organizing: ["income-virtual-assistant", "income-government-contracting", "income-laundry-pickup", "income-mobile-notary"],
+      guiding: ["income-mobile-notary", "income-government-contracting", "income-virtual-assistant", "income-listing-optimization"],
+      creating: ["income-print-on-demand", "income-vertical-content", "income-escape-room", "income-karaoke-venue"],
+      connecting: ["income-asl-interpreting", "income-death-doula", "income-pet-funeral", "income-postpartum-retreat"]
     };
     const driverBoosts = {
-      relief: ["income-commercial-cleaning", "income-crawlspace-cleanup", "income-lice-removal", "income-mobile-battery", "income-virtual-assistant", "income-laundry-pickup"],
-      stability: ["income-mobile-notary", "income-government-contracting", "income-commercial-cleaning", "income-laundry-pickup"],
-      access: ["income-asl-interpreting", "income-storefront-setup", "income-used-ebike", "income-mobile-battery"],
-      improvement: ["income-listing-optimization", "income-vertical-content", "income-driveway-paver", "income-hydroseeding", "income-storefront-setup"],
-      connection: ["income-asl-interpreting", "income-death-doula", "income-pet-funeral", "income-postpartum-retreat", "income-virtual-assistant"],
-      enjoyment: ["income-print-on-demand", "income-karaoke-venue", "income-escape-room", "income-capsule-hotel", "income-used-ebike", "income-vertical-content"]
+      relief: ["income-commercial-cleaning", "income-crawlspace-cleanup", "income-lice-removal", "income-mobile-battery"],
+      stability: ["income-mobile-notary", "income-government-contracting", "income-mobile-battery", "income-asl-interpreting"],
+      access: ["income-asl-interpreting", "income-storefront-setup", "income-mobile-notary", "income-government-contracting"],
+      improvement: ["income-listing-optimization", "income-driveway-paver", "income-hydroseeding", "income-used-ebike"],
+      connection: ["income-asl-interpreting", "income-death-doula", "income-postpartum-retreat", "income-pet-funeral"],
+      enjoyment: ["income-print-on-demand", "income-karaoke-venue", "income-escape-room", "income-capsule-hotel"]
     };
     const founderBoosts = {
-      Entrepreneur: ["income-escape-room", "income-karaoke-venue", "income-capsule-hotel", "income-government-contracting", "income-storefront-setup", "income-vertical-content"],
-      Solopreneur: ["income-virtual-assistant", "income-mobile-notary", "income-listing-optimization", "income-storefront-setup", "income-vertical-content", "income-used-ebike"],
+      Entrepreneur: ["income-escape-room", "income-karaoke-venue", "income-capsule-hotel", "income-government-contracting", "income-used-ebike"],
+      Solopreneur: ["income-virtual-assistant", "income-mobile-notary", "income-listing-optimization", "income-vertical-content"],
       "Small Business Owner": ["income-commercial-cleaning", "income-hydroseeding", "income-laundry-pickup", "income-driveway-paver", "income-mobile-battery"],
-      Freelancer: ["income-listing-optimization", "income-vertical-content", "income-storefront-setup", "income-virtual-assistant", "income-mobile-notary"],
-      "Owner-Operator": ["income-mobile-battery", "income-hydroseeding", "income-commercial-cleaning", "income-laundry-pickup", "income-driveway-paver", "income-crawlspace-cleanup", "income-mobile-notary"],
+      Freelancer: ["income-listing-optimization", "income-vertical-content", "income-virtual-assistant", "income-mobile-notary"],
+      "Owner-Operator": ["income-mobile-battery", "income-hydroseeding", "income-commercial-cleaning", "income-laundry-pickup", "income-driveway-paver", "income-crawlspace-cleanup"],
       "Still sorting": ["income-mobile-notary", "income-virtual-assistant", "income-commercial-cleaning", "income-government-contracting"]
     };
     const costBoosts = {
-      time: ["income-virtual-assistant", "income-mobile-notary", "income-laundry-pickup", "income-mobile-battery", "income-listing-optimization", "income-storefront-setup"],
-      energy: ["income-commercial-cleaning", "income-crawlspace-cleanup", "income-driveway-paver", "income-hydroseeding", "income-laundry-pickup"],
-      attention: ["income-listing-optimization", "income-storefront-setup", "income-virtual-assistant", "income-government-contracting", "income-mobile-notary"],
-      comfort: ["income-capsule-hotel", "income-postpartum-retreat", "income-pet-funeral", "income-death-doula", "income-lice-removal"],
+      time: ["income-virtual-assistant", "income-mobile-notary", "income-laundry-pickup", "income-mobile-battery"],
+      energy: ["income-commercial-cleaning", "income-crawlspace-cleanup", "income-driveway-paver", "income-hydroseeding"],
+      attention: ["income-listing-optimization", "income-virtual-assistant", "income-government-contracting", "income-mobile-notary"],
+      comfort: ["income-capsule-hotel", "income-postpartum-retreat", "income-death-doula", "income-pet-funeral"],
       risk: ["income-government-contracting", "income-mobile-notary", "income-asl-interpreting"],
-      mix: ["income-virtual-assistant", "income-commercial-cleaning", "income-government-contracting", "income-storefront-setup", "income-mobile-notary"]
+      mix: ["income-virtual-assistant", "income-government-contracting", "income-mobile-notary", "income-commercial-cleaning"]
     };
     const opportunityBoosts = {
-      "save-time": ["income-virtual-assistant", "income-mobile-battery", "income-mobile-notary", "income-storefront-setup", "income-listing-optimization", "income-laundry-pickup"],
-      "use-less-energy": ["income-commercial-cleaning", "income-laundry-pickup", "income-crawlspace-cleanup", "income-driveway-paver", "income-mobile-battery"],
-      "decide-clearly": ["income-listing-optimization", "income-government-contracting", "income-mobile-notary", "income-virtual-assistant", "income-storefront-setup"],
-      "feel-better": ["income-pet-funeral", "income-death-doula", "income-postpartum-retreat", "income-lice-removal", "income-capsule-hotel"],
-      "better-result": ["income-hydroseeding", "income-driveway-paver", "income-listing-optimization", "income-storefront-setup", "income-used-ebike"],
-      "enjoy-more": ["income-karaoke-venue", "income-escape-room", "income-capsule-hotel", "income-print-on-demand", "income-vertical-content", "income-used-ebike"]
+      "save-time": ["income-virtual-assistant", "income-laundry-pickup", "income-mobile-battery", "income-mobile-notary"],
+      "use-less-energy": ["income-commercial-cleaning", "income-crawlspace-cleanup", "income-driveway-paver", "income-laundry-pickup"],
+      "decide-clearly": ["income-listing-optimization", "income-government-contracting", "income-mobile-notary", "income-virtual-assistant"],
+      "feel-better": ["income-pet-funeral", "income-death-doula", "income-postpartum-retreat", "income-lice-removal"],
+      "better-result": ["income-hydroseeding", "income-driveway-paver", "income-listing-optimization", "income-vertical-content"],
+      "enjoy-more": ["income-karaoke-venue", "income-escape-room", "income-capsule-hotel", "income-print-on-demand"]
     };
 
-    addScores(incomeScores, currentFocus.incomeIds, 4);
-    addScores(incomeScores, styleBoosts[style] || [], 2);
-    addScores(incomeScores, driverBoosts[driver] || [], 2);
-    addScores(incomeScores, driverBoosts[culture] || [], 1);
+    // Penalty tables - items that actively conflict with an answer are subtracted
+    const driverPenalties = {
+      stability: ["income-karaoke-venue", "income-escape-room", "income-capsule-hotel", "income-print-on-demand", "income-used-ebike"],
+      access: ["income-karaoke-venue", "income-escape-room", "income-print-on-demand", "income-used-ebike", "income-crawlspace-cleanup"],
+      relief: ["income-karaoke-venue", "income-escape-room", "income-capsule-hotel", "income-used-ebike"],
+      connection: ["income-listing-optimization", "income-mobile-battery", "income-crawlspace-cleanup", "income-driveway-paver", "income-hydroseeding"],
+      improvement: ["income-crawlspace-cleanup", "income-lice-removal", "income-laundry-pickup", "income-pet-funeral"],
+      enjoyment: ["income-government-contracting", "income-crawlspace-cleanup", "income-lice-removal", "income-mobile-notary"]
+    };
+    const stylePenalties = {
+      creating: ["income-commercial-cleaning", "income-crawlspace-cleanup", "income-laundry-pickup", "income-mobile-notary", "income-government-contracting"],
+      connecting: ["income-listing-optimization", "income-mobile-battery", "income-hydroseeding", "income-driveway-paver", "income-crawlspace-cleanup"],
+      solving: ["income-laundry-pickup", "income-print-on-demand", "income-karaoke-venue", "income-capsule-hotel"],
+      organizing: ["income-karaoke-venue", "income-escape-room", "income-print-on-demand"],
+      improving: ["income-death-doula", "income-pet-funeral", "income-postpartum-retreat", "income-lice-removal"],
+      guiding: ["income-commercial-cleaning", "income-crawlspace-cleanup", "income-mobile-battery", "income-hydroseeding"]
+    };
+    const opportunityPenalties = {
+      "enjoy-more": ["income-government-contracting", "income-mobile-notary", "income-commercial-cleaning", "income-crawlspace-cleanup", "income-lice-removal"],
+      "feel-better": ["income-government-contracting", "income-listing-optimization", "income-hydroseeding", "income-used-ebike"],
+      "better-result": ["income-karaoke-venue", "income-escape-room", "income-death-doula", "income-pet-funeral"],
+      "save-time": ["income-karaoke-venue", "income-escape-room", "income-print-on-demand", "income-capsule-hotel"],
+      "use-less-energy": ["income-listing-optimization", "income-vertical-content", "income-print-on-demand", "income-karaoke-venue"],
+      "decide-clearly": ["income-karaoke-venue", "income-escape-room", "income-commercial-cleaning", "income-crawlspace-cleanup", "income-used-ebike"]
+    };
+
+    function subtractScores(bucket, ids, points) {
+      (ids || []).forEach(function(id) {
+        if (Object.prototype.hasOwnProperty.call(bucket, id)) {
+          bucket[id] -= points;
+        }
+      });
+    }
+
+    // Boosting: focus question carries the most weight, style and driver are close behind
+    addScores(incomeScores, currentFocus.incomeIds, 5);
+    addScores(incomeScores, styleBoosts[style] || [], 3);
+    addScores(incomeScores, driverBoosts[driver] || [], 3);
+    // Only apply culture boost if it differs from driver - avoids double-counting same answer
+    if (culture !== driver) {
+      addScores(incomeScores, driverBoosts[culture] || [], 2);
+    }
     addScores(incomeScores, founderBoosts[founderIdentity] || [], 1);
     addScores(incomeScores, costBoosts[cost] || [], 1);
-    addScores(incomeScores, opportunityBoosts[opportunity] || [], 2);
+    addScores(incomeScores, opportunityBoosts[opportunity] || [], 3);
+
+    // Subtract points for clear mismatches - items that conflict with answers drop below matching ones
+    subtractScores(incomeScores, driverPenalties[driver] || [], 3);
+    subtractScores(incomeScores, stylePenalties[style] || [], 2);
+    subtractScores(incomeScores, opportunityPenalties[opportunity] || [], 2);
 
     const suggestedIncomeIds = topKeys(incomeScores, 3).length
       ? topKeys(incomeScores, 3)

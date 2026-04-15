@@ -1103,19 +1103,19 @@ button.field-toggle::after {
 
 .browse-strip {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .browse-card {
   display: grid;
-  gap: 10px;
-  padding: 18px 16px;
-  min-height: 170px;
+  gap: 8px;
+  padding: 14px 13px;
+  min-height: 150px;
   text-align: left;
   align-content: start;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   border: 2px solid var(--app-navy);
   box-shadow: 0 10px 0 rgba(20, 37, 61, 0.08);
@@ -2365,11 +2365,13 @@ button.field-toggle::after {
   color: var(--app-text-soft);
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 860px) {
   .browse-strip {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
 
+@media (max-width: 1100px) {
   .home-dashboard-grid {
     grid-template-columns: 1fr;
     grid-template-areas:

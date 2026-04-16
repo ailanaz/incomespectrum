@@ -1,8 +1,8 @@
 [{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "com.incomespectrum.twa",
-    "sha256_cert_fingerprints": ["A0:0D:B8:18:B2:74:0E:B5:05:0F:03:F4:35:E4:11:AF:E0:3F:4F:07:F6:08:8B:2C:59:30:06:FB:09:EF:AC:79"]
-  }
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+          "namespace": "android_app",
+          "package_name": "com.incomespectrum.twa",
+          "sha256_cert_fingerprints": ["DA:DD:87:2D:FE:F1:94:20:BB:05:D2:EF:89:E6:F7:7C:6C:FB:28:2B:0A:02:92:43:61"]
+    }
 }]

@@ -1,15 +1,14 @@
 [
-      {
-              "relation": [
-                        "delegate_permission/common.handle_all_urls"
-              ],
-              "target": {
-                        "namespace": "android_app",
-                        "package_name": "com.incomespectrum.twa",
-                        "sha256_cert_fingerprints": [
-                                    "DA:DD:87:2D:FE:F1:94:20:BB:05:D2:EF:89:E6:F7:7C:6C:FB:28:2B:0A:02:92:43:61",
-                                    "DA:DD:87:2D:FE:F1:94:20:BB:05:D2:EF:89:E6:F7:7C:6C:FB:28:2B:0A:02:92:43:61:B5:FB:B1:60:89:06:17"
-                        ]
-              }
-      }
+        {
+                  "relation": [
+                              "delegate_permission/common.handle_all_urls"
+                  ],
+                  "target": {
+                              "namespace": "android_app",
+                              "package_name": "com.incomespectrum.twa",
+                              "sha256_cert_fingerprints": [
+                                            "DA:DD:87:2D:FE:F1:94:20:BB:05:D2:EF:89:E6:F7:7C:6C:FB:28:2B:0A:02:92:43:61:B5:FB:B1:60:89:06:17"
+                              ]
+                  }
+        }
 ]
